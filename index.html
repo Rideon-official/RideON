@@ -1,22 +1,89 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>라이드온</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 🔷 구글폰트: Noto Sans KR -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* 🔷 기본 스타일 */
-body { font-family: sans-serif; margin: 0; }
-header { background: #000; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1rem; }
+/* 🔷 전체 폰트 지정 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+}
+
+/* 🔷 헤더 메뉴 스타일 */
+header {
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem; /* 메뉴 두께 2배 */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  transition: background 0.3s, color 0.3s;
+}
 header img { height: 40px; margin-right: 0.5rem; }
-header nav a { color: #fff; text-decoration: none; margin: 0 0.5rem; }
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: 500;
+}
 header nav a:hover { text-decoration: underline; }
-header .contact-btns button { margin-left: 0.5rem; padding: 0.3rem 0.7rem; border: none; cursor: pointer; border-radius: 20px; }
+header .contact-btns button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  font-weight: bold;
+}
 header .contact-btns .kakao { background: yellow; }
 header .contact-btns .phone { background: lightgreen; }
 
+/* 🔷 스크롤 시 색상 변경 */
+header.scrolled {
+  background: #fff;
+  color: #000;
+}
+header.scrolled nav a { color: #000; }
+
+/* 🔷 대표사진 Hero 영역 */
+.hero {
+  margin-top: 80px; /* 헤더 공간 확보 */
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+.hero-text h1 { font-size: 3rem; margin: 0; }
+.hero-text p { font-size: 1.2rem; }
+
 /* 🔷 푸터 */
-footer { background: #f8f8f8; text-align: center; padding: 2rem 1rem; font-size: 0.9rem; color: #666; }
+footer {
+  background: #f8f8f8;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
 footer a { color: #666; text-decoration: none; margin: 0 0.5rem; }
 footer a:hover { text-decoration: underline; }
 footer img { height: 20px; margin: 0 0.5rem; }
@@ -24,9 +91,10 @@ footer img { height: 20px; margin: 0 0.5rem; }
 </head>
 <body>
 
+<!-- 🔷 헤더 -->
 <header>
   <a href="/">
-    <img src="로고.png" alt="라이드온 로고">
+    <img src="logo.png" alt="라이드온 로고">
     <strong>RIDE ON</strong>
   </a>
   <nav>
@@ -41,25 +109,52 @@ footer img { height: 20px; margin: 0 0.5rem; }
   </div>
 </header>
 
+<!-- 🔷 메인 대표사진 Hero -->
+<section class="hero">
+  <img src="대표사진.jpg" alt="대표 이미지">
+  <div class="hero-text">
+    <h1>RIDE ON</h1>
+    <p>우리는 배달라이더의 파트너입니다</p>
+  </div>
+</section>
+
+<!-- 🔷 본문 영역 (추가로 수정 가능) -->
 <main>
-  <h1>라이드온에 오신 것을 환영합니다</h1>
-  <p>여기부터 본문 내용을 추가해 나갈 거예요.</p>
+  <h2>본문 내용</h2>
+  <p>여기서부터 본문 내용을 자유롭게 추가해 나가면 됩니다.</p>
 </main>
 
+<!-- 🔷 푸터 -->
 <footer>
   <div>
-    <a href="https://www.instagram.com/네_인스타" target="_blank"><img src="인스타그램_아이콘.png" alt="Instagram"></a>
-    <a href="https://blog.naver.com/네_블로그" target="_blank"><img src="블로그_아이콘.png" alt="Blog"></a>
+    <a href="https://www.instagram.com/네_인스타" target="_blank">
+      <img src="인스타그램_아이콘.png" alt="Instagram">
+    </a>
+    <a href="https://blog.naver.com/네_블로그" target="_blank">
+      <img src="블로그_아이콘.png" alt="Blog">
+    </a>
   </div>
-  <div>상호 : 라이드온 | 법인명 : 패온 | 대표 : 최수호</div>
-  <div>주소 : 서울특별시 강동구 고덕로 78, 2층 202호</div>
-  <div>사업자등록번호 : 896-86-02776 | 전화 : 010-9705-6965 | 이메일 : rideon_official@naver.com</div>
+  <div>상호: 라이드온 | 법인명: 패온 | 대표: 최수호</div>
+  <div>주소: 서울특별시 강동구 고덕로 78, 2층 202호</div>
+  <div>사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com</div>
   <div>
     <a href="/terms.html">이용약관</a> |
     <a href="/privacy.html">개인정보처리방침</a>
   </div>
   <div>&copy; 2025 라이드온. All Rights Reserved.</div>
 </footer>
+
+<!-- 🔷 스크롤 시 색상변경 JS -->
+<script>
+window.addEventListener('scroll', function() {
+  var header = document.querySelector('header');
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+</script>
 
 </body>
 </html>
