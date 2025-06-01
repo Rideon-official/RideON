@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>라이드온</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body { font-family: sans-serif; margin: 0; background: #f7f7f7; }
-    header { background: #007BFF; color: white; padding: 1rem; text-align: center; }
-    main { padding: 2rem; }
-    footer { background: #333; color: #ccc; text-align: center; padding: 1rem; }
-  </style>
+<meta charset="UTF-8" />
+<title>라이드온</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+/* 🔷 기본 스타일 */
+body { font-family: sans-serif; margin: 0; }
+header { background: #000; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1rem; }
+header img { height: 40px; margin-right: 0.5rem; }
+header nav a { color: #fff; text-decoration: none; margin: 0 0.5rem; }
+header nav a:hover { text-decoration: underline; }
+header .contact-btns button { margin-left: 0.5rem; padding: 0.3rem 0.7rem; border: none; cursor: pointer; border-radius: 20px; }
+header .contact-btns .kakao { background: yellow; }
+header .contact-btns .phone { background: lightgreen; }
+
+/* 🔷 푸터 */
+footer { background: #f8f8f8; text-align: center; padding: 2rem 1rem; font-size: 0.9rem; color: #666; }
+footer a { color: #666; text-decoration: none; margin: 0 0.5rem; }
+footer a:hover { text-decoration: underline; }
+footer img { height: 20px; margin: 0 0.5rem; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>라이드온</h1>
-  </header>
-  <main>
-    <h2>환영합니다!</h2>
-    <p>여기부터 회사 소개, 서비스, 연락처를 추가해 나갈 거예요.</p>
-  </main>
-  <footer>
-    &copy; 2025 라이드온
-  </footer>
+
+<header>
+  <a href="/">
+    <img src="로고.png" alt="라이드온 로고">
+    <strong>RIDE ON</strong>
+  </a>
+  <nav>
+    <a href="#">회사소개</a>
+    <a href="#">운영지역</a>
+    <a href="#">플랫폼</a>
+    <a href="#">문의하기</a>
+  </nav>
+  <div class="contact-btns">
+    <button class="kakao">카톡상담</button>
+    <button class="phone">전화상담</button>
+  </div>
+</header>
+
+<main>
+  <h1>라이드온에 오신 것을 환영합니다</h1>
+  <p>여기부터 본문 내용을 추가해 나갈 거예요.</p>
+</main>
+
+<footer>
+  <div>
+    <a href="https://www.instagram.com/네_인스타" target="_blank"><img src="인스타그램_아이콘.png" alt="Instagram"></a>
+    <a href="https://blog.naver.com/네_블로그" target="_blank"><img src="블로그_아이콘.png" alt="Blog"></a>
+  </div>
+  <div>상호: 라이드온 | 법인명: 패온 | 대표: 최수호</div>
+  <div>주소: 00</div>
+  <div>사업자등록번호: 000-00-00000 | 전화: 010-0000-0000 | 이메일: rideon_official@naver.com</div>
+  <div>
+    <a href="/terms.html">이용약관</a> |
+    <a href="/privacy.html">개인정보처리방침</a>
+  </div>
+  <div>&copy; 2025 라이드온. All Rights Reserved.</div>
+</footer>
+
 </body>
 </html>
