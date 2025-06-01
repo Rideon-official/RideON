@@ -2,160 +2,188 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>라이드온</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 🔷 구글폰트: Noto Sans KR -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<title>라이드온 RIDE ON</title>
 <style>
-/* 🔷 전체 폰트 지정 */
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  margin: 0;
-}
+/* reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* 🔷 헤더 메뉴 스타일 */
-header {
-  background: #000;
-  color: #fff;
+body { font-family: 'Pretendard', sans-serif; }
+
+/* navbar */
+.navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem; /* 메뉴 두께 2배 */
+  align-items: center;
+  background: white;
+  color: black;
+  padding: 20px 30px;
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 999;
   transition: background 0.3s, color 0.3s;
+  z-index: 1000;
 }
-header img { height: 40px; margin-right: 0.5rem; }
-header nav a {
-  color: #fff;
+
+.navbar-left { flex: 1; }
+.navbar-center { flex: 2; text-align: center; }
+.navbar-right { flex: 1; text-align: right; }
+
+.navbar-center ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-center ul li { margin: 0 15px; }
+.navbar-center ul li a {
   text-decoration: none;
-  margin: 0 1rem;
-  font-weight: 700;
+  font-weight: bold;
+  color: black;
+  font-size: 1.1rem;
 }
-header nav a:hover { text-decoration: underline; }
-  header strong {
-  font-weight: 900; /* RIDE ON 텍스트를 아주 두껍게! */
-}
-header .contact-btns button {
-  margin-left: 0.5rem;
-  padding: 0.4rem 1rem;
-  border: none;
-  cursor: pointer;
+
+/* buttons */
+.kakao-btn, .phone-btn {
+  display: inline-block;
+  padding: 8px 15px;
   border-radius: 20px;
   font-weight: bold;
-}
-header .contact-btns .kakao { background: yellow; }
-header .contact-btns .phone { background: lightgreen; }
-
-/* 🔷 스크롤 시 색상 변경 */
-header.scrolled {
-  background: #fff;
-  color: #000;
-}
-header.scrolled nav a { color: #000; }
-
-/* 🔷 대표사진 Hero 영역 */
-.hero {
-  margin-top: 80px; /* 헤더 공간 확보 */
-  position: relative;
-  height: 500px;
-  overflow: hidden;
-}
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.hero-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background: black;
   color: white;
-  text-align: center;
+  margin-left: 10px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
 }
-.hero-text h1 { font-size: 3rem; margin: 0; }
-.hero-text p { font-size: 1.2rem; }
 
-/* 🔷 푸터 */
-footer {
-  background: #f8f8f8;
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.9rem;
-  color: #666;
+/* scrolled state */
+.navbar.scrolled {
+  background: #f0f0f0;
+  color: black;
 }
-footer a { color: #666; text-decoration: none; margin: 0 0.5rem; }
-footer a:hover { text-decoration: underline; }
-footer img { height: 20px; margin: 0 0.5rem; }
+.navbar.scrolled .navbar-center ul li a { color: black; }
+.navbar.scrolled .kakao-btn, .navbar.scrolled .phone-btn {
+  background: #f0f0f0;
+  color: black;
+  border: 1px solid #333;
+}
+
+/* 모바일 메뉴 버튼 */
+.mobile-menu-btn {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* 모바일 메뉴 */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: white;
+  position: fixed;
+  top: 70px; left: 0;
+  width: 100%;
+  z-index: 999;
+  border-top: 1px solid #ddd;
+}
+.mobile-menu a {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.mobile-menu a:hover { background: #f0f0f0; }
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+  .navbar-center { display: none; }
+  .navbar-right { display: none; }
+  .mobile-menu-btn { display: block; }
+}
+
+/* 대표 이미지 (예시) */
+.hero {
+  height: 600px;
+  background: url('대표이미지.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
 </style>
 </head>
 <body>
 
-<!-- 🔷 헤더 -->
-<header>
-  <a href="/">
-    <img src="logo.png" alt="라이드온 로고">
-    <strong>RIDE ON</strong>
-  </a>
-  <nav>
-    <a href="#">회사소개</a>
-    <a href="#">운영지역</a>
-    <a href="#">플랫폼</a>
-    <a href="#">문의하기</a>
-  </nav>
-  <div class="contact-btns">
-    <button class="kakao">카톡상담</button>
-    <button class="phone">전화상담</button>
+<header class="navbar">
+  <div class="navbar-left">
+    <a href="/" class="logo">
+      <img src="logo.png" alt="라이드온 로고" style="height:40px;">
+    </a>
   </div>
+  <div class="navbar-center">
+    <ul>
+      <li><a href="#company">회사소개</a></li>
+      <li><a href="#region">운영지역</a></li>
+      <li><a href="#platform">플랫폼</a></li>
+      <li><a href="#inquiry">문의하기</a></li>
+    </ul>
+  </div>
+  <div class="navbar-right">
+    <a href="https://talk.naver.com" class="kakao-btn">카톡상담</a>
+    <a href="tel:전화번호" class="phone-btn">전화상담</a>
+  </div>
+  <div class="mobile-menu-btn">☰</div>
 </header>
 
-<!-- 🔷 메인 대표사진 Hero -->
+<!-- 모바일 메뉴 -->
+<nav class="mobile-menu">
+  <a href="#company">회사소개</a>
+  <a href="#region">운영지역</a>
+  <a href="#platform">플랫폼</a>
+  <a href="#inquiry">문의하기</a>
+  <a href="https://talk.naver.com" class="kakao-btn">카톡상담</a>
+  <a href="tel:전화번호" class="phone-btn">전화상담</a>
+</nav>
+
+<!-- 대표 이미지 예시 -->
 <section class="hero">
-  <img src="대표사진.png" alt="대표 이미지">
-  <div class="hero-text">
-    <h1>RIDE ON</h1>
-    <p>우리는 배달라이더의 파트너입니다</p>
-  </div>
+  <h1>라이드온 RIDE ON</h1>
 </section>
 
-<!-- 🔷 본문 영역 (추가로 수정 가능) -->
-<main>
-  <h2>본문 내용</h2>
-  <p>여기서부터 본문 내용을 자유롭게 추가해 나가면 됩니다.</p>
-</main>
+<!-- 본문 내용 -->
+<section style="padding: 100px 20px;">
+  <h2 id="company">회사소개</h2>
+  <p>우리는 배달라이더의 파트너입니다.</p>
+  <!-- 추가 내용 -->
+</section>
 
-<!-- 🔷 푸터 -->
-<footer>
-  <div>
-    <a href="https://www.instagram.com/네_인스타" target="_blank">
-      <img src="인스타그램_아이콘.jpg" alt="Instagram">
-    </a>
-    <a href="https://blog.naver.com/네_블로그" target="_blank">
-      <img src="블로그_아이콘.png" alt="Blog">
-    </a>
-  </div>
-  <div>상호: 라이드온 | 법인명: 패온 | 대표: 최수호</div>
-  <div>주소: 서울특별시 강동구 고덕로 78, 2층 202호</div>
-  <div>사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com</div>
-  <div>
-    <a href="/terms.html">이용약관</a> |
-    <a href="/privacy.html">개인정보처리방침</a>
-  </div>
-  <div>&copy; 2025 라이드온. All Rights Reserved.</div>
+<!-- footer -->
+<footer style="text-align: center; padding: 30px; background: #f0f0f0;">
+  <p>상호: 라이드온 | 법인명: 패온 | 대표: 최수호<br>
+  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br>
+  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br>
+  <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a><br>
+  &copy; 2025 라이드온. All Rights Reserved.</p>
 </footer>
 
-<!-- 🔷 스크롤 시 색상변경 JS -->
 <script>
+/* 스크롤 이벤트 */
 window.addEventListener('scroll', function() {
-  var header = document.querySelector('header');
+  const navbar = document.querySelector('.navbar');
   if (window.scrollY > 50) {
-    header.classList.add('scrolled');
+    navbar.classList.add('scrolled');
   } else {
-    header.classList.remove('scrolled');
+    navbar.classList.remove('scrolled');
   }
+});
+
+/* 모바일 메뉴 토글 */
+document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+  const menu = document.querySelector('.mobile-menu');
+  menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
 });
 </script>
 
