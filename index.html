@@ -1,203 +1,163 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RIDE ON</title>
-  <style>
-    /* 기본 스타일 */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    header {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 30px;
-      box-sizing: border-box;
-      z-index: 1000;
-      transition: background 0.3s;
-    }
-
-    header.scrolled {
-      background: black;
-    }
-
-    header img.logo {
-      height: 50px;
-      margin-right: 20px;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav li {
-      position: relative;
-    }
-
-    nav a {
-      display: block;
-      padding: 20px 15px;
-      text-decoration: none;
-      color: black;
-      font-weight: 600;
-      font-size: 15px; /* 조금 키움 */
-      transition: color 0.3s;
-    }
-
-    header.scrolled nav a {
-      color: white;
-    }
-
-    nav li:hover ul {
-      display: block;
-    }
-
-    nav ul ul {
-      display: none;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      background: rgba(0, 0, 0, 0.9);
-      border-radius: 4px;
-    }
-
-    nav ul ul li a {
-      padding: 10px;
-      color: white;
-      white-space: nowrap;
-    }
-
-    /* 문의하기 드롭다운 긴 항목 처리 */
-    nav ul ul li a.long-text {
-      white-space: normal;
-    }
-
-    /* 우측 버튼 */
-    .right-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .right-buttons a {
-      text-decoration: none;
-      background: white;
-      color: black;
-      border: 1px solid black;
-      border-radius: 20px;
-      padding: 5px 15px;
-      transition: all 0.3s;
-      font-size: 14px;
-    }
-
-    header.scrolled .right-buttons a {
-      background: black;
-      color: white;
-      border: 1px solid white;
-    }
-
-    /* 섹션 스타일 */
-    section {
-      padding: 120px 20px 50px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h1, h2 {
-      text-align: center;
-    }
-
-    img.logo {
-      margin-left: 20px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RIDE ON</title>
+<style>
+  /* 기본 스타일 */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-sizing: border-box;
+    z-index: 1000;
+    transition: background 0.3s;
+  }
+  header.scrolled {
+    background: black;
+  }
+  header img.logo {
+    height: 50px;
+    margin-right: 20px;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    position: relative;
+  }
+  nav a {
+    display: block;
+    padding: 20px 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s;
+  }
+  header.scrolled nav a {
+    color: white;
+  }
+  nav li:hover ul {
+    display: block;
+  }
+  nav ul ul {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+  }
+  nav ul ul li a {
+    padding: 10px;
+    color: white;
+    white-space: nowrap;
+  }
+  nav ul ul li a.long-text {
+    white-space: normal;
+  }
+  .right-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  .right-buttons a {
+    text-decoration: none;
+    background: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: all 0.3s;
+    font-size: 14px;
+  }
+  header.scrolled .right-buttons a {
+    background: black;
+    color: white;
+    border: 1px solid white;
+  }
+  section {
+    padding: 120px 20px 50px;
+    max-width: 900px;
+    margin: auto;
+  }
+  h1, h2 {
+    text-align: center;
+  }
+</style>
 </head>
 <body>
-  <header id="header">
-    <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" />
-    <nav>
-      <ul>
-        <li>
-          <a href="#about">회사소개</a>
-          <ul>
-            <li><a href="#history">회사 연혁</a></li>
-            <li><a href="#org">대표 & 조직도</a></li>
-          </ul>
-        </li>
-        <li><a href="#areas">운영지역</a></li>
-        <li>
-          <a href="#">플랫폼</a>
-          <ul>
-            <li><a href="#">쿠팡이츠플러스</a></li>
-            <li><a href="#">배달의민족플러스</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">문의하기</a>
-          <ul>
-            <li><a href="#">기사문의</a></li>
-            <li><a href="#" class="long-text">지사합병(창업)문의</a></li>
-            <li><a href="#">기타문의</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <div class="right-buttons">
-      <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
-      <a href="tel:01097056965">전화상담</a>
-    </div>
-  </header>
+<header id="header">
+  <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" />
+  <nav>
+    <ul>
+      <li><a href="#about">회사소개</a></li>
+      <li><a href="#areas">운영지역</a></li>
+      <li>
+        <a href="#">플랫폼</a>
+        <ul>
+          <li><a href="#">쿠팡이츠플러스</a></li>
+          <li><a href="#">배달의민족플러스</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">문의하기</a>
+        <ul>
+          <li><a href="#">기사문의</a></li>
+          <li><a href="#" class="long-text">지사합병(창업)문의</a></li>
+          <li><a href="#">기타문의</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="right-buttons">
+    <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
+    <a href="tel:01097056965">전화상담</a>
+  </div>
+</header>
 
-  <section id="about">
-    <h1>라이드온 RIDE ON</h1>
-    <p>라이드온은 배달라이더를 위한 최고의 파트너가 되기 위해 끊임없이 노력해온 배달대행 전문 기업입니다.</p>
-    <p>2018년 배달대행 운영을 시작하여, 2021년부터는 쿠팡이츠플렉스 초기 모델 및 쿠팡이츠플러스와 배달의민족플러스 등 주요 플랫폼과의 협업을 통해 전국 단위의 배달 네트워크를 확장해왔습니다. 2023년부터는 ‘이츠특공대’ 브랜드를 통해 우수 협력사로 선정되며 업계의 신뢰를 쌓아왔습니다.</p>
-    <p>1개의 법인을 합병 후, 2개의 법인을 운영 중이며 라이더 1,000명 이상이 활동 중이고, 서울·경기·부산·제주 등 전국 주요 지역에서 안정적인 배달 서비스를 제공하고 있습니다. 자체 정산 어플과 협력 병원, 렌탈 서비스까지, 현장 라이더분들의 안정적인 활동을 위한 전방위적 지원 체계를 갖추고 있습니다.</p>
-    <p>앞으로도 라이더와 고객을 잇는 든든한 가교로서, 모든 배달 파트너들이 안심하고 함께할 수 있는 환경을 만들어가겠습니다.</p>
-  </section>
+<section id="about">
+  <h1>라이드온 RIDE ON</h1>
+  <p>라이드온은 배달라이더를 위한 최고의 파트너가 되기 위해 끊임없이 노력해온 배달대행 전문 기업입니다.</p>
+  <p>2018년 배달대행 운영을 시작하여, 2021년부터는 쿠팡이츠플렉스 초기 모델 및 쿠팡이츠플러스와 배달의민족플러스 등 주요 플랫폼과의 협업을 통해 전국 단위의 배달 네트워크를 확장해왔습니다. 2023년부터는 ‘이츠특공대’ 브랜드를 통해 우수 협력사로 선정되며 업계의 신뢰를 쌓아왔습니다.</p>
+  <p>1개의 법인을 합병 후, 2개의 법인을 운영 중이며 라이더 1,000명 이상이 활동 중이고, 서울·경기·부산·제주 등 전국 주요 지역에서 안정적인 배달 서비스를 제공하고 있습니다. 자체 정산 어플과 협력 병원, 렌탈 서비스까지, 현장 라이더분들의 안정적인 활동을 위한 전방위적 지원 체계를 갖추고 있습니다.</p>
+  <p>앞으로도 라이더와 고객을 잇는 든든한 가교로서, 모든 배달 파트너들이 안심하고 함께할 수 있는 환경을 만들어가겠습니다.</p>
+</section>
 
-  <section id="history">
-    <h2>회사 연혁</h2>
-    <p>2018 - 배달대행 시작 / 2021 - 쿠팡이츠플렉스 협업 / 2023 - 우수 협력사 선정</p>
-  </section>
+<section id="areas">
+  <h2>운영지역</h2>
+  <p>서울권, 경기·인천권, 강원권, 충청권, 전라권, 경상권, 제주권</p>
+  <p>각 지역별로 라이더분들이 빠르고 안전하게 배달서비스를 제공합니다.</p>
+</section>
 
-  <section id="org">
-    <h2>대표 & 조직도</h2>
-    <img src="조직도.jpg" alt="조직도" style="width: 100%; max-width: 600px; display: block; margin: auto;" />
-  </section>
-
-  <section id="areas">
-    <h2>운영지역</h2>
-    <p>서울권, 경기·인천권, 강원권, 충청권, 전라권, 경상권, 제주권</p>
-    <p>각 지역별로 라이더분들이 빠르고 안전하게 배달서비스를 제공합니다.</p>
-  </section>
-
-  <script>
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-  </script>
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
 </body>
 </html>
