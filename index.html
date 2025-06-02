@@ -3,97 +3,110 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RIDE ON - 회사소개</title>
+<title>RIDE ON</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Arial, sans-serif; background: #f9f9f9; color: #111; }
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    padding: 50px;
+  body { margin: 0; font-family: Arial, sans-serif; line-height: 1.6; }
+  header {
+    position: fixed; width: 100%; top: 0; left: 0;
+    background: white; display: flex; justify-content: space-between; align-items: center;
+    padding: 0 30px; box-sizing: border-box; z-index: 1000; transition: background 0.3s;
   }
-  .left, .right {
-    flex: 1 1 400px;
-    padding: 20px;
+  header.scrolled { background: black; }
+  header img.logo { height: 50px; margin-right: 20px; }
+  nav { display: flex; align-items: center; }
+  nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+  nav li { position: relative; }
+  nav a {
+    display: block; padding: 20px 15px; text-decoration: none; color: black;
+    font-weight: 600; font-size: 15px; transition: color 0.3s;
   }
-  .left {
-    text-align: left;
-    font-size: 120px;
-    font-weight: 900;
-    line-height: 1.1;
+  header.scrolled nav a { color: white; }
+  nav li:hover ul { display: block; }
+  nav ul ul {
+    display: none; position: absolute; top: 60px; left: 0;
+    background: rgba(0, 0, 0, 0.9); border-radius: 4px;
   }
-  .left span {
-    display: block;
-    font-size: 24px;
-    margin-top: 10px;
+  nav ul ul li a { padding: 10px; color: white; white-space: nowrap; }
+  nav ul ul li a.long-text { white-space: normal; }
+  .right-buttons { display: flex; gap: 10px; }
+  .right-buttons a {
+    text-decoration: none; background: white; color: black; border: 1px solid black;
+    border-radius: 20px; padding: 5px 15px; transition: all 0.3s; font-size: 14px;
   }
-  .right {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  .right h2 {
-    margin-bottom: 10px;
-    font-size: 22px;
-  }
-  .right p {
-    margin-bottom: 10px;
-  }
-  .right ul {
-    margin-bottom: 10px;
-    padding-left: 20px;
-  }
+  header.scrolled .right-buttons a { background: black; color: white; border: 1px solid white; }
+  section { padding: 120px 20px 50px; max-width: 900px; margin: auto; }
+  h1, h2 { text-align: center; }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="left">
-    RIDE ON
-    <span>라이드온</span>
-  </div>
-  <div class="right">
-    <h2>브랜딩 슬로건</h2>
-    <p>“멈추지 않는 질주, 라이드온!”</p>
-
-    <h2>의미</h2>
-    <p>끊임없이 달리는 배달 라이더들의 정신과 끝없는 성장</p>
-
-    <h2>6글자 의미</h2>
-    <p>
-      <strong>R</strong>: Rapid (빠르게)<br>
-      <strong>I</strong>: Innovation (혁신)<br>
-      <strong>D</strong>: Drive (질주하다)<br>
-      <strong>E</strong>: Endurance (지속력)<br>
-      <strong>O</strong>: Onward (앞으로)<br>
-      <strong>N</strong>: Nexus (연결)
-    </p>
-
-    <h2>브랜딩 포인트</h2>
+<header id="header">
+  <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" />
+  <nav>
     <ul>
-      <li>✔ 지속적인 성장과 확장성을 강조</li>
-      <li>✔ 배달 라이더들의 끊임없는 질주와 도전 정신</li>
-      <li>✔ 강렬한 에너지를 전달하는 브랜드 아이덴티티</li>
+      <li><a href="#about">회사소개</a></li>
+      <li class="dropdown">
+        <a href="#">운영지역</a>
+        <ul class="dropdown-menu">
+         <li><a href="./운영지역/서울북부권/index.html" target="_blank">서울북부권</a></li>
+         <li><a href="./운영지역/서울남부권/index.html" target="_blank">서울남부권</a></li>
+         <li><a href="./운영지역/경기북부권/index.html" target="_blank">경기북부권</a></li>
+         <li><a href="./운영지역/경기남부권/index.html" target="_blank">경기남부권</a></li>
+         <li><a href="./운영지역/강원권/index.html" target="_blank">강원권</a></li>
+         <li><a href="./운영지역/충청권/index.html" target="_blank">충청권</a></li>
+         <li><a href="./운영지역/호남권/index.html" target="_blank">호남권</a></li>
+         <li><a href="./운영지역/영남권/index.html" target="_blank">영남권</a></li>
+         <li><a href="./운영지역/제주권/index.html" target="_blank">제주권</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">플랫폼</a>
+        <ul>
+          <li><a href="#">쿠팡이츠플러스</a></li>
+          <li><a href="#">배달의민족플러스</a></li>
+          <li><a href="#">정산어플(Ridy)</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact">문의하기</a></li>
     </ul>
-
-    <h2>회사소개</h2>
-    <p>
-      라이드온은 배달 라이더의 최고의 파트너가 되기 위해 꾸준히 성장해온 배달대행 전문 기업입니다.
-      2018년 배달대행 사업을 시작으로, 2021년부터는 쿠팡이츠플렉스 초기 모델 및
-      쿠팡이츠플러스, 배달의민족플러스 등 주요 플랫폼과 협업을 통해 전국적인 배달 네트워크를 구축했습니다.
-      2023년부터는 ‘이츠특공대’ 브랜드로 우수 협력사로 선정되며 업계의 신뢰를 더욱 공고히 하고 있습니다.
-      25년 기준 전국 1등 set수 보유 및 1,000명 이상의 라이더가 서울, 경기, 부산, 제주 등
-      전국 주요 지역에서 안정적인 배달 서비스를 제공합니다. 자체 정산 어플(ridy) 및
-      수도권 자체 센터 운영 및 렌트/리스 사업을 비롯해 협력 병원 제휴 등 라이더분들이 안심하고
-      일할 수 있는 다양한 지원 체계도 갖추고 있습니다.
-      앞으로도 라이더와 고객을 연결하는 든든한 가교로서, 모든 배달 파트너분들이 믿고 함께할 수 있는
-      환경을 만들어가겠습니다.
-    </p>
+  </nav>
+  <div class="right-buttons">
+    <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
+    <a href="tel:01097056965">전화상담</a>
   </div>
-</div>
+</header>
+
+<section id="about">
+  <h1>라이드온 RIDE ON</h1>
+  <p>라이드온은 배달 라이더의 최고의 파트너가 되기 위해 꾸준히 성장해온 배달대행 전문 기업입니다.</p>
+  <p>2018년 배달대행 사업을 시작으로, 2021년부터는 쿠팡이츠플렉스 초기 모델 및 쿠팡이츠플러스, 배달의민족플러스 등 주요 플랫폼과 협업을 통해 전국적인 배달 네트워크를 구축했습니다. 또한, 2023년부터는 ‘이츠특공대’ 브랜드로 우수 협력사로 선정되며 업계의 신뢰를 더욱 공고히 하고 있습니다.</p>
+  <p>25년 기준 전국 1등 set수 보유 및 1,000명 이상의 라이더가 서울, 경기, 부산, 제주 등 전국 주요 지역에서 안정적인 배달 서비스를 제공합니다. 자체 정산 어플(ridy) 및 수도권 자체 센터 운영 및 렌트/리스 사업을 비롯해 협력 병원 제휴 등 라이더분들이 안심하고 일할 수 있는 다양한 지원 체계도 갖추고 있습니다.</p>
+  <p>앞으로도 라이드온은 라이더와 고객을 연결하는 든든한 가교로서, 모든 배달 파트너분들이 믿고 함께할 수 있는 환경을 만들어가겠습니다.</p>
+</section>
+
+<section id="areas">
+  <h2>운영지역</h2>
+  <p>서울북부권, 서울남부권, 경기북부권, 경기남부권, 강원권, 충청권, 호남권, 영남권, 제주권</p>
+</section>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
+
+<footer style="text-align: center; padding: 30px; background: #f0f0f0;">
+  <p>상호: 라이드온 | 법인명: 패온 | 대표: 최수호<br>
+  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br>
+  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br>
+  <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a><br>
+  &copy; 2025 라이드온. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
-
