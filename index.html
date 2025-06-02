@@ -2,96 +2,227 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>RIDE ON</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>라이드온 RIDE ON</title>
 <style>
-  body, html { margin: 0; padding: 0; font-family: sans-serif; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Arial, sans-serif;
+    color: #000;
+    background: #fff;
+  }
+
   header {
-    display: flex; justify-content: space-between; align-items: center;
-    background: black; color: white; padding: 15px 40px; position: fixed; width: 100%; z-index: 100;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000;
+    color: #fff;
+    padding: 10px 40px;
+    z-index: 100;
   }
-  .logo { display: flex; align-items: center; }
-  .logo img { height: 50px; }
-  nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
-  nav li { position: relative; margin: 0 15px; cursor: pointer; }
-  nav li ul {
-    display: none; position: absolute; top: 30px; left: 0;
-    background: rgba(0,0,0,0.8); color: white; padding: 10px 0;
+
+  .logo img {
+    height: 50px;
   }
-  nav li:hover ul { display: block; }
-  nav li ul li { padding: 5px 20px; }
-  .contact-btns { display: flex; gap: 10px; }
-  .contact-btns button {
-    background: white; color: black; border: none; padding: 8px 15px; border-radius: 20px;
-    cursor: pointer; font-weight: bold;
+
+  .menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
   }
-  .scroll-color header { background: #f1f1f1; color: black; }
-  .scroll-color .contact-btns button { background: black; color: white; }
-  main { margin-top: 80px; padding: 40px; text-align: center; }
-  footer { background: #eee; padding: 20px; text-align: center; font-size: 14px; }
+
+  .menu > li {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .menu > li > a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .submenu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: #fff;
+    color: #000;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .submenu li {
+    list-style: none;
+  }
+
+  .submenu li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+  }
+
+  .menu > li:hover .submenu {
+    display: flex;
+  }
+
+  .contact-buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .contact-buttons button {
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .contact-buttons button:hover {
+    background: #eee;
+  }
+
+  /* 스크롤 내렸을 때 header 색상 */
+  header.scrolled {
+    background: #f1f1f1;
+    color: #000;
+  }
+
+  header.scrolled .menu > li > a {
+    color: #000;
+  }
+
+  header.scrolled .contact-buttons button {
+    background: #000;
+    color: #fff;
+  }
+
+  /* 본문 */
+  .hero {
+    text-align: center;
+    padding: 100px 20px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .content {
+    padding: 40px;
+  }
+
+  .content h2 {
+    margin-bottom: 10px;
+  }
+
+  .footer {
+    background: #f1f1f1;
+    color: #000;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  /* 드롭다운 메뉴 정리 */
+  .submenu {
+    display: none;
+  }
+
+  .menu > li:hover > .submenu {
+    display: flex;
+  }
+
+  /* 모바일 숨김 처리 */
+  @media (max-width: 768px) {
+    .menu,
+    .contact-buttons {
+      display: none;
+    }
+  }
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">
-    <a href="#"><img src="LOGO.jpg" alt="RIDE ON"></a>
+    <img src="https://rideon-official.github.io/RideON/logo.jpg" alt="라이드온 로고" />
   </div>
-  <nav>
-    <ul>
-      <li>회사소개
-        <ul>
-          <li>회사 연혁</li>
-          <li>대표+조직도</li>
-        </ul>
-      </li>
-      <li>운영지역
-        <ul>
-          <li>서울권</li>
-          <li>경기인천권</li>
-          <li>충청권</li>
-          <li>전라권</li>
-          <li>경상권</li>
-          <li>제주권</li>
-        </ul>
-      </li>
-      <li>플랫폼
-        <ul>
-          <li>쿠팡이츠플러스</li>
-          <li>배달의민족플러스</li>
-        </ul>
-      </li>
-      <li>문의하기
-        <ul>
-          <li>기사문의</li>
-          <li>지사합병(창업)문의</li>
-          <li>기타문의</li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-  <div class="contact-btns">
+
+  <ul class="menu">
+    <li><a href="#">회사소개</a>
+      <ul class="submenu">
+        <li><a href="#">회사 연혁</a></li>
+        <li><a href="#">대표 및 조직도</a></li>
+      </ul>
+    </li>
+    <li><a href="#">운영지역</a>
+      <ul class="submenu">
+        <li><a href="#">서울권</a></li>
+        <li><a href="#">경기/인천권</a></li>
+        <li><a href="#">충청권</a></li>
+        <li><a href="#">경상권</a></li>
+        <li><a href="#">전라권</a></li>
+        <li><a href="#">강원권</a></li>
+        <li><a href="#">제주권</a></li>
+      </ul>
+    </li>
+    <li><a href="#">플랫폼</a>
+      <ul class="submenu">
+        <li><a href="#">쿠팡이츠플러스</a></li>
+        <li><a href="#">배달의민족플러스</a></li>
+      </ul>
+    </li>
+    <li><a href="#">문의하기</a>
+      <ul class="submenu">
+        <li><a href="#">기사문의</a></li>
+        <li><a href="#">지사합병(창업)문의</a></li>
+        <li><a href="#">기타문의</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="contact-buttons">
     <button>카톡상담</button>
     <button>전화상담</button>
   </div>
 </header>
 
-<main>
-  <h1>라이드온 RIDE ON</h1>
-  <p>우리는 배달라이더의 파트너입니다</p>
-</main>
+<section class="hero">
+  라이드온 RIDE ON <br /> 우리는 배달라이더의 파트너입니다
+</section>
 
-<footer>
-  상호: 라이드온 | 법인명: 패온 | 대표: 최수호<br/>
-  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br/>
-  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br/>
-  <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a><br/>
-  &copy; 2025 RIDE ON. All Rights Reserved.
+<section class="content">
+  <h2>회사소개</h2>
+  <p>우리는 배달라이더의 파트너입니다.</p>
+</section>
+
+<footer class="footer">
+  상호: 라이드온 | 법인명: 패온 | 대표: 최수호 <br />
+  주소: 서울특별시 강동구 고덕로 78, 2층 202호 <br />
+  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com <br />
+  <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a> <br />
+  © 2025 RIDE ON. All Rights Reserved.
 </footer>
 
 <script>
+  // 스크롤 시 header 색상 전환
   window.addEventListener('scroll', function() {
-    document.body.classList.toggle('scroll-color', window.scrollY > 50);
+    const header = document.querySelector('header');
+    if (window.scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
   });
 </script>
 
