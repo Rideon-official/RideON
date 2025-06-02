@@ -1,190 +1,98 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>라이드온 RIDE ON</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RIDE ON</title>
 <style>
-/* reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body { font-family: 'Pretendard', sans-serif; }
-
-/* navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  color: black;
-  padding: 20px 30px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  transition: background 0.3s, color 0.3s;
-  z-index: 1000;
-}
-
-.navbar-left { flex: 1; }
-.navbar-center { flex: 2; text-align: center; }
-.navbar-right { flex: 1; text-align: right; }
-
-.navbar-center ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-}
-
-.navbar-center ul li { margin: 0 15px; }
-.navbar-center ul li a {
-  text-decoration: none;
-  font-weight: bold;
-  color: black;
-  font-size: 1.1rem;
-}
-
-/* buttons */
-.kakao-btn, .phone-btn {
-  display: inline-block;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  background: black;
-  color: white;
-  margin-left: 10px;
-  text-decoration: none;
-  transition: background 0.3s, color 0.3s;
-}
-
-/* scrolled state */
-.navbar.scrolled {
-  background: #f0f0f0;
-  color: black;
-}
-.navbar.scrolled .navbar-center ul li a { color: black; }
-.navbar.scrolled .kakao-btn, .navbar.scrolled .phone-btn {
-  background: #f0f0f0;
-  color: black;
-  border: 1px solid #333;
-}
-
-/* 모바일 메뉴 버튼 */
-.mobile-menu-btn {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-/* 모바일 메뉴 */
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: white;
-  position: fixed;
-  top: 70px; left: 0;
-  width: 100%;
-  z-index: 999;
-  border-top: 1px solid #ddd;
-}
-.mobile-menu a {
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-}
-.mobile-menu a:hover { background: #f0f0f0; }
-
-/* 미디어 쿼리 */
-@media (max-width: 768px) {
-  .navbar-center { display: none; }
-  .navbar-right { display: none; }
-  .mobile-menu-btn { display: block; }
-}
-
-/* 대표 이미지 (예시) */
-.hero {
-  height: 600px;
-  background: url('대표이미지.jpg') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 2rem;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-}
+  body, html { margin: 0; padding: 0; font-family: sans-serif; }
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    background: black; color: white; padding: 15px 40px; position: fixed; width: 100%; z-index: 100;
+  }
+  .logo { display: flex; align-items: center; }
+  .logo img { height: 50px; }
+  nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
+  nav li { position: relative; margin: 0 15px; cursor: pointer; }
+  nav li ul {
+    display: none; position: absolute; top: 30px; left: 0;
+    background: rgba(0,0,0,0.8); color: white; padding: 10px 0;
+  }
+  nav li:hover ul { display: block; }
+  nav li ul li { padding: 5px 20px; }
+  .contact-btns { display: flex; gap: 10px; }
+  .contact-btns button {
+    background: white; color: black; border: none; padding: 8px 15px; border-radius: 20px;
+    cursor: pointer; font-weight: bold;
+  }
+  .scroll-color header { background: #f1f1f1; color: black; }
+  .scroll-color .contact-btns button { background: black; color: white; }
+  main { margin-top: 80px; padding: 40px; text-align: center; }
+  footer { background: #eee; padding: 20px; text-align: center; font-size: 14px; }
 </style>
 </head>
 <body>
 
-<header class="navbar">
-  <div class="navbar-left">
-    <a href="/" class="logo">
-      <img src="logo.png" alt="라이드온 로고" style="height:40px;">
-    </a>
+<header>
+  <div class="logo">
+    <a href="#"><img src="LOGO.jpg" alt="RIDE ON"></a>
   </div>
-  <div class="navbar-center">
+  <nav>
     <ul>
-      <li><a href="#company">회사소개</a></li>
-      <li><a href="#region">운영지역</a></li>
-      <li><a href="#platform">플랫폼</a></li>
-      <li><a href="#inquiry">문의하기</a></li>
+      <li>회사소개
+        <ul>
+          <li>회사 연혁</li>
+          <li>대표+조직도</li>
+        </ul>
+      </li>
+      <li>운영지역
+        <ul>
+          <li>서울권</li>
+          <li>경기인천권</li>
+          <li>충청권</li>
+          <li>전라권</li>
+          <li>경상권</li>
+          <li>제주권</li>
+        </ul>
+      </li>
+      <li>플랫폼
+        <ul>
+          <li>쿠팡이츠플러스</li>
+          <li>배달의민족플러스</li>
+        </ul>
+      </li>
+      <li>문의하기
+        <ul>
+          <li>기사문의</li>
+          <li>지사합병(창업)문의</li>
+          <li>기타문의</li>
+        </ul>
+      </li>
     </ul>
+  </nav>
+  <div class="contact-btns">
+    <button>카톡상담</button>
+    <button>전화상담</button>
   </div>
-  <div class="navbar-right">
-    <a href="https://talk.naver.com" class="kakao-btn">카톡상담</a>
-    <a href="tel:전화번호" class="phone-btn">전화상담</a>
-  </div>
-  <div class="mobile-menu-btn">☰</div>
 </header>
 
-<!-- 모바일 메뉴 -->
-<nav class="mobile-menu">
-  <a href="#company">회사소개</a>
-  <a href="#region">운영지역</a>
-  <a href="#platform">플랫폼</a>
-  <a href="#inquiry">문의하기</a>
-  <a href="https://talk.naver.com" class="kakao-btn">카톡상담</a>
-  <a href="tel:전화번호" class="phone-btn">전화상담</a>
-</nav>
-
-<!-- 대표 이미지 예시 -->
-<section class="hero">
+<main>
   <h1>라이드온 RIDE ON</h1>
-</section>
+  <p>우리는 배달라이더의 파트너입니다</p>
+</main>
 
-<!-- 본문 내용 -->
-<section style="padding: 100px 20px;">
-  <h2 id="company">회사소개</h2>
-  <p>우리는 배달라이더의 파트너입니다.</p>
-  <!-- 추가 내용 -->
-</section>
-
-<!-- footer -->
-<footer style="text-align: center; padding: 30px; background: #f0f0f0;">
-  <p>상호: 라이드온 | 법인명: 패온 | 대표: 최수호<br>
-  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br>
-  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br>
-  <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a><br>
-  &copy; 2025 라이드온. All Rights Reserved.</p>
+<footer>
+  상호: 라이드온 | 법인명: 패온 | 대표: 최수호<br/>
+  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br/>
+  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br/>
+  <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a><br/>
+  &copy; 2025 RIDE ON. All Rights Reserved.
 </footer>
 
 <script>
-/* 스크롤 이벤트 */
-window.addEventListener('scroll', function() {
-  const navbar = document.querySelector('.navbar');
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
-
-/* 모바일 메뉴 토글 */
-document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-  const menu = document.querySelector('.mobile-menu');
-  menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-});
+  window.addEventListener('scroll', function() {
+    document.body.classList.toggle('scroll-color', window.scrollY > 50);
+  });
 </script>
 
 </body>
