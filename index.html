@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RIDE ON</title>
 <style>
+  html { scroll-behavior: smooth; }
   body { margin: 0; font-family: Arial, sans-serif; line-height: 1.6; }
   header {
     position: fixed; width: 100%; top: 0; left: 0;
@@ -27,12 +28,14 @@
     background: rgba(0, 0, 0, 0.9); border-radius: 4px;
   }
   nav ul ul li a { padding: 10px; color: white; white-space: nowrap; }
+  nav ul ul li a.long-text { white-space: normal; }
   .right-buttons { flex: 1; display: flex; justify-content: flex-end; gap: 10px; margin-right: 30px; }
   .right-buttons a {
     text-decoration: none; background: white; color: black; border: 1px solid black;
     border-radius: 20px; padding: 5px 15px; transition: all 0.3s; font-size: 14px;
   }
   header.scrolled .right-buttons a { background: black; color: white; border: 1px solid white; }
+
   section { padding: 120px 20px 50px; max-width: 1200px; margin: auto; display: flex; }
   .left-content { flex: 1; text-align: left; margin-left: 20px; }
   .left-content h1.title { font-size: 72px; font-weight: 900; letter-spacing: 5px; line-height: 1.3; margin: 0; }
@@ -40,7 +43,16 @@
   .left-content p.slogan { color: gray; font-style: italic; margin: 20px 0; }
   .left-content p { margin: 5px 0; }
   .right-content { flex: 1; margin-left: 50px; }
+
   footer { text-align: center; padding: 30px; background: #f0f0f0; }
+
+  /* 정산어플 섹션 */
+  #ridy { max-width: 900px; margin: 80px auto; text-align: center; }
+  #ridy h2 { font-size: 28px; font-weight: bold; margin-bottom: 20px; }
+  #ridy img { max-width: 100%; height: auto; margin: 20px 0; }
+  #ridy ul { list-style: none; padding: 0; text-align: left; display: inline-block; margin: 20px 0; }
+  #ridy li { margin-bottom: 5px; }
+  #ridy p.italic { font-style: italic; margin-top: 20px; }
 </style>
 </head>
 <body>
@@ -69,7 +81,7 @@
         <ul>
           <li><a href="#">쿠팡이츠플러스</a></li>
           <li><a href="#">배달의민족플러스</a></li>
-          <li><a href="#">정산어플(Ridy)</a></li>
+          <li><a href="#ridy">정산어플(Ridy)</a></li> <!-- 스크롤 이동 -->
         </ul>
       </li>
       <li><a href="#contact">문의하기</a></li>
@@ -102,19 +114,28 @@
   </div>
 </section>
 
-<section id="platform-ridy" style="max-width: 900px; margin: auto; padding: 60px 20px; text-align: center;">
-  <img src="정산어플.png" alt="정산어플(Ridy)" style="max-width: 100%; height: auto; margin-bottom: 20px;" />
+<!-- 정산어플(Ridy) 섹션 -->
+<section id="ridy">
   <h2>정산어플(Ridy)</h2>
-  <ul style="text-align: left; display: inline-block; margin: 0 auto;">
+  <img src="정산어플.png" alt="정산어플(Ridy)" />
+  <ul>
     <li>📆 <strong>정산 내역 확인</strong> (일별 / 주간 / 월간)</li>
     <li>📊 <strong>매출 통계 시각화</strong></li>
     <li>💸 <strong>익일 출금 신청 기능</strong></li>
     <li>📬 <strong>푸시 알림으로 정산 통보 받기</strong></li>
     <li>🔍 <strong>이전 기록도 자동 저장</strong></li>
   </ul>
-  <p style="font-style: italic; margin-top: 20px;">정산 확인에 들이는 시간을 줄이고,<br>라이딩에 집중하세요!</p>
-  <p style="margin-top: 20px;"><a href="https://ridy.co.kr" target="_blank" style="text-decoration: underline; color: blue;">자세한 내용은 ridy.co.kr</a></p>
+  <p class="italic">정산 확인에 들이는 시간을 줄이고, 라이딩에 집중하세요!</p>
+  <p><a href="https://ridy.co.kr" target="_blank" style="text-decoration: underline; color: blue;">자세한 내용은 ridy.co.kr</a></p>
 </section>
+
+<footer>
+  <p>상호: 라이드온 | 법인명: 패온 | 대표: 최수호<br>
+  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br>
+  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br>
+  <a href="이용약관.html" target="_blank">이용약관</a> | <a href="개인정보처리방침.html" target="_blank">개인정보처리방침</a><br>
+  &copy; 2025 라이드온. All Rights Reserved.</p>
+</footer>
 
 <script>
   const header = document.getElementById('header');
@@ -126,14 +147,6 @@
     }
   });
 </script>
-
-<footer>
-  <p>상호: 라이드온 | 법인명: 패온 | 대표: 최수호<br>
-  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br>
-  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br>
-  <a href="이용약관.html" target="_blank">이용약관</a> | <a href="개인정보처리방침.html" target="_blank">개인정보처리방침</a><br>
-  &copy; 2025 라이드온. All Rights Reserved.</p>
-</footer>
 
 </body>
 </html>
