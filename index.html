@@ -1,190 +1,71 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>RIDE ON</title>
-  <style>
-    /* ===== 기본 스타일 ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; color: #000; background: #fff; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-
-    /* ===== 메뉴바 ===== */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #000;
-      color: #fff;
-      padding: 10px 40px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav .logo img {
-      width: 60px;
-    }
-
-    nav ul {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-
-    nav ul li {
-      position: relative;
-    }
-
-    nav ul li a {
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    nav ul li ul.dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      flex-direction: column;
-      background: #fff;
-      color: #000;
-      border: 1px solid #ddd;
-      width: 150px;
-    }
-
-    nav ul li:hover ul.dropdown {
-      display: flex;
-    }
-
-    nav ul li ul.dropdown li a {
-      padding: 10px;
-      color: #000;
-      font-size: 14px;
-    }
-
-    /* ===== active 처리 ===== */
-    nav ul li ul.dropdown li a.active {
-      background: #f0f0f0;
-      font-weight: bold;
-    }
-
-    /* ===== 상담 버튼 ===== */
-    .contact-buttons {
-      display: flex;
-      gap: 10px;
-      margin-left: 20px; /* 왼쪽으로 이동 */
-    }
-
-    .contact-buttons a {
-      background: #fff;
-      color: #000;
-      border: 1px solid #000;
-      border-radius: 20px;
-      padding: 8px 16px;
-      font-size: 14px;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-
-    .contact-buttons a:hover {
-      background: #000;
-      color: #fff;
-    }
-
-    /* ===== 메인 콘텐츠 ===== */
-    section {
-      padding: 80px 40px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 1.5;
-      max-width: 600px;
-      margin: 0 auto 20px;
-    }
-
-    /* ===== footer ===== */
-    footer {
-      background: #eee;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIDE ON</title>
+<style>
+  body { margin: 0; font-family: Arial, sans-serif; }
+  header { background: #000; color: #fff; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
+  header img { height: 50px; }
+  nav { display: flex; gap: 20px; }
+  nav a { color: #fff; text-decoration: none; font-weight: bold; }
+  nav a:hover { text-decoration: underline; }
+  .contact-btns { display: flex; gap: 10px; }
+  .contact-btns a { background: #fff; color: #000; border-radius: 20px; padding: 5px 10px; text-decoration: none; font-weight: bold; }
+  .section { padding: 100px 20px; text-align: center; }
+  .section h2 { margin-bottom: 20px; }
+  footer { background: #f0f0f0; text-align: center; padding: 20px; font-size: 0.9em; }
+  html { scroll-behavior: smooth; }
+</style>
 </head>
 <body>
 
-  <!-- ===== 메뉴 ===== -->
+<header>
+  <img src="LOGO.jpg" alt="RIDE ON 로고">
   <nav>
-    <div class="logo">
-      <img src="로고이미지경로" alt="RIDE ON 로고">
-    </div>
-    <ul>
-      <li>
-        <a href="#">회사소개</a>
-        <ul class="dropdown">
-          <li><a href="#about-history" class="active">회사 연혁</a></li>
-          <li><a href="#about-org">대표 및 조직도</a></li>
-        </ul>
-      </li>
-      <li><a href="#location">운영지역</a></li>
-      <li><a href="#platform">플랫폼</a></li>
-      <li><a href="#contact">문의하기</a></li>
-    </ul>
-    <div class="contact-buttons">
-      <a href="https://pf.kakao.com/_카톡링크" target="_blank">카톡상담</a>
-      <a href="tel:010-9705-6965">전화상담</a>
-    </div>
+    <a href="#about">회사소개</a>
+    <a href="#region">운영지역</a>
+    <a href="#platform">플랫폼</a>
+    <a href="#contact">문의하기</a>
   </nav>
+  <div class="contact-btns">
+    <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
+    <a href="tel:01097056965">전화상담</a>
+  </div>
+</header>
 
-  <!-- ===== 메인 콘텐츠 ===== -->
-  <section id="about-history">
-    <h1>라이드온 RIDE ON</h1>
-    <p>라이드온은 배달라이더를 위한 최고의 파트너가 되기 위해 끊임없이 노력해온 배달대행 전문 기업입니다.</p>
-    <p>2018년 배달대행 운영을 시작하여, 2021년부터는 쿠팡이츠플렉스 초기 모델 및 쿠팡이츠플러스와 배달의민족플러스 등 주요 플랫폼과의 협업을 통해 전국 단위의 배달 네트워크를 확장해왔습니다. 2023년부터는 ‘이츠특공대’ 브랜드를 통해 우수 협력사로 선정되며 업계의 신뢰를 쌓아왔습니다.</p>
-    <p>1개의 법인을 합병 후, 2개의 법인을 운영중이며 라이더 1,000명 이상이 활동 중이고, 서울·경기·부산·제주 등 전국 주요 지역에서 안정적인 배달 서비스를 제공하고 있습니다. 자체 정산 어플과 협력 병원, 렌탈 서비스까지, 현장 라이더분들의 안정적인 활동을 위한 전방위적 지원 체계를 갖추고 있습니다.</p>
-    <p>앞으로도 라이더와 고객을 잇는 든든한 가교로서, 모든 배달 파트너들이 안심하고 함께할 수 있는 환경을 만들어가겠습니다.</p>
-  </section>
+<section id="about" class="section">
+  <h2>라이드온 RIDE ON</h2>
+  <p>라이드온은 배달라이더를 위한 최고의 파트너가 되기 위해 끊임없이 노력해온 배달대행 전문 기업입니다.</p>
+  <p>2018년 배달대행 운영을 시작하여, 2021년부터는 쿠팡이츠플렉스 초기 모델 및 쿠팡이츠플러스와 배달의민족플러스 등 주요 플랫폼과의 협업을 통해 전국 단위의 배달 네트워크를 확장해왔습니다. 2023년부터는 ‘이츠특공대’ 브랜드를 통해 우수 협력사로 선정되며 업계의 신뢰를 쌓아왔습니다.</p>
+  <p>1개의 법인을 합병 후, 2개의 법인을 운영중이며 라이더 1,000명 이상이 활동 중이고, 서울·경기·부산·제주 등 전국 주요 지역에서 안정적인 배달 서비스를 제공하고 있습니다. 자체 정산 어플과 협력 병원, 렌탈 서비스까지, 현장 라이더분들의 안정적인 활동을 위한 전방위적 지원 체계를 갖추고 있습니다.</p>
+  <p>앞으로도 라이더와 고객을 잇는 든든한 가교로서, 모든 배달 파트너들이 안심하고 함께할 수 있는 환경을 만들어가겠습니다.</p>
+</section>
 
-  <section id="about-org">
-    <h1>대표 및 조직도</h1>
-    <p>여기에 대표 및 조직도에 대한 설명이 들어갑니다.</p>
-  </section>
+<section id="region" class="section" style="background:#f9f9f9;">
+  <h2>운영지역</h2>
+  <p>서울권, 경기·인천권, 강원권, 충청권, 전라권, 경상권, 제주권</p>
+  <p>각 지역별로 라이더분들이 빠르고 안전하게 배달서비스를 제공합니다.</p>
+</section>
 
-  <!-- ===== footer ===== -->
-  <footer>
-    <p>상호: 라이드온 | 법인명: 패온 | 대표: 최수호</p>
-    <p>주소: 서울특별시 강동구 고덕로 78, 2층 202호</p>
-    <p>사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com</p>
-    <p><a href="#">이용약관</a> | <a href="#">개인정보처리방침</a></p>
-    <p>© 2025 RIDE ON. All Rights Reserved.</p>
-  </footer>
+<section id="platform" class="section">
+  <h2>플랫폼</h2>
+  <p>쿠팡이츠플러스 / 배달의민족플러스 등 주요 배달 플랫폼과 협업을 통해 안정적이고 신뢰성 높은 배달 서비스를 제공합니다.</p>
+</section>
 
-  <!-- ===== JS for active state 유지 ===== -->
-  <script>
-    document.querySelectorAll('.dropdown li a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelectorAll('.dropdown li a').forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
+<section id="contact" class="section" style="background:#f9f9f9;">
+  <h2>문의하기</h2>
+  <p>기사문의 / 지사합병(창업)문의 / 기타문의 등 언제든 연락주세요.</p>
+</section>
 
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-  </script>
+<footer>
+  상호: 라이드온 | 법인명: 페온 | 대표: 최수호<br>
+  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br>
+  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br>
+  <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a><br>
+  &copy; 2025 RIDE ON. All Rights Reserved.
+</footer>
 
 </body>
 </html>
