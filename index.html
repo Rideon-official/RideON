@@ -313,65 +313,48 @@ header.scrolled nav a:hover {
     </blockquote>
     <p>자세한 내용은 : <a href="https://www.ridy.co.kr" target="_blank">www.ridy.co.kr</a></p>
   </section>
-  
-<section id="기사문의" style="padding: 50px 20px; max-width: 1200px; margin: 0 auto; display: flex; gap: 50px; flex-wrap: wrap;">
-  <!-- 왼쪽 연락 정보 -->
-  <div style="flex: 1; min-width: 250px;">
-    <h2 style="font-size: 32px; font-weight: 900;">문의하기</h2>
-    <p>라이드온에 문의 주시면 언제든 친절히 상담해드리겠습니다.</p>
-    <hr style="margin: 20px 0; border: 1px solid #ccc;">
-    <p><strong>TEL</strong>: 010-9705-6965</p>
-    <p><strong>E-mail</strong>: rideon_official@naver.com</p>
-  </div>
 
-  <!-- 오른쪽 폼 -->
-  <div style="flex: 1; min-width: 300px;">
-    <form style="display: flex; flex-direction: column; gap: 15px;">
-      <input type="text" placeholder="이름" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
-      <input type="text" placeholder="연락처" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
-
-      <select required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-        <option value="">오토바이 보유 유무</option>
-        <option value="있음">있음</option>
-        <option value="없음">없음</option>
-        <option value="렌트/리스희망">렌트/리스희망</option>
-      </select>
-
-      <input type="text" placeholder="예) 서울시 송파구 (구,동까지)" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
-
-      <select required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-        <option value="">플랫폼</option>
-        <option value="쿠팡이츠플러스">쿠팡이츠플러스</option>
-        <option value="배민플러스">배민플러스</option>
-      </select>
-
-      <textarea placeholder="메시지" rows="4" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
-
-      <label style="font-size: 14px;">
-        <input type="checkbox" required /> 동의합니다. <a href="이용약관.html" target="_blank">약관 자세히 보기</a>
-      </label>
-
-      <button type="submit" style="background: black; color: white; padding: 10px; border: none; cursor: pointer; font-weight: bold;">SEND</button>
-    </form>
-  </div>
-</section>
   <section id="기사문의" style="padding: 50px 20px; max-width: 1200px; margin: 0 auto; display: flex; gap: 50px; flex-wrap: wrap;">
-  <!-- 왼쪽 연락 정보 -->
-  <div style="flex: 1; min-width: 250px;">
-    <h2 style="font-size: 32px; font-weight: 900;">문의하기</h2>
-    <p>라이드온에 문의 주시면 언제든 친절히 상담해드리겠습니다.</p>
-    <hr style="margin: 20px 0; border: 1px solid #ccc;">
-    <p><strong>TEL</strong>: 010-9705-6965</p>
-    <p><strong>E-mail</strong>: rideon_official@naver.com</p>
-  </div>
+    <!-- 왼쪽 연락 정보 -->
+    <div style="flex: 1; min-width: 250px;">
+      <h2 style="font-size: 32px; font-weight: 900;">문의하기</h2>
+      <p>라이드온에 문의 주시면 언제든 친절히 상담해드리겠습니다.</p>
+      <hr style="margin: 20px 0; border: 1px solid #ccc;">
+      <p><strong>TEL</strong>: 010-9705-6965</p>
+      <p><strong>E-mail</strong>: rideon_official@naver.com</p>
+    </div>
 
-  <!-- 오른쪽: 구글폼 임베드 -->
-  <div style="flex: 1; min-width: 300px;">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdLaJ8rJgTgB6eDBOssPwIV9MiUojedzX4QAJNXlsfFoPcX3g/viewform?embedded=true"
-      width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">로드 중…</iframe>
-  </div>
-</section>
+    <!-- 오른쪽 폼 (Formspree 연동 예제) -->
+    <div style="flex: 1; min-width: 300px;">
+      <form action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+        <input type="text" name="이름" placeholder="이름" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+        <input type="text" name="연락처" placeholder="연락처" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
 
+        <select name="오토바이보유" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+          <option value="">오토바이 보유 유무</option>
+          <option value="있음">있음</option>
+          <option value="없음">없음</option>
+          <option value="렌트/리스희망">렌트/리스희망</option>
+        </select>
+
+        <input type="text" name="주소" placeholder="예) 서울시 송파구 (구,동까지)" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+
+        <select name="플랫폼" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+          <option value="">플랫폼</option>
+          <option value="쿠팡이츠플러스">쿠팡이츠플러스</option>
+          <option value="배민플러스">배민플러스</option>
+        </select>
+
+        <textarea name="메시지" placeholder="메시지" rows="4" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+        <label style="font-size: 14px;">
+          <input type="checkbox" required /> 동의합니다. <a href="이용약관.html" target="_blank">약관 자세히 보기</a>
+        </label>
+
+        <button type="submit" style="background: black; color: white; padding: 10px; border: none; cursor: pointer; font-weight: bold;">SEND</button>
+      </form>
+    </div>
+  </section>
 </main>
 
 <div class="lightbox" id="lightbox">
@@ -397,19 +380,16 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ✅ 마우스 올리면 header에 scrolled 클래스 추가
 header.addEventListener('mouseenter', () => {
   header.classList.add('scrolled');
 });
 
-// ✅ 마우스가 벗어나면 (단, 스크롤 안됐을 때만 다시 원래대로)
 header.addEventListener('mouseleave', () => {
   if (window.scrollY <= 50) {
     header.classList.remove('scrolled');
   }
 });
 
-// 라이트박스는 그대로 둠
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 const zoomableImgs = document.querySelectorAll('.zoomable-img');
@@ -425,5 +405,4 @@ lightbox.addEventListener('click', () => {
   lightbox.style.display = 'none';
 });
 </script>
-</body>
-</html>
+
