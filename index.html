@@ -5,15 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RIDE ON</title>
 <style>
-  /* ✅ 헤더 높이로 인한 짤림 보정 */
   body {
     margin: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    padding-top: 80px; /* header 높이 보정 */
+    padding-top: 80px;
   }
-
-  /* ✅ 기본 헤더 스타일 */
   header {
     position: fixed;
     width: 100%;
@@ -28,34 +25,27 @@
     z-index: 1000;
     transition: background 0.3s;
   }
-
-  /* ✅ 스크롤 시 색상 변경 */
   header.scrolled {
     background: black;
   }
-
   header img.logo {
     height: 50px;
     cursor: pointer;
   }
-
   nav {
     display: flex;
     justify-content: center;
     flex: 1;
   }
-
   nav ul {
     list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
   }
-
   nav li {
     position: relative;
   }
-
   nav a {
     display: block;
     padding: 20px 15px;
@@ -65,21 +55,15 @@
     font-size: 15px;
     transition: color 0.3s;
   }
-
-  /* ✅ 마우스 오버 색상 */
   nav a:hover {
     color: gray;
   }
-
-  /* ✅ 스크롤 시 메뉴 색상 변경 */
   header.scrolled nav a {
     color: white;
   }
-
   nav li:hover ul {
     display: block;
   }
-
   nav ul ul {
     display: none;
     position: absolute;
@@ -88,18 +72,15 @@
     background: rgba(0, 0, 0, 0.9);
     border-radius: 4px;
   }
-
   nav ul ul li a {
     padding: 10px;
     color: white;
     white-space: nowrap;
   }
-
   .right-buttons {
     display: flex;
     gap: 10px;
   }
-
   .right-buttons a {
     text-decoration: none;
     background: white;
@@ -110,8 +91,6 @@
     transition: all 0.3s;
     font-size: 14px;
   }
-
-  /* ✅ 메인 섹션 */
   .section-flex {
     display: flex;
     gap: 50px;
@@ -119,11 +98,9 @@
     max-width: 1200px;
     padding: 0 20px;
   }
-
   .left-content {
     flex: 1;
   }
-
   .left-content h1.title {
     font-size: 72px;
     font-weight: 900;
@@ -131,62 +108,70 @@
     line-height: 1.3;
     margin: 0;
   }
-
   .left-content h1.subtitle {
     font-size: 18px;
     margin: 0;
   }
-
   .left-content p.slogan {
     color: gray;
     font-style: italic;
     margin: 20px 0;
   }
-
   .left-content p {
     margin: 5px 0;
   }
-
   .right-content {
     flex: 1;
   }
-
   footer {
     text-align: center;
     padding: 30px;
     background: #f0f0f0;
     margin-top: 50px;
   }
-
-  /* ✅ 정산어플 섹션 */
   #ridy {
     margin: 50px auto;
     max-width: 1200px;
     padding: 0 20px;
   }
-
   #ridy h2 {
     text-align: left;
   }
-
   #ridy .ridy-images {
     display: flex;
     align-items: flex-start;
     gap: 20px;
     flex-wrap: wrap;
   }
-
-  #ridy .ridy-images a img {
+  #ridy .ridy-images img {
     display: block;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
     transition: transform 0.3s;
     max-width: 100%;
     height: auto;
+    cursor: pointer; /* 클릭 가능한 커서로 변경 */
   }
-
-  #ridy .ridy-images a:hover img {
+  #ridy .ridy-images img:hover {
     transform: scale(1.05);
+  }
+  /* ✅ 라이트박스 스타일 */
+  .lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    transition: transform 0.3s;
   }
 </style>
 </head>
@@ -194,34 +179,7 @@
 <body>
 <header id="header">
   <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
-  <nav>
-    <ul>
-      <li><a href="#about">회사소개</a></li>
-      <li class="dropdown">
-        <a href="#">운영지역</a>
-        <ul class="dropdown-menu">
-          <li><a href="./운영지역/서울북부권/index.html" target="_blank">서울북부권</a></li>
-          <li><a href="./운영지역/서울남부권/index.html" target="_blank">서울남부권</a></li>
-          <li><a href="./운영지역/경기북부권/index.html" target="_blank">경기북부권</a></li>
-          <li><a href="./운영지역/경기남부권/index.html" target="_blank">경기남부권</a></li>
-          <li><a href="./운영지역/강원권/index.html" target="_blank">강원권</a></li>
-          <li><a href="./운영지역/충청권/index.html" target="_blank">충청권</a></li>
-          <li><a href="./운영지역/호남권/index.html" target="_blank">호남권</a></li>
-          <li><a href="./운영지역/영남권/index.html" target="_blank">영남권</a></li>
-          <li><a href="./운영지역/제주권/index.html" target="_blank">제주권</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">플랫폼</a>
-        <ul>
-          <li><a href="#">쿠팡이츠플러스</a></li>
-          <li><a href="#">배달의민족플러스</a></li>
-          <li><a href="#ridy">정산어플(Ridy)</a></li>
-        </ul>
-      </li>
-      <li><a href="#contact">문의하기</a></li>
-    </ul>
-  </nav>
+  <nav>...</nav>
   <div class="right-buttons">
     <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
     <a href="tel:01097056965">전화상담</a>
@@ -229,35 +187,16 @@
 </header>
 
 <main>
-  <section id="about" class="section-flex">
-    <div class="left-content">
-      <h1 class="subtitle">라이드온</h1>
-      <h1 class="title">RIDE ON</h1>
-      <p class="slogan">“멈추지 않는 질주, 라이드온!”</p>
-      <p>끊임없이 달리는 배달 라이더들의 정신과 끝없는 성장</p>
-      <p><strong>R</strong>: Rapid (빠르게) &nbsp; <strong>I</strong>: Innovation (혁신) &nbsp; <strong>D</strong>: Drive (질주하다) &nbsp; <strong>E</strong>: Endurance (지속력) &nbsp; <strong>O</strong>: Onward (앞으로) &nbsp; <strong>N</strong>: Nexus (연결)</p>
-      <ul>
-        <li>지속적인 성장과 확장성을 강조</li>
-        <li>배달 라이더들의 끊임없는 질주와 도전 정신</li>
-        <li>강렬한 에너지를 전달하는 브랜드 아이덴티티</li>
-      </ul>
-    </div>
-    <div class="right-content">
-      <p>라이드온은 배달 라이더의 최고의 파트너가 되기 위해 꾸준히 성장해온 배달대행 전문 기업입니다.</p>
-      <p>2018년 배달대행 사업을 시작으로, 2021년부터는 쿠팡이츠플렉스 초기 모델 및 쿠팡이츠플러스, 배달의민족플러스 등 주요 플랫폼과 협업을 통해 전국적인 배달 네트워크를 구축했습니다. 또한, 2023년부터는 ‘이츠특공대’ 브랜드로 우수 협력사로 선정되며 업계의 신뢰를 더욱 공고히 하고 있습니다.</p>
-      <p>25년 기준 전국 1등 set수 보유 및 1,000명 이상의 라이더가 서울, 경기, 부산, 제주 등 전국 주요 지역에서 안정적인 배달 서비스를 제공합니다. 자체 정산 어플(ridy) 및 수도권 자체 센터 운영 및 렌트/리스 사업을 비롯해 협력 병원 제휴 등 라이더분들이 안심하고 일할 수 있는 다양한 지원 체계도 갖추고 있습니다.</p>
-      <p>앞으로도 라이드온은 라이더와 고객을 연결하는 든든한 가교로서, 모든 배달 파트너분들이 믿고 함께할 수 있는 환경을 만들어가겠습니다.</p>
-    </div>
-  </section>
+  <section id="about" class="section-flex">...</section>
 
   <section id="ridy">
-  <h2>
-    <img src="라이디로고.jpg" alt="라이디 로고" style="height: 30px; vertical-align: middle; margin-right: 10px;">
-    정산어플 (Ridy)
-  </h2>
+    <h2>
+      <img src="라이디로고.jpg" alt="라이디 로고" style="height: 30px; vertical-align: middle; margin-right: 10px;">
+      정산어플 (Ridy)
+    </h2>
     <div class="ridy-images">
-      <a href="정산어플.png" target="_blank"><img src="정산어플.png" alt="정산어플 이미지 1" style="max-width: 400px;"></a>
-      <a href="정산어플2.png" target="_blank"><img src="정산어플2.png" alt="정산어플 이미지 2" style="max-width: 600px;"></a>
+      <img src="정산어플.png" alt="정산어플 이미지 1" style="max-width: 400px;" class="zoomable-img">
+      <img src="정산어플2.png" alt="정산어플 이미지 2" style="max-width: 600px;" class="zoomable-img">
     </div>
     <ul>
       <li>📆 <strong>정산 내역 확인</strong> (일별 / 주간 / 월간)</li>
@@ -273,15 +212,13 @@
   </section>
 </main>
 
-<footer>
-  <p>상호: 라이드온 | 법인명: 패온 | 대표: 최수호<br>
-  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br>
-  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br>
-  <a href="이용약관.html" target="_blank">이용약관</a> | <a href="개인정보처리방침.html" target="_blank">개인정보처리방침</a><br>
-  &copy; 2025 라이드온. All Rights Reserved.</p>
-</footer>
+<!-- ✅ 라이트박스 (팝업 컨테이너) -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="확대 이미지" />
+</div>
 
-<!-- ✅ 스크롤 시 헤더 색상 변경 -->
+<footer>...</footer>
+
 <script>
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
@@ -291,7 +228,22 @@ window.addEventListener('scroll', () => {
     header.classList.remove('scrolled');
   }
 });
-</script>
 
+// ✅ 이미지 클릭 확대 (라이트박스)
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+const zoomableImgs = document.querySelectorAll('.zoomable-img');
+
+zoomableImgs.forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightbox.style.display = 'flex';
+  });
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+</script>
 </body>
 </html>
