@@ -314,36 +314,46 @@ header.scrolled nav a:hover {
     <p>자세한 내용은 : <a href="https://www.ridy.co.kr" target="_blank">www.ridy.co.kr</a></p>
   </section>
   
-  <!-- 🚀 신규 추가: 기사문의 섹션 -->
-<section id="기사문의" style="padding: 50px 20px; max-width: 600px; margin: 0 auto;">
-  <h2>기사문의</h2>
-  <form style="display: flex; flex-direction: column; gap: 10px;">
-    <input type="text" placeholder="이름" required />
-    <input type="text" placeholder="연락처" required />
+<section id="기사문의" style="padding: 50px 20px; max-width: 1200px; margin: 0 auto; display: flex; gap: 50px; flex-wrap: wrap;">
+  <!-- 왼쪽 연락 정보 -->
+  <div style="flex: 1; min-width: 250px;">
+    <h2 style="font-size: 32px; font-weight: 900;">문의하기</h2>
+    <p>라이드온에 문의 주시면 언제든 친절히 상담해드리겠습니다.</p>
+    <hr style="margin: 20px 0; border: 1px solid #ccc;">
+    <p><strong>TEL</strong>: 010-9705-6965</p>
+    <p><strong>E-mail</strong>: rideon_official@naver.com</p>
+  </div>
 
-    <select required>
-      <option value="">오토바이 보유 유무</option>
-      <option value="있음">있음</option>
-      <option value="없음">없음</option>
-      <option value="렌트/리스희망">렌트/리스희망</option>
-    </select>
+  <!-- 오른쪽 폼 -->
+  <div style="flex: 1; min-width: 300px;">
+    <form style="display: flex; flex-direction: column; gap: 15px;">
+      <input type="text" placeholder="이름" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+      <input type="text" placeholder="연락처" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
 
-    <input type="text" placeholder="예) 서울시 송파구 (구,동까지)" required />
+      <select required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        <option value="">오토바이 보유 유무</option>
+        <option value="있음">있음</option>
+        <option value="없음">없음</option>
+        <option value="렌트/리스희망">렌트/리스희망</option>
+      </select>
 
-    <select required>
-      <option value="">플랫폼</option>
-      <option value="쿠팡이츠플러스">쿠팡이츠플러스</option>
-      <option value="배민플러스">배민플러스</option>
-    </select>
+      <input type="text" placeholder="예) 서울시 송파구 (구,동까지)" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
 
-    <textarea placeholder="메시지" rows="4" required></textarea>
+      <select required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        <option value="">플랫폼</option>
+        <option value="쿠팡이츠플러스">쿠팡이츠플러스</option>
+        <option value="배민플러스">배민플러스</option>
+      </select>
 
-    <label style="font-size: 14px;">
-      <input type="checkbox" required /> 동의합니다. <a href="이용약관.html" target="_blank">약관 자세히 보기</a>
-    </label>
+      <textarea placeholder="메시지" rows="4" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
-    <button type="submit" style="background: red; color: white; padding: 10px; border: none; cursor: pointer; font-weight: bold;">SEND</button>
-  </form>
+      <label style="font-size: 14px;">
+        <input type="checkbox" required /> 동의합니다. <a href="이용약관.html" target="_blank">약관 자세히 보기</a>
+      </label>
+
+      <button type="submit" style="background: black; color: white; padding: 10px; border: none; cursor: pointer; font-weight: bold;">SEND</button>
+    </form>
+  </div>
 </section>
 </main>
 
