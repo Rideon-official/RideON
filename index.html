@@ -314,7 +314,27 @@ header.scrolled nav a:hover {
     <p>자세한 내용은 : <a href="https://www.ridy.co.kr" target="_blank">www.ridy.co.kr</a></p>
   </section>
 
-  <section id="기사문의" style="padding: 50px 20px; max-width: 1200px; margin: 0 auto; display: flex; gap: 50px; flex-wrap: wrap;">
+<section id="기사문의" style="
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  position: relative;
+  background: url('문의.png') center/cover no-repeat;
+  color: white;
+">
+
+  <!-- ✅ 투명도 오버레이 -->
+  <div style="
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 원하는 투명도 */
+    z-index: 1;
+  "></div>
+  
     <!-- 왼쪽 연락 정보 -->
     <div style="flex: 1; min-width: 250px;">
       <h2 style="font-size: 32px; font-weight: 900;">문의하기</h2>
