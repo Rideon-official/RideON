@@ -62,7 +62,7 @@
     color: white;
   }
   header.scrolled nav a:hover {
-    color: gray;!important;
+    color: gray !important;
   }
   nav li:hover ul {
     display: block;
@@ -85,21 +85,25 @@
     gap: 10px;
   }
   .right-buttons a {
-  text-decoration: none;
-  background: black; /* 기본 배경 검정색 */
-  color: white; /* 기본 글씨 흰색 */
-  border: 1px solid black;
-  border-radius: 20px;
-  padding: 5px 15px;
-  transition: all 0.3s;
-  font-size: 14px;
-  font-weight: bold; /* ✅ 글씨 두껍게 */
-}
-
-.right-buttons a:hover {
-  background: white; /* hover시 배경 흰색 */
-  color: black; /* hover시 글씨 검정 */
-}
+    text-decoration: none;
+    background: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: all 0.3s;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .right-buttons a:hover {
+    background: white;
+    color: black;
+  }
+  header.scrolled .right-buttons a:hover {
+    background: white !important;
+    color: black !important;
+    font-weight: bold;
+  }
   .section-flex {
     display: flex;
     gap: 50px;
