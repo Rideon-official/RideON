@@ -85,15 +85,21 @@
     gap: 10px;
   }
   .right-buttons a {
-    text-decoration: none;
-    background: white;
-    color: black;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 5px 15px;
-    transition: all 0.3s;
-    font-size: 14px;
-  }
+  text-decoration: none;
+  background: black; /* 기본 배경 검정색 */
+  color: white; /* 기본 글씨 흰색 */
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 5px 15px;
+  transition: all 0.3s;
+  font-size: 14px;
+  font-weight: bold; /* ✅ 글씨 두껍게 */
+}
+
+.right-buttons a:hover {
+  background: white; /* hover시 배경 흰색 */
+  color: black; /* hover시 글씨 검정 */
+}
   .section-flex {
     display: flex;
     gap: 50px;
