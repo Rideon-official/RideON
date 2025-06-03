@@ -13,9 +13,7 @@
     padding: 0 30px; box-sizing: border-box; z-index: 1000;
   }
   header img.logo { height: 50px; cursor: pointer; }
-    header.scrolled { background: black; }
-  header.scrolled nav a { color: white; }
-  nav a:hover { color: gray; }
+  header.scrolled { background: black; }
   nav { display: flex; justify-content: center; flex: 1; }
   nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
   nav li { position: relative; }
@@ -45,6 +43,10 @@
   #ridy { margin: 50px auto; max-width: 1200px; padding: 0 20px; }
   #ridy img { width: 100%; max-width: 500px; height: auto; display: block; margin: 20px auto; }
   #ridy ul { padding-left: 20px; }
+
+  /* 🔥 메뉴 색상 스크롤/호버 효과를 강제 적용 */
+  header.scrolled nav a { color: white !important; }
+  nav a:hover { color: gray !important; }
 </style>
 </head>
 <body>
@@ -129,6 +131,17 @@
   <a href="이용약관.html" target="_blank">이용약관</a> | <a href="개인정보처리방침.html" target="_blank">개인정보처리방침</a><br>
   &copy; 2025 라이드온. All Rights Reserved.</p>
 </footer>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
 
 </body>
 </html>
