@@ -322,6 +322,7 @@ header.scrolled nav a:hover {
 
 <script>
 const header = document.getElementById('header');
+
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
     header.classList.add('scrolled');
@@ -330,6 +331,19 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// ✅ 마우스 올리면 header에 scrolled 클래스 추가
+header.addEventListener('mouseenter', () => {
+  header.classList.add('scrolled');
+});
+
+// ✅ 마우스가 벗어나면 (단, 스크롤 안됐을 때만 다시 원래대로)
+header.addEventListener('mouseleave', () => {
+  if (window.scrollY <= 50) {
+    header.classList.remove('scrolled');
+  }
+});
+
+// 라이트박스는 그대로 둠
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 const zoomableImgs = document.querySelectorAll('.zoomable-img');
