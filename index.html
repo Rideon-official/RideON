@@ -46,23 +46,48 @@
   nav li {
     position: relative;
   }
-  nav a {
-    display: block;
-    padding: 20px 15px;
-    text-decoration: none;
+   nav a {
     color: black;
-    font-weight: 600;
-    font-size: 15px;
-    transition: color 0.3s;
+    background: transparent;
+    transition: all 0.3s;
   }
   nav a:hover {
-    color: gray;
+    color: white;
+    background: black;
   }
   header.scrolled nav a {
     color: white;
+    background: transparent;
   }
   header.scrolled nav a:hover {
-    color: gray !important;
+    color: white;
+    background: transparent;
+  }
+
+  .right-buttons a {
+    text-decoration: none;
+    background: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: all 0.3s;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .right-buttons a:hover {
+    background: white;
+    color: black;
+  }
+  header.scrolled .right-buttons a {
+    background: white;
+    color: black;
+    border: 1px solid black;
+  }
+  header.scrolled .right-buttons a:hover {
+    background: white;
+    color: black;
+    font-weight: bold;
   }
   nav li:hover ul {
     display: block;
