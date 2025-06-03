@@ -5,15 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RIDE ON</title>
 <style>
+  /* 기본 스타일 */
   body { margin: 0; font-family: Arial, sans-serif; line-height: 1.6; }
   header {
     position: fixed; width: 100%; top: 0; left: 0;
     background: white; display: flex; align-items: center;
     justify-content: space-between;
     padding: 0 30px; box-sizing: border-box; z-index: 1000;
+    transition: background 0.3s;
   }
   header img.logo { height: 50px; cursor: pointer; }
-  header.scrolled { background: black; }
   nav { display: flex; justify-content: center; flex: 1; }
   nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
   nav li { position: relative; }
@@ -32,7 +33,12 @@
     text-decoration: none; background: white; color: black; border: 1px solid black;
     border-radius: 20px; padding: 5px 15px; transition: all 0.3s; font-size: 14px;
   }
-  .section-flex { display: flex; gap: 50px; margin-top: 120px; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 20px; }
+  /* 스크롤/호버 시 메뉴 색상 변화 */
+  header.scrolled nav a { color: white; }
+  nav a:hover { color: gray; }
+
+  /* 메인 섹션 */
+  .section-flex { display: flex; gap: 50px; margin-top: 120px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
   .left-content { flex: 1; }
   .left-content h1.title { font-size: 72px; font-weight: 900; letter-spacing: 5px; line-height: 1.3; margin: 0; }
   .left-content h1.subtitle { font-size: 18px; margin: 0; }
@@ -40,13 +46,16 @@
   .left-content p { margin: 5px 0; }
   .right-content { flex: 1; }
   footer { text-align: center; padding: 30px; background: #f0f0f0; margin-top: 50px; }
-  #ridy { margin: 50px auto; max-width: 1200px; padding: 0 20px; }
-  #ridy img { width: 100%; max-width: 500px; height: auto; display: block; margin: 20px auto; }
-  #ridy ul { padding-left: 20px; }
 
-  /* 🔥 메뉴 색상 스크롤/호버 효과를 강제 적용 */
-  header.scrolled nav a { color: white !important; }
-  nav a:hover { color: gray !important; }
+  /* 🔥 정산어플 섹션 추가 스타일 */
+  #ridy { margin: 50px auto; max-width: 1200px; padding: 0 20px; }
+  #ridy h2 { text-align: left; }
+  #ridy .ridy-images { display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  #ridy .ridy-images a img {
+    display: block; border-radius: 4px; box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s; max-width: 100%; height: auto;
+  }
+  #ridy .ridy-images a:hover img { transform: scale(1.05); }
 </style>
 </head>
 <body>
@@ -109,23 +118,19 @@
 </section>
 
 <section id="ridy">
-  <h2 style="text-align: left;">정산어플 (Ridy)</h2>
-  <div style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
-    <a href="정산어플.png" target="_blank">
-      <img src="정산어플.png" alt="정산어플 이미지 1" style="max-width: 400px; height: auto; display: block;">
-    </a>
-    <a href="정산어플2.png" target="_blank">
-      <img src="정산어플2.png" alt="정산어플 이미지 2" style="max-width: 600px; height: auto; display: block;">
-    </a>
+  <h2>정산어플 (Ridy)</h2>
+  <div class="ridy-images">
+    <a href="정산어플.png" target="_blank"><img src="정산어플.png" alt="정산어플 이미지 1" style="max-width: 400px;"></a>
+    <a href="정산어플2.png" target="_blank"><img src="정산어플2.png" alt="정산어플 이미지 2" style="max-width: 600px;"></a>
   </div>
-  <ul style="padding-left: 20px;">
+  <ul>
     <li>📆 <strong>정산 내역 확인</strong> (일별 / 주간 / 월간)</li>
     <li>📊 <strong>매출 통계 시각화</strong></li>
     <li>💸 <strong>익일 출금 신청 기능</strong></li>
     <li>📬 <strong>푸시 알림으로 정산 통보 받기</strong></li>
     <li>🔍 <strong>이전 기록도 자동 저장</strong></li>
   </ul>
-  <blockquote style="margin: 10px 0;">
+  <blockquote>
     <p>정산 확인에 들이는 시간을 줄이고, 라이딩에 집중하세요!</p>
   </blockquote>
   <p>자세한 내용은 : <a href="https://ridy.co.kr" target="_blank">ridy.co.kr</a></p>
