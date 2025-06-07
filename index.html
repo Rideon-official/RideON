@@ -1,439 +1,209 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RIDE ON</title>
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    padding-top: 80px;
-  }
-  header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-    box-sizing: border-box;
-    z-index: 1000;
-    transition: background 0.3s;
-  }
-  header.scrolled {
-    background: black;
-  }
-  header img.logo {
-    height: 50px;
-    cursor: pointer;
-  }
-  nav {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  nav li {
-    position: relative;
-  }
-nav a {
-  color: black;
-  background: transparent;
-  transition: all 0.3s;
-  display: block;
-  padding: 20px 15px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIDE ON - 반응형 리팩토링</title>
+  <style>
+    :root {
+      --primary-color: #000;
+      --secondary-color: #fff;
+      --accent-color: #f0f0f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0; left: 0;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    header.scrolled {
+      background: black;
+    }
+    .logo {
+      height: 50px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      padding: 15px;
+      transition: 0.3s;
+    }
+    nav a:hover { color: white; background: black; }
+    .right-buttons a {
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: black;
+      color: white;
+      font-size: 14px;
+      text-decoration: none;
+      margin-left: 10px;
+      transition: 0.3s;
+    }
+    .right-buttons a:hover { background: white; color: black; }
 
-nav a:hover {
-  color: white !important;
-  background: black !important;
-}
+    main {
+      padding: 20px;
+    }
+    .section-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .left-content, .right-content {
+      flex: 1;
+      min-width: 300px;
+    }
+    h1.title {
+      font-size: 8vw;
+      font-weight: 900;
+      letter-spacing: 3px;
+      line-height: 1.2;
+    }
+    .r-meaning-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .r-card {
+      background: var(--accent-color);
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .r-card strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
 
-header.scrolled nav a {
-  color: white;
-  background: transparent;
-}
-
-header.scrolled nav a:hover {
-  color: white !important;
-  background: transparent !important;
-}
-  .right-buttons a {
-    text-decoration: none;
-    background: black;
-    color: white;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 5px 15px;
-    transition: all 0.3s;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  .right-buttons a:hover {
-    background: white;
-    color: black;
-  }
-  header.scrolled .right-buttons a {
-    background: white;
-    color: black;
-    border: 1px solid black;
-  }
-  header.scrolled .right-buttons a:hover {
-    background: white;
-    color: black;
-    font-weight: bold;
-  }
-  nav li:hover ul {
-    display: block;
-  }
-    header img.logo {
-    margin-left: 300px;
-  }
-  header .right-buttons {
-    margin-right: 300px;
-  }
-  nav ul ul {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    background: rgba(0, 0, 0, 0.9);
-    border-radius: 4px;
-  }
-  nav ul ul li a {
-    padding: 10px;
-    color: white;
-    white-space: nowrap;
-  }
-  .right-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  .right-buttons a {
-    text-decoration: none;
-    background: black;
-    color: white;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 5px 15px;
-    transition: all 0.3s;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  .right-buttons a:hover {
-    background: white;
-    color: black;
-  }
-  header.scrolled .right-buttons a:hover {
-    background: white !important;
-    color: black !important;
-    font-weight: bold;
-  }
-  .section-flex {
-    display: flex;
-    gap: 50px;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 0 20px;
-  }
-  .left-content {
-    flex: 1;
-  }
-  .left-content h1.title {
-    font-size: 72px;
-    font-weight: 900;
-    letter-spacing: 5px;
-    line-height: 1;
-    margin: 0;
-    transform: scaleY(1.5);
-  }
-  .left-content h1.subtitle {
-    font-size: 18px;
-    margin: 0;
-  }
-  .left-content p.slogan {
-    color: gray;
-    font-style: italic;
-    margin: 20px 0;
-  }
-  .left-content p {
-    margin: 5px 0;
-  }
-  .right-content {
-    flex: 1;
-  }
-  footer {
-    text-align: center;
-    padding: 30px;
-    background: #f0f0f0;
-    margin-top: 50px;
-  }
-  #ridy {
-    margin: 50px auto;
-    max-width: 1200px;
-    padding: 0 20px;
-  }
-  #ridy h2 {
-    text-align: left;
-  }
-  #ridy .ridy-images {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  #ridy .ridy-images img {
-    display: block;
-    border-radius: 4px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-    max-width: 100%;
-    height: auto;
-    cursor: pointer;
-  }
-  #ridy .ridy-images img:hover {
-    transform: scale(1.05);
-  }
-  .lightbox {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-  }
-  .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(255,255,255,0.3);
-    transition: transform 0.3s;
-  }
-</style>
+    #rider-form {
+      background: url('문의.png') center/cover no-repeat;
+      color: white;
+      padding: 60px 20px;
+      position: relative;
+      text-align: center;
+    }
+    #rider-form .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    #rider-form .form-wrapper {
+      position: relative;
+      z-index: 2;
+      max-width: 500px;
+      margin: auto;
+      background: rgba(255,255,255,0.9);
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    #rider-form input, #rider-form select, #rider-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #rider-form button {
+      background: black;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    @media (max-width: 768px) {
+      nav ul { flex-direction: column; }
+      header { flex-direction: column; align-items: flex-start; }
+      .right-buttons { margin-top: 10px; }
+    }
+  </style>
 </head>
-
 <body>
-<header id="header">
-  <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
-  <nav>
-    <ul>
-      <li><a href="#about">회사소개</a></li>
-      <li class="dropdown">
-        <a href="#">운영지역</a>
-        <ul class="dropdown-menu">
-          <li><a href="./운영지역/서울북부권/index.html" target="_blank">서울북부권</a></li>
-          <li><a href="./운영지역/서울남부권/index.html" target="_blank">서울남부권</a></li>
-          <li><a href="./운영지역/경기북부권/index.html" target="_blank">경기북부권</a></li>
-          <li><a href="./운영지역/경기남부권/index.html" target="_blank">경기남부권</a></li>
-          <li><a href="./운영지역/강원권/index.html" target="_blank">강원권</a></li>
-          <li><a href="./운영지역/충청권/index.html" target="_blank">충청권</a></li>
-          <li><a href="./운영지역/호남권/index.html" target="_blank">호남권</a></li>
-          <li><a href="./운영지역/영남권/index.html" target="_blank">영남권</a></li>
-          <li><a href="./운영지역/제주권/index.html" target="_blank">제주권</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">플랫폼</a>
-        <ul>
-          <li><a href="#">쿠팡이츠플러스</a></li>
-          <li><a href="#">배달의민족플러스</a></li>
-          <li><a href="#ridy">정산어플(Ridy)</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">문의하기</a>
-        <ul>
-          <li><a href="#기사문의">기사문의</a></li>
-          <li><a href="#">지사합병(창업)문의</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-  <div class="right-buttons">
-    <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
-    <a href="tel:01097056965">전화상담</a>
-  </div>
-</header>
-
-<main>
-  <section id="about" class="section-flex">
-    <div class="left-content">
-      <h1 class="subtitle">라이드온</h1>
-      <h1 class="title">RIDE ON</h1>
-      <p class="slogan">“멈추지 않는 질주, 라이드온!”</p>
-      <p>끊임없이 달리는 배달 라이더들의 정신과 끝없는 성장</p>
-      <p><strong>R</strong>: Rapid (빠르게) &nbsp; <strong>I</strong>: Innovation (혁신) &nbsp; <strong>D</strong>: Drive (질주하다) &nbsp; <strong>E</strong>: Endurance (지속력) &nbsp; <strong>O</strong>: Onward (앞으로) &nbsp; <strong>N</strong>: Nexus (연결)</p>
+  <header id="header">
+    <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo">
+    <nav>
       <ul>
-        <li>지속적인 성장과 확장성을 강조</li>
-        <li>배달 라이더들의 끊임없는 질주와 도전 정신</li>
-        <li>강렬한 에너지를 전달하는 브랜드 아이덴티티</li>
+        <li><a href="#about">회사소개</a></li>
+        <li><a href="#rider-form">문의</a></li>
       </ul>
+    </nav>
+    <div class="right-buttons">
+      <a href="#">카톡상담</a>
+      <a href="#">전화상담</a>
     </div>
-    <div class="right-content">
-      <p>라이드온은 배달 라이더의 최고의 파트너가 되기 위해 꾸준히 성장해온 배달대행 전문 기업입니다.</p>
-      <p>2018년 배달대행 사업을 시작으로, 2021년부터는 쿠팡이츠플렉스 초기 모델 및 쿠팡이츠플러스, 배달의민족플러스 등 주요 플랫폼과 협업을 통해 전국적인 배달 네트워크를 구축했습니다. 또한, 2023년부터는 ‘이츠특공대’ 브랜드로 우수 협력사로 선정되며 업계의 신뢰를 더욱 공고히 하고 있습니다.</p>
-      <p>25년 기준 전국 1등 set수 보유 및 1,000명 이상의 라이더가 서울, 경기, 부산, 제주 등 전국 주요 지역에서 안정적인 배달 서비스를 제공합니다. 자체 정산 어플(ridy) 및 수도권 자체 센터 운영 및 렌트/리스 사업을 비롯해 협력 병원 제휴 등 라이더분들이 안심하고 일할 수 있는 다양한 지원 체계도 갖추고 있습니다.</p>
-      <p>앞으로도 라이드온은 라이더와 고객을 연결하는 든든한 가교로서, 모든 배달 파트너분들이 믿고 함께할 수 있는 환경을 만들어가겠습니다.</p>
-    </div>
-  </section>
+  </header>
 
-  <section id="ridy">
-    <h2>
-      <img src="라이디로고.jpg" alt="라이디 로고" style="height: 30px; vertical-align: middle; margin-right: 10px;">
-      정산어플 (Ridy)
-    </h2>
-    <div class="ridy-images">
-      <img src="정산어플.png" alt="정산어플 이미지 1" style="max-width: 400px;" class="zoomable-img">
-      <img src="정산어플2.png" alt="정산어플 이미지 2" style="max-width: 700px;" class="zoomable-img">
-    </div>
-    <ul>
-      <li>📆 <strong>정산 내역 확인</strong> (일별 / 주간 / 월간)</li>
-      <li>📊 <strong>매출 통계 시각화</strong></li>
-      <li>💸 <strong>익일 출금 신청 기능</strong></li>
-      <li>📬 <strong>푸시 알림으로 정산 통보 받기</strong></li>
-      <li>🔍 <strong>이전 기록도 자동 저장</strong></li>
-    </ul>
-    <blockquote>
-      <p>정산 확인에 들이는 시간을 줄이고, 라이딩에 집중하세요!</p>
-    </blockquote>
-    <p>자세한 내용은 : <a href="https://www.ridy.co.kr" target="_blank">www.ridy.co.kr</a></p>
-  </section>
+  <main>
+    <section class="section-flex" id="about">
+      <div class="left-content">
+        <h1 class="title">RIDE ON</h1>
+        <p>“멈추지 않는 질주, 라이드온!”</p>
+        <div class="r-meaning-grid">
+          <div class="r-card"><strong>R</strong>Rapid</div>
+          <div class="r-card"><strong>I</strong>Innovation</div>
+          <div class="r-card"><strong>D</strong>Drive</div>
+          <div class="r-card"><strong>E</strong>Endurance</div>
+          <div class="r-card"><strong>O</strong>Onward</div>
+          <div class="r-card"><strong>N</strong>Nexus</div>
+        </div>
+      </div>
+      <div class="right-content">
+        <p>라이드온은 전국적인 배달 네트워크를 구축하고 있으며, Ridy 정산 어플과 함께 최고의 파트너가 되기 위해 노력하고 있습니다.</p>
+      </div>
+    </section>
 
-<section id="기사문의" style="
-  position: relative;
-  background: url('문의.png') center/cover no-repeat;
-  color: white;
-  padding: 80px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-">
-
-  <!-- ✅ 투명도 오버레이 (포인터 이벤트 비활성화) -->
-  <div style="
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    pointer-events: none; /* 👉 클릭 막지 않도록 */
-    z-index: 1;
-  "></div>
-
-  <!-- ✅ 컨텐츠 래퍼 -->
-  <div style="position: relative; z-index: 2; display: flex; gap: 50px; flex-wrap: wrap; width: 100%; max-width: 1200px;">
-    <!-- 왼쪽 연락 정보 -->
-    <div style="flex: 1; min-width: 250px;">
-      <h2 style="font-size: 40px; font-weight: 900;">문의하기</h2>
-      <p>라이드온에 문의 주시면 언제든 친절히 상담해드리겠습니다.</p>
-      <hr style="margin: 20px 0; border: 1px solid #ccc;">
-      <p><strong>TEL</strong>: 010-9705-6965</p>
-      <p><strong>E-mail</strong>: rideon_official@naver.com</p>
-    </div>
-
-    <!-- 오른쪽 폼 -->
-    <div style="flex: 1; min-width: 300px;">
-      <form style="display: flex; flex-direction: column; gap: 15px;">
-        <input type="text" placeholder="이름" required
-          style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; background: rgba(255,255,255,0.9); color: black;" />
-        <input type="text" placeholder="연락처" required
-          style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; background: rgba(255,255,255,0.9); color: black;" />
-
-        <select required
-          style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; background: rgba(255,255,255,0.9); color: black;">
-          <option value="">오토바이 보유 유무</option>
-          <option value="있음">있음</option>
-          <option value="없음">없음</option>
-          <option value="렌트/리스희망">렌트/리스희망</option>
-        </select>
-
-        <input type="text" placeholder="예) 서울시 송파구 (구,동까지)" required
-          style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; background: rgba(255,255,255,0.9); color: black;" />
-
-        <select required
-          style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; background: rgba(255,255,255,0.9); color: black;">
-          <option value="">플랫폼</option>
-          <option value="쿠팡이츠플러스">쿠팡이츠플러스</option>
-          <option value="배민플러스">배민플러스</option>
-        </select>
-
-        <textarea placeholder="메시지" rows="4" required
-          style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; background: rgba(255,255,255,0.9); color: black;"></textarea>
-
-        <label style="font-size: 14px;">
-          <input type="checkbox" required /> 동의합니다. <a href="이용약관.html" target="_blank" style="color: white; text-decoration: underline;">약관 자세히 보기</a>
-        </label>
-
-        <button type="submit"
-          style="background: black; color: white; padding: 10px; border: none; cursor: pointer; font-weight: bold;">
-          SEND
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
-</main>
-<div class="lightbox" id="lightbox">
-  <img src="" alt="확대 이미지" />
-</div>
-
-<footer>
-  <p>상호: 라이드온 | 법인명: 패온 | 대표: 최수호<br>
-  주소: 서울특별시 강동구 고덕로 78, 2층 202호<br>
-  사업자등록번호: 896-86-02776 | 전화: 010-9705-6965 | 이메일: rideon_official@naver.com<br>
-  <a href="이용약관.html" target="_blank">이용약관</a> | <a href="개인정보처리방침.html" target="_blank">개인정보처리방침</a><br>
-  &copy; 2025 라이드온. All Rights Reserved.</p>
-</footer>
-
-<script>
-const header = document.getElementById('header');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-});
-
-header.addEventListener('mouseenter', () => {
-  header.classList.add('scrolled');
-});
-
-header.addEventListener('mouseleave', () => {
-  if (window.scrollY <= 50) {
-    header.classList.remove('scrolled');
-  }
-});
-
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = lightbox.querySelector('img');
-const zoomableImgs = document.querySelectorAll('.zoomable-img');
-
-zoomableImgs.forEach(img => {
-  img.addEventListener('click', () => {
-    lightboxImg.src = img.src;
-    lightbox.style.display = 'flex';
-  });
-});
-
-lightbox.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-});
-</script>
-
+    <section id="rider-form">
+      <div class="overlay"></div>
+      <div class="form-wrapper">
+        <h2>라이더 문의하기</h2>
+        <form>
+          <input type="text" placeholder="이름" required>
+          <input type="text" placeholder="연락처" required>
+          <select required>
+            <option value="">오토바이 보유</option>
+            <option value="있음">있음</option>
+            <option value="없음">없음</option>
+          </select>
+          <input type="text" placeholder="지역 (구/동)" required>
+          <select required>
+            <option value="">플랫폼 선택</option>
+            <option value="쿠팡이츠">쿠팡이츠</option>
+            <option value="배민">배민</option>
+          </select>
+          <textarea rows="4" placeholder="기타 문의내용"></textarea>
+          <label><input type="checkbox" required> 개인정보 제공 동의</label>
+          <button type="submit">문의 보내기</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
