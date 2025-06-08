@@ -44,6 +44,9 @@
     display: none;
     font-size: 24px;
     cursor: pointer;
+    background: none;
+    border: none;
+    color: black;
   }
   .mobile-header-buttons {
     display: flex;
@@ -51,7 +54,6 @@
     gap: 10px;
   }
   #mobileMenu {
-    display: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -81,7 +83,6 @@
     color: black;
     font-weight: bold;
   }
-
   @media screen and (max-width: 768px) {
     nav, .right-buttons {
       display: none;
@@ -95,7 +96,7 @@
     .mobile-header-buttons {
       margin-left: auto;
     }
-  }`
+  }
 </style>
 </head>
 
@@ -104,7 +105,7 @@
   <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
   <div class="mobile-header-buttons">
     <a href="tel:01097056965" style="text-decoration: none; background: black; color: white; border-radius: 20px; padding: 5px 15px; font-size: 14px; font-weight: bold;">전화상담</a>
-    <span class="hamburger" onclick="toggleMobileMenu()">☰</span>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
   </div>
   <nav>
     <ul>
