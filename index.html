@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RIDE ON</title>
 
-  <!-- ✅ SEO 최적화 메타 태그 삽입 -->
+<!-- ✅ SEO 최적화 메타 태그 삽입 -->
 <meta name="description" content="라이드온은 전국 배달대행 전문 기업으로, 쿠팡이츠플러스·배민플러스 등과 제휴한 고수익 배달 플랫폼입니다.">
 <meta name="keywords" content="배달대행, 배달기사 모집, 쿠팡이츠플러스, 배민플러스, 배달 수익, 라이더 플랫폼">
 <meta property="og:title" content="RIDE ON - 배달 라이더를 위한 최고의 플랫폼">
 <meta property="og:description" content="수수료 0%, 정산 어플 Ridy, 전국센터 운영. 지금 등록하고 시작하세요.">
 <meta property="og:image" content="https://rideon-official.github.io/assets/rideon_cover.png">
-  
+
 <style>
   body {
     margin: 0;
@@ -28,7 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
+    padding: 10px 20px;
     box-sizing: border-box;
     z-index: 1000;
     transition: background 0.3s;
@@ -37,263 +37,75 @@
     background: black;
   }
   header img.logo {
-    height: 50px;
+    height: 40px;
     cursor: pointer;
   }
-  nav {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  nav li {
-    position: relative;
-  }
-nav a {
-  color: black;
-  background: transparent;
-  transition: all 0.3s;
-  display: block;
-  padding: 20px 15px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-}
-
-nav a:hover {
-  color: white !important;
-  background: black !important;
-}
-
-header.scrolled nav a {
-  color: white;
-  background: transparent;
-}
-
-header.scrolled nav a:hover {
-  color: white !important;
-  background: transparent !important;
-}
-  .right-buttons a {
-    text-decoration: none;
-    background: black;
-    color: white;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 5px 15px;
-    transition: all 0.3s;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  .right-buttons a:hover {
-    background: white;
-    color: black;
-  }
-  header.scrolled .right-buttons a {
-    background: white;
-    color: black;
-    border: 1px solid black;
-  }
-  header.scrolled .right-buttons a:hover {
-    background: white;
-    color: black;
-    font-weight: bold;
-  }
-  nav li:hover ul {
-    display: block;
-  }
-@media screen and (min-width: 1024px) {
-    header img.logo {
-    margin-left: 300px;
-  }
-  header .right-buttons {
-    margin-right: 300px;
-  }
-}
-  nav ul ul {
+  .hamburger {
     display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    background: rgba(0, 0, 0, 0.9);
-    border-radius: 4px;
+    font-size: 24px;
+    cursor: pointer;
   }
-  nav ul ul li a {
-    padding: 10px;
-    color: white;
-    white-space: nowrap;
-  }
-  .right-buttons {
+  .mobile-header-buttons {
     display: flex;
+    align-items: center;
     gap: 10px;
   }
-  .right-buttons a {
-    text-decoration: none;
-    background: black;
-    color: white;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 5px 15px;
-    transition: all 0.3s;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  .right-buttons a:hover {
-    background: white;
-    color: black;
-  }
-  header.scrolled .right-buttons a:hover {
-    background: white !important;
-    color: black !important;
-    font-weight: bold;
-  }
-  .section-flex {
-    display: flex;
-    gap: 50px;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 0 20px;
-  }
-  .left-content {
-    flex: 1;
-  }
-  .left-content h1.title {
-    font-size: 72px;
-    font-weight: 900;
-    letter-spacing: 5px;
-    line-height: 1;
-    margin: 0;
-    transform: scaleY(1.5);
-  }
-  .left-content h1.subtitle {
-    font-size: 18px;
-    margin: 0;
-  }
-  .left-content p.slogan {
-    color: gray;
-    font-style: italic;
-    margin: 20px 0;
-  }
-  .left-content p {
-    margin: 5px 0;
-  }
-  .right-content {
-    flex: 1;
-  }
-  footer {
-    text-align: center;
-    padding: 30px;
-    background: #f0f0f0;
-    margin-top: 50px;
-  }
-  #ridy {
-    margin: 50px auto;
-    max-width: 1200px;
-    padding: 0 20px;
-  }
-  #ridy h2 {
-    text-align: left;
-  }
-  #ridy .ridy-images {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  #ridy .ridy-images img {
-    display: block;
-    border-radius: 4px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-    max-width: 100%;
-    height: auto;
-    cursor: pointer;
-  }
-  #ridy .ridy-images img:hover {
-    transform: scale(1.05);
-  }
-  .lightbox {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+  #mobileMenu {
     display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 1500;
+    padding: 20px;
+    box-sizing: border-box;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
   }
-  .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(255,255,255,0.3);
-    transition: transform 0.3s;
+  #mobileMenu.open {
+    transform: translateX(0);
   }
-    @media screen and (max-width: 768px) {
-    #ridy .ridy-images {
-      flex-direction: column;
-      align-items: center;
-    }
+  #mobileMenu h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  #mobileMenu a {
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
 
-    #ridy .ridy-images img {
-      width: 90%;
-      max-width: 400px;
-    }
-  }
   @media screen and (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  header img.logo {
-    margin-left: 0;
-    height: 40px;
-  }
-
-  nav {
-    width: 100%;
-    justify-content: center;
-    margin-top: 10px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  nav a {
-    padding: 10px;
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .right-buttons {
-    flex-direction: column;
-    gap: 8px;
-    margin-right: 0;
-    margin-top: 10px;
-  }
-
-  .right-buttons a {
-    font-size: 14px;
-    padding: 8px 12px;
-    text-align: center;
-  }
-}
+    nav, .right-buttons {
+      display: none;
+    }
+    .hamburger {
+      display: block;
+    }
+    header {
+      justify-content: space-between;
+    }
+    .mobile-header-buttons {
+      margin-left: auto;
+    }
+  }`
 </style>
 </head>
 
 <body>
 <header id="header">
   <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
+  <div class="mobile-header-buttons">
+    <a href="tel:01097056965" style="text-decoration: none; background: black; color: white; border-radius: 20px; padding: 5px 15px; font-size: 14px; font-weight: bold;">전화상담</a>
+    <span class="hamburger" onclick="toggleMobileMenu()">☰</span>
+  </div>
   <nav>
     <ul>
       <li><a href="#about">회사소개</a></li>
@@ -337,7 +149,25 @@ header.scrolled nav a:hover {
     <a href="tel:01097056965">전화상담</a>
   </div>
 </header>
+<!-- ✅ 모바일 메뉴 -->
+<div id="mobileMenu">
+  <h3>☰ MENU</h3>
+  <a href="#about">회사소개</a>
+  <a href="#coupangeatsplus">쿠팡이츠플러스</a>
+  <a href="#baeminplus">배달의민족플러스</a>
+  <a href="#ridy">정산어플</a>
+  <a href="#기사문의">문의하기</a>
+  <hr />
+  <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
+  <a href="tel:01097056965">전화상담</a>
+</div>
 
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+</script>
 <main>
   <section id="about" style="text-align: center; padding: 50px 20px; background: #ffffff;">
   <h2 style="font-size: 28px; margin-bottom: 30px; font-weight: 800;">회사소개</h2>
