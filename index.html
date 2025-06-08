@@ -292,11 +292,50 @@ header.scrolled nav a:hover {
 .mobile-header-buttons {
   display: none;
 }
+/* ✅ 모바일 전용 메뉴 패널 스타일 */
+#mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: right 0.3s ease;
+}
+
+#mobileMenu.open {
+  right: 0;
+}
+
+#mobileMenu a {
+  margin: 10px 0;
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  font-size: 16px;
+}
+
+#mobileMenu h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
+}
 
 @media screen and (max-width: 768px) {
-  nav,
-  .right-buttons {
-    display: none;
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  header img.logo {
+    height: 40px;
   }
 
   .mobile-header-buttons {
@@ -326,13 +365,12 @@ header.scrolled nav a:hover {
 }
 </style>
 </head>
-
 <body>
+
 <header id="header">
   <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
-
-  <!-- ✅ 모바일 전용 오른쪽 버튼 (전화상담 + 햄버거) -->
   <div class="mobile-header-buttons">
+    <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank" class="cta-button">카톡상담</a>
     <a href="tel:01097056965" class="cta-button">전화상담</a>
     <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
   </div>
@@ -585,10 +623,10 @@ lightbox.addEventListener('click', () => {
 </div>
 
 <script>
-  function toggleMobileMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('open');
-  }
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
 </script>
 
 </body>
