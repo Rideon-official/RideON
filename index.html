@@ -359,6 +359,11 @@ header.scrolled nav a:hover {
     color: black;
   }
 }
+@media screen and (min-width: 769px) {
+  .mobile-header-buttons {
+    display: none;
+  }
+}
 </style>
 </head>
 <body>
@@ -616,8 +621,6 @@ lightbox.addEventListener('click', () => {
   <a href="#기사문의">기사문의</a>
    <button onclick="toggleMobileMenu()" style="font-size: 20px; border: none; background: none;">✕</button>
   <hr />
-  <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
-  <a href="tel:01097056965">전화상담</a>
 </div>
 
 <script>
