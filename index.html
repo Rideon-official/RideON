@@ -288,6 +288,42 @@ header.scrolled nav a:hover {
     text-align: center;
   }
 }
+/* ✅ 모바일 전용 헤더 버튼 영역 (전화상담 + 햄버거) */
+.mobile-header-buttons {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  nav,
+  .right-buttons {
+    display: none;
+  }
+
+  .mobile-header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+
+  .cta-button {
+    background: black;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .hamburger {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+  }
+}
 </style>
 </head>
 
