@@ -1,83 +1,207 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RIDE ON</title>
-<meta name="description" content="라이드온은 전국 배달대행 전문 기업으로, 쿠팡이츠플러스·배민플러스 등과 제휴한 고수익 배달 플랫폼입니다.">
-<meta name="keywords" content="배달대행, 배달기사 모집, 쿠팡이츠플러스, 배민플러스, 배달 수익, 라이더 플랫폼">
-<meta property="og:title" content="RIDE ON - 배달 라이더를 위한 최고의 플랫폼">
-<meta property="og:description" content="수수료 0%, 정산 어플 Ridy, 전국센터 운영. 지금 등록하고 시작하세요.">
-<meta property="og:image" content="https://rideon-official.github.io/assets/rideon_cover.png">
-  
-<style>
-@media screen and (max-width: 768px) {
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-  }
-  header img.logo {
-    height: 40px;
-    margin-left: 0;
-  }
-  .right-buttons {
-    margin: 0;
-    gap: 10px;
-    display: flex;
-    align-items: center;
-  }
-  .hamburger {
-    display: block;
-    font-size: 26px;
-    cursor: pointer;
-    padding: 8px;
-    margin-left: 10px;
-  }
-  nav, nav ul, nav li {
-    display: none !important;
-  }
-  .mobile-nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 80%;
-    height: 100%;
-    background: #111;
-    flex-direction: column;
-    padding: 80px 20px;
-    z-index: 2000;
-  }
-  .mobile-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 15px 0;
-    font-size: 18px;
-    border-bottom: 1px solid #444;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RIDE ON</title>
+  <meta name="description" content="라이드온은 전국 배달대행 전문 기업으로, 쿠팡이츠플러스·배민플러스 등과 제휴한 고수익 배달 플랫폼입니다.">
+  <meta name="keywords" content="배달대행, 배달기사 모집, 쿠팡이츠플러스, 배민플러스, 배달 수익, 라이더 플랫폼">
+  <meta property="og:title" content="RIDE ON - 배달 라이더를 위한 최고의 플랫폼">
+  <meta property="og:description" content="수수료 0%, 정산 어플 Ridy, 전국센터 운영. 지금 등록하고 시작하세요.">
+  <meta property="og:image" content="https://rideon-official.github.io/assets/rideon_cover.png">
+
+  <style>
+    /* ✅ PC/Mobile 공통 스타일 */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      box-sizing: border-box;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+
+    header.scrolled {
+      background: black;
+    }
+
+    header img.logo {
+      height: 50px;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      position: relative;
+    }
+
+    nav a {
+      color: black;
+      background: transparent;
+      transition: all 0.3s;
+      display: block;
+      padding: 20px 15px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: white !important;
+      background: black !important;
+    }
+
+    header.scrolled nav a {
+      color: white;
+    }
+
+    header.scrolled nav a:hover {
+      background: transparent !important;
+    }
+
+    .right-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .right-buttons a {
+      text-decoration: none;
+      background: black;
+      color: white;
+      border: 1px solid black;
+      border-radius: 20px;
+      padding: 5px 15px;
+      transition: all 0.3s;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .right-buttons a:hover {
+      background: white;
+      color: black;
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: none;
+    }
+
+    /* ✅ 모바일 대응 */
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+      }
+
+      header img.logo {
+        height: 40px;
+        margin-left: 0;
+      }
+
+      nav, nav ul, nav li {
+        display: none !important;
+      }
+
+      .right-buttons {
+        margin: 0;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      .hamburger {
+        display: block;
+        font-size: 26px;
+        cursor: pointer;
+        padding: 8px;
+        margin-left: 10px;
+      }
+
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        height: 100%;
+        background: #111;
+        flex-direction: column;
+        padding: 80px 20px;
+        z-index: 2000;
+      }
+
+      .mobile-nav a {
+        color: white;
+        text-decoration: none;
+        padding: 15px 0;
+        font-size: 18px;
+        border-bottom: 1px solid #444;
+      }
+    }
+  </style>
 </head>
-<style>
+
 <body>
-<header id="header">
-  <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
-  <div class="right-buttons">
+  <header id="header">
+    <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
+    <nav>
+      <ul>
+        <li><a href="#about">회사소개</a></li>
+        <li><a href="#coupangeatsplus">쿠팡이츠플러스</a></li>
+        <li><a href="#baeminplus">배민플러스</a></li>
+        <li><a href="#ridy">정산어플</a></li>
+        <li><a href="#기사문의">문의하기</a></li>
+      </ul>
+    </nav>
+    <div class="right-buttons">
+      <a href="tel:01097056965">전화상담</a>
+      <div class="hamburger" onclick="toggleMobileMenu()">&#9776;</div>
+    </div>
+  </header>
+
+  <!-- ✅ 모바일 전용 메뉴 -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#about">회사소개</a>
+    <a href="#coupangeatsplus">쿠팡이츠플러스</a>
+    <a href="#baeminplus">배민플러스</a>
+    <a href="#ridy">정산어플</a>
+    <a href="#기사문의">문의하기</a>
+    <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
     <a href="tel:01097056965">전화상담</a>
-    <div class="hamburger" onclick="toggleMobileMenu()">&#9776;</div>
   </div>
-</header>
-<div class="mobile-nav" id="mobileNav">
-  <a href="#about">회사소개</a>
-  <a href="#coupangeatsplus">쿠팡이츠플러스</a>
-  <a href="#baeminplus">배민플러스</a>
-  <a href="#ridy">정산어플</a>
-  <a href="#기사문의">문의하기</a>
-  <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
-  <a href="tel:01097056965">전화상담</a>
-</div>
+
+<!-- ✅ 이 아래부터 콘텐츠 작성하면 됨 -->
+
 <script>
 function toggleMobileMenu() {
   const nav = document.getElementById("mobileNav");
