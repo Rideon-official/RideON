@@ -4,14 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RIDE ON</title>
-
-<!-- ✅ SEO 최적화 메타 태그 삽입 -->
 <meta name="description" content="라이드온은 전국 배달대행 전문 기업으로, 쿠팡이츠플러스·배민플러스 등과 제휴한 고수익 배달 플랫폼입니다.">
 <meta name="keywords" content="배달대행, 배달기사 모집, 쿠팡이츠플러스, 배민플러스, 배달 수익, 라이더 플랫폼">
 <meta property="og:title" content="RIDE ON - 배달 라이더를 위한 최고의 플랫폼">
 <meta property="og:description" content="수수료 0%, 정산 어플 Ridy, 전국센터 운영. 지금 등록하고 시작하세요.">
 <meta property="og:image" content="https://rideon-official.github.io/assets/rideon_cover.png">
-
 <style>
   body {
     margin: 0;
@@ -39,6 +36,37 @@
   header img.logo {
     height: 40px;
     cursor: pointer;
+  }
+  nav {
+    display: flex;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+  nav li {
+    position: relative;
+  }
+  nav li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 10px;
+    top: 100%;
+    left: 0;
+    z-index: 1001;
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
   }
   .hamburger {
     display: none;
@@ -99,20 +127,19 @@
   }
 </style>
 </head>
-
 <body>
-<header id="header">
-  <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
-  <div class="mobile-header-buttons">
-    <a href="tel:01097056965" style="text-decoration: none; background: black; color: white; border-radius: 20px; padding: 5px 15px; font-size: 14px; font-weight: bold;">전화상담</a>
-    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
-  </div>
-  <nav>
-    <ul>
-      <li><a href="#about">회사소개</a></li>
-      <li class="dropdown">
-        <a href="#">운영지역</a>
-        <ul class="dropdown-menu">
+  <header id="header">
+    <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
+    <div class="mobile-header-buttons">
+      <a href="tel:01097056965" style="text-decoration: none; background: black; color: white; border-radius: 20px; padding: 5px 15px; font-size: 14px; font-weight: bold;">전화상담</a>
+      <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">회사소개</a></li>
+        <li class="dropdown">
+          <a href="#">운영지역</a>
+          <ul class="dropdown-menu">
           <li><a href="./운영지역/서울북부권/index.html" target="_blank">서울북부권</a></li>
           <li><a href="./운영지역/서울남부권/index.html" target="_blank">서울남부권</a></li>
           <li><a href="./운영지역/경기북부권/index.html" target="_blank">경기북부권</a></li>
