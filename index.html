@@ -294,6 +294,12 @@ header.scrolled nav a:hover {
 <body>
 <header id="header">
   <img src="LOGO.jpg" alt="RIDE ON 로고" class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})" />
+  <!-- ✅ 모바일 전용 오른쪽 버튼 (전화상담 + 햄버거) -->
+  <div class="mobile-header-buttons">
+    <a href="tel:01097056965" class="cta-button">전화상담</a>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <!-- ✅ PC용 메뉴 -->
   <nav>
     <ul>
       <li><a href="#about">회사소개</a></li>
@@ -332,6 +338,7 @@ header.scrolled nav a:hover {
       </li>
     </ul>
   </nav>
+  <!-- ✅ PC 전용 버튼 -->
   <div class="right-buttons">
     <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank">카톡상담</a>
     <a href="tel:01097056965">전화상담</a>
