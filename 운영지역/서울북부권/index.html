@@ -2,15 +2,14 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>서울북부권</title>
+  <title>서울북부권 운영지역</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      line-height: 1.6; 
-      margin: 0;
-      padding: 0;
+    body {
+      font-family: 'Arial', sans-serif;
       background-color: #f9f9f9;
       color: #333;
+      margin: 0;
+      padding: 0;
     }
     .container {
       max-width: 800px;
@@ -18,29 +17,97 @@
       padding: 2rem 1rem;
       text-align: center;
     }
-    h1 { 
-      font-size: 2rem; 
-      margin-bottom: 1rem; 
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
     p {
       margin-bottom: 2rem;
     }
-    img { 
+    img {
       width: 100%;
       max-width: 600px;
-      height: auto; 
+      height: auto;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .platforms {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .platforms img {
+      height: 40px;
+    }
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .card {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+    .card strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+    .card a {
+      color: #007acc;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .card a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>라이드온-서울북부권 운영지역</h1>
+    <h1>서울북부권 운영지역</h1>
     <p>서울북부권의 운영 지역을 아래 지도를 통해 확인하실 수 있습니다.</p>
-
-    <!-- 메인 이미지 -->
     <img src="서울북부권.png" alt="서울북부권 운영지역 이미지">
+
+    <!-- ✅ 3. 운영 플랫폼 -->
+    <div class="platforms">
+      <img src="coupang_logo.png" alt="쿠팡이츠플러스 로고">
+      <img src="baemin_logo.png" alt="배민플러스 로고">
+    </div>
+
+    <!-- ✅ 4. 상세 지역 안내 -->
+    <div class="card-list">
+      <div class="card">
+        <strong>1. 마포구</strong>
+        운영지점: 마포중앙<br>
+        담당자: 홍길동 / 010-1234-5678<br>
+        <a href="https://naver.me/marpoblog">블로그 바로가기</a>
+      </div>
+      <div class="card">
+        <strong>2. 용산구</strong>
+        운영지점: 용산동부, 용산서부<br>
+        담당자: 김민수 / 010-5678-1234<br>
+        <a href="https://naver.me/yongsanblog">블로그 바로가기</a>
+      </div>
+      <div class="card">
+        <strong>3. 광진구</strong>
+        운영지점: 광진중앙<br>
+        담당자: 이지은 / 010-2222-3333<br>
+        <a href="https://naver.me/gwangjinblog">블로그 바로가기</a>
+      </div>
+      <div class="card">
+        <strong>4. 중랑구</strong>
+        운영지점: 중랑중앙<br>
+        담당자: 박정우 / 010-9999-8888<br>
+        <a href="https://naver.me/jungnangblog">블로그 바로가기</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>
