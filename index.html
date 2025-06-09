@@ -424,6 +424,23 @@ header.scrolled .cta-button {
   #mobileMenu a:active {
     background-color: #eee;
   }
+.region-button {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: white;
+  color: black;
+  border: 2px solid black;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+.region-button:hover {
+  background: black;
+  color: white;
+}
 </style>
 </head>
 <body>
@@ -441,7 +458,7 @@ header.scrolled .cta-button {
     <ul>
       <li><a href="#about">회사소개</a></li>
       <li class="dropdown">
-        <a href="#">운영지역</a>
+        <a href="#regionmap">운영지역</a>
         <ul class="dropdown-menu">
           <li><a href="./운영지역/서울북부권/index.html" target="_blank">서울북부권</a></li>
           <li><a href="./운영지역/서울남부권/index.html" target="_blank">서울남부권</a></li>
