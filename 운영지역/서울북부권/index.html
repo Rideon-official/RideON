@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>서울북부권 운영지역</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="서울북부권 배달 라이더 모집 - 수수료 0%, 빠른 정산, 친절한 관리자와 함께 일해보세요!">
+  <meta property="og:title" content="서울북부권 배달 기사 모집 | RIDE ON">
+  <meta property="og:description" content="믿고 일할 수 있는 플랫폼, 지금 등록하고 시작하세요.">
+  <meta property="og:image" content="https://rideon-official.github.io/assets/og_image.png">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -11,20 +16,48 @@
       margin: 0;
       padding: 0;
     }
+    .hero {
+      background: url('서울북부권_hero.png') center/cover no-repeat;
+      color: white;
+      padding: 5rem 1rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      display: inline-block;
+      background: #007acc;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .cta-button:hover {
+      background: #005fa3;
+    }
+
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem 1rem;
       text-align: center;
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+    h2 {
+      font-size: 1.8rem;
+      margin: 2rem 0 1rem;
     }
     p {
       margin-bottom: 2rem;
     }
-    img {
+    img.map {
       width: 100%;
       max-width: 600px;
       height: auto;
@@ -41,6 +74,18 @@
     .platforms img {
       height: 40px;
     }
+    .benefits {
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .benefits ul {
+      list-style: none;
+      padding: 0;
+    }
+    .benefits li::before {
+      content: '✅ ';
+    }
+
     .card-list {
       display: flex;
       flex-direction: column;
@@ -67,21 +112,47 @@
     .card a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .platforms img {
+        height: 30px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>서울북부권 운영지역</h1>
-    <p>서울북부권의 운영 지역을 아래 지도를 통해 확인하실 수 있습니다.</p>
-    <img src="서울북부권.png" alt="서울북부권 운영지역 이미지">
+  <div class="hero">
+    <h1>서울북부권 라이더 모집 중!</h1>
+    <p>최대 수익, 빠른 정산, 안정적인 배달지원을 지금 경험하세요</p>
+    <a href="https://open.kakao.com/o/..." class="cta-button">지금 등록하기</a>
+  </div>
 
-    <!-- ✅ 3. 운영 플랫폼 -->
+  <div class="container">
+    <h2>운영지역 안내</h2>
+    <p>서울북부권의 운영 지역을 아래 지도를 통해 확인하실 수 있습니다.</p>
+    <img src="서울북부권.png" alt="서울북부권 운영지역 이미지" class="map">
+
     <div class="platforms">
       <img src="coupang_logo.png" alt="쿠팡이츠플러스 로고">
       <img src="baemin_logo.png" alt="배민플러스 로고">
     </div>
 
-    <!-- ✅ 4. 상세 지역 안내 -->
+    <div class="benefits">
+      <h2>라이드온이 좋은 이유</h2>
+      <ul>
+        <li>수수료 0%, 투명한 정산 시스템</li>
+        <li>장비 지원 및 렌탈 가능</li>
+        <li>안정적인 배달 구역과 관리자</li>
+        <li>실시간 라이더 커뮤니티 운영</li>
+      </ul>
+    </div>
+
     <div class="card-list">
       <div class="card">
         <strong>1. 마포구</strong>
