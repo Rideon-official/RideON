@@ -373,29 +373,37 @@ header.scrolled nav a:hover {
   }
 }
 }
-.hamburger {
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: black;
-  transition: color 0.3s;
-}
+  /* 햄버거 버튼 색상 조절용 클래스 */
+  .hamburger {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+    transition: color 0.3s;
+  }
 
-header.scrolled .hamburger {
-  color: white;
-}
+  header.scrolled .hamburger {
+    color: white;
+  }
 
-/* 모바일 버튼 터치 반응 강화 */
-.cta-button:active {
-  background-color: #333 !important;
-  color: white !important;
-}
+  /* 모바일 버튼 터치 반응 강화 */
+  .cta-button:active {
+    background-color: #333 !important;
+    color: white !important;
+  }
 
-/* 모바일 메뉴 내 버튼 스타일 개선 */
-#mobileMenu a:active {
-  background-color: #eee;
-}
+  /* PC hover 효과 추가 */
+  .cta-button:hover {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid black;
+  }
+
+  /* 모바일 메뉴 내 버튼 스타일 개선 */
+  #mobileMenu a:active {
+    background-color: #eee;
+  }
 </style>
 </head>
 <body>
@@ -585,45 +593,54 @@ header.scrolled .hamburger {
 </footer>
 
 <script>
-const header = document.getElementById('header');
+  document.addEventListener('DOMContentLoaded', function () {
+    const header = document.getElementById('header');
+    const hamburgerBtn = document.querySelector('.hamburger');
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-});
+    // 스크롤 시 header 색상 변경
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
 
-header.addEventListener('mouseenter', () => {
-  header.classList.add('scrolled');
-});
+    // 마우스 오버 시 색상 고정
+    header.addEventListener('mouseenter', () => {
+      header.classList.add('scrolled');
+    });
 
-header.addEventListener('mouseleave', () => {
-  if (window.scrollY <= 50) {
-    header.classList.remove('scrolled');
-  }
-});
+    header.addEventListener('mouseleave', () => {
+      if (window.scrollY <= 50) {
+        header.classList.remove('scrolled');
+      }
+    });
 
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = lightbox.querySelector('img');
-const zoomableImgs = document.querySelectorAll('.zoomable-img');
+    // 메뉴 클릭 시 모바일 메뉴 닫힘
+    const menuLinks = document.querySelectorAll('#mobileMenu a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.remove('open');
+      });
+    });
 
-zoomableImgs.forEach(img => {
-  img.addEventListener('click', () => {
-    lightboxImg.src = img.src;
-    lightbox.style.display = 'flex';
+    // 라이트박스 기능
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const zoomableImgs = document.querySelectorAll('.zoomable-img');
+
+    zoomableImgs.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
   });
-});
-
-lightbox.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-});
-document.querySelectorAll('#mobileMenu a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.remove('open');
-  });
-});
 </script>
 
 <!-- ✅ 모바일 슬라이드 메뉴 -->
