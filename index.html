@@ -373,6 +373,29 @@ header.scrolled nav a:hover {
   }
 }
 }
+.hamburger {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: black;
+  transition: color 0.3s;
+}
+
+header.scrolled .hamburger {
+  color: white;
+}
+
+/* 모바일 버튼 터치 반응 강화 */
+.cta-button:active {
+  background-color: #333 !important;
+  color: white !important;
+}
+
+/* 모바일 메뉴 내 버튼 스타일 개선 */
+#mobileMenu a:active {
+  background-color: #eee;
+}
 </style>
 </head>
 <body>
@@ -595,6 +618,11 @@ zoomableImgs.forEach(img => {
 
 lightbox.addEventListener('click', () => {
   lightbox.style.display = 'none';
+});
+document.querySelectorAll('#mobileMenu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.remove('open');
+  });
 });
 </script>
 
