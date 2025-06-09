@@ -147,11 +147,6 @@ header.scrolled nav a:hover {
     background: white;
     color: black;
   }
-  header.scrolled .right-buttons a:hover {
-    background: white !important;
-    color: black !important;
-    font-weight: bold;
-  }
   .section-flex {
     display: flex;
     gap: 50px;
@@ -386,7 +381,26 @@ header.scrolled nav a:hover {
   header.scrolled .hamburger {
     color: white;
   }
+header.scrolled .right-buttons a,
+header.scrolled .cta-button {
+  background: white !important;
+  color: black !important;
+  border: 1px solid black;
+}
 
+/* PC & 모바일 hover 효과 */
+.right-buttons a:hover,
+.cta-button:hover {
+  background-color: white !important;
+  color: black !important;
+  border: 1px solid black;
+}
+
+/* 모바일 터치 눌림 효과 */
+.cta-button:active {
+  background-color: #333 !important;
+  color: white !important;
+}
   /* 모바일 버튼 터치 반응 강화 */
   .cta-button:active {
     background-color: #333 !important;
