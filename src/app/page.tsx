@@ -48,3 +48,4 @@ export default function Home() {
       {/* 아래에 기존 섹션들 그대로 두면 됩니다 */}
     </main>
   );
+}
