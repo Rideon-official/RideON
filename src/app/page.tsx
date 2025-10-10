@@ -9,7 +9,7 @@ export default function Home() {
         <div className="mx-auto max-w-screen-xl grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <h1 className="font-extrabold tracking-tight text-neutral-900 leading-[1.05] text-[clamp(32px,6vw,56px)]">
-              전국을 잇는 배달 네트워크,
+              전국을 잇는 배달 네트워크1,
               <span className="block text-blue-600">RIDE ON</span>
             </h1>
 
