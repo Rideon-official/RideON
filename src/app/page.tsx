@@ -41,9 +41,10 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 스크린리더용 숨김 섹션 (접근성용 앵커) */}
+      <section id="partner" className="sr-only" aria-hidden="true"></section>
+      <section id="contact" className="sr-only" aria-hidden="true"></section>
+
       {/* 아래에 기존 섹션들 그대로 두면 됩니다 */}
     </main>
   );
-}
-<section id="partner" className="sr-only" aria-hidden />
-<section id="contact" className="sr-only" aria-hidden />
