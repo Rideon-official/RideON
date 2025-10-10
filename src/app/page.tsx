@@ -10,14 +10,14 @@ export default function Home() {
           {/* Left : Copy */}
           <div>
             {/* 타이틀 */}
-            <h1 className="font-black tracking-[-0.02em] text-neutral-900 leading-[1.08] text-[clamp(38px,6.4vw,64px)]">
+            <h1 className="font-black tracking-[-0.02em] text-neutral-900 leading-[1.08] text-[clamp(38px,6.4vw,64px)] whitespace-nowrap">
               전국을 잇는 배달 네트워크,
               <span className="block text-blue-600">RIDE ON</span>
             </h1>
 
             {/* 서브 카피 1 */}
             <p className="mt-4 text-neutral-800 text-base sm:text-lg lg:text-xl">
-              전국 <b>25개 지부</b>와 함께 만드는 새로운 연결.
+              전국 1위 <b>25개 지부</b>와 함께 만드는 새로운 연결.
             </p>
 
             {/* 서브 카피 2 */}
