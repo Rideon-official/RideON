@@ -58,16 +58,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 스크린리더용 앵커 (숨김) */}
-      <section id="partner" className="sr-only" aria-hidden="true"></section>
-      <section id="contact" className="sr-only" aria-hidden="true"></section>
+      {/* 핵심 서비스 앵커(페이지 아래 기존 섹션으로 스크롤 이동용) */}
+      <div id="services" />
 
-      {/* 아래에 기존 섹션들(핵심 서비스 등) 그대로 두면 됩니다. */}
-      <section id="services"></section>
-    </main>
-  );
-}
-
+      {/* 파트너 섹션 */}
+      <section id="partner" className="px-4 sm:px-6 lg:px-8 py-20">
+        <div className="mx-auto max-w-screen-md">
+          <h2 className="text-xl font-semibold mb-4">합병·파트너십</h2>
+          <p className="text-sm text-neutral-600">
+            전국 지부 및 신규 파트너 합병 제안을 상시 접수합니다.
+          </p>
+        </div>
+      </section>
 
       {/* 연락 섹션 */}
       <section id="contact" className="px-4 sm:px-6 lg:px-8 py-20">
@@ -77,7 +79,7 @@ export default function Home() {
             아래 연락처로 문의 주시면 빠르게 회신드리겠습니다.
           </p>
 
-          <div className="rounded-xl border border-neutral-200 p-6">
+        <div className="rounded-xl border border-neutral-200 p-6">
             <p className="text-sm">이메일: contact@rideon.kr</p>
             <p className="text-sm">카톡: RIDEON 상담</p>
             <a
@@ -87,16 +89,6 @@ export default function Home() {
               합병·파트너십 제안서 보기
             </a>
           </div>
-        </div>
-      </section>
-
-      {/* 파트너 섹션 */}
-      <section id="partner" className="px-4 sm:px-6 lg:px-8 py-20">
-        <div className="mx-auto max-w-screen-md">
-          <h2 className="text-xl font-semibold mb-4">합병·파트너십</h2>
-          <p className="text-sm text-neutral-600">
-            전국 지부 및 신규 파트너 합병 제안을 상시 접수합니다.
-          </p>
         </div>
       </section>
     </main>
