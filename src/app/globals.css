@@ -1,0 +1,31 @@
+/* src/app/globals.css */
+
+/* Tailwind (이미 설정돼 있다면 그대로 사용) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 기본 리셋/베이스 */
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Pretendard", "Spoqa Han Sans Neo", Arial, sans-serif;
+  color: #111;
+  background: #fff;
+  line-height: 1.6;
+}
+
+/* 스크린리더 전용 유틸 (우리 코드에서 쓰는 .sr-only) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
