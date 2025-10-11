@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import ConvergeToText from "../components/ConvergeToText";
-import Image from "next/image";
 import HeroParticles from "../components/HeroParticles";
 
 export default function Home() {
