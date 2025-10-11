@@ -16,14 +16,6 @@ export default function ConvergeToText() {
   return (
     <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
       {/* 배경 지도 */}
-      <motion.img
-        src="/map-core.png"
-        alt="Map Background"
-        className="absolute w-[90%] max-w-[900px] opacity-80"
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 3, ease: "easeOut" }}
-      />
 
       {/* 빛이 모이는 효과 */}
       <motion.div
