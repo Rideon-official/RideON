@@ -21,7 +21,7 @@ export default function Home() {
             height={1200}
             className="
               absolute
-              left-[12%] top-[-15%]
+              left-[12%] top-[-33%]
               w-[340px] md:w-[420px] lg:w-[500px]
               -rotate-[7deg]
               opacity-80
