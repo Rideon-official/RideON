@@ -1,31 +1,71 @@
-/* src/app/globals.css */
-
-/* Tailwind (이미 설정돼 있다면 그대로 사용) */
+/* === Tailwind 기본 지시어(이미 있을 가능성 높음) === */
+/* 아래 3줄이 이미 있다면 그대로 두세요! 없다면 맨 위에 추가하세요. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 기본 리셋/베이스 */
+/* === Pretendard 폰트 임포트(상업적 사용 OK) === */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.css');
+
+/* 기본 글꼴 */
+:root {
+  --brand-yellow: #FFB800;
+  --brand-black: #111111;
+  --brand-graphite: #1A1A1A;
+  --brand-gray: #F1F1F1;
+}
+
 html, body {
-  height: 100%;
+  font-family: Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD 산돌고딕 Neo", "Noto Sans KR", system-ui, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  background-color: var(--brand-black);
+  color: #EDEDED;
 }
 
-body {
-  font-family: system-ui, -apple-system, "Pretendard", "Spoqa Han Sans Neo", Arial, sans-serif;
-  color: #111;
-  background: #fff;
-  line-height: 1.6;
+/* 포커스 링(접근성) */
+:focus-visible {
+  outline: 2px solid var(--brand-yellow);
+  outline-offset: 2px;
 }
 
-/* 스크린리더 전용 유틸 (우리 코드에서 쓰는 .sr-only) */
-.sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
+/* 미세 노이즈(필요시 Hero 배경 위 오버레이에 사용) */
+.noise {
+  position: relative;
+}
+.noise::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: .06;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIElEQVQoU2NkYGD4z0AEMFGkA0YwKQwGQ0YGhGg0HkQAAJbFBRq0x4fIAAAAAElFTkSuQmCC");
+}
+
+/* ===== Hero 애니메이션 ===== */
+
+/* 노드(점) 맥동 */
+@keyframes nodePulse {
+  0%   { transform: scale(0.98); opacity: .35; }
+  50%  { transform: scale(1.03); opacity: .75; }
+  100% { transform: scale(0.98); opacity: .35; }
+}
+.node-pulse {
+  animation: nodePulse 2.4s ease-in-out infinite;
+}
+
+/* 라인 그라데이션 흐름 */
+@keyframes lineShimmer {
+  0%   { stroke-dashoffset: 120; }
+  100% { stroke-dashoffset: 0; }
+}
+.line-shimmer {
+  stroke-dasharray: 120;
+  animation: lineShimmer 6s linear infinite;
+}
+
+/* 모션 최소화 환경 존중 */
+@media (prefers-reduced-motion: reduce) {
+  .node-pulse, .line-shimmer {
+    animation: none !important;
+  }
 }
