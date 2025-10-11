@@ -1,5 +1,5 @@
-// src/app/page.tsx
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -12,11 +12,9 @@ export default function Home() {
         <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20 grid lg:grid-cols-2 gap-10 items-center">
           {/* Left: Copy */}
           <div className="relative z-[1]">
-            {/* (선택) 좌상단 로고 자리
-            <div className="absolute -top-10 left-0 text-xs text-gray-400">RIDE ON</div> */}
-
             <h1 className="font-black tracking-tight text-[clamp(28px,5.6vw,52px)] leading-[1.05]">
-              전국을 잇는 배달 인프라, <span className="text-[#FFB800]">RIDE ON</span>
+              전국을 잇는 배달 인프라,{" "}
+              <span className="text-[#FFB800]">RIDE ON</span>
             </h1>
 
             <p className="mt-4 text-gray-300 text-base sm:text-lg">
@@ -45,47 +43,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: Korea Map (북한 제외, 심볼릭) */}
-          <div className="relative h-[280px] sm:h-[360px] lg:h-[420px]">
-            <svg
-              viewBox="0 0 420 520"
-              className="absolute inset-0 w-full h-full"
-              aria-hidden="true"
-            >
-              {/* 지도 몸체(심볼릭 남한 윤곽) */}
-              <path
-                d="M220 40c-18 22-40 34-58 50-18 16-30 38-36 62-6 25-10 54-4 78 6 25 24 45 36 68 12 22 18 46 18 72 0 20-6 40-10 60-2 10 10 14 18 12 42-12 78-40 106-74 22-26 38-60 42-96 4-36-12-68-30-100-16-28-38-56-62-84-6-8-16-8-20-8z"
-                fill="url(#bodyGrad)"
-                opacity="0.7"
-              />
-              <defs>
-                <linearGradient id="bodyGrad" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0%" stopColor="#2a2a2a" />
-                  <stop offset="100%" stopColor="#1a1a1a" />
-                </linearGradient>
-              </defs>
-
-              {/* 라인(네트워크) */}
-              <g stroke="#FFB800" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.8">
-                <path d="M90 380 C150 340, 230 330, 300 360" className="line-shimmer" />
-                <path d="M120 300 C170 280, 260 270, 320 310" className="line-shimmer" />
-                <path d="M110 220 C190 210, 250 200, 310 230" className="line-shimmer" />
-              </g>
-
-              {/* 노드(거점) */}
-              <g fill="#FFB800">
-                <circle cx="100" cy="380" r="4" className="node-pulse" />
-                <circle cx="170" cy="340" r="3.5" className="node-pulse" />
-                <circle cx="230" cy="330" r="3.5" className="node-pulse" />
-                <circle cx="300" cy="360" r="4" className="node-pulse" />
-                <circle cx="120" cy="300" r="3.5" className="node-pulse" />
-                <circle cx="260" cy="270" r="3.5" className="node-pulse" />
-                <circle cx="320" cy="310" r="4" className="node-pulse" />
-                <circle cx="110" cy="220" r="3.5" className="node-pulse" />
-                <circle cx="250" cy="200" r="3.5" className="node-pulse" />
-                <circle cx="310" cy="230" r="3.5" className="node-pulse" />
-              </g>
-            </svg>
+          {/* Right: map.png로 교체 */}
+          <div className="relative h-[280px] sm:h-[360px] lg:h-[420px] flex items-center justify-center">
+            <Image
+              src="/map.png"
+              alt="RIDE ON 전국 지부 지도"
+              width={520}
+              height={520}
+              className="w-auto h-full object-contain opacity-90"
+              priority
+            />
           </div>
         </div>
       </section>
@@ -109,8 +76,18 @@ export default function Home() {
                 <li>· 주간 운영 리포트</li>
               </ul>
               <div className="mt-4 flex flex-wrap gap-2">
-                <Link href="/contact?type=branch" className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800">지사 등록</Link>
-                <Link href="/contact?type=partner" className="px-3 py-2 text-sm rounded-lg border border-neutral-600 hover:bg-neutral-900">제휴 문의</Link>
+                <Link
+                  href="/contact?type=branch"
+                  className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800"
+                >
+                  지사 등록
+                </Link>
+                <Link
+                  href="/contact?type=partner"
+                  className="px-3 py-2 text-sm rounded-lg border border-neutral-600 hover:bg-neutral-900"
+                >
+                  제휴 문의
+                </Link>
               </div>
             </div>
           </div>
@@ -130,7 +107,12 @@ export default function Home() {
                 <li>· 센터 직영(강동·남양주)</li>
               </ul>
               <div className="mt-4 flex gap-2">
-                <Link href="/bike" className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800">센터 견적 문의</Link>
+                <Link
+                  href="/bike"
+                  className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800"
+                >
+                  센터 견적 문의
+                </Link>
               </div>
             </div>
           </div>
@@ -150,7 +132,12 @@ export default function Home() {
                 <li>· CSV·API 연동</li>
               </ul>
               <div className="mt-4 flex gap-2">
-                <Link href="/settlement" className="px-3 py-2 text-sm rounded-lg border border-neutral-600 hover:bg-neutral-900">정산 서비스 보기</Link>
+                <Link
+                  href="/settlement"
+                  className="px-3 py-2 text-sm rounded-lg border border-neutral-600 hover:bg-neutral-900"
+                >
+                  정산 서비스 보기
+                </Link>
               </div>
             </div>
           </div>
@@ -170,14 +157,17 @@ export default function Home() {
                 <li>· (선택) 오토바이 악세서리</li>
               </ul>
               <div className="mt-4 flex gap-2">
-                <Link href="/store" className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800">스토어 둘러보기</Link>
+                <Link
+                  href="/store"
+                  className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800"
+                >
+                  스토어 둘러보기
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ===== Proof + Contact는 다음 단계에서 붙임(지금은 메인 뼈대 우선) ===== */}
     </main>
   );
 }
