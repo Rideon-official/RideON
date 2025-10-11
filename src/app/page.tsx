@@ -27,6 +27,7 @@ export default function Home() {
               opacity-80
               mix-blend-screen
               select-none
+              scale-x-[1.3]
             "
             priority
           />
