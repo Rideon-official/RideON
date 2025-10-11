@@ -1,10 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import ConvergeToText from "../components/ConvergeToText";
 
 export default function Home() {
   return (
     <main>
       {/* ===== Hero ===== */}
+      <ConvergeToText />
+
       <section
         id="hero"
         className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24 noise"
@@ -13,10 +16,8 @@ export default function Home() {
           {/* Left: Copy */}
           <div className="relative z-[1]">
             <h1 className="font-black tracking-tight text-[clamp(28px,5.6vw,52px)] leading-[1.05]">
-              전국을 잇는 배달 인프라,{" "}
-              <span className="text-[#FFB800]">RIDE ON</span>
+              전국을 잇는 배달 인프라, <span className="text-[#FFB800]">RIDE ON</span>
             </h1>
-
             <p className="mt-4 text-gray-300 text-base sm:text-lg">
               쿠팡·배민 B2B 운영 네트워크 1위 · 전국 25개 지부
             </p>
