@@ -44,18 +44,6 @@ export default function Home() {
               </Link>
             </div>
           </div>
-
-          {/* Right: map.png로 교체 */}
-          <div className="relative h-[280px] sm:h-[360px] lg:h-[420px] flex items-center justify-center">
-            <Image
-              src="/map.png"
-              alt="RIDE ON 전국 지부 지도"
-              width={520}
-              height={520}
-              className="w-auto h-full object-contain opacity-90"
-              priority
-            />
-          </div>
         </div>
       </section>
 
