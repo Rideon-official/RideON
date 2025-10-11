@@ -38,7 +38,7 @@ export default function Home() {
           <div className="relative z-[1]">
             <h1 className="font-black tracking-tight text-[clamp(28px,5.6vw,52px)] leading-[1.05]">
               전국을 잇는 배달 인프라,{" "}
-              <span className="text-[#FFB800]">RIDE ON</span>
+              <span id="rideon-text" className="text-[#FFB800]">RIDE ON</span>
             </h1>
 
             <p className="mt-4 text-gray-300 text-base sm:text-lg">
