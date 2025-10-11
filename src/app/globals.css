@@ -69,3 +69,22 @@ html, body {
     animation: none !important;
   }
 }
+/* ===== RIDE ON 글자 반짝임 ===== */
+@keyframes twinkle {
+  0%, 100% { filter: drop-shadow(0 0 0px #FFB800); }
+  50% { filter: drop-shadow(0 0 12px #FFB800); }
+}
+.twinkle {
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+
+/* ===== 파티클(입자) 스타일 ===== */
+.particle-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #FFB800;
+  box-shadow: 0 0 8px rgba(255,184,0,0.8);
+  pointer-events: none;
+}
