@@ -24,7 +24,7 @@ export default function Home() {
               left-[12%] top-[-33%]
               w-[340px] md:w-[420px] lg:w-[500px]
               -rotate-[-5deg]
-              opacity-80
+              opacity-75
               mix-blend-screen
               select-none
               scale-x-[1.3]
