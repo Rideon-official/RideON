@@ -1,3 +1,4 @@
+// src/app/page.tsx
 import Link from "next/link";
 import Image from "next/image";
 import ConvergeToText from "../components/ConvergeToText";
@@ -6,19 +7,42 @@ import HeroParticles from "../components/HeroParticles";
 export default function Home() {
   return (
     <main>
-      {/* ===== Hero ===== */}
+      {/* ===== Hero 텍스트 컨버징 효과 ===== */}
       <ConvergeToText />
 
+      {/* ===== Hero ===== */}
       <section
         id="hero"
         className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24 noise"
       >
+        {/* 작은 지도 오버레이 (기울임 + 투명) */}
+        <div className="pointer-events-none absolute inset-0">
+          <Image
+            src="/map-core.png"
+            alt=""
+            width={900}
+            height={1200}
+            className="
+              absolute
+              left-[12%] top-[10%]
+              w-[340px] md:w-[420px] lg:w-[500px]
+              -rotate-[7deg]
+              opacity-80
+              mix-blend-screen
+              select-none
+            "
+            priority
+          />
+        </div>
+
         <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20 grid lg:grid-cols-2 gap-10 items-center">
           {/* Left: Copy */}
           <div className="relative z-[1]">
             <h1 className="font-black tracking-tight text-[clamp(28px,5.6vw,52px)] leading-[1.05]">
-              전국을 잇는 배달 인프라, <span className="text-[#FFB800]">RIDE ON</span>
+              전국을 잇는 배달 인프라,{" "}
+              <span className="text-[#FFB800]">RIDE ON</span>
             </h1>
+
             <p className="mt-4 text-gray-300 text-base sm:text-lg">
               쿠팡·배민 B2B 운영 네트워크 1위 · 전국 25개 지부
             </p>
@@ -44,12 +68,25 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          {/* Right: 회사 로고 */}
+          <div className="relative flex justify-center lg:justify-end">
+            <Image
+              src="/rideon-logo.png"
+              alt="RIDE ON Logo"
+              width={360}
+              height={360}
+              className="w-[180px] md:w-[220px] lg:w-[280px] h-auto opacity-95"
+              priority
+            />
+          </div>
         </div>
       </section>
 
       {/* ===== Services (4카드) ===== */}
       <section id="services" className="px-6 sm:px-10 lg:px-20 py-16">
         <h2 className="text-xl font-semibold text-gray-200">핵심 서비스</h2>
+
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* 1. 본사 운영지원 */}
           <div className="group rounded-2xl bg-[#1A1A1A] border border-neutral-800 hover:bg-[#222] transition-all">
