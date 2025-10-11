@@ -7,9 +7,6 @@ import HeroParticles from "../components/HeroParticles";
 export default function Home() {
   return (
     <main>
-      {/* ===== Hero 텍스트 컨버징 효과 ===== */}
-      <ConvergeToText />
-
       {/* ===== Hero ===== */}
       <section
         id="hero"
