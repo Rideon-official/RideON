@@ -1,20 +1,60 @@
 export default function Services() {
   const items = [
-    { title:"운영 대행", desc:"쿠팡이츠플러스 / 배민플러스 점주 맞춤 운영 전담", cta:"#contact" },
-    { title:"렌트·리스", desc:"오토바이·보험·정비 One‑stop 제공", cta:"#contact" },
-    { title:"플랫폼 연동", desc:"통합 리포트·정산 시스템으로 투명한 매출관리", cta:"#ridy" },
+    { icon: "🛠️", title: "운영 대행", desc: "쿠팡이츠플러스 / 배민플러스 점주 맞춤 운영 전담", cta: "#contact" },
+    { icon: "🛵", title: "렌트·리스", desc: "오토바이·보험·정비 One-stop 제공", cta: "#contact" },
+    { icon: "📊", title: "플랫폼 연동", desc: "통합 리포트·정산 시스템으로 투명한 매출관리", cta: "#ridy" },
   ];
+
   return (
-    <section id="services" className="bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="text-2xl md:text-3xl font-extrabold">핵심 서비스</h2>
-        <div className="mt-8 grid md:grid-cols-3 gap-6">
-          {items.map((it)=>(
-            <a key={it.title} href={it.cta}
-              className="rounded-2xl border p-6 hover:shadow-lg transition">
-              <h3 className="font-bold text-xl">{it.title}</h3>
-              <p className="mt-2 text-zinc-600">{it.desc}</p>
-              <span className="mt-4 inline-block font-semibold">바로가기 →</span>
+    // 섹션 배경은 상위 레이아웃(다크) 컬러를 따르도록 배경 제거
+    <section id="services" className="py-16">
+      <div className="mx-auto max-w-6xl px-4">
+        {/* 섹션 타이틀: 가운데 + 살짝 키움 */}
+        <h2 className="text-center font-extrabold text-white text-3xl md:text-4xl tracking-tight">
+          핵심 서비스
+        </h2>
+
+        {/* 카드 그리드 */}
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {items.map((it) => (
+            <a
+              key={it.title}
+              href={it.cta}
+              role="group"
+              className="
+                relative rounded-2xl border border-white/10
+                bg-[#1A1A1A]/70 p-8
+                transition-all duration-200
+                hover:-translate-y-0.5 hover:border-white/20 hover:bg-[#1A1A1A]/80
+                focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40
+                text-center
+              "
+            >
+              {/* 아이콘 중앙 */}
+              <div className="mb-4 select-none text-3xl md:text-4xl leading-none">
+                {it.icon}
+              </div>
+
+              {/* 제목: 1~2px 정도 키운 느낌 (22px/24px) */}
+              <h3 className="font-bold text-white text-[22px] md:text-[24px]">
+                {it.title}
+              </h3>
+
+              {/* 설명: 살짝 키우고(16px) 대비 확보 */}
+              <p className="mt-3 text-[16px] leading-relaxed text-gray-300">
+                {it.desc}
+              </p>
+
+              {/* CTA */}
+              <span
+                className="
+                  mt-5 inline-block font-semibold text-gray-200
+                  group-hover:text-[#FFB800] transition
+                  underline decoration-transparent group-hover:decoration-[#FFB800]/60 underline-offset-4
+                "
+              >
+                바로가기 →
+              </span>
             </a>
           ))}
         </div>
