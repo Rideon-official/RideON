@@ -96,10 +96,10 @@ export default function Home() {
         <h3 className="mt-1 font-bold tracking-tight text-white text-[22px] md:text-[24px]">
           본사 운영지원
         </h3>
-        <p className="mt-3 text-[16px] text-gray-300 text-left">
+        <p className="mt-3 text-[16px] text-gray-300">
           지사는 현장 운영에 집중, 본사는 시스템으로 지원.
         </p>
-        <ul className="mt-3 space-y-1 text-[15px] text-gray-400">
+        <ul className="mt-3 space-y-1 text-[15px] text-gray-400 text-left">
           <li>· 정산·입금·본사 소통 대행</li>
           <li>· 채용/홍보 대행(구인공고·블로그)</li>
           <li>· 주간 운영 리포트</li>
@@ -126,7 +126,7 @@ export default function Home() {
         <p className="mt-3 text-[16px] text-gray-300">
           렌트·리스·튜닝·정비·사고처리까지 원스톱.
         </p>
-        <ul className="mt-3 space-y-1 text-[15px] text-gray-400">
+        <ul className="mt-3 space-y-1 text-[15px] text-gray-400 text-left">
           <li>· 렌트/리스 저가</li>
           <li>· 소모품/사고/정비 전담</li>
           <li>· 센터 직영(강동)</li>
@@ -150,7 +150,7 @@ export default function Home() {
         <p className="mt-3 text-[16px] text-gray-300">
           타 지사도 사용할 수 있는 정산·리포트 플랫폼.
         </p>
-        <ul className="mt-3 space-y-1 text-[15px] text-gray-400">
+        <ul className="mt-3 space-y-1 text-[15px] text-gray-400 text-left">
           <li>· 실적/수수료 자동수집</li>
           <li>· 익일/주정산 알림</li>
           <li>· CSV·API 연동</li>
@@ -174,7 +174,7 @@ export default function Home() {
         <p className="mt-3 text-[16px] text-gray-300">
           공식 의류/장비/소모품 — 합리적 가격에 바로 구매.
         </p>
-        <ul className="mt-3 space-y-1 text-[15px] text-gray-400">
+        <ul className="mt-3 space-y-1 text-[15px] text-gray-400 text-left">
           <li>· 티셔츠·바람막이·오더판·조끼</li>
           <li>· 헬멧·장갑·소모품</li>
           <li>· 라이더 용품 및 튜닝제품</li>
