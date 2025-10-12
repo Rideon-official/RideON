@@ -123,7 +123,7 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
                             >
                               <span className="relative z-10">{item.label}</span>
                               {/* ✨ 글자 길이에 맞춘 글로우 (노랑/부드럽게) */}
-                              <span className="absolute inset-0 -z-10 scale-95 opacity-0 group-hover/item:opacity-100 group-hover/item:scale-100 transition-all duration-300 rounded-md blur-md bg-[#FFB800]/15" />
+                              <span className="absolute inset-0 -z-10 scale-95 opacity-0 group-hover/item:opacity-100 group-hover/item:scale-100 transition-all duration-300 rounded-md blur-md bg-[#FFB800]/20" />
                             </a>
                           ) : (
                             <Link
@@ -132,7 +132,7 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
                               className="relative inline-flex items-center rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
                             >
                               <span className="relative z-10">{item.label}</span>
-                              <span className="absolute inset-0 -z-10 scale-95 opacity-0 group-hover/item:opacity-100 group-hover/item:scale-100 transition-all duration-300 rounded-md blur-md bg-[#FFB800]/15" />
+                              <span className="absolute inset-0 -z-10 scale-95 opacity-0 group-hover/item:opacity-100 group-hover/item:scale-100 transition-all duration-300 rounded-md blur-md bg-[#FFB800]/20" />
                             </Link>
                           )}
                         </li>
