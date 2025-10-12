@@ -75,7 +75,7 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
     <AnimatePresence>
       {open && (
         <>
-          {/* 배경 어둡기 (톤다운) */}
+          {/* 배경 */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.35 }}
@@ -84,65 +84,81 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
             className="fixed inset-0 z-[60] bg-black backdrop-blur-sm"
           />
 
-          {/* 반화면 메가패널 */}
+          {/* 패널: 모바일 풀스크린, 데스크톱 반화면 */}
           <motion.div
-            ref={panelRef}
             role="dialog"
             aria-modal="true"
             initial={{ opacity: 0, y: -14 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            style={{ top: panelTopPx }}
-            className="fixed left-0 right-0 z-[70] mx-auto max-w-6xl h-[50vh] max-h-[560px] px-6 md:px-8"
+            className="
+              fixed left-0 right-0 z-[70]
+              top-0 md:top-[80px]
+              px-4 md:px-8
+              w-full md:mx-auto md:max-w-6xl
+              h-[100svh] md:h-[50vh] md:max-h-[560px]
+            "
           >
-            <div className="h-full w-full rounded-2xl border border-white/10 bg-[#1A1A1A]/95 backdrop-blur-md shadow-2xl overflow-hidden">
-              <div className="grid h-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-                {menu.map((col, idx) => (
-                  <motion.div
-                    key={col.title}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.03 * idx, duration: 0.18 }}
-                    className="group relative flex flex-col gap-3 p-6 border-t lg:border-t-0 lg:border-l border-white/5 first:border-l-0"
-                  >
-                    <h3 className="text-base md:text-lg font-semibold tracking-wide text-[#FFB800]">
-                      {col.title}
-                    </h3>
+            <div
+              className="
+                h-full w-full
+                bg-[#1A1A1A]/95 backdrop-blur-md
+                border-0 md:border md:border-white/10
+                rounded-none md:rounded-2xl
+                shadow-none md:shadow-2xl
+                /* ⬇️ 스크롤은 안쪽에서 처리하므로 여기선 overflow-hidden 유지(데스크톱) */
+                overflow-hidden
+              "
+            >
+              {/* ⬇️ 스크롤 가능한 래퍼 */}
+              <div className="h-full overflow-y-auto overscroll-contain md:overflow-visible">
+                <div className="grid h-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                  {menu.map((col, idx) => (
+                    <motion.div
+                      key={col.title}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.03 * idx, duration: 0.18 }}
+                      className="group relative flex flex-col gap-3 p-6 border-t lg:border-t-0 lg:border-l border-white/5 first:border-l-0"
+                    >
+                      <h3 className="text-base md:text-lg font-semibold tracking-wide text-[#FFB800]">
+                        {col.title}
+                      </h3>
 
-                    <ul className="space-y-2">
-                      {col.items.map((item) => (
-                        <li key={item.label} className="relative group/item">
-                          {item.external ? (
-                            <a
-                              href={item.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => setOpen(false)}
-                              className="relative inline-flex items-center rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
-                            >
-                              <span className="relative z-10">{item.label}</span>
-                              {/* ✨ 글자 길이에 맞춘 글로우 (노랑/부드럽게) */}
-                              <span className="absolute inset-0 -z-10 scale-95 opacity-0 group-hover/item:opacity-100 group-hover/item:scale-100 transition-all duration-300 rounded-full blur-md bg-[#FFB800]/20" />
-                            </a>
-                          ) : (
-                            <Link
-                              href={item.href}
-                              onClick={() => setOpen(false)}
-                              className="relative inline-flex items-center rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
-                            >
-                              <span className="relative z-10">{item.label}</span>
-                              <span className="absolute inset-0 -z-10 scale-95 opacity-0 group-hover/item:opacity-100 group-hover/item:scale-100 transition-all duration-300 rounded-full blur-md bg-[#FFB800]/20" />
-                            </Link>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
+                      <ul className="space-y-2">
+                        {col.items.map((item) => (
+                          <li key={item.label} className="relative group/item">
+                            {item.external ? (
+                              <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setOpen(false)}
+                                className="relative inline-flex items-center rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
+                              >
+                                <span className="relative z-10">{item.label}</span>
+                                {/* 연하고 둥근 글로우 */}
+                                <span className="absolute inset-0 -z-10 opacity-0 group-hover/item:opacity-100 transition-all duration-300 rounded-full blur-md bg-[radial-gradient(120%_120%_at_50%_50%,rgba(255,184,0,0.18)_0%,rgba(255,184,0,0.08)_45%,rgba(255,184,0,0)_70%)]" />
+                              </a>
+                            ) : (
+                              <Link
+                                href={item.href}
+                                onClick={() => setOpen(false)}
+                                className="relative inline-flex items-center rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
+                              >
+                                <span className="relative z-10">{item.label}</span>
+                                <span className="absolute inset-0 -z-10 opacity-0 group-hover/item:opacity-100 transition-all duration-300 rounded-full blur-md bg-[radial-gradient(120%_120%_at_50%_50%,rgba(255,184,0,0.18)_0%,rgba(255,184,0,0.08)_45%,rgba(255,184,0,0)_70%)]" />
+                              </Link>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
 
-                    {/* 컬럼 hover 시 아주 미묘한 밝기 */}
-                    <span className="pointer-events-none absolute inset-0 rounded-2xl bg-white/0 group-hover:bg-white/[0.02] transition" />
-                  </motion.div>
-                ))}
+                      <span className="pointer-events-none absolute inset-0 rounded-2xl bg-white/0 group-hover:bg-white/[0.02] transition" />
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
