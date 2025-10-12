@@ -145,7 +145,7 @@ export function Header() {
           {/* 햄버거 아이콘: 오른쪽 정렬, 버튼처럼 맞춤 */}
           <button
             aria-label="메뉴 열기"
-            className="relative flex flex-col w-6 h-5 justify-between md:block ml-4"
+             className="relative z-[90] flex flex-col w-6 h-5 justify-between md:block ml-4"
             onClick={() => setOpen(!open)}
           >
             <motion.span
