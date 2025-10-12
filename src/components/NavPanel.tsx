@@ -51,40 +51,58 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
   ];
 
   const panelRef = useRef<HTMLDivElement>(null);
-  const panelTopPx = 80; // 헤더 아래에서 시작
 
-  // 스크롤 잠금
+  // 바디 스크롤 잠금
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  // 패널 외부 클릭 감지 → 닫기
+  // ESC로 닫기
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    if (open) document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    if (open) document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, [open, setOpen]);
+
+  // 패널 내부 빈영역 탭 시 닫기 (링크/버튼 제외)
+  const onPanelClickCapture: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    const target = e.target as HTMLElement;
+    // a, button 또는 data-no-close가 붙은 요소는 무시
+    if (target.closest("a,button,[data-no-close]")) return;
+    // 스크롤바/스크롤 드래그가 아닌 단순 탭이라면 닫기
+    setOpen(false);
+  };
 
   return (
     <AnimatePresence>
       {open && (
         <>
-          {/* 배경 */}
-          <motion.div
+          {/* 백드롭 - 바깥 클릭 닫힘 */}
+          <motion.button
+            aria-label="메뉴 닫기"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.35 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
+            onClick={() => setOpen(false)}
             className="fixed inset-0 z-[60] bg-black backdrop-blur-sm"
           />
 
-          {/* 패널: 모바일 풀스크린, 데스크톱 반화면 */}
+          {/* 모바일 전용 X 버튼 (데스크톱에도 보이게 하려면 md:hidden 제거) */}
+          <button
+            aria-label="메뉴 닫기"
+            className="md:hidden fixed top-3 right-4 z-[80] p-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20"
+            onClick={() => setOpen(false)}
+          >
+            <span className="relative block w-5 h-5">
+              <span className="absolute left-0 right-0 top-1/2 h-[2px] bg-white rotate-45" />
+              <span className="absolute left-0 right-0 top-1/2 h-[2px] bg-white -rotate-45" />
+            </span>
+          </button>
+
+          {/* 패널: 모바일 풀스크린 스크롤, 데스크톱 반화면 */}
           <motion.div
             role="dialog"
             aria-modal="true"
@@ -95,9 +113,9 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
             className="
               fixed left-0 right-0 z-[70]
               top-0 md:top-[80px]
-              px-4 md:px-8
               w-full md:mx-auto md:max-w-6xl
               h-[100svh] md:h-[50vh] md:max-h-[560px]
+              px-4 md:px-8
             "
           >
             <div
@@ -107,12 +125,15 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
                 border-0 md:border md:border-white/10
                 rounded-none md:rounded-2xl
                 shadow-none md:shadow-2xl
-                /* ⬇️ 스크롤은 안쪽에서 처리하므로 여기선 overflow-hidden 유지(데스크톱) */
                 overflow-hidden
               "
             >
-              {/* ⬇️ 스크롤 가능한 래퍼 */}
-              <div className="h-full overflow-y-auto overscroll-contain md:overflow-visible">
+              {/* ⬇ 내부 스크롤 가능 */}
+              <div
+                ref={panelRef}
+                onClickCapture={onPanelClickCapture}
+                className="h-full overflow-y-auto overscroll-contain md:overflow-visible"
+              >
                 <div className="grid h-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                   {menu.map((col, idx) => (
                     <motion.div
@@ -138,7 +159,6 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
                                 className="relative inline-flex items-center rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
                               >
                                 <span className="relative z-10">{item.label}</span>
-                                {/* 연하고 둥근 글로우 */}
                                 <span className="absolute inset-0 -z-10 opacity-0 group-hover/item:opacity-100 transition-all duration-300 rounded-full blur-md bg-[radial-gradient(120%_120%_at_50%_50%,rgba(255,184,0,0.18)_0%,rgba(255,184,0,0.08)_45%,rgba(255,184,0,0)_70%)]" />
                               </a>
                             ) : (
