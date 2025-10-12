@@ -31,7 +31,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/rideon-logo.png" // ✅ public 폴더 안의 로고파일
+              src="/logo2.png"
               alt="RIDE ON Logo"
               width={36}
               height={36}
