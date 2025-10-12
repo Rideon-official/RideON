@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
+import { Header } from "@/components/Header"; // ✅ 추가
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -21,9 +22,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="bg-[#111111] text-white antialiased">
-        {/* 상단 Nav는 추후 추가 예정 */}
-        {children}
+      <body className="bg-[#111111] text-white font-[Pretendard] antialiased">
+        {/* ✅ 상단 헤더 추가 */}
+        <Header />
+
+        {/* ✅ 메인 콘텐츠: 헤더 높이 확보용 패딩 */}
+        <main className="pt-20">{children}</main>
+
+        {/* ✅ 하단 푸터 */}
         <Footer />
       </body>
     </html>

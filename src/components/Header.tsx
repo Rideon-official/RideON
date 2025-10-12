@@ -1,31 +1,87 @@
 "use client";
-import { useEffect, useState } from "react";
 
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+import Link from "next/link";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { NavPanel } from "./NavPanel";
+import { Button } from "./Button";
+import useScrollShrink from "@/hooks/useScrollShrink";
+
+const navItems = [
+  { href: "/brand", label: "브랜드" },
+  { href: "/bike", label: "라이드온 바이크" },
+  { href: "/logiteats", label: "LogitEats" },
+  { href: "/store", label: "스토어" },
+  { href: "/notice", label: "공지" },
+  { href: "/cases", label: "사례" },
+];
+
+export function Header() {
+  const [open, setOpen] = useState(false);
+  const { isShrunk } = useScrollShrink();
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition ${scrolled ? "bg-black/90 backdrop-blur" : "bg-white"}`}>
-      <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
-        <a href="#top" className={`font-extrabold tracking-widest text-lg ${scrolled ? "text-white" : "text-zinc-900"}`}>RIDE ON</a>
-        <nav className="hidden md:flex gap-6 font-semibold">
-          <a href="#services" className={`${scrolled ? "text-white" : "text-zinc-900"}`}>서비스</a>
-          <a href="#regions"  className={`${scrolled ? "text-white" : "text-zinc-900"}`}>운영지역</a>
-          <a href="#ridy"     className={`${scrolled ? "text-white" : "text-zinc-900"}`}>정산앱</a>
-          <a href="#contact"  className={`${scrolled ? "text-white" : "text-zinc-900"}`}>문의</a>
+    <motion.header
+      className="fixed top-0 z-50 w-full backdrop-blur bg-[#111111]/90 border-b border-white/10 transition-all"
+      animate={{ height: isShrunk ? 64 : 80 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
+      <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
+        {/* 로고 */}
+        <Link href="/" className="text-xl font-bold tracking-tight text-white">
+          RIDE&nbsp;ON
+        </Link>
+
+        {/* 데스크톱 내비 */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navItems.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="relative font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800] focus:ring-offset-2 focus:ring-offset-[#111111]"
+            >
+              <span>{label}</span>
+              <motion.span
+                layoutId="underline"
+                className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#FFB800]"
+                whileHover={{ width: "100%" }}
+                transition={{ duration: 0.15 }}
+              />
+            </Link>
+          ))}
+          <div className="flex items-center gap-3">
+            <Button variant="primary" href="https://pf.kakao.com/_link" external>
+              카톡 상담
+            </Button>
+            <Button variant="secondary" href="tel:010-1234-5678">
+              전화·문자 상담
+            </Button>
+          </div>
         </nav>
-        <div className="hidden md:flex gap-2">
-          <a href="https://open.kakao.com/o/sO3OAN2g" target="_blank"
-             className="rounded-full px-4 py-2 bg-black text-white hover:bg-white hover:text-black border border-black">카톡상담</a>
-          <a href="tel:01097056965"
-             className="rounded-full px-4 py-2 border border-black hover:bg-black hover:text-white">전화상담</a>
-        </div>
+
+        {/* 모바일 햄버거 */}
+        <button
+          aria-label="메뉴 열기"
+          className="relative z-50 flex flex-col md:hidden w-6 h-5 justify-between"
+          onClick={() => setOpen(!open)}
+        >
+          <motion.span
+            className="block h-0.5 bg-white"
+            animate={open ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+          />
+          <motion.span
+            className="block h-0.5 bg-white"
+            animate={open ? { opacity: 0 } : { opacity: 1 }}
+          />
+          <motion.span
+            className="block h-0.5 bg-white"
+            animate={open ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+          />
+        </button>
+
+        {/* 모바일 오프캔버스 */}
+        <NavPanel open={open} setOpen={setOpen} />
       </div>
-    </header>
+    </motion.header>
   );
 }
