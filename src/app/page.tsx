@@ -137,8 +137,8 @@ export default function Home() {
           렌트·리스·튜닝·정비·사고처리까지 원스톱.
         </p>
         <ul className="mt-3 space-y-1 text-[15px] text-gray-400 text-left">
-          <li>· 렌트/리스 저가</li>
-          <li>· 소모품/사고/정비 전담</li>
+          <li>· 모든 렌트 리스 과정을 간편하게</li>
+          <li>· 정비부터 사고 관리까지 통합 지</li>
           <li>· 센터 직영(강동)</li>
         </ul>
         <div className="mt-5 flex justify-center flex-wrap gap-2">
