@@ -96,7 +96,7 @@ export default function Home() {
         <h3 className="mt-1 font-bold tracking-tight text-white text-[22px] md:text-[24px]">
           본사 운영지원
         </h3>
-        <p className="mt-3 text-[16px] text-gray-300">
+        <p className="mt-3 text-[16px] text-gray-300 text-left">
           지사는 현장 운영에 집중, 본사는 시스템으로 지원.
         </p>
         <ul className="mt-3 space-y-1 text-[15px] text-gray-400">
