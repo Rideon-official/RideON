@@ -163,8 +163,8 @@ export function Header() {
           </button>
         </div>
 
-        <NavPanel open={open} setOpen={setOpen} />
       </div>
+        <NavPanel open={open} setOpen={setOpen} />      
     </motion.header>
   );
 }
