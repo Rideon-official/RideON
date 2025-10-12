@@ -69,7 +69,7 @@ export function Header() {
         {/* === Left: 로고 === */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/rideon-logo.png"
+            src="/logo2.png"
             alt="RIDE ON Logo"
             width={36}
             height={36}
@@ -104,7 +104,7 @@ export function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute left-1/2 -translate-x-1/2 mt-4 bg-[#1A1A1A] border border-white/10 rounded-xl px-6 py-4 flex gap-8 shadow-xl"
+                    className="absolute left-1/2 -translate-x-1/2 mt-4 bg-[#1A1A1A]/95 border border-white/10 rounded-xl px-6 py-4 flex gap-8 shadow-2xl backdrop-blur-md"
                   >
                     {submenu.map((item) =>
                       item.external ? (
@@ -134,21 +134,18 @@ export function Header() {
           ))}
         </nav>
 
-        {/* === Right: 버튼 + 햄버거 === */}
+        {/* === Right: 카톡 버튼 + 햄버거 === */}
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center gap-3">
             <Button variant="primary" href="https://pf.kakao.com/_link" external>
               카톡 상담
             </Button>
-            <Button variant="secondary" href="tel:010-1234-5678">
-              전화·문자 상담
-            </Button>
           </div>
 
-          {/* 햄버거 (조금 오른쪽 여백) */}
+          {/* 햄버거 아이콘: 오른쪽 정렬, 버튼처럼 맞춤 */}
           <button
             aria-label="메뉴 열기"
-            className="relative flex flex-col w-6 h-5 justify-between ml-2 md:block"
+            className="relative flex flex-col w-6 h-5 justify-between md:block ml-4"
             onClick={() => setOpen(!open)}
           >
             <motion.span
