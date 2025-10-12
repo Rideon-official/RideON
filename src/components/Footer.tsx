@@ -1,41 +1,100 @@
-// src/components/Footer.tsx
+"use client";
+
+import Link from "next/link";
+
 export default function Footer() {
   return (
-    <footer className="bg-[#111111] text-gray-300 px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-24">
-      {/* Brand */}
-      <div>
-        <div className="text-xl font-black tracking-tight">RIDE ON</div>
-        <p className="mt-3 text-sm text-gray-400">
-          전국을 잇는 배달 인프라, RIDE ON
-        </p>
-      </div>
+    <footer className="mt-20 border-t border-white/10 bg-[#111111] text-gray-300">
+      <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20">
+        {/* Top: CTA */}
+        <div className="flex flex-col gap-3 items-start md:items-center md:flex-row md:justify-between py-8">
+          <h3 className="text-xl font-bold text-white">전국 운영/정산/렌트 — RIDE ON과 시작하세요</h3>
+          <div className="flex flex-wrap gap-2">
+            <a
+              href="https://pf.kakao.com/_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-lg border border-[#FFB800] px-4 py-2 text-sm font-semibold text-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40"
+              aria-label="카카오톡 상담 열기(새 탭)"
+            >
+              카톡 상담<span className="ml-1" aria-hidden>↗</span>
+            </a>
+            <a
+              href="tel:01000000000"
+              className="inline-flex items-center rounded-lg border border-neutral-600 px-4 py-2 text-sm font-semibold text-gray-200 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40"
+            >
+              전화 상담
+            </a>
+          </div>
+        </div>
 
-      {/* Links */}
-      <nav className="grid gap-2 text-sm">
-        <a className="hover:text-[#FFB800]" href="/about">About</a>
-        <a className="hover:text-[#FFB800]" href="/services">Services</a>
-        <a className="hover:text-[#FFB800]" href="/bike">RIDE ON BIKE</a>
-        <a className="hover:text-[#FFB800]" href="/settlement">정산 솔루션</a>
-        <a className="hover:text-[#FFB800]" href="/store">라이더 스토어</a>
-        <a className="hover:text-[#FFB800]" href="/contact">Contact</a>
-      </nav>
+        {/* Middle: link columns */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 py-10">
+          <div>
+            <p className="text-sm font-semibold text-white">BRAND</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              <li><Link href="/brand#story" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">브랜드 스토리</Link></li>
+              <li><Link href="/brand#partner" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">협업/제휴 문의</Link></li>
+            </ul>
+          </div>
 
-      {/* Company */}
-      <div className="text-sm text-gray-400">
-        <p><span className="text-gray-300">상호</span>: RIDE ON(라이드온)</p>
-        <p><span className="text-gray-300">법인명</span>: 주식회사 패온</p>
-        <p><span className="text-gray-300">대표</span>: 최수호</p>
-        <p><span className="text-gray-300">주소</span>: 천중로 176, 1층 RIDE ON</p>
-        <p><span className="text-gray-300">사업자</span>: 123-45-67890</p>
-        <p><span className="text-gray-300">E-mail</span>: a@naver.com · <span className="text-gray-300">Tel</span>: 010-0000-0000</p>
-      </div>
+          <div>
+            <p className="text-sm font-semibold text-white">BIKE</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              <li><Link href="/bike#rent" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">렌트/리스 신청</Link></li>
+              <li><Link href="/bike#center" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">센터 안내</Link></li>
+            </ul>
+          </div>
 
-      {/* 하단 바 */}
-      <div className="md:col-span-3 border-t border-neutral-800 mt-4 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <div className="text-xs text-gray-500">© 2025 RIDE ON. All rights reserved.</div>
-        <div className="flex gap-4 text-xs">
-          <a className="hover:text-[#FFB800]" href="/privacy">개인정보처리방침</a>
-          <a className="hover:text-[#FFB800]" href="/terms">이용약관</a>
+          <div>
+            <p className="text-sm font-semibold text-white">LogitEats</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              <li><Link href="/logiteats#intro" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">소개</Link></li>
+              <li><Link href="/logiteats#process" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">정산 절차/자동화</Link></li>
+              <li><Link href="/logiteats#contact" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">도입 문의</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-sm font-semibold text-white">STORE</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              <li><Link href="/store" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">모든 상품 보기</Link></li>
+              <li>
+                <a
+                  href="https://smartstore.naver.com/rideon"
+                  target="_blank" rel="noopener noreferrer"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                  aria-label="네이버 스토어(새 탭)"
+                >
+                  네이버 스토어 <span aria-hidden>↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://store.coupang.com/rideon"
+                  target="_blank" rel="noopener noreferrer"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                  aria-label="쿠팡 스토어(새 탭)"
+                >
+                  쿠팡 스토어 <span aria-hidden>↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-sm font-semibold text-white">NOTICE</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              <li><Link href="/notice#update" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">업데이트</Link></li>
+              <li><Link href="/notice#recruit" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">채용/알림</Link></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom: legal */}
+        <div className="border-t border-white/10 py-6 text-sm flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-gray-400">© {new Date().getFullYear()} RIDE ON. All rights reserved.</p>
+          <p className="text-gray-500">사업자등록·통신판매 신고 정보는 공지사항에서 확인하세요.</p>
         </div>
       </div>
     </footer>
