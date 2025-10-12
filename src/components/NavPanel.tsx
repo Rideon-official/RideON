@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 
 type NavPanelProps = {
   open: boolean;
@@ -49,6 +50,15 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
     },
   ];
 
+  // 스크롤 잠금 (body overflow hidden)
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [open]);
+
   return (
     <AnimatePresence>
       {open && (
@@ -56,8 +66,8 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="fixed inset-0 bg-[#111111]/95 text-white backdrop-blur-md flex items-center justify-center z-50"
+          transition={{ duration: 0.25 }}
+          className="fixed inset-0 z-[999] bg-[#111111]/95 text-white backdrop-blur-md flex items-center justify-center"
         >
           {/* 닫기 버튼 */}
           <button
@@ -68,47 +78,49 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
             ✕
           </button>
 
-          {/* 메뉴 컨테이너 */}
+          {/* 메가메뉴 컨테이너 */}
           <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 px-8 md:px-20"
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="w-full max-w-6xl px-8 md:px-12 lg:px-16"
           >
-            {menu.map((col) => (
-              <div key={col.title} className="space-y-3">
-                <h3 className="text-lg font-semibold text-[#FFB800] tracking-wide">
-                  {col.title}
-                </h3>
-                <ul className="space-y-2">
-                  {col.items.map((item) =>
-                    item.external ? (
-                      <li key={item.label}>
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-300 hover:text-white transition"
-                        >
-                          {item.label}
-                        </a>
-                      </li>
-                    ) : (
-                      <li key={item.label}>
-                        <Link
-                          href={item.href}
-                          onClick={() => setOpen(false)}
-                          className="text-gray-300 hover:text-white transition"
-                        >
-                          {item.label}
-                        </Link>
-                      </li>
-                    )
-                  )}
-                </ul>
-              </div>
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 text-center md:text-left">
+              {menu.map((col) => (
+                <div key={col.title} className="space-y-3">
+                  <h3 className="text-lg font-semibold text-[#FFB800] tracking-wide">
+                    {col.title}
+                  </h3>
+                  <ul className="space-y-2">
+                    {col.items.map((item) =>
+                      item.external ? (
+                        <li key={item.label}>
+                          <a
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-300 hover:text-white transition"
+                          >
+                            {item.label}
+                          </a>
+                        </li>
+                      ) : (
+                        <li key={item.label}>
+                          <Link
+                            href={item.href}
+                            onClick={() => setOpen(false)}
+                            className="text-gray-300 hover:text-white transition"
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
       )}
