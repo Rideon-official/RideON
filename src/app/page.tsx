@@ -106,10 +106,10 @@ export default function Home() {
         </ul>
         <div className="mt-5 flex flex-wrap justify-center gap-2">
           <Link href="/contact?type=branch" className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800">
-            지사 등록
+            회사 소개
           </Link>
           <Link href="/contact?type=partner" className="px-3 py-2 text-sm rounded-lg border border-neutral-600 hover:bg-neutral-900">
-            제휴 문의
+            합병 문의
           </Link>
         </div>
       </div>
@@ -133,7 +133,10 @@ export default function Home() {
         </ul>
         <div className="mt-5 flex justify-center gap-2">
           <Link href="/bike" className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800">
-            자세히 보기
+            렌트 리스 문의
+          </Link>
+          <Link href="/contact?type=partner" className="px-3 py-2 text-sm rounded-lg border border-neutral-600 hover:bg-neutral-900">
+          센터 안내
           </Link>
         </div>
       </div>
