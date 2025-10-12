@@ -153,6 +153,7 @@ export function Header() {
               <motion.span
                 className="block h-[2px] bg-white rounded-sm origin-center"
                 animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                style={{ transformOrigin: "center" }}
                 transition={{ duration: 0.25, ease: "easeInOut" }}
               />
               <motion.span
