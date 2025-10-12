@@ -81,7 +81,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Services (4카드) ===== */}
+{/* ===== Services (4카드) ===== */}
 <section id="services" className="px-6 sm:px-10 lg:px-20 py-16">
   <h2 className="text-center font-extrabold text-white text-3xl md:text-4xl tracking-tight">
     핵심 서비스
@@ -105,10 +105,20 @@ export default function Home() {
           <li>· 주간 운영 리포트</li>
         </ul>
         <div className="mt-5 flex flex-wrap justify-center gap-2">
-          <Link href="/contact?type=branch" className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800">
+          <Link
+            href="/contact?type=branch"
+            className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200
+                       hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10
+                       focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
+          >
             회사 소개
           </Link>
-          <Link href="/contact?type=partner" className="px-3 py-2 text-sm rounded-lg border border-neutral-600 hover:bg-neutral-900">
+          <Link
+            href="/contact?type=partner"
+            className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200
+                       hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10
+                       focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
+          >
             합병 문의
           </Link>
         </div>
@@ -131,12 +141,22 @@ export default function Home() {
           <li>· 소모품/사고/정비 전담</li>
           <li>· 센터 직영(강동)</li>
         </ul>
-        <div className="mt-5 flex justify-center gap-2">
-          <Link href="/bike" className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800">
+        <div className="mt-5 flex justify-center flex-wrap gap-2">
+          <Link
+            href="/bike"
+            className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200
+                       hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10
+                       focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
+          >
             렌트 리스 문의
           </Link>
-          <Link href="/contact?type=partner" className="px-3 py-2 text-sm rounded-lg border border-neutral-600 hover:bg-neutral-900">
-          센터 안내
+          <Link
+            href="/contact?type=partner"
+            className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200
+                       hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10
+                       focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
+          >
+            센터 안내
           </Link>
         </div>
       </div>
@@ -159,7 +179,12 @@ export default function Home() {
           <li>· CSV·API 연동</li>
         </ul>
         <div className="mt-5 flex justify-center gap-2">
-          <Link href="/settlement" className="px-3 py-2 text-sm rounded-lg border border-neutral-600 hover:bg-neutral-900">
+          <Link
+            href="/settlement"
+            className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200
+                       hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10
+                       focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
+          >
             정산 서비스 보기
           </Link>
         </div>
@@ -183,7 +208,12 @@ export default function Home() {
           <li>· 라이더 용품 및 튜닝제품</li>
         </ul>
         <div className="mt-5 flex justify-center gap-2">
-          <Link href="/store" className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800">
+          <Link
+            href="/store"
+            className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200
+                       hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10
+                       focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
+          >
             스토어 둘러보기
           </Link>
         </div>
@@ -191,6 +221,7 @@ export default function Home() {
     </div>
   </div>
 </section>
+
 
     </main>
   );
