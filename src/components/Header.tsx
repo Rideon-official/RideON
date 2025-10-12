@@ -10,7 +10,7 @@ import useScrollShrink from "@/hooks/useScrollShrink";
 
 const navItems = [
   {
-    label: "브랜드",
+    label: "BRAND",
     href: "/brand",
     submenu: [
       { label: "브랜드 스토리", href: "/brand#story" },
@@ -18,7 +18,7 @@ const navItems = [
     ],
   },
   {
-    label: "라이드온 바이크",
+    label: "BIKE",
     href: "/bike",
     submenu: [
       { label: "렌트/리스 신청", href: "/bike#rent" },
@@ -44,7 +44,7 @@ const navItems = [
     ],
   },
   {
-    label: "공지",
+    label: "NOTICE",
     href: "/notice",
     submenu: [
       { label: "업데이트", href: "/notice#update" },
