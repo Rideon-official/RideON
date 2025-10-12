@@ -85,7 +85,7 @@ export default function Footer() {
           <div>
             <p className="text-sm font-semibold text-white">NOTICE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/notice#update" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">업데이트</Link></li>
+              <li><Link href="/notice#update" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">공지사항</Link></li>
               <li><Link href="/notice#recruit" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">채용/알림</Link></li>
             </ul>
           </div>

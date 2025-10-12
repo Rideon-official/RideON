@@ -47,7 +47,7 @@ const navItems = [
     label: "NOTICE",
     href: "/notice",
     submenu: [
-      { label: "업데이트", href: "/notice#update" },
+      { label: "공지사항", href: "/notice#update" },
       { label: "채용/알림", href: "/notice#recruit" },
     ],
   },
