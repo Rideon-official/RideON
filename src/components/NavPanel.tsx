@@ -51,15 +51,16 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
   ];
 
   const panelRef = useRef<HTMLDivElement>(null);
+  const panelTopPx = 80; // 헤더 아래에서 시작
 
-  // 🔹 스크롤 잠금
+  // 스크롤 잠금
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  // 🔹 패널 외부 클릭 감지 → 닫힘
+  // 패널 외부 클릭 감지 → 닫기
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
@@ -70,39 +71,28 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open, setOpen]);
 
-  const panelTopPx = 80;
-
   return (
     <AnimatePresence>
       {open && (
         <>
-          {/* 반투명 배경 */}
+          {/* 배경 어둡기 (톤다운) */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.5 }}
+            animate={{ opacity: 0.35 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+            transition={{ duration: 0.18 }}
+            className="fixed inset-0 z-[60] bg-black backdrop-blur-sm"
           />
 
-          {/* X 버튼 */}
-          <button
-            aria-label="메뉴 닫기"
-            className="fixed top-5 right-6 z-[80] text-gray-400 hover:text-white text-3xl"
-            onClick={() => setOpen(false)}
-          >
-            ✕
-          </button>
-
-          {/* 메뉴 본체 */}
+          {/* 반화면 메가패널 */}
           <motion.div
             ref={panelRef}
             role="dialog"
             aria-modal="true"
-            initial={{ opacity: 0, y: -16 }}
+            initial={{ opacity: 0, y: -14 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
             style={{ top: panelTopPx }}
             className="fixed left-0 right-0 z-[70] mx-auto max-w-6xl h-[50vh] max-h-[560px] px-6 md:px-8"
           >
@@ -113,44 +103,44 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
                     key={col.title}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.03 * idx, duration: 0.2 }}
+                    transition={{ delay: 0.03 * idx, duration: 0.18 }}
                     className="group relative flex flex-col gap-3 p-6 border-t lg:border-t-0 lg:border-l border-white/5 first:border-l-0"
                   >
                     <h3 className="text-base md:text-lg font-semibold tracking-wide text-[#FFB800]">
                       {col.title}
                     </h3>
 
-                    <ul className="space-y-2 relative z-10">
+                    <ul className="space-y-2">
                       {col.items.map((item) => (
-                        <li key={item.label} className="relative">
+                        <li key={item.label} className="relative group/item">
                           {item.external ? (
                             <a
                               href={item.href}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => setOpen(false)}
-                              className="relative block rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
+                              className="relative inline-flex items-center rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
                             >
                               <span className="relative z-10">{item.label}</span>
-                              {/* ✨ hover 시 글자 뒤 빛나는 효과 */}
-                              <span className="absolute inset-0 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-300 blur-md bg-[#FFB800]/40 rounded-md" />
+                              {/* ✨ 글자 길이에 맞춘 글로우 (노랑/부드럽게) */}
+                              <span className="absolute inset-0 -z-10 scale-95 opacity-0 group-hover/item:opacity-100 group-hover/item:scale-100 transition-all duration-300 rounded-md blur-sm bg-[#FFB800]/25" />
                             </a>
                           ) : (
                             <Link
                               href={item.href}
                               onClick={() => setOpen(false)}
-                              className="relative block rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
+                              className="relative inline-flex items-center rounded-md px-2 py-1 text-gray-300 hover:text-white transition"
                             >
                               <span className="relative z-10">{item.label}</span>
-                              <span className="absolute inset-0 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-300 blur-md bg-[#FFB800]/40 rounded-md" />
+                              <span className="absolute inset-0 -z-10 scale-95 opacity-0 group-hover/item:opacity-100 group-hover/item:scale-100 transition-all duration-300 rounded-md blur-sm bg-[#FFB800]/25" />
                             </Link>
                           )}
                         </li>
                       ))}
                     </ul>
 
-                    {/* 컬럼 hover 시 subtle 밝기 강조 */}
-                    <span className="pointer-events-none absolute inset-0 rounded-2xl bg-white/0 group-hover:bg-white/[0.03] transition" />
+                    {/* 컬럼 hover 시 아주 미묘한 밝기 */}
+                    <span className="pointer-events-none absolute inset-0 rounded-2xl bg-white/0 group-hover:bg-white/[0.02] transition" />
                   </motion.div>
                 ))}
               </div>
