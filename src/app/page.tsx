@@ -97,7 +97,7 @@ export default function Home() {
               </p>
               <ul className="mt-3 space-y-1 text-sm text-gray-400">
                 <li>· 정산·입금·본사 소통 대행</li>
-                <li>· 채용/홍보 대행(알바채널·블로그)</li>
+                <li>· 채용/홍보 대행(구인공고·블로그)</li>
                 <li>· 주간 운영 리포트</li>
               </ul>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -124,19 +124,19 @@ export default function Home() {
               <div className="text-2xl">🛵</div>
               <h3 className="mt-3 font-bold tracking-tight">RIDE ON BIKE</h3>
               <p className="mt-2 text-sm text-gray-400">
-                렌트·리스·튜닝·정비·사고차리까지 원스톱.
+                렌트·리스·튜닝·정비·사고처리까지 원스톱.
               </p>
               <ul className="mt-3 space-y-1 text-sm text-gray-400">
-                <li>· 출고/보험/등록 원패스</li>
+                <li>· 렌트/리스 저가</li>
                 <li>· 소모품/사고/정비 전담</li>
-                <li>· 센터 직영(강동·남양주)</li>
+                <li>· 센터 직영(강동)</li>
               </ul>
               <div className="mt-4 flex gap-2">
                 <Link
                   href="/bike"
                   className="px-3 py-2 text-sm rounded-lg bg-black hover:bg-neutral-800"
                 >
-                  센터 견적 문의
+                  자세히 보기
                 </Link>
               </div>
             </div>
@@ -179,7 +179,7 @@ export default function Home() {
               <ul className="mt-3 space-y-1 text-sm text-gray-400">
                 <li>· 티셔츠·바람막이·오더판·조끼</li>
                 <li>· 헬멧·장갑·소모품</li>
-                <li>· (선택) 오토바이 악세서리</li>
+                <li>· 라이더 용품 및 튜닝제품 </li>
               </ul>
               <div className="mt-4 flex gap-2">
                 <Link
