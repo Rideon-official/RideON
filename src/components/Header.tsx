@@ -60,7 +60,6 @@ export function Header() {
 
   return (
     <>
-      {/* ====== TOP BAR ====== */}
       <motion.header
         className="fixed top-0 z-50 w-full backdrop-blur bg-[#111111]/90 border-b border-white/10 transition-all"
         animate={{ height: isShrunk ? 64 : 80 }}
@@ -68,12 +67,12 @@ export function Header() {
         onMouseLeave={() => setHoveredMenu(null)}
       >
         <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
-          {/* === Left: 로고 밸런스 조정 === */}
+          {/* Left: 로고 밸런스 */}
           <Link href="/" className="flex items-center gap-2 group">
             <Image
               src="/logo2.png"
               alt="RIDE ON Logo"
-              width={28}   // 아이콘 살짝 줄임
+              width={28}
               height={28}
               className="object-contain transition-transform group-hover:scale-105"
             />
@@ -82,7 +81,7 @@ export function Header() {
             </span>
           </Link>
 
-          {/* === Center: 메뉴 === */}
+          {/* Center: 메뉴 */}
           <nav className="hidden md:flex flex-1 justify-center items-center gap-10 relative">
             {navItems.map(({ label, submenu }) => (
               <div
@@ -98,7 +97,6 @@ export function Header() {
                   {label}
                 </button>
 
-                {/* Hover 서브메뉴 */}
                 <AnimatePresence>
                   {hoveredMenu === label && submenu && (
                     <motion.div
@@ -136,7 +134,7 @@ export function Header() {
             ))}
           </nav>
 
-          {/* === Right: 카톡 + 햄버거 === */}
+          {/* Right: 카톡 + 햄버거 */}
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-3">
               <Button variant="primary" href="https://pf.kakao.com/_link" external>
@@ -144,34 +142,43 @@ export function Header() {
               </Button>
             </div>
 
-            {/* 햄버거: 三 → X 애니메이션/간격/회전축 수정 */}
+            {/* ✅ 절대배치 방식 햄버거: 완벽한 三→X */}
             <button
               aria-label="메뉴 열기"
               onClick={() => setOpen(!open)}
-              className="relative z-[90] flex w-7 h-5 flex-col justify-between cursor-pointer focus:outline-none ml-4"
+              className="relative z-[90] ml-4 w-7 h-5 focus:outline-none"
             >
-              <motion.span
-                className="block h-[2px] bg-white rounded-sm origin-center"
-                animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                style={{ transformOrigin: "center" }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-              />
-              <motion.span
-                className="block h-[2px] bg-white rounded-sm origin-center"
-                animate={open ? { opacity: 0 } : { opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              />
-              <motion.span
-                className="block h-[2px] bg-white rounded-sm origin-center"
-                animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-              />
+              {/* 공통 스타일 */}
+              {["top", "middle", "bottom"].map((key, i) => (
+                <motion.span
+                  key={key}
+                  className="absolute left-0 right-0 top-1/2 block h-[2px] bg-white rounded-sm"
+                  style={{ transformOrigin: "50% 50%" }}
+                  initial={false}
+                  animate={
+                    open
+                      ? // X 상태: 모두 중앙(y:0)에서 교차 회전
+                        i === 0
+                        ? { rotate: 45, y: 0 }
+                        : i === 1
+                        ? { opacity: 0 }
+                        : { rotate: -45, y: 0 }
+                      : // 기본 三: 위/가운데/아래
+                        i === 0
+                      ? { rotate: 0, y: -6 }
+                      : i === 1
+                      ? { opacity: 1, rotate: 0, y: 0 }
+                      : { rotate: 0, y: 6 }
+                  }
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                />
+              ))}
             </button>
           </div>
         </div>
       </motion.header>
 
-      {/* ====== OVERLAY PANEL (헤더 밖으로 분리) ====== */}
+      {/* 패널은 헤더 밖에 */}
       <NavPanel open={open} setOpen={setOpen} />
     </>
   );
