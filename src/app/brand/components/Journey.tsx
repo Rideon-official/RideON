@@ -33,7 +33,7 @@ const stages = [
 export default function Journey() {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
-  /** 화살표 클릭 이동 */
+  // 좌우 버튼 이동
   const scrollByAmount = (dir: "left" | "right") => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -41,7 +41,7 @@ export default function Journey() {
     el.scrollBy({ left: delta, behavior: "smooth" });
   };
 
-  /** 드래그 스크롤(데스크탑+모바일 공통) */
+  // 드래그 스크롤
   const [dragging, setDragging] = useState(false);
   const startX = useRef(0);
   const startLeft = useRef(0);
@@ -63,7 +63,7 @@ export default function Journey() {
       const dx = e.clientX - startX.current;
       el.scrollLeft = startLeft.current - dx;
     },
-    [dragging],
+    [dragging]
   );
 
   const onPointerUp = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
@@ -77,7 +77,7 @@ export default function Journey() {
 
   return (
     <section className="relative py-16 sm:py-24 bg-[#111111] overflow-visible">
-      <div className="mx-auto max-w-6xl px-6 relative">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 relative">
         <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-8">
           RIDE ON Journey
         </h2>
@@ -89,7 +89,7 @@ export default function Journey() {
           {/* 스크롤 영역 */}
           <div
             ref={scrollerRef}
-            className={`no-scrollbar flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory px-2 touch-pan-x ${
+            className={`no-scrollbar flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory touch-pan-x px-2 ${
               dragging ? "cursor-grabbing select-none" : "cursor-grab"
             }`}
             onPointerDown={onPointerDown}
@@ -106,38 +106,38 @@ export default function Journey() {
                 transition={{ duration: 0.45 }}
                 className="
                   snap-center shrink-0
-                  w-[85%] sm:w-[55%] lg:w-[33.333%]
-                  min-w-[320px] sm:min-w-[380px] lg:min-w-[420px]  /* ✅ 카드 가로 확장 */
+                  w-[82%] sm:w-[55%] lg:w-[33.333%]
+                  min-w-[260px] sm:min-w-[360px] lg:min-w-[420px]
                   pt-12 relative
                 "
               >
-                {/* 노드 점 (카드가 커진 만큼 약간 아래) */}
+                {/* 노드 점 */}
                 <div className="absolute left-0 right-0 top-6 flex justify-center">
                   <div className="h-3 w-3 rounded-full bg-[#FFD966] shadow-[0_0_18px_rgba(255,184,0,0.6)]" />
                 </div>
 
-                {/* 카드 박스 */}
+                {/* 카드 */}
                 <div
                   className="
                     rounded-xl border border-white/10 bg-black/30
-                    p-6 lg:p-7                           /* ✅ 여백 확대 */
-                    min-h-[140px] lg:min-h-[160px]       /* ✅ 세로 높이 확보 */
+                    p-5 sm:p-6 lg:p-7
+                    min-h-[130px] sm:min-h-[140px] lg:min-h-[160px]
                     backdrop-blur-sm
                     hover:shadow-[0_0_24px_rgba(255,184,0,0.15)]
                     transition
                   "
                 >
-                  {/* Stage 라벨: 굵게 + 사이즈 업 */}
                   <div className="text-sm lg:text-base font-bold text-[#FFD966]/90 tracking-wide">
                     {s.title}
                   </div>
 
-                  {/* 본문: +2px, 줄바꿈 품질 개선 */}
+                  {/* ✅ 한국어 줄바꿈 완전 대응 */}
                   <div
                     className="
-                      mt-2 text-white/90 text-pretty
-                      leading-[1.55]
+                      mt-2 text-white/90
                       text-[15px] sm:text-[16px] lg:text-[18px]
+                      leading-[1.55]
+                      whitespace-pre-line break-keep break-words
                     "
                   >
                     {s.sub}
@@ -147,13 +147,13 @@ export default function Journey() {
             ))}
           </div>
 
-          {/* 좌/우 화살표 — 작은 화면에선 안쪽, 화면 넓어질수록 바깥으로 */}
+          {/* 좌우 화살표 */}
           <button
             aria-label="이전 단계"
             onClick={() => scrollByAmount("left")}
-            className="absolute top-1/2 left-2 md:-left-6 lg:-left-8 -translate-y-1/2 z-30 h-12 w-12 rounded-full flex items-center justify-center bg-[#2f2f2f] text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
+            className="absolute top-1/2 left-1 sm:left-2 md:-left-6 lg:-left-8 -translate-y-1/2 z-30 h-10 w-10 sm:h-12 sm:w-12 rounded-full flex items-center justify-center bg-[#2f2f2f]/80 text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
           >
-            <svg viewBox="0 0 24 24" width="22" height="22">
+            <svg viewBox="0 0 24 24" width="20" height="20">
               <path
                 d="M15 6l-6 6 6 6"
                 stroke="currentColor"
@@ -166,9 +166,9 @@ export default function Journey() {
           <button
             aria-label="다음 단계"
             onClick={() => scrollByAmount("right")}
-            className="absolute top-1/2 right-2 md:-right-6 lg:-right-8 -translate-y-1/2 z-30 h-12 w-12 rounded-full flex items-center justify-center bg-[#2f2f2f] text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
+            className="absolute top-1/2 right-1 sm:right-2 md:-right-6 lg:-right-8 -translate-y-1/2 z-30 h-10 w-10 sm:h-12 sm:w-12 rounded-full flex items-center justify-center bg-[#2f2f2f]/80 text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
           >
-            <svg viewBox="0 0 24 24" width="22" height="22">
+            <svg viewBox="0 0 24 24" width="20" height="20">
               <path
                 d="M9 6l6 6-6 6"
                 stroke="currentColor"
@@ -180,7 +180,7 @@ export default function Journey() {
           </button>
         </div>
 
-        <p className="mt-10 text-center text-white/80">
+        <p className="mt-10 text-center text-white/80 text-[15px] sm:text-[16px]">
           “신속한 혁신과 지속적인 추진력으로 전진하며, 모두를 연결하는 중심점 —{" "}
           <span className="font-semibold text-[#FFD966]">RIDE ON</span>”
         </p>
