@@ -178,7 +178,7 @@ export default function Journey() {
               shadow-[0_0_12px_rgba(255,184,0,0.3)]
             "
           >
-            🤝 합병 · 제안 문의하기
+            합병 · 제안 문의하기
           </button>
         </div>
       </div>
