@@ -40,59 +40,21 @@ export default function Journey() {
   };
 
   return (
-    <section className="relative py-16 sm:py-24 bg-[#111111]">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-8 flex items-end justify-between">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white">
-            RIDE ON Journey
-          </h2>
-        </div>
+    <section className="relative py-16 sm:py-24 bg-[#111111] overflow-visible">
+      <div className="mx-auto max-w-6xl px-6 relative">
+        <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-8">
+          RIDE ON Journey
+        </h2>
 
-        {/* ===== 타임라인 래퍼 (스크롤바 숨김 + 오버레이 화살표) ===== */}
-        <div className="relative overflow-hidden">
+        {/* 타임라인 컨테이너 */}
+        <div className="relative">
           {/* 상단 라인 */}
           <div className="pointer-events-none absolute left-0 right-0 top-7 h-[2px] bg-white/10" />
 
-          {/* 가장자리 그라데이션(살짝 페이드) */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[#111111] to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#111111] to-transparent z-10" />
-
-          {/* 좌/우 화살표 (콘텐츠 바깥) */}
-          <button
-            aria-label="이전 단계"
-            onClick={() => scrollByAmount("left")}
-            className="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#2f2f2f] text-white hover:bg-[#FFD966] hover:text-black transition"
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path
-                d="M15 6l-6 6 6 6"
-                stroke="currentColor"
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-          <button
-            aria-label="다음 단계"
-            onClick={() => scrollByAmount("right")}
-            className="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#2f2f2f] text-white hover:bg-[#FFD966] hover:text-black transition"
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path
-                d="M9 6l6 6-6 6"
-                stroke="currentColor"
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-
-          {/* 수평 스크롤 리스트 (스크롤바 숨김) */}
+          {/* 스크롤 영역 */}
           <div
             ref={scrollerRef}
-            className="no-scrollbar relative flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory px-1"
+            className="no-scrollbar flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory px-2 touch-pan-x"
           >
             {stages.map((s, i) => (
               <motion.article
@@ -107,7 +69,7 @@ export default function Journey() {
                   pt-10 relative
                 "
               >
-                {/* 노드 점 */}
+                {/* 점 */}
                 <div className="absolute left-0 right-0 top-5 flex justify-center">
                   <div className="h-3 w-3 rounded-full bg-[#FFD966] shadow-[0_0_18px_rgba(255,184,0,0.6)]" />
                 </div>
@@ -123,6 +85,40 @@ export default function Journey() {
                 </div>
               </motion.article>
             ))}
+          </div>
+
+          {/* 화살표 — 완전 밖으로 빼기 */}
+          <div className="absolute top-1/2 left-[-60px] -translate-y-1/2 z-30">
+            <button
+              onClick={() => scrollByAmount("left")}
+              className="h-12 w-12 rounded-full flex items-center justify-center bg-[#2f2f2f] text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
+            >
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path
+                  d="M15 6l-6 6 6 6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="absolute top-1/2 right-[-60px] -translate-y-1/2 z-30">
+            <button
+              onClick={() => scrollByAmount("right")}
+              className="h-12 w-12 rounded-full flex items-center justify-center bg-[#2f2f2f] text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
+            >
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path
+                  d="M9 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
           </div>
         </div>
 
