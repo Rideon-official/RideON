@@ -15,7 +15,7 @@ export function NavPanel({ open, setOpen }: NavPanelProps) {
       title: "BRAND",
       items: [
         { label: "브랜드 스토리", href: "/brand#story" },
-        { label: "협업/제휴 문의", href: "/brand#partner" },
+        { label: "협업/제휴 문의", href: "/apply/branch-merge" },
       ],
     },
     {
