@@ -34,65 +34,76 @@ export default function InquiryPage() {
     if (h && tabs.some((t) => t.id === h)) setActive(h);
   }, [tabs]);
 
-  // 탭 클릭 → 좌우 전환(내용 교체), 주소 해시만 갱신
+  // 탭 클릭 → 내용 전환, 주소 해시 갱신(리로드 없음)
   const onTab = (id: string) => {
     setActive(id);
     history.replaceState(null, "", `#${id}`);
   };
-
-  const current = tabs.find((t) => t.id === active) ?? tabs[0];
 
   return (
     <div className="bg-[#111111] text-gray-200 min-h-screen">
       {/* 상단 여백(고정 헤더 피하기) */}
       <div className="h-6 md:h-8" aria-hidden />
 
-      {/* 탭바: 가로, 다크 톤 */}
+      {/* ▷ 탭바: 가운데 정렬(데스크톱), 모바일 2×2 그리드 */}
       <div className="sticky top-[64px] z-30 border-b border-white/10 bg-[#111111]/90 backdrop-blur">
         <div className="mx-auto max-w-6xl px-4">
-          <nav className="flex gap-2 md:gap-3 py-3 overflow-x-auto no-scrollbar">
-            {tabs.map((t) => {
-              const activeTab = active === t.id;
-              return (
-                <button
-                  key={t.id}
-                  onClick={() => onTab(t.id)}
-                  className={
-                    "whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition " +
-                    (activeTab
-                      ? "bg-[#FFB800] text-black ring-2 ring-[#FFB800]/40"
-                      : "text-gray-300 hover:bg-white/5 border border-white/10")
-                  }
-                >
-                  {t.label}
-                </button>
-              );
-            })}
+          <nav className="py-3 md:py-4">
+            <div
+              className="
+                grid grid-cols-2 gap-2 justify-items-center
+                sm:grid-cols-4
+                md:flex md:flex-nowrap md:justify-center md:gap-3
+              "
+            >
+              {tabs.map((t) => {
+                const isActive = active === t.id;
+                return (
+                  <button
+                    key={t.id}
+                    onClick={() => onTab(t.id)}
+                    className={
+                      "w-full md:w-auto whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition " +
+                      (isActive
+                        ? "bg-[#FFB800] text-black ring-2 ring-[#FFB800]/40"
+                        : "text-gray-300 hover:bg-white/5 border border-white/10")
+                    }
+                  >
+                    {t.label}
+                  </button>
+                );
+              })}
+            </div>
           </nav>
         </div>
       </div>
 
-      {/* 본문: 선택된 탭만 렌더 (가로 전환 느낌) */}
-      <div className="mx-auto max-w-3xl px-4 py-10 md:py-14">
-        <h1 className="text-2xl md:text-3xl font-extrabold text-white">
-          {tabs.find((t) => t.id === active)?.label}
-        </h1>
-        <p className="mt-2 text-sm text-gray-400">
-          아래 정보를 작성해 주세요. 제출 전까지 데이터는 저장되지 않습니다.
-        </p>
+      {/* ▷ 본문: 밝은 카드 패널 위에 폼 렌더 */}
+      <div className="mx-auto max-w-4xl px-4 py-10 md:py-14">
+        <div className="rounded-2xl border border-white/10 bg-[#1A1A1A]/90 shadow-[0_10px_30px_rgba(0,0,0,0.35)] p-6 md:p-8">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-white">
+            {tabs.find((t) => t.id === active)?.label}
+          </h1>
+          <p className="mt-2 text-sm text-gray-400">
+            아래 정보를 작성해 주세요. 제출 전까지 데이터는 저장되지 않습니다.
+          </p>
 
-        <FormBlock type={(tabs.find((t) => t.id === active)?.key ?? "rider") as Tab["key"]} />
+          <FormBlock
+            type={(tabs.find((t) => t.id === active)?.key ?? "rider") as Tab["key"]}
+          />
+        </div>
       </div>
     </div>
   );
 }
 
 /* ---------- 폼 (다크 톤) ---------- */
-
 function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
+  // 입력 필드: 배경보다 조금 더 밝게
   const input =
-    "w-full rounded-md bg-black/20 border border-white/10 px-3 py-2 " +
-    "text-white placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-[#FFB800]/40 focus:border-[#FFB800]";
+    "w-full rounded-md bg-[#1F1F1F] border border-white/10 px-3 py-2 " +
+    "text-white placeholder:text-gray-400 outline-none " +
+    "focus:ring-2 focus:ring-[#FFB800]/40 focus:border-[#FFB800]";
 
   return (
     <form className="mt-6 space-y-4">
@@ -108,7 +119,7 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
         </div>
       </div>
 
-      {/* type별 필드 */}
+      {/* type별 추가 필드 */}
       {type === "rider" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -178,7 +189,9 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
       {type === "partner" && (
         <>
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-300">회사/서비스명 *</label>
+            <label className="mb-1 block text-sm font-medium text-gray-300">
+              회사/서비스명 *
+            </label>
             <input className={input} placeholder="예: 네이버 / 결제" required />
           </div>
           <div>
@@ -193,7 +206,7 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
         </>
       )}
 
-      {/* 제출 버튼 */}
+      {/* 제출 버튼 (데모) */}
       <div className="pt-2">
         <button
           type="button"
