@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { INQUIRY_MENU } from "@/config/links";
+import { usePathname } from "next/navigation";
 
 function getIdFromHref(href: string) {
   const i = href.indexOf("#");
