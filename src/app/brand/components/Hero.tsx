@@ -17,12 +17,13 @@ export default function Hero() {
   const logoControls = useAnimationControls();
   const subControls = useAnimationControls();
 
-  // 정확히 12개
-  const angles = useMemo(() => Array.from({ length: 15 }, (_, i) => i * 30), []);
+  const COUNT = 12; // ← 필요하면 15로만 바꿔도 동작
+  const R = 48;     // 외곽 시작 반지름 (조금 키워서 겹침 방지)
+  const angles = useMemo(() => Array.from({ length: COUNT }, (_, i) => i * (360 / COUNT)), [COUNT]);
 
   useEffect(() => {
     (async () => {
-      // 1) 12개 라인 동시에 수렴
+      // 1) 12개 라인 동시 수렴
       await lineControls.start("anim");
 
       // 2) 버스트 + 로고 팝(동시)
@@ -40,16 +41,16 @@ export default function Hero() {
         }),
       ]);
 
-      // 3) 보조 카피 페이드업
+      // 3) 보조 카피
       subControls.start({ opacity: 1, y: 0, transition: { duration: 0.55 } });
     })();
   }, [lineControls, burstControls, logoControls, subControls]);
 
-  // 별똥별 느낌: 코어(얇음) + 글로우(블러) 2중 라인
+  // 별똥별 느낌: 코어(얇음) + 글로우(부드러움) 2중 라인
   const lineVariants = {
     init: (i: number) => ({
-      x1: polar(46, angles[i]).x, // 외곽에서 시작
-      y1: polar(46, angles[i]).y,
+      x1: polar(R, angles[i]).x,
+      y1: polar(R, angles[i]).y,
       x2: 0,
       y2: 0,
       opacity: 0,
@@ -64,7 +65,7 @@ export default function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden min-h-[80vh] flex items-center justify-center bg-[#111111]">
-      {/* 미세 노이즈 */}
+      {/* subtle noise */}
       <div
         className="pointer-events-none absolute inset-0 opacity-20 mix-blend-soft-light"
         style={{
@@ -74,7 +75,7 @@ export default function Hero() {
         }}
       />
 
-      {/* 12방향 수렴 라인 (SVG 좌표계: -50~50) */}
+      {/* Rays */}
       <svg
         className="absolute inset-0 m-auto"
         width="100%"
@@ -84,47 +85,46 @@ export default function Hero() {
         aria-hidden
       >
         <defs>
-          {/* 코어: 끝(중앙)으로 갈수록 밝게 */}
           <linearGradient id="neon-core" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="rgba(255,184,0,0.0)" />
-            <stop offset="65%" stopColor="rgba(255,184,0,0.45)" />
-            <stop offset="100%" stopColor="rgba(255,217,102,0.95)" />
+            <stop offset="65%" stopColor="rgba(255,184,0,0.5)" />
+            <stop offset="100%" stopColor="rgba(255,217,102,0.98)" />
           </linearGradient>
-          {/* 글로우(블러용) */}
           <linearGradient id="neon-glow" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="rgba(255,184,0,0.0)" />
-            <stop offset="70%" stopColor="rgba(255,184,0,0.35)" />
-            <stop offset="100%" stopColor="rgba(255,217,102,0.55)" />
+            <stop offset="70%" stopColor="rgba(255,184,0,0.3)" />
+            <stop offset="100%" stopColor="rgba(255,217,102,0.5)" />
           </linearGradient>
+          {/* 블러 살짝 줄여서 12개가 명확히 보이게 */}
           <filter id="blur-strong" x="-200%" y="-200%" width="400%" height="400%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="1.4" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.1" />
           </filter>
           <filter id="blur-soft" x="-200%" y="-200%" width="400%" height="400%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" />
           </filter>
         </defs>
 
         {angles.map((_, i) => (
-          <g key={i}>
-            {/* 글로우 꼬리(부드럽게, 굵게, 블러) */}
+          <g key={i} shapeRendering="geometricPrecision">
+            {/* Glow tail */}
             <motion.line
               custom={i}
               variants={lineVariants}
               initial="init"
               animate={lineControls}
               stroke="url(#neon-glow)"
-              strokeWidth="1.4"        // ← 부드러운 꼬리
+              strokeWidth="1.2"
               strokeLinecap="round"
               filter="url(#blur-strong)"
             />
-            {/* 코어(아주 얇게, 또렷하게) */}
+            {/* Core */}
             <motion.line
               custom={i}
               variants={lineVariants}
               initial="init"
               animate={lineControls}
               stroke="url(#neon-core)"
-              strokeWidth="0.35"       // ← 얇게!
+              strokeWidth="0.3"
               strokeLinecap="round"
               filter="url(#blur-soft)"
             />
@@ -132,7 +132,40 @@ export default function Hero() {
         ))}
       </svg>
 
-      {/* 중앙 버스트(네온 링) */}
+      {/* 이동하는 “헤드”(밝은 점) : 외곽 → 중앙 */}
+      {angles.map((deg, i) => {
+        const start = polar(R, deg);
+        return (
+          <motion.div
+            key={`dot-${i}`}
+            initial={{ x: start.x, y: start.y, opacity: 0 }}
+            animate={lineControls}
+            variants={{
+              anim: {
+                x: 0,
+                y: 0,
+                opacity: 1,
+                transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] },
+              },
+            }}
+            className="absolute left-1/2 top-1/2"
+            style={{ translateX: "-50%", translateY: "-50%" }}
+          >
+            <div
+              className="rounded-full"
+              style={{
+                width: 6,
+                height: 6,
+                background: "#FFD966",
+                boxShadow:
+                  "0 0 10px rgba(255,217,102,0.9), 0 0 18px rgba(255,184,0,0.7)",
+              }}
+            />
+          </motion.div>
+        );
+      })}
+
+      {/* Burst ring */}
       <motion.div
         initial={{ scale: 0.25, opacity: 0 }}
         animate={burstControls}
@@ -141,47 +174,48 @@ export default function Hero() {
           width: 220,
           height: 220,
           borderRadius: 9999,
-          boxShadow:
-            "0 0 36px rgba(255,184,0,0.55), 0 0 96px rgba(255,217,102,0.35)",
+          boxShadow: "0 0 36px rgba(255,184,0,0.55), 0 0 96px rgba(255,217,102,0.35)",
           background:
             "radial-gradient(circle, rgba(255,217,102,0.55) 0%, rgba(255,184,0,0.35) 35%, rgba(0,0,0,0) 70%)",
         }}
       />
 
-      {/* 카피 */}
+      {/* Copy */}
       <div className="relative z-10 px-6 text-center">
+        {/* 스트랩라인 간격 ↓ */}
         <motion.p
-          initial={{ opacity: 0, y: 6 }}
+          initial={{ opacity: 0, y: 4 }}
           animate={subControls}
-          className="mb-3 text-sm tracking-widest text-[#FFD966]/90"
+          className="mb-1 text-[13px] sm:text-sm tracking-[0.12em] text-[#FFD966]/90"
         >
           전국을 잇는 배달 인프라
         </motion.p>
 
+        {/* H1: 모바일 시각 두께 보강 */}
         <motion.h1
-          initial={{ opacity: 0, scale: 0.92, y: 6 }}
+          initial={{ opacity: 0, scale: 0.92, y: 4 }}
           animate={logoControls}
-          className={`text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight ${neon.base}`}
+          className={`text-[40px] sm:text-6xl lg:text-7xl font-black tracking-tight ${neon.base}`}
           style={{
             ...neon.glow,
-            // 모바일에서 시각적 두께 보강
-            WebkitTextStrokeWidth: "0.35px",
+            WebkitTextStrokeWidth: "0.38px",
             WebkitTextStrokeColor: "rgba(0,0,0,0.35)",
+            lineHeight: 1.02,
           }}
         >
           RIDE ON
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 6 }}
           animate={subControls}
-          className="mt-5 max-w-3xl text-base sm:text-lg text-white/85 mx-auto"
+          className="mt-3 sm:mt-4 max-w-3xl text-[14px] sm:text-lg text-white/85 mx-auto"
         >
           신속한 혁신과 지속적인 추진력으로 전진하며, 모두를 연결하는 중심점
         </motion.p>
       </div>
 
-      {/* 비네팅 */}
+      {/* vignette */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_46%,rgba(0,0,0,0.55)_100%)]" />
     </section>
   );
