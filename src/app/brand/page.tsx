@@ -15,10 +15,10 @@ return (
 <RideonMeaning />
 {/* About */}
 <About />
-{/* Core Strengths */}
-<CoreStrengths />
 {/* Journey */}
 <Journey />
+{/* Core Strengths */}
+<CoreStrengths />
 </main>
 );
 }
