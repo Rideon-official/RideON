@@ -13,13 +13,13 @@ const neon = {
 
 export default function Hero() {
   const lineControls = useAnimationControls();
-  const dotControls = useAnimationControls();    // 헤드 점 컨트롤
+  const dotControls = useAnimationControls();
   const burstControls = useAnimationControls();
   const logoControls = useAnimationControls();
   const subControls = useAnimationControls();
 
-  const COUNT = 12;                // ← 필요시 15 등으로 변경
-  const R = 48;                    // 외곽 시작 반지름
+  const COUNT = 12;
+  const R = 48;
   const angles = useMemo(
     () => Array.from({ length: COUNT }, (_, i) => i * (360 / COUNT)),
     [COUNT]
@@ -27,13 +27,11 @@ export default function Hero() {
 
   useEffect(() => {
     (async () => {
-      // 1) 12개 라인/헤드 동시 수렴
       await Promise.all([
         lineControls.start("anim"),
         dotControls.start("toCenter"),
       ]);
 
-      // 2) 버스트 + 로고 팝 + 헤드 소거(동시, 잔상 제거)
       await Promise.all([
         burstControls.start({
           scale: [0.25, 1.15, 1.7],
@@ -52,12 +50,10 @@ export default function Hero() {
         }),
       ]);
 
-      // 3) 보조 카피
       subControls.start({ opacity: 1, y: 0, transition: { duration: 0.55 } });
     })();
   }, [lineControls, dotControls, burstControls, logoControls, subControls]);
 
-  // 라인: 코어(얇음) + 글로우(부드러움)
   const lineVariants = {
     init: (i: number) => ({
       x1: polar(R, angles[i]).x,
@@ -74,7 +70,6 @@ export default function Hero() {
     },
   } as const;
 
-  // 헤드 점: 외곽 → 중앙 → 즉시 소거(위에서 dotControls로 0 처리)
   const dotVariants = {
     init: (i: number) => ({
       x: polar(R, angles[i]).x,
@@ -155,7 +150,7 @@ export default function Hero() {
         ))}
       </svg>
 
-      {/* 헤드 점들 (외곽 → 중앙, 이후 바로 fade-out) */}
+      {/* 헤드 점들 */}
       {angles.map((_, i) => (
         <motion.div
           key={`dot-${i}`}
@@ -188,7 +183,8 @@ export default function Hero() {
           width: 220,
           height: 220,
           borderRadius: 9999,
-          boxShadow: "0 0 36px rgba(255,184,0,0.55), 0 0 96px rgba(255,217,102,0.35)",
+          boxShadow:
+            "0 0 36px rgba(255,184,0,0.55), 0 0 96px rgba(255,217,102,0.35)",
           background:
             "radial-gradient(circle, rgba(255,217,102,0.55) 0%, rgba(255,184,0,0.35) 35%, rgba(0,0,0,0) 70%)",
         }}
@@ -196,23 +192,22 @@ export default function Hero() {
 
       {/* Copy */}
       <div className="relative z-10 px-6 text-center">
-        {/* 스트랩라인 더 붙임 */}
+        {/* 스트랩라인 - 살짝 위로 올리고 더 붙이기 */}
         <motion.p
-          initial={{ opacity: 0, y: 2 }}
+          initial={{ opacity: 0, y: -3 }}
           animate={subControls}
-          className="mb-0 -mt-1 text-[13px] sm:text-sm tracking-[0.12em] text-[#FFD966]/90"
+          className="mb-[1px] -mt-[6px] text-[14px] sm:text-[15px] tracking-[0.12em] text-[#FFD966]/90"
         >
           전국을 잇는 배달 인프라
         </motion.p>
 
-        {/* H1: 모바일/PC 두께 일관화 */}
+        {/* RIDE ON - 3px 위로 올림 */}
         <motion.h1
-          initial={{ opacity: 0, scale: 0.92, y: 2 }}
+          initial={{ opacity: 0, scale: 0.92, y: -3 }}
           animate={logoControls}
-          className={`h1-logo text-[40px] sm:text-6xl lg:text-7xl font-black tracking-tight ${neon.base}`}
+          className={`h1-logo text-[43px] sm:text-[69px] lg:text-[77px] font-black tracking-tight ${neon.base}`}
           style={{
             ...neon.glow,
-            // 스트로크는 얇게(모서리 아티팩트 방지)
             WebkitTextStrokeWidth: "0.2px",
             WebkitTextStrokeColor: "rgba(0,0,0,0.30)",
             lineHeight: 1.02,
@@ -221,10 +216,11 @@ export default function Hero() {
           RIDE ON
         </motion.h1>
 
+        {/* 보조 문장 - 3px 올림 */}
         <motion.p
-          initial={{ opacity: 0, y: 4 }}
+          initial={{ opacity: 0, y: -3 }}
           animate={subControls}
-          className="mt-2 sm:mt-3 max-w-3xl text-[14px] sm:text-lg text-white/85 mx-auto"
+          className="mt-1 sm:mt-2 max-w-3xl text-[15px] sm:text-[18px] text-white/85 mx-auto"
         >
           신속한 혁신과 지속적인 추진력으로 전진하며, 모두를 연결하는 중심점
         </motion.p>
