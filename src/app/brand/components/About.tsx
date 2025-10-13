@@ -11,21 +11,20 @@ export default function About() {
           About RIDE ON
         </h2>
 
-        {/* 본문 + 인물영역 */}
+        {/* 반반 레이아웃 */}
         <div
           className="
-            grid gap-10 md:gap-14
-            md:grid-cols-[1.1fr_0.9fr]
-            items-start
+            grid md:grid-cols-2 gap-10 md:gap-16
+            items-stretch
           "
         >
           {/* 왼쪽 텍스트 */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.45 }}
-            className="text-[15px] sm:text-[16px] leading-[1.85] text-white/90"
+            className="text-[15px] sm:text-[16px] leading-[1.85] text-white/90 flex flex-col justify-center"
           >
             <p className="mb-6">
               <span className="font-semibold text-white">RIDE ON</span>은 배달
@@ -69,49 +68,35 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* 오른쪽 인물: 원본 흰배경 이미지를 블렌드 + 페이드 처리 */}
+          {/* 오른쪽 이미지 */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.45, delay: 0.05 }}
             className="
-              relative hidden md:block
-              rounded-2xl ring-1 ring-white/10 overflow-hidden
-              bg-[#0d0d0d] p-0
-              aspect-[3/4]    /* 세로형 비율 고정 */
+              relative flex justify-center items-center
+              rounded-2xl bg-[#0d0d0d] overflow-hidden
+              ring-1 ring-white/10
+              min-h-[420px] md:min-h-full
             "
           >
-            {/* 1) 이미지 → 곱하기 블렌드: 흰 배경이 어둡게 눌리면서 사라짐 */}
             <div
               className="
                 absolute inset-0
-                bg-no-repeat bg-contain bg-right-bottom
+                bg-no-repeat bg-contain bg-center
                 [mix-blend-mode:multiply]
               "
               style={{
                 backgroundImage: "url('/aiceo.png')",
-                // 살짝 톤 보정(선택)
-                filter: "contrast(1.04) saturate(1.02) brightness(1.02)",
+                filter: "contrast(1.05) saturate(1.03) brightness(1.03)",
               }}
             />
-
-            {/* 2) 라디얼 페이드: 모서리 하얀 잔상/사각형 경계 부드럽게 제거 */}
             <div
-              className="pointer-events-none absolute inset-0"
-              style={{
-                // 검정으로 서서히 페이드 → 하얀 경계가 자연스레 사라짐
-                background:
-                  "radial-gradient(120% 120% at 75% 85%, rgba(17,17,17,0) 55%, rgba(17,17,17,0.6) 80%, rgba(17,17,17,1) 100%)",
-              }}
-            />
-
-            {/* 3) 아주 옅은 바닥 글로우(선택) */}
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+              className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(60% 60% at 70% 100%, rgba(255,217,102,0.06) 0%, rgba(0,0,0,0) 70%)",
+                  "radial-gradient(100% 120% at 70% 90%, rgba(17,17,17,0) 60%, rgba(17,17,17,0.8) 85%, rgba(17,17,17,1) 100%)",
               }}
             />
           </motion.div>
