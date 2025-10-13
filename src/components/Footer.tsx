@@ -34,7 +34,7 @@ export default function Footer() {
             <p className="text-sm font-semibold text-white">BRAND</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li><Link href="/brand#story" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">브랜드 스토리</Link></li>
-              <li><Link href="/brand#partner" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">협업/제휴 문의</Link></li>
+              <li><Link href="/apply/branch-merge" outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">협업/제휴 문의</Link></li>
             </ul>
           </div>
 

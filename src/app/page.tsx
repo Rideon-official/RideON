@@ -53,7 +53,7 @@ export default function Home() {
                 기사 가입 문의
               </Link>
               <Link
-                href="/contact?type=branch"
+                href="/apply/branch-merge"
                 className="inline-flex items-center justify-center rounded-xl border border-neutral-300 px-5 py-3 font-semibold hover:bg-neutral-100 hover:text-black"
               >
                 지사장·합병 제안
