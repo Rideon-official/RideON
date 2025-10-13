@@ -12,57 +12,53 @@ const neon = {
 };
 
 export default function Hero() {
-  // 컨트롤: 라인(동시) → 버스트 → 로고/텍스트
   const lineControls = useAnimationControls();
   const burstControls = useAnimationControls();
   const logoControls = useAnimationControls();
   const subControls = useAnimationControls();
 
+  // 정확히 12개
   const angles = useMemo(() => Array.from({ length: 12 }, (_, i) => i * 30), []);
 
   useEffect(() => {
     (async () => {
-      // 1) 12개 라인 동시 수렴
+      // 1) 12개 라인 동시에 수렴
       await lineControls.start("anim");
 
-      // 2) 중앙 버스트(터지는 네온 링)
-      await burstControls.start({
-        scale: [0.2, 1.15, 1.6],
-        opacity: [0, 0.9, 0],
-        transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-      });
+      // 2) 버스트 + 로고 팝(동시)
+      await Promise.all([
+        burstControls.start({
+          scale: [0.25, 1.15, 1.7],
+          opacity: [0, 0.9, 0],
+          transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+        }),
+        logoControls.start({
+          opacity: [0, 1],
+          scale: [0.92, 1.06, 1],
+          filter: ["brightness(1.1)", "brightness(1.45)", "brightness(1.2)"],
+          transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+        }),
+      ]);
 
-      // 3) RIDE ON 등장 + 점등·펄스
-      await logoControls.start({
-        opacity: 1,
-        filter: "brightness(1.2)",
-        transition: { duration: 0.45 },
-      });
-      logoControls.start({
-        opacity: [1, 0.86, 1],
-        filter: ["brightness(1.2)", "brightness(1.45)", "brightness(1.2)"],
-        transition: { duration: 1.1, repeat: 1 },
-      });
-
-      // 4) 보조 카피 페이드업
-      subControls.start({ opacity: 1, y: 0, transition: { duration: 0.6 } });
+      // 3) 보조 카피 페이드업
+      subControls.start({ opacity: 1, y: 0, transition: { duration: 0.55 } });
     })();
   }, [lineControls, burstControls, logoControls, subControls]);
 
-  // SVG 라인: 외곽 → 중심
+  // 별똥별 느낌: 코어(얇음) + 글로우(블러) 2중 라인
   const lineVariants = {
     init: (i: number) => ({
-      x1: polar(42, angles[i]).x,
-      y1: polar(42, angles[i]).y,
+      x1: polar(46, angles[i]).x, // 외곽에서 시작
+      y1: polar(46, angles[i]).y,
       x2: 0,
       y2: 0,
       opacity: 0,
     }),
-    anim: { // 동시에
+    anim: {
       x1: 0,
       y1: 0,
       opacity: 1,
-      transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] },
     },
   } as const;
 
@@ -78,7 +74,7 @@ export default function Hero() {
         }}
       />
 
-      {/* 12방향 수렴 라인 */}
+      {/* 12방향 수렴 라인 (SVG 좌표계: -50~50) */}
       <svg
         className="absolute inset-0 m-auto"
         width="100%"
@@ -88,38 +84,57 @@ export default function Hero() {
         aria-hidden
       >
         <defs>
-          <linearGradient id="neon" x1="0" y1="0" x2="1" y2="0">
+          {/* 코어: 끝(중앙)으로 갈수록 밝게 */}
+          <linearGradient id="neon-core" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="rgba(255,184,0,0.0)" />
-            <stop offset="70%" stopColor="rgba(255,184,0,0.6)" />
+            <stop offset="65%" stopColor="rgba(255,184,0,0.45)" />
             <stop offset="100%" stopColor="rgba(255,217,102,0.95)" />
           </linearGradient>
-          <filter id="g" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+          {/* 글로우(블러용) */}
+          <linearGradient id="neon-glow" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="rgba(255,184,0,0.0)" />
+            <stop offset="70%" stopColor="rgba(255,184,0,0.35)" />
+            <stop offset="100%" stopColor="rgba(255,217,102,0.55)" />
+          </linearGradient>
+          <filter id="blur-strong" x="-200%" y="-200%" width="400%" height="400%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.4" />
+          </filter>
+          <filter id="blur-soft" x="-200%" y="-200%" width="400%" height="400%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" />
           </filter>
         </defs>
 
         {angles.map((_, i) => (
-          <motion.line
-            key={i}
-            custom={i}
-            variants={lineVariants}
-            initial="init"
-            animate={lineControls}
-            stroke="url(#neon)"
-            strokeWidth="0.7"
-            strokeLinecap="round"
-            filter="url(#g)"
-          />
+          <g key={i}>
+            {/* 글로우 꼬리(부드럽게, 굵게, 블러) */}
+            <motion.line
+              custom={i}
+              variants={lineVariants}
+              initial="init"
+              animate={lineControls}
+              stroke="url(#neon-glow)"
+              strokeWidth="1.4"        // ← 부드러운 꼬리
+              strokeLinecap="round"
+              filter="url(#blur-strong)"
+            />
+            {/* 코어(아주 얇게, 또렷하게) */}
+            <motion.line
+              custom={i}
+              variants={lineVariants}
+              initial="init"
+              animate={lineControls}
+              stroke="url(#neon-core)"
+              strokeWidth="0.35"       // ← 얇게!
+              strokeLinecap="round"
+              filter="url(#blur-soft)"
+            />
+          </g>
         ))}
       </svg>
 
       {/* 중앙 버스트(네온 링) */}
       <motion.div
-        initial={{ scale: 0.2, opacity: 0 }}
+        initial={{ scale: 0.25, opacity: 0 }}
         animate={burstControls}
         className="pointer-events-none absolute"
         style={{
@@ -144,10 +159,15 @@ export default function Hero() {
         </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, scale: 0.92, y: 6 }}
           animate={logoControls}
-          className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold ${neon.base}`}
-          style={neon.glow}
+          className={`text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight ${neon.base}`}
+          style={{
+            ...neon.glow,
+            // 모바일에서 시각적 두께 보강
+            WebkitTextStrokeWidth: "0.35px",
+            WebkitTextStrokeColor: "rgba(0,0,0,0.35)",
+          }}
         >
           RIDE ON
         </motion.h1>
