@@ -46,9 +46,9 @@ export default function InquiryPage() {
       <div className="h-6 md:h-8" aria-hidden />
 
       {/* ▷ 탭바: 가운데 정렬(데스크톱), 모바일 2×2 그리드 */}
-      <div className="sticky top-[64px] z-30 border-b border-white/10 bg-[#111111]/90 backdrop-blur">
-        <div className="mx-auto max-w-6xl px-4">
-          <nav className="py-3 md:py-4">
+      <div className="sticky top-[58px] z-30 border-b border-white/10 bg-[#111111]/95 backdrop-blur-sm transition-all duration-300">
+        <div className="mx-auto max-w-6xl px-3">
+          <nav className="py-1.5 md:py-2">
             <div
               className="
                 grid grid-cols-2 gap-2 justify-items-center
