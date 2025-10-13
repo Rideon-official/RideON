@@ -76,8 +76,9 @@ export default function About() {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="
               relative flex justify-center items-center
-              rounded-2xl bg-[#0d0d0d]
-              ring-1 ring-white/10 overflow-hidden
+              rounded-2xl
+              bg-[#111111]  /* ✅ 배경 완전 동일 */
+              overflow-hidden
               min-h-[420px] md:min-h-full
             "
           >
@@ -88,7 +89,9 @@ export default function About() {
               className="
                 w-full h-full object-contain
                 rounded-2xl
+                select-none
               "
+              draggable={false}
             />
           </motion.div>
         </div>
