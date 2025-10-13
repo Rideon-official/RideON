@@ -45,9 +45,9 @@ export default function InquiryPage() {
       <div className="h-6 md:h-8" aria-hidden />
 
       {/* 탭바: 모바일 2×2, 데스크톱 가운데 정렬 / 컴팩트 고정 */}
-      <div className="sticky top-[58px] z-30 border-b border-white/10 bg-[#111111]/95 backdrop-blur-sm transition-all duration-300">
+      <div className="fixed top-[64px] left-0 right-0 z-30 border-b border-white/10 bg-[#111111]/95 backdrop-blur-sm">
         <div className="mx-auto max-w-6xl px-3">
-          <nav className="py-1.5 md:py-2">
+          <nav className="py-2 md:py-2.5">
             <div className="grid grid-cols-2 gap-2 justify-items-center sm:grid-cols-4 md:flex md:flex-nowrap md:justify-center md:gap-3">
               {tabs.map((t) => {
                 const isActive = active === t.id;
@@ -255,7 +255,7 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
             <textarea
               className={inputBase}
               rows={5}
-              placeholder="간단한 소개와 협업 제안 및 하고 싶은 말을 적어주세요."
+              placeholder="간단한 회사 소개와 협업 제안 내용을 구체적으로 작성해주세요."
               required
             />
           </div>
