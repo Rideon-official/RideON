@@ -1,4 +1,8 @@
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
+import { INQUIRY_MENU } from "@/config/links";
 
 export default function Hero() {
   return (
@@ -11,27 +15,34 @@ export default function Hero() {
           <p className="mt-4 text-zinc-600">
             쿠팡이츠플러스 · 배민플러스 · 렌트/리스 운영 대행을 한 번에.
           </p>
-          <div className="mt-8 flex gap-3">
-            <a
-              href="#contact"
-              className="px-5 py-3 rounded-xl bg-black text-white font-bold"
-            >
-              운영 대행 신청
-            </a>
-            <a
-              href="/merge"
-              className="px-5 py-3 rounded-xl border border-black font-bold hover:bg-black hover:text-white"
-            >
-              합병·파트너 제안
-            </a>
+
+          {/* ✅ 문의 메뉴 CTA 버튼 */}
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {INQUIRY_MENU.map((item, idx) => (
+              <Link
+                key={item.key}
+                href={item.href}
+                className={
+                  "px-5 py-3 rounded-xl font-bold text-center transition " +
+                  (idx === 0
+                    ? "bg-black text-white hover:bg-zinc-800"
+                    : "border border-black hover:bg-black hover:text-white")
+                }
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
 
         {/* 오른쪽 비주얼: 기존 그라디언트 박스 → map.png로 교체 */}
-        <div className="relative w-full max-w-[520px] mx-auto md:mx-0" aria-hidden>
+        <div
+          className="relative w-full max-w-[520px] mx-auto md:mx-0"
+          aria-hidden
+        >
           <Image
             src="/map.png"
-            alt=""            // 장식용 이미지: 스크린리더 제외
+            alt="" // 장식용 이미지: 스크린리더 제외
             width={1040}
             height={1040}
             className="w-full h-auto opacity-90"
