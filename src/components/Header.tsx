@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NavPanel } from "./NavPanel";
 import { Button } from "./Button";
 import useScrollShrink from "@/hooks/useScrollShrink";
-import { LINKS } from "@/lib/links";
+import { INQUIRY_MENU } from "@/config/links";
 
 const navItems = [
   {
