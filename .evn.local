@@ -1,0 +1,11 @@
+# Resend API 키 (노출 금지)
+RESEND_API_KEY=re_9i9DpHSm_9pTN9w9LLAsspvTNgG9TjBL4
+
+# 메일 수신자 (운영자 메일)
+MAIL_TO=you@rideon.co.kr
+
+# 발신자 (Resend 기본 테스트용)
+MAIL_FROM="RIDE ON <no-reply@resend.dev>"
+
+# (선택) 슬랙 알림도 받고 싶으면 여기에 URL 추가
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXXXX
