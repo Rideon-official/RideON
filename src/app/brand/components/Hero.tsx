@@ -18,7 +18,7 @@ export default function Hero() {
   const subControls = useAnimationControls();
 
   // 정확히 12개
-  const angles = useMemo(() => Array.from({ length: 12 }, (_, i) => i * 30), []);
+  const angles = useMemo(() => Array.from({ length: 15 }, (_, i) => i * 30), []);
 
   useEffect(() => {
     (async () => {
