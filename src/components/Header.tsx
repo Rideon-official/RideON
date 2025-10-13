@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NavPanel } from "./NavPanel";
 import { Button } from "./Button";
 import useScrollShrink from "@/hooks/useScrollShrink";
+import { LINKS } from "@/lib/links";
 
 const navItems = [
   {
@@ -14,7 +15,7 @@ const navItems = [
     href: "/brand",
     submenu: [
       { label: "브랜드 스토리", href: "/brand#story" },
-      { label: "협업/제휴 문의", href: "/brand#partner" },
+      { label: "협업/제휴 문의", href: LINKS.branchMerge }, // ✅ 변경
     ],
   },
   {
