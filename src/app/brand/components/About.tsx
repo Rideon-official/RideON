@@ -76,28 +76,19 @@ export default function About() {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="
               relative flex justify-center items-center
-              rounded-2xl bg-[#0d0d0d] overflow-hidden
-              ring-1 ring-white/10
+              rounded-2xl bg-[#0d0d0d]
+              ring-1 ring-white/10 overflow-hidden
               min-h-[420px] md:min-h-full
             "
           >
-            <div
+            {/* ✅ 원본 이미지 그대로 표시 */}
+            <img
+              src="/aiceo.png"
+              alt="RIDE ON 대표"
               className="
-                absolute inset-0
-                bg-no-repeat bg-contain bg-center
-                [mix-blend-mode:multiply]
+                w-full h-full object-contain
+                rounded-2xl
               "
-              style={{
-                backgroundImage: "url('/aiceo.png')",
-                filter: "contrast(1.05) saturate(1.03) brightness(1.03)",
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(100% 120% at 70% 90%, rgba(17,17,17,0) 60%, rgba(17,17,17,0.8) 85%, rgba(17,17,17,1) 100%)",
-              }}
             />
           </motion.div>
         </div>
