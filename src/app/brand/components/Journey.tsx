@@ -151,7 +151,7 @@ export default function Journey() {
           <button
             aria-label="이전 단계"
             onClick={() => scrollByAmount("left")}
-            className="absolute top-1/2 left-1 sm:left-2 md:-left-6 lg:-left-8 -translate-y-1/2 z-30 h-10 w-10 sm:h-12 sm:w-12 rounded-full flex items-center justify-center bg-[#2f2f2f]/80 text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
+            className="absolute top-1/2 -left-4 sm:-left-5 md:-left-7 lg:-left-10 -translate-y-1/2 z-30 h-9 w-9 sm:h-10 sm:w-10 md:h-12 md:w-12 flex items-center justify-center rounded-full bg-[#2f2f2f]/80 text-white border border-white/10 hover:bg-[#FFD966] hover:text-black shadow-[0_0_8px_rgba(0,0,0,0.4)] transition"
           >
             <svg viewBox="0 0 24 24" width="20" height="20">
               <path
@@ -166,7 +166,7 @@ export default function Journey() {
           <button
             aria-label="다음 단계"
             onClick={() => scrollByAmount("right")}
-            className="absolute top-1/2 right-1 sm:right-2 md:-right-6 lg:-right-8 -translate-y-1/2 z-30 h-10 w-10 sm:h-12 sm:w-12 rounded-full flex items-center justify-center bg-[#2f2f2f]/80 text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
+            className="absolute top-1/2 -right-4 sm:-right-5 md:-right-7 lg:-right-10 -translate-y-1/2 z-30 h-9 w-9 sm:h-10 sm:w-10 md:h-12 md:w-12 flex items-center justify-center rounded-full bg-[#2f2f2f]/80 text-white border border-white/10 hover:bg-[#FFD966] hover:text-black shadow-[0_0_8px_rgba(0,0,0,0.4)] transition"
           >
             <svg viewBox="0 0 24 24" width="20" height="20">
               <path
