@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useCallback } from "react";
 
 const stages = [
   {
@@ -32,12 +32,42 @@ const stages = [
 export default function Journey() {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
+  /** 화살표 클릭 스크롤 */
   const scrollByAmount = (dir: "left" | "right") => {
     const el = scrollerRef.current;
     if (!el) return;
     const delta = Math.round(el.clientWidth * 0.8) * (dir === "left" ? -1 : 1);
     el.scrollBy({ left: delta, behavior: "smooth" });
   };
+
+  /** 드래그 스크롤(데스크탑/모바일 모두) */
+  const [dragging, setDragging] = useState(false);
+  const startX = useRef(0);
+  const startLeft = useRef(0);
+
+  const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    el.setPointerCapture(e.pointerId);
+    setDragging(true);
+    startX.current = e.clientX;
+    startLeft.current = el.scrollLeft;
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragging) return;
+    const el = scrollerRef.current;
+    if (!el) return;
+    const dx = e.clientX - startX.current;
+    el.scrollLeft = startLeft.current - dx;
+  }, [dragging]);
+
+  const onPointerUp = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    try { el.releasePointerCapture(e.pointerId); } catch {}
+    setDragging(false);
+  }, []);
 
   return (
     <section className="relative py-16 sm:py-24 bg-[#111111] overflow-visible">
@@ -46,7 +76,6 @@ export default function Journey() {
           RIDE ON Journey
         </h2>
 
-        {/* 타임라인 컨테이너 */}
         <div className="relative">
           {/* 상단 라인 */}
           <div className="pointer-events-none absolute left-0 right-0 top-7 h-[2px] bg-white/10" />
@@ -54,9 +83,15 @@ export default function Journey() {
           {/* 스크롤 영역 */}
           <div
             ref={scrollerRef}
-            className="no-scrollbar flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory px-2 touch-pan-x"
+            className={`no-scrollbar flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory px-2 touch-pan-x ${
+              dragging ? "cursor-grabbing select-none" : "cursor-grab"
+            }`}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerLeave={onPointerUp}
           >
-            {stages.map((s, i) => (
+            {stages.map((s) => (
               <motion.article
                 key={s.title}
                 initial={{ opacity: 0, y: 12 }}
@@ -69,7 +104,7 @@ export default function Journey() {
                   pt-10 relative
                 "
               >
-                {/* 점 */}
+                {/* 노드 */}
                 <div className="absolute left-0 right-0 top-5 flex justify-center">
                   <div className="h-3 w-3 rounded-full bg-[#FFD966] shadow-[0_0_18px_rgba(255,184,0,0.6)]" />
                 </div>
@@ -79,47 +114,31 @@ export default function Journey() {
                   <div className="text-xs text-[#FFD966]/90 font-semibold tracking-wide">
                     {s.title}
                   </div>
-                  <div className="mt-2 text-white/85 leading-relaxed">
-                    {s.sub}
-                  </div>
+                  <div className="mt-2 text-white/85 leading-relaxed">{s.sub}</div>
                 </div>
               </motion.article>
             ))}
           </div>
 
-          {/* 화살표 — 완전 밖으로 빼기 */}
-          <div className="absolute top-1/2 left-[-60px] -translate-y-1/2 z-30">
-            <button
-              onClick={() => scrollByAmount("left")}
-              className="h-12 w-12 rounded-full flex items-center justify-center bg-[#2f2f2f] text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
-            >
-              <svg viewBox="0 0 24 24" width="22" height="22">
-                <path
-                  d="M15 6l-6 6 6 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-          <div className="absolute top-1/2 right-[-60px] -translate-y-1/2 z-30">
-            <button
-              onClick={() => scrollByAmount("right")}
-              className="h-12 w-12 rounded-full flex items-center justify-center bg-[#2f2f2f] text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
-            >
-              <svg viewBox="0 0 24 24" width="22" height="22">
-                <path
-                  d="M9 6l6 6-6 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
+          {/* 좌/우 화살표 — 좁은 화면에선 안쪽, 넓어질수록 바깥으로 */}
+          <button
+            aria-label="이전 단계"
+            onClick={() => scrollByAmount("left")}
+            className="absolute top-1/2 left-2 md:-left-6 lg:-left-8 -translate-y-1/2 z-30 h-12 w-12 rounded-full flex items-center justify-center bg-[#2f2f2f] text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
+            </svg>
+          </button>
+          <button
+            aria-label="다음 단계"
+            onClick={() => scrollByAmount("right")}
+            className="absolute top-1/2 right-2 md:-right-6 lg:-right-8 -translate-y-1/2 z-30 h-12 w-12 rounded-full flex items-center justify-center bg-[#2f2f2f] text-white border border-white/10 hover:bg-[#FFD966] hover:text-black transition"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
+            </svg>
+          </button>
         </div>
 
         <p className="mt-10 text-center text-white/80">
