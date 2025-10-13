@@ -89,7 +89,7 @@ export default function Journey() {
           {/* 스크롤 영역 */}
           <div
             ref={scrollerRef}
-            className={`no-scrollbar flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory touch-pan-x px-2 ${
+            className={`no-scrollbar flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory touch-pan-x px-1 sm:px-2 ${
               dragging ? "cursor-grabbing select-none" : "cursor-grab"
             }`}
             onPointerDown={onPointerDown}
@@ -106,13 +106,13 @@ export default function Journey() {
                 transition={{ duration: 0.45 }}
                 className="
                   snap-center shrink-0
-                  w-[82%] sm:w-[55%] lg:w-[33.333%]
-                  min-w-[260px] sm:min-w-[360px] lg:min-w-[420px]
-                  pt-12 relative
+                  w-[74%] sm:w-[54%] lg:w-[33.333%]
+                  min-w-[240px] sm:min-w-[360px] lg:min-w-[420px]
+                  pt-10 sm:pt-12 relative
                 "
               >
-                {/* 노드 점 */}
-                <div className="absolute left-0 right-0 top-6 flex justify-center">
+                {/* 노드 점 (카드 크기 조정에 맞춰 위치도 함께 조정) */}
+                <div className="absolute left-0 right-0 top-5 sm:top-6 flex justify-center">
                   <div className="h-3 w-3 rounded-full bg-[#FFD966] shadow-[0_0_18px_rgba(255,184,0,0.6)]" />
                 </div>
 
@@ -120,24 +120,24 @@ export default function Journey() {
                 <div
                   className="
                     rounded-xl border border-white/10 bg-black/30
-                    p-5 sm:p-6 lg:p-7
-                    min-h-[130px] sm:min-h-[140px] lg:min-h-[160px]
+                    p-4 sm:p-5 lg:p-7
+                    min-h-[120px] sm:min-h-[140px] lg:min-h-[160px]
                     backdrop-blur-sm
                     hover:shadow-[0_0_24px_rgba(255,184,0,0.15)]
                     transition
                   "
                 >
-                  <div className="text-sm lg:text-base font-bold text-[#FFD966]/90 tracking-wide">
+                  <div className="text-xs sm:text-sm lg:text-base font-extrabold text-[#FFD966]/90 tracking-wide">
                     {s.title}
                   </div>
 
-                  {/* ✅ 한국어 줄바꿈 완전 대응 */}
+                  {/* 한국어 줄바꿈 품질 개선 */}
                   <div
                     className="
                       mt-2 text-white/90
-                      text-[15px] sm:text-[16px] lg:text-[18px]
+                      text-pretty break-keep break-words whitespace-pre-line
                       leading-[1.55]
-                      whitespace-pre-line break-keep break-words
+                      text-[14px] sm:text-[16px] lg:text-[18px]
                     "
                   >
                     {s.sub}
@@ -151,31 +151,28 @@ export default function Journey() {
           <button
             aria-label="이전 단계"
             onClick={() => scrollByAmount("left")}
-            className="absolute top-1/2 -left-4 sm:-left-5 md:-left-7 lg:-left-10 -translate-y-1/2 z-30 h-9 w-9 sm:h-10 sm:w-10 md:h-12 md:w-12 flex items-center justify-center rounded-full bg-[#2f2f2f]/80 text-white border border-white/10 hover:bg-[#FFD966] hover:text-black shadow-[0_0_8px_rgba(0,0,0,0.4)] transition"
+            className="absolute top-1/2 -left-3 sm:-left-5 md:-left-7 lg:-left-10 -translate-y-1/2 z-30
+                       h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12
+                       flex items-center justify-center rounded-full
+                       bg-[#2f2f2f]/80 text-white border border-white/10
+                       hover:bg-[#FFD966] hover:text-black shadow-[0_0_8px_rgba(0,0,0,0.4)] transition"
           >
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path
-                d="M15 6l-6 6 6 6"
-                stroke="currentColor"
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-              />
+            <svg viewBox="0 0 24 24" width="18" height="18" className="sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px]">
+              <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
             </svg>
           </button>
+
           <button
             aria-label="다음 단계"
             onClick={() => scrollByAmount("right")}
-            className="absolute top-1/2 -right-4 sm:-right-5 md:-right-7 lg:-right-10 -translate-y-1/2 z-30 h-9 w-9 sm:h-10 sm:w-10 md:h-12 md:w-12 flex items-center justify-center rounded-full bg-[#2f2f2f]/80 text-white border border-white/10 hover:bg-[#FFD966] hover:text-black shadow-[0_0_8px_rgba(0,0,0,0.4)] transition"
+            className="absolute top-1/2 -right-3 sm:-right-5 md:-right-7 lg:-right-10 -translate-y-1/2 z-30
+                       h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12
+                       flex items-center justify-center rounded-full
+                       bg-[#2f2f2f]/80 text-white border border-white/10
+                       hover:bg-[#FFD966] hover:text-black shadow-[0_0_8px_rgba(0,0,0,0.4)] transition"
           >
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path
-                d="M9 6l6 6-6 6"
-                stroke="currentColor"
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-              />
+            <svg viewBox="0 0 24 24" width="18" height="18" className="sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px]">
+              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
             </svg>
           </button>
         </div>
