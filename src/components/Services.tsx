@@ -1,8 +1,28 @@
+"use client";
+
+import Link from "next/link";
+import { INQUIRY_MENU } from "@/config/links";
+
 export default function Services() {
   const items = [
-    { icon: "🛠️", title: "운영 대행", desc: "쿠팡이츠플러스 / 배민플러스 점주 맞춤 운영 전담", cta: "#contact" },
-    { icon: "🛵", title: "렌트·리스", desc: "오토바이·보험·정비 One-stop 제공", cta: "#contact" },
-    { icon: "📊", title: "플랫폼 연동", desc: "통합 리포트·정산 시스템으로 투명한 매출관리", cta: "#ridy" },
+    {
+      icon: "🛠️",
+      title: "운영 대행",
+      desc: "쿠팡이츠플러스 / 배민플러스 점주 맞춤 운영 전담",
+      cta: "#contact",
+    },
+    {
+      icon: "🛵",
+      title: "렌트·리스",
+      desc: "오토바이·보험·정비 One-stop 제공",
+      cta: "#contact",
+    },
+    {
+      icon: "📊",
+      title: "플랫폼 연동",
+      desc: "통합 리포트·정산 시스템으로 투명한 매출관리",
+      cta: "#ridy",
+    },
   ];
 
   return (
@@ -35,12 +55,12 @@ export default function Services() {
                 {it.icon}
               </div>
 
-              {/* 제목: 1~2px 정도 키운 느낌 (22px/24px) */}
+              {/* 제목 */}
               <h3 className="font-bold text-white text-[22px] md:text-[24px]">
                 {it.title}
               </h3>
 
-              {/* 설명: 살짝 키우고(16px) 대비 확보 */}
+              {/* 설명 */}
               <p className="mt-3 text-[16px] leading-relaxed text-gray-300">
                 {it.desc}
               </p>
@@ -56,6 +76,19 @@ export default function Services() {
                 바로가기 →
               </span>
             </a>
+          ))}
+        </div>
+
+        {/* ✅ 문의 메뉴 CTA 버튼 그룹 */}
+        <div className="mt-16 flex flex-wrap justify-center gap-3">
+          {INQUIRY_MENU.map((item) => (
+            <Link
+              key={item.key}
+              href={item.href}
+              className="rounded-lg border border-white/20 px-5 py-3 text-sm font-medium text-gray-200 hover:bg-white/10 hover:text-[#FFB800] transition"
+            >
+              {item.label}
+            </Link>
           ))}
         </div>
       </div>
