@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { INQUIRY_MENU } from "@/config/links";
 
 export default function Footer() {
   return (
@@ -32,40 +33,101 @@ export default function Footer() {
         </div>
 
         {/* Middle: link columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 py-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 py-10">
+          {/* BRAND */}
           <div>
             <p className="text-sm font-semibold text-white">BRAND</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/brand#story" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">브랜드 스토리</Link></li>
-              <li><Link href="/brand#partner" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">협업/제휴 문의</Link></li>
+              <li>
+                <Link
+                  href="/brand#story"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  브랜드 스토리
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/brand#partner"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  협업/제휴 문의
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* BIKE */}
           <div>
             <p className="text-sm font-semibold text-white">BIKE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/bike#rent" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">렌트/리스 신청</Link></li>
-              <li><Link href="/bike#center" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">센터 안내</Link></li>
+              <li>
+                <Link
+                  href="/bike#rent"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  렌트/리스 신청
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/bike#center"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  센터 안내
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* LogitEats */}
           <div>
             <p className="text-sm font-semibold text-white">LogitEats</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/logiteats#intro" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">소개</Link></li>
-              <li><Link href="/logiteats#process" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">정산 절차/자동화</Link></li>
-              <li><Link href="/logiteats#contact" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">도입 문의</Link></li>
+              <li>
+                <Link
+                  href="/logiteats#intro"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  소개
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/logiteats#process"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  정산 절차/자동화
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/logiteats#contact"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  도입 문의
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* STORE */}
           <div>
             <p className="text-sm font-semibold text-white">STORE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/store" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">모든 상품 보기</Link></li>
+              <li>
+                <Link
+                  href="/store"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  모든 상품 보기
+                </Link>
+              </li>
               <li>
                 <a
                   href="https://smartstore.naver.com/rideon"
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
                   aria-label="네이버 스토어(새 탭)"
                 >
@@ -75,7 +137,8 @@ export default function Footer() {
               <li>
                 <a
                   href="https://store.coupang.com/rideon"
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
                   aria-label="쿠팡 스토어(새 탭)"
                 >
@@ -85,19 +148,55 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* NOTICE */}
           <div>
             <p className="text-sm font-semibold text-white">NOTICE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/notice#update" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">공지사항</Link></li>
-              <li><Link href="/notice#recruit" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">채용/알림</Link></li>
+              <li>
+                <Link
+                  href="/notice#update"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  공지사항
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/notice#recruit"
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                >
+                  채용/알림
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* ✅ INQUIRY (공통 문의 메뉴) */}
+          <div>
+            <p className="text-sm font-semibold text-white">문의하기</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              {INQUIRY_MENU.map((item) => (
+                <li key={item.key}>
+                  <Link
+                    href={item.href}
+                    className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
         {/* Bottom: legal */}
         <div className="border-t border-white/10 py-6 text-sm flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-gray-400">© {new Date().getFullYear()} RIDE ON. All rights reserved.</p>
-          <p className="text-gray-500">사업자등록·통신판매 신고 정보는 공지사항에서 확인하세요.</p>
+          <p className="text-gray-400">
+            © {new Date().getFullYear()} RIDE ON. All rights reserved.
+          </p>
+          <p className="text-gray-500">
+            사업자등록·통신판매 신고 정보는 공지사항에서 확인하세요.
+          </p>
         </div>
       </div>
     </footer>

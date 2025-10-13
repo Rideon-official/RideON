@@ -7,22 +7,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NavPanel } from "./NavPanel";
 import { Button } from "./Button";
 import useScrollShrink from "@/hooks/useScrollShrink";
-import { INQUIRY_MENU } from "@/config/links";
+import { INQUIRY, INQUIRY_MENU } from "@/config/links";
 
-const navItems = [
+type SubItem = { label: string; href: string; external?: boolean };
+type NavItem = { label: string; href: string; submenu?: SubItem[] };
+
+const navItems: NavItem[] = [
   {
     label: "BRAND",
     href: "/brand",
     submenu: [
       { label: "브랜드 스토리", href: "/brand#story" },
-      { label: "협업/제휴 문의", href: LINKS.branchMerge }, // ✅ 변경
+      // ⬇️ 기존 LINKS.branchMerge → INQUIRY.partner 로 교체
+      { label: "협업/제휴 문의", href: INQUIRY.partner },
     ],
   },
   {
     label: "BIKE",
     href: "/bike",
     submenu: [
-      { label: "렌트/리스 신청", href: "/bike#rent" },
+      // ⬇️ 내부 고정 앵커 대신 공통 상수 사용(도메인 변경에도 안전)
+      { label: "렌트/리스 신청", href: INQUIRY.rent },
       { label: "센터 안내", href: "/bike#center" },
     ],
   },
@@ -32,7 +37,7 @@ const navItems = [
     submenu: [
       { label: "소개", href: "/logiteats#intro" },
       { label: "정산 절차/자동화", href: "/logiteats#process" },
-      { label: "도입 문의", href: "/logiteats#contact" },
+      { label: "도입 문의", href: "/logiteats#contact" }, // 필요 시 INQUIRY.branch 로 바꿔도 OK
     ],
   },
   {
