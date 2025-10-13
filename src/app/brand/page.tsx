@@ -1,17 +1,24 @@
+"use client";
 import Hero from "./_components/Hero";
-import Values from "./_components/Values";
-import Pillars from "./_components/Pillars";
-import Timeline from "./_components/Timeline";
-import CtaBanner from "./_components/CtaBanner";
+import RideonMeaning from "./_components/RideonMeaning";
+import About from "./_components/About";
+import CoreStrengths from "./_components/CoreStrengths";
+import Journey from "./_components/Journey";
+
 
 export default function BrandPage() {
-  return (
-    <main className="px-6 sm:px-10 lg:px-20 py-12">
-      <Hero />
-      <Values />
-      <Pillars />
-      <Timeline />
-      <CtaBanner />
-    </main>
-  );
+return (
+<main className="bg-[#111111] text-white">
+{/* Hero */}
+<Hero />
+{/* RIDEON 알파벳 의미 */}
+<RideonMeaning />
+{/* About */}
+<About />
+{/* Core Strengths */}
+<CoreStrengths />
+{/* Journey */}
+<Journey />
+</main>
+);
 }
