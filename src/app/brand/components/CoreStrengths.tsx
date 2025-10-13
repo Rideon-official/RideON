@@ -14,7 +14,7 @@ const cards = [
 export default function CoreStrengths() {
 const router = useRouter();
 return (
-<section className="relative py-16 sm:py-24 bg-[#111111]">
+<section className="relative py-16 sm:py-24 pb-32 bg-[#111111]">
 <div className="mx-auto max-w-6xl px-6">
 <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-8">Core Strengths</h2>
 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
