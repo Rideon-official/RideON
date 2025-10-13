@@ -43,43 +43,56 @@ export default function Journey() {
     <section className="relative py-16 sm:py-24 bg-[#111111]">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-8 flex items-end justify-between">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white">RIDE ON Journey</h2>
-
-          {/* 좌우 화살표 */}
-          <div className="hidden sm:flex gap-2">
-            <button
-              aria-label="이전 단계"
-              onClick={() => scrollByAmount("left")}
-              className="h-10 w-10 rounded-full border border-white/10 bg-black/40 text-white hover:bg-[#FFD966] hover:text-black transition"
-            >
-              <svg viewBox="0 0 24 24" width="20" height="20" className="mx-auto">
-                <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
-              </svg>
-            </button>
-            <button
-              aria-label="다음 단계"
-              onClick={() => scrollByAmount("right")}
-              className="h-10 w-10 rounded-full border border-white/10 bg-black/40 text-white hover:bg-[#FFD966] hover:text-black transition"
-            >
-              <svg viewBox="0 0 24 24" width="20" height="20" className="mx-auto">
-                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
-              </svg>
-            </button>
-          </div>
+          <h2 className="text-2xl sm:text-3xl font-semibold text-white">
+            RIDE ON Journey
+          </h2>
         </div>
 
-        <div className="relative">
-          {/* 상단 타임라인 라인 */}
+        {/* ===== 타임라인 래퍼 (스크롤바 숨김 + 오버레이 화살표) ===== */}
+        <div className="relative overflow-hidden">
+          {/* 상단 라인 */}
           <div className="pointer-events-none absolute left-0 right-0 top-7 h-[2px] bg-white/10" />
 
-          {/* 스크롤 힌트용 그라데이션 가장자리 */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[#111111] to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#111111] to-transparent" />
+          {/* 가장자리 그라데이션(살짝 페이드) */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[#111111] to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#111111] to-transparent z-10" />
 
-          {/* 수평 스크롤 리스트 */}
+          {/* 좌/우 화살표 (콘텐츠 바깥) */}
+          <button
+            aria-label="이전 단계"
+            onClick={() => scrollByAmount("left")}
+            className="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#2f2f2f] text-white hover:bg-[#FFD966] hover:text-black transition"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20">
+              <path
+                d="M15 6l-6 6 6 6"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+          <button
+            aria-label="다음 단계"
+            onClick={() => scrollByAmount("right")}
+            className="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#2f2f2f] text-white hover:bg-[#FFD966] hover:text-black transition"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20">
+              <path
+                d="M9 6l6 6-6 6"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+
+          {/* 수평 스크롤 리스트 (스크롤바 숨김) */}
           <div
             ref={scrollerRef}
-            className="no-scrollbar relative flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory"
+            className="no-scrollbar relative flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory px-1"
           >
             {stages.map((s, i) => (
               <motion.article
@@ -117,28 +130,6 @@ export default function Journey() {
           “신속한 혁신과 지속적인 추진력으로 전진하며, 모두를 연결하는 중심점 —{" "}
           <span className="font-semibold text-[#FFD966]">RIDE ON</span>”
         </p>
-
-        {/* 모바일 전용 화살표 (하단 고정 버튼) */}
-        <div className="mt-6 flex sm:hidden justify-center gap-4">
-          <button
-            aria-label="이전 단계"
-            onClick={() => scrollByAmount("left")}
-            className="h-10 w-10 rounded-full border border-white/10 bg-black/40 text-white hover:bg-[#FFD966] hover:text-black transition"
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20" className="mx-auto">
-              <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
-            </svg>
-          </button>
-          <button
-            aria-label="다음 단계"
-            onClick={() => scrollByAmount("right")}
-            className="h-10 w-10 rounded-full border border-white/10 bg-black/40 text-white hover:bg-[#FFD966] hover:text-black transition"
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20" className="mx-auto">
-              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
-            </svg>
-          </button>
-        </div>
       </div>
     </section>
   );
