@@ -9,7 +9,9 @@ export default function Footer() {
       <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20">
         {/* Top: CTA */}
         <div className="flex flex-col gap-3 items-start md:items-center md:flex-row md:justify-between py-8">
-          <h3 className="text-xl font-bold text-white">전국 운영/정산/렌트 — RIDE ON과 시작하세요</h3>
+          <h3 className="text-xl font-bold text-white">
+            전국 운영/정산/렌트 — RIDE ON과 시작하세요
+          </h3>
           <div className="flex flex-wrap gap-2">
             <a
               href="https://pf.kakao.com/_link"
@@ -35,7 +37,7 @@ export default function Footer() {
             <p className="text-sm font-semibold text-white">BRAND</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li><Link href="/brand#story" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">브랜드 스토리</Link></li>
-              <li><Link href="/apply/branch-merge" outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">협업/제휴 문의</Link></li>
+              <li><Link href="/brand#partner" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded">협업/제휴 문의</Link></li>
             </ul>
           </div>
 
