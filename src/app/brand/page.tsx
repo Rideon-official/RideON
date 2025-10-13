@@ -1,9 +1,9 @@
 "use client";
-import Hero from "./_components/Hero";
-import RideonMeaning from "./_components/RideonMeaning";
-import About from "./_components/About";
-import CoreStrengths from "./_components/CoreStrengths";
-import Journey from "./_components/Journey";
+import Hero from "./components/Hero";
+import RideonMeaning from "./components/RideonMeaning";
+import About from "./components/About";
+import CoreStrengths from "./components/CoreStrengths";
+import Journey from "./components/Journey";
 
 
 export default function BrandPage() {
