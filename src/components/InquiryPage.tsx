@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { INQUIRY_MENU } from "@/config/links";
-import { usePathname } from "next/navigation";
 
+/* ---------------- utils ---------------- */
 function getIdFromHref(href: string) {
   const i = href.indexOf("#");
   return i >= 0 ? href.slice(i + 1) : href.replace(/^\//, "");
@@ -15,6 +15,7 @@ type Tab = {
   label: string;
 };
 
+/* ---------------- page ---------------- */
 export default function InquiryPage() {
   const tabs: Tab[] = useMemo(
     () =>
@@ -115,34 +116,95 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
   const [rentType, setRentType] = useState<"rental" | "lease" | "">("");
   const [leaseTerm, setLeaseTerm] = useState<"6" | "12" | "">("");
 
+  // 전송 상태/핸들러
+  const [sending, setSending] = useState(false);
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (sending) return;
+    try {
+      setSending(true);
+
+      const fd = new FormData(e.currentTarget);
+      const payload: Record<string, any> = {
+        type,
+        name: fd.get("name"),
+        phone: fd.get("phone"),
+      };
+
+      if (type === "rider") {
+        payload.platforms = fd.getAll("platforms");
+        payload.platformsOther = fd.get("platformsOther");
+        payload.owncar = fd.get("owncar");
+        payload.region = fd.get("region");
+      }
+      if (type === "branch") {
+        payload.company = fd.get("company");
+        payload.bizType = fd.get("bizType");
+        payload.region = fd.get("region");
+        payload.riders = fd.get("riders");
+        payload.message = fd.get("message");
+      }
+      if (type === "rent") {
+        payload.birth = fd.get("birth");
+        payload.rentBizType = fd.get("rentBizType");
+        payload.region = fd.get("region");
+        payload.model = fd.get("model");
+        payload.rentType = fd.get("rentType");
+        payload.leaseTerm = fd.get("leaseTerm");
+        payload.insurance = fd.get("insurance");
+      }
+      if (type === "partner") {
+        payload.company = fd.get("company");
+        payload.message = fd.get("message");
+      }
+
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const txt = await res.text().catch(() => "");
+        throw new Error(`문의 전송 실패 (${res.status}) ${txt}`);
+      }
+
+      alert("문의가 접수되었습니다! 빠르게 연락드릴게요.");
+      (e.currentTarget as HTMLFormElement).reset();
+      // 상태 초기화
+      setPlatforms([]);
+      setOtherPlat("");
+      setRentType("");
+      setLeaseTerm("");
+    } catch (err: any) {
+      alert(err?.message ?? "전송 중 오류가 발생했습니다.");
+    } finally {
+      setSending(false);
+    }
+  }
+
   return (
-    <form className="mt-6 space-y-4">
+    <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
       {/* 공통 이름/연락처 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className={labelCls}>이름 *</label>
-          <input className={inputBase} placeholder={namePH} required />
+          <input className={inputBase} placeholder={namePH} required name="name" />
         </div>
         <div>
           <label className={labelCls}>연락처 *</label>
-          <input className={inputBase} placeholder={phonePH} required />
+          <input className={inputBase} placeholder={phonePH} required name="phone" />
         </div>
       </div>
 
       {/* ---------- 기사 가입 문의하기 (rider) ---------- */}
       {type === "rider" && (
         <>
-          {/* 생년월일/개인사업자 구분 삭제 */}
           {/* 희망 플랫폼: 멀티 선택 */}
           <div>
             <span className={labelCls}>희망 플랫폼 (복수 선택 가능)</span>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {[
-                "쿠팡이츠플러스",
-                "배민플러스",
-                "땡겨요",
-                "기타",
-              ].map((opt) => (
+              {["쿠팡이츠플러스", "배민플러스", "땡겨요", "기타"].map((opt) => (
                 <label
                   key={opt}
                   className={
@@ -153,6 +215,8 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
                   <input
                     type="checkbox"
                     className="accent-[#FFB800]"
+                    name="platforms"
+                    value={opt}
                     checked={platforms.includes(opt)}
                     onChange={() => togglePlatform(opt)}
                   />
@@ -169,9 +233,20 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
                   placeholder="기타 플랫폼을 입력하세요"
                   value={otherPlat}
                   onChange={(e) => setOtherPlat(e.target.value)}
+                  name="platformsOther"
                 />
               </div>
             )}
+          </div>
+
+          {/* 근무 희망 지역 */}
+          <div>
+            <label className={labelCls}>근무 희망 지역</label>
+            <input
+              className={inputBase}
+              placeholder="도/시 입력 (ex. 서울시 강동구 강동중앙)"
+              name="region"
+            />
           </div>
 
           {/* 자차 여부 */}
@@ -209,6 +284,7 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
                 className={inputBase}
                 placeholder="주식회사 패온, 라이드온 등"
                 required
+                name="company"
               />
             </div>
             {/* 개인/법인/기타 (단일 선택) */}
@@ -241,13 +317,14 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
               className={inputBase}
               placeholder="도/시 입력 (ex. 서울시 강동구)"
               required
+              name="region"
             />
           </div>
 
           {/* 같이하는 라이더 수 */}
           <div>
             <label className={labelCls}>같이하는 라이더 수</label>
-            <input className={inputBase} placeholder="100명" />
+            <input className={inputBase} placeholder="100명" name="riders" />
           </div>
 
           {/* 문의 내용 */}
@@ -258,6 +335,7 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
               rows={5}
               placeholder="간단한 회사 소개와 협업 제안 내용을 구체적으로 작성해주세요."
               required
+              name="message"
             />
           </div>
         </>
@@ -270,7 +348,7 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className={labelCls}>생년월일(6자리) *</label>
-              <input className={inputBase} placeholder="850101" required />
+              <input className={inputBase} placeholder="850101" required name="birth" />
             </div>
             <div>
               <span className={labelCls}>개인/사업자 구분 *</span>
@@ -301,13 +379,14 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
               className={inputBase}
               placeholder="도/시 입력 (ex. 서울시 강동구)"
               required
+              name="region"
             />
           </div>
 
           {/* 차종 */}
           <div>
             <label className={labelCls}>차종 *</label>
-            <select className={inputBase} defaultValue="" required>
+            <select className={inputBase} defaultValue="" required name="model">
               <option value="" disabled>
                 선택
               </option>
@@ -357,7 +436,8 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
                   className={inputBase}
                   value={leaseTerm}
                   onChange={(e) => setLeaseTerm(e.target.value as "6" | "12")}
-                  required
+                  required={rentType === "lease"}
+                  name="leaseTerm"
                 >
                   <option value="" disabled>
                     기간 선택
@@ -398,7 +478,7 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
         <>
           <div>
             <label className={labelCls}>회사/서비스명 *</label>
-            <input className={inputBase} placeholder="예: 네이버 / 결제" required />
+            <input className={inputBase} placeholder="예: 네이버 / 결제" required name="company" />
           </div>
           <div>
             <label className={labelCls}>제안 내용 *</label>
@@ -407,19 +487,20 @@ function FormBlock({ type }: { type: (typeof INQUIRY_MENU)[number]["key"] }) {
               rows={5}
               placeholder="제휴/파트너십 제안을 자유롭게 작성해주세요."
               required
+              name="message"
             />
           </div>
         </>
       )}
 
-      {/* 제출 버튼 (데모) */}
+      {/* 제출 버튼 */}
       <div className="pt-2">
         <button
-          type="button"
-          className="w-full md:w-auto rounded-md bg-[#FFB800] px-5 py-3 font-semibold text-black hover:bg-[#ffc52e]"
-          onClick={() => alert("데모 폼입니다. 실제 제출 API 연결 전입니다.")}
+          type="submit"
+          disabled={sending}
+          className="w-full md:w-auto rounded-md bg-[#FFB800] px-5 py-3 font-semibold text-black hover:bg-[#ffc52e] disabled:opacity-60"
         >
-          다음으로 →
+          {sending ? "전송 중..." : "다음으로 →"}
         </button>
       </div>
     </form>
