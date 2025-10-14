@@ -1,15 +1,21 @@
 // src/app/bike/page.tsx
 import Link from "next/link";
-import BikeIntro from "../../components/bike/BikeIntro"; // 상대경로
+import BikeIntro from "../../components/bike/BikeIntro"; // ← 상대경로로 정확히
 
 export default function BikePage() {
   return (
     <main className="bg-black text-white">
+      {/* 새 소개 섹션 */}
       <BikeIntro />
 
-      <section id="center" className="px-6 sm:px-10 lg:px-20 py-16 border-t border-white/10">
+      {/* 기존 유지: 센터 안내 섹션(필요시 내용 채우기) */}
+      <section
+        id="center"
+        className="px-6 sm:px-10 lg:px-20 py-16 border-t border-white/10"
+      >
         <h2 className="text-xl font-bold">센터 안내</h2>
         <p className="mt-2 text-gray-400">운영시간 · 정비 항목 · 오시는 길…</p>
+
         <div className="mt-6">
           <Link
             href="/contact?type=center"
