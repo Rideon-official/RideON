@@ -1,7 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";   // 헤더는 대문자 H
+import { Header } from "@/components/Header";   // 헤더는 대문자 H
 import Footer from "@/components/Footer";   // 푸터는 대문자 F
 
 export const metadata: Metadata = {
