@@ -1,7 +1,21 @@
 "use client";
 
-import { Bike, Wrench, ShieldCheck, Hospital, Building2, Phone, Mail, ArrowRight } from "lucide-react";
+import {
+  Bike,
+  Wrench,
+  ShieldCheck,
+  Hospital,
+  Building2,
+  Phone,
+  Mail,
+  ArrowRight,
+  Gift,
+  QrCode,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import Link from "next/link";
+import { useMemo, useState } from "react";
 
 type ContactItem = {
   id: string;
@@ -13,37 +27,41 @@ type ContactItem = {
   icon: React.ComponentType<{ className?: string }>;
 };
 
+// 연락 디렉터리(7개 예시)
 const CONTACTS: ContactItem[] = [
-  { id: "yamaha", label: "야마하", desc: "제휴·정비·문의", tel: "000-0000-0000", email: "yamaha@rideon.co.kr", icon: Bike },
-  { id: "honda", label: "혼다", desc: "제휴·정비·문의", tel: "000-0000-0000", email: "honda@rideon.co.kr", icon: Bike },
-  { id: "adjuster", label: "손해사정사", desc: "사고 접수·서류 협조", tel: "000-0000-0000", email: "claim@rideon.co.kr", icon: ShieldCheck },
-  { id: "hospital", label: "협력병원", desc: "진료·연계 문의", tel: "000-0000-0000", email: "hospital@rideon.co.kr", icon: Hospital },
-  { id: "shop1", label: "바이크 정비소 1", desc: "정비·점검 예약", tel: "000-0000-0000", email: "service1@rideon.co.kr", icon: Wrench },
-  { id: "shop2", label: "바이크 정비소 2", desc: "정비·점검 예약", tel: "000-0000-0000", email: "service2@rideon.co.kr", icon: Wrench },
-  // { id: "merge", label: "지사장·합병 제안", desc: "파트너십 & 합병 문의", href: "/apply/branch-merge", icon: Building2 },
+  { id: "yamaha", label: "야마하", desc: "공식 정비·제휴 문의", tel: "000-0000-0000", email: "yamaha@rideon.co.kr", icon: Bike },
+  { id: "honda", label: "혼다", desc: "리스·정비·제휴 문의", tel: "000-0000-0000", email: "honda@rideon.co.kr", icon: Bike },
+  { id: "adjuster", label: "손해사정사", desc: "사고·보험·서류 전담", tel: "000-0000-0000", email: "claim@rideon.co.kr", icon: ShieldCheck },
+  { id: "hospital", label: "협력병원", desc: "라이더 전문 진료 연계", tel: "000-0000-0000", email: "hospital@rideon.co.kr", icon: Hospital },
+  { id: "shop1", label: "바이크 정비소 1 (강동)", desc: "정비·점검 예약", tel: "000-0000-0000", email: "service1@rideon.co.kr", icon: Wrench },
+  { id: "shop2", label: "바이크 정비소 2 (대구)", desc: "정비·점검 예약", tel: "000-0000-0000", email: "service2@rideon.co.kr", icon: Wrench },
+  { id: "merge", label: "지사장·합병 제안", desc: "파트너십 & 합병 문의", href: "/apply/branch-merge", icon: Building2 },
 ];
 
 export default function ContactSection() {
+  // 기본 6개까지만 노출, 넘어가면 더보기
+  const COLLAPSED_COUNT = 6;
+  const [expanded, setExpanded] = useState(false);
+
+  const visible = useMemo(() => {
+    if (expanded) return CONTACTS;
+    return CONTACTS.slice(0, COLLAPSED_COUNT);
+  }, [expanded]);
+
+  const hiddenCount = Math.max(0, CONTACTS.length - COLLAPSED_COUNT);
+
   return (
-    <section
-      className="
-        relative w-full border-t border-neutral-900
-        bg-gradient-to-b from-[#121212] to-[#0F0F0F]
-      "
-    >
-      {/* subtle pattern overlay */}
+    <section className="relative w-full border-t border-neutral-900 bg-gradient-to-b from-[#121212] to-[#0F0F0F]">
+      {/* subtle pattern */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:radial-gradient(1px_1px_at_1px_1px,#fff_1px,transparent_0)] [background-size:16px_16px]"
       />
-
       <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8">
         {/* 헤더 */}
-        <div className="mb-10 flex flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-8 flex flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-xs font-semibold tracking-[.2em] text-neutral-400">
-              LET’S CONNECT
-            </p>
+            <p className="text-xs font-semibold tracking-[.2em] text-neutral-400">LET’S CONNECT</p>
             <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white lg:text-3xl">
               CONTACT <span className="text-[#FFB800]">RIDE&nbsp;ON</span>
             </h2>
@@ -61,41 +79,74 @@ export default function ContactSection() {
           </Link>
         </div>
 
-        {/* 레이아웃: 좌측 가이드 카드 / 우측 디렉터리 */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr,1.4fr]">
-          {/* 좌측 가이드 */}
-          <div className="rounded-2xl border border-neutral-800 bg-[#161616] p-6 shadow-sm">
+        {/* 상단 프로모션 콜아웃 (KB국민은행 × RIDE ON) */}
+        <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-[1fr,1.2fr]">
+          <div className="rounded-2xl border border-neutral-800 bg-[#161616] p-5">
+            <div className="flex items-center gap-3">
+              <Gift className="size-6 text-[#FFB800]" />
+              <h3 className="text-base font-semibold text-white">KB국민은행 × 라이드온 특별 프로모션</h3>
+            </div>
+            <div className="mt-3 grid gap-3 text-sm text-neutral-300">
+              <p><b className="text-neutral-100">대상</b>: KB국민은행 새 계좌 개설 고객</p>
+              <p>
+                <b className="text-neutral-100">혜택</b>: 계좌 개설 시 <b className="text-[#FFB800]">10,000원</b> 지급 ·
+                개설 후 즉시 사용 가능 · 한도 제한 없음 · 간편한 카드 발급 절차
+              </p>
+              <p><b className="text-neutral-100">신청</b>: 각 지역 지부장에게 문의 (계좌 개설 완료 후 혜택 지급)</p>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-400">
+                <QrCode className="size-4" />
+                QR로 비대면 가입 가능 · 가입 완료 후 지부장에게 연락 시
+                <span className="text-neutral-300"> 10,000원 지급 + 한도 제한 해제</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 안내 블록(섹션 설명) */}
+          <div className="rounded-2xl border border-neutral-800 bg-[#161616] p-5">
             <div className="flex items-center gap-3">
               <Building2 className="size-6 text-[#FFB800]" />
-              <h3 className="text-lg font-semibold text-white">서비스별 전용 채널</h3>
+              <h3 className="text-base font-semibold text-white">서비스별 전용 채널</h3>
             </div>
-            <p className="mt-3 text-sm text-neutral-400">
-              핵심서비스와 겹치지 않도록 카드 대신 <b className="text-neutral-200">리스트·디렉터리</b>로 구성했습니다.
-              모바일은 <b className="text-neutral-200">가로 스크롤</b>, 데스크톱은 <b className="text-neutral-200">2열 목록</b>으로 표시됩니다.
+            <p className="mt-2 text-sm text-neutral-400">
+              핵심서비스와 겹치지 않도록 <b className="text-neutral-200">리스트·디렉터리</b>로 구성했습니다.
+              모바일은 <b className="text-neutral-200">1열 리스트</b>, 태블릿 <b className="text-neutral-200">2열</b>,
+              데스크탑 <b className="text-neutral-200">3열</b> 그리드로 확인하세요.
             </p>
-            <ul className="mt-4 space-y-2 text-sm text-neutral-400">
+            <ul className="mt-3 space-y-1 text-sm text-neutral-400">
               <li>• 좌측 포인트 라인 <span className="text-[#FFB800]">#FFB800</span></li>
-              <li>• hover: 미세한 그림자 + scale(98% → 100%)</li>
+              <li>• hover: 미세한 그림자 + subtle scale</li>
               <li>• 전화/메일 즉시 연결</li>
             </ul>
           </div>
+        </div>
 
-          {/* 우측: 디렉터리 */}
-          <div className="rounded-2xl border border-neutral-800 bg-[#141414] p-3">
-            {/* 데스크톱 2열 */}
-            <div className="hidden gap-3 lg:grid lg:grid-cols-2">
-              {CONTACTS.map((c) => (
-                <DirectoryRow key={c.id} item={c} />
-              ))}
-            </div>
-
-            {/* 모바일 가로 스크롤 */}
-            <div className="flex gap-3 overflow-x-auto lg:hidden">
-              {CONTACTS.map((c) => (
-                <DirectoryChip key={c.id} item={c} />
-              ))}
-            </div>
+        {/* 디렉터리: 반응형 GRID (가로 스크롤 없음) */}
+        <div className="rounded-2xl border border-neutral-800 bg-[#141414] p-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {visible.map((c) => (
+              <DirectoryRow key={c.id} item={c} />
+            ))}
           </div>
+
+          {/* 더보기 / 접기 */}
+          {hiddenCount > 0 && (
+            <div className="mt-4 flex justify-center">
+              <button
+                onClick={() => setExpanded((v) => !v)}
+                className="inline-flex items-center gap-1 rounded-lg border border-neutral-700 px-3 py-2 text-sm font-medium text-neutral-200 hover:bg-neutral-900"
+              >
+                {expanded ? (
+                  <>
+                    접기 <ChevronUp className="size-4" />
+                  </>
+                ) : (
+                  <>
+                    더보기 +{hiddenCount} <ChevronDown className="size-4" />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* 섹션 디바이더 */}
@@ -133,34 +184,6 @@ function DirectoryRow({ item }: { item: ContactItem }) {
             </Link>
           )}
         </div>
-      </div>
-    </div>
-  );
-}
-
-function DirectoryChip({ item }: { item: ContactItem }) {
-  const Icon = item.icon;
-  return (
-    <div className="min-w-[220px] rounded-xl border border-neutral-800 bg-[#1A1A1A] px-4 py-3 shadow-sm transition hover:shadow">
-      <div className="flex items-center gap-2">
-        <div className="h-5 w-1 rounded bg-[#FFB800]" />
-        <Icon className="size-4 text-neutral-300" />
-        <p className="truncate text-sm font-semibold text-white">{item.label}</p>
-      </div>
-      {item.desc && <p className="mt-1 line-clamp-2 text-xs text-neutral-400">{item.desc}</p>}
-      <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-neutral-300">
-        {item.tel && (
-          <a href={`tel:${item.tel}`} className="inline-flex items-center gap-1 hover:underline">
-            <Phone className="size-3" />
-            {item.tel}
-          </a>
-        )}
-        {item.email && (
-          <a href={`mailto:${item.email}`} className="inline-flex items-center gap-1 hover:underline">
-            <Mail className="size-3" />
-            {item.email}
-          </a>
-        )}
       </div>
     </div>
   );
