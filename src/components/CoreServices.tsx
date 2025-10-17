@@ -73,25 +73,34 @@ const cards: Card[] = [
 export default function CoreServices() {
   return (
     <section id="services" className="relative bg-[#111111]">
-      {/* 1) 히어로: 좌측 끝까지 풀블리드 */}
-      <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[420px]">
-        <Image
-          src="/hero/services-hero.jpg" // 원하는 이미지로 교체
-          alt=""
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/25 to-black/45" />
-        {/* 좌 하단 타이틀 (크기 ↓ 조절) */}
-        <div className="absolute bottom-0 left-0 pb-6 sm:pb-8 lg:pb-10 pl-6 sm:pl-10 lg:pl-20">
-          <h2 className="font-black tracking-tight text-[clamp(28px,6vw,64px)] leading-[1.02] text-white">
-            RIDE ON
-            <br />
-            <span className="text-white/90">핵심 서비스</span>
-          </h2>
-        </div>
+ {/* 1) 사진 히어로 (왼쪽만 풀블리드, 오른쪽은 컨테이너 경계) */}
+<div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20">
+  {/* 왼쪽만 끌어내기: -ml + 폭 보정 */}
+  <div className="-ml-6 sm:-ml-10 lg:-ml-20
+                  w-[calc(100%+1.5rem)] sm:w-[calc(100%+2.5rem)] lg:w-[calc(100%+5rem)]">
+    <div className="relative h-[240px] sm:h-[280px] lg:h-[320px]
+                    rounded-2xl overflow-hidden ring-1 ring-neutral-800
+                    shadow-[0_25px_80px_-35px_rgba(0,0,0,0.8)]">
+      <Image
+        src="/hero/services-hero.jpg"
+        alt=""
+        fill
+        className="object-cover"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/45" />
+
+      {/* 타이틀: 크기 다운 + 아래쪽 정렬 */}
+      <div className="absolute bottom-0 left-0 p-6 sm:p-8">
+        <h2 className="font-black tracking-tight text-[clamp(24px,4.6vw,48px)] leading-[1.02] text-white">
+          RIDE ON
+          <br />
+          <span className="text-white/90">핵심 서비스</span>
+        </h2>
       </div>
+    </div>
+  </div>
+</div>
 
       {/* 2) 라인 + 카드 정렬: 타이틀 오른쪽에서 시작하도록 grid 구성 */}
       <div className="mx-auto max-w-screen-2xl px-6 sm:px-10 lg:px-20 -mt-4 sm:-mt-6 lg:-mt-8">
