@@ -19,7 +19,7 @@ export default function Footer() {
       aria-label="RIDE ON 사이트 푸터"
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-20">
-        {/* ===== A. 메뉴판(기존 유지, hover=옐로) ===== */}
+        {/* ============== A. 메뉴판 (기존 유지 + hover 옐로) ============== */}
         <div className="flex flex-col gap-3 items-start md:items-center md:flex-row md:justify-between py-8">
           <h3 className="text-xl font-bold text-white">
             전국 운영/정산/렌트 — RIDE ON과 시작하세요
@@ -52,7 +52,6 @@ export default function Footer() {
               <li><Link href="/brand#partner" className={linkBase}>협업/제휴 문의</Link></li>
             </ul>
           </div>
-
           {/* BIKE */}
           <div>
             <p className="text-sm font-semibold text-white">BIKE</p>
@@ -61,7 +60,6 @@ export default function Footer() {
               <li><Link href="/bike#center" className={linkBase}>센터 안내</Link></li>
             </ul>
           </div>
-
           {/* LogitEats */}
           <div>
             <p className="text-sm font-semibold text-white">LogitEats</p>
@@ -71,37 +69,23 @@ export default function Footer() {
               <li><Link href="/logiteats#contact" className={linkBase}>도입 문의</Link></li>
             </ul>
           </div>
-
           {/* STORE */}
           <div>
             <p className="text-sm font-semibold text-white">STORE</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li><Link href="/store" className={linkBase}>모든 상품 보기</Link></li>
               <li>
-                <a
-                  href="https://smartstore.naver.com/rideon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkBase}
-                  aria-label="네이버 스토어(새 탭)"
-                >
+                <a href="https://smartstore.naver.com/rideon" target="_blank" rel="noopener noreferrer" className={linkBase} aria-label="네이버 스토어(새 탭)">
                   네이버 스토어 <span aria-hidden>↗</span>
                 </a>
               </li>
               <li>
-                <a
-                  href="https://store.coupang.com/rideon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkBase}
-                  aria-label="쿠팡 스토어(새 탭)"
-                >
+                <a href="https://store.coupang.com/rideon" target="_blank" rel="noopener noreferrer" className={linkBase} aria-label="쿠팡 스토어(새 탭)">
                   쿠팡 스토어 <span aria-hidden>↗</span>
                 </a>
               </li>
             </ul>
           </div>
-
           {/* NOTICE */}
           <div>
             <p className="text-sm font-semibold text-white">NOTICE</p>
@@ -110,7 +94,6 @@ export default function Footer() {
               <li><Link href="/notice#recruit" className={linkBase}>채용/알림</Link></li>
             </ul>
           </div>
-
           {/* 문의하기 */}
           <div>
             <p className="text-sm font-semibold text-white">문의하기</p>
@@ -124,19 +107,19 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ===== B. 구분선 ===== */}
+        {/* ============== B. 구분선 ============== */}
         <div className="border-t border-neutral-800" />
 
-        {/* ===== C. 하단 메인 레이아웃: 좌|중|우 (Desktop 3열 / Mobile 1열) ===== */}
+        {/* ============== C. 하단 메인: 좌 | 중 | 우 ============== */}
         <div
           className="
-            py-8
-            grid gap-y-8 gap-x-8
+            py-10
+            grid gap-y-10 gap-x-8
             lg:[grid-template-columns:auto_1fr_auto]
           "
         >
-          {/* C-Left: 로고 */}
-          <div className="flex items-center gap-3">
+          {/* 좌: 로고/워드마크 (세로 중앙 고정 느낌) */}
+          <div className="flex items-center lg:items-center gap-3">
             <span className="relative block size-12 rounded-xl overflow-hidden ring-1 ring-neutral-800 bg-black/30">
               <Image
                 src="/logo/rideon-mark.png"
@@ -152,102 +135,150 @@ export default function Footer() {
             </Link>
           </div>
 
-         {/* C-Center: 사업자 정보 — 항목별 줄바꿈 리스트 */}
-<section aria-labelledby="business-info-title" className="text-sm">
-  <h2 id="business-info-title" className="sr-only">사업자 정보</h2>
+          {/* 중: 2열(각 4줄) + 소제목 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {/* 좌 칼럼 */}
+            <section aria-labelledby="biz-info-left">
+              <h3 id="biz-info-left" className="text-sm font-semibold text-white mb-3">회사정보</h3>
+              <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+                <dt className="text-neutral-500">사업자명</dt>
+                <dd className="text-neutral-300">주식회사 패온</dd>
 
-  {/* 라벨/값 2열 그리드, 각 항목은 '한 줄'로 내려쓰기 */}
-  <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-neutral-400 tracking-tight">
-    <dt className="text-neutral-500">사업자명</dt>
-    <dd className="text-neutral-300">주식회사 패온</dd>
+                <dt className="text-neutral-500">상호명</dt>
+                <dd className="text-neutral-300">RIDE ON ( 라이드온 )</dd>
 
-    <dt className="text-neutral-500">상호명</dt>
-    <dd className="text-neutral-300">RIDE ON ( 라이드온 )</dd>
+                <dt className="text-neutral-500">대표</dt>
+                <dd className="text-neutral-300">최수호</dd>
 
-    <dt className="text-neutral-500">대표</dt>
-    <dd className="text-neutral-300">최수호</dd>
+                <dt className="text-neutral-500">사업자등록번호</dt>
+                <dd className="text-neutral-300">896-86-02776</dd>
+              </dl>
+            </section>
 
-    <dt className="text-neutral-500">사업자등록번호</dt>
-    <dd className="text-neutral-300">896-86-02776</dd>
+            {/* 우 칼럼 */}
+            <section aria-labelledby="biz-info-right">
+              <h3 id="biz-info-right" className="text-sm font-semibold text-white mb-3">연락/신고</h3>
+              <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+                <dt className="text-neutral-500 whitespace-nowrap">통신판매업 신고번호</dt>
+                <dd className="text-neutral-300">제2025-서울강동-0001호</dd>
 
-    <dt className="text-neutral-500 whitespace-nowrap">통신판매업 신고번호</dt>
-    <dd className="text-neutral-300">제2025-서울강동-0001호</dd>
+                <dt className="text-neutral-500">주소</dt>
+                <dd className="text-neutral-300 break-words">서울특별시 강동구 천중로 176</dd>
 
-    <dt className="text-neutral-500">주소</dt>
-    <dd className="text-neutral-300 break-words">
-      서울특별시 강동구 천중로 176
-    </dd>
+                <dt className="text-neutral-500">연락처</dt>
+                <dd className="text-neutral-300">010-1234-5678</dd>
 
-    <dt className="text-neutral-500">연락처</dt>
-    <dd className="text-neutral-300">010-1234-5678</dd>
+                <dt className="text-neutral-500">이메일</dt>
+                <dd>
+                  <Link
+                    href="mailto:contact@ride-on.co.kr"
+                    className="text-neutral-300 underline underline-offset-4 decoration-neutral-700
+                               transition-colors duration-300 hover:text-[#FFB800] hover:decoration-[#FFB800]
+                               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50 rounded"
+                  >
+                    contact@ride-on.co.kr
+                  </Link>
+                </dd>
+              </dl>
+            </section>
+          </div>
 
-    <dt className="text-neutral-500">이메일</dt>
-    <dd>
-      <Link
-        href="mailto:contact@ride-on.co.kr"
-        className="text-neutral-300 underline underline-offset-4 decoration-neutral-700
-                   transition-colors duration-300 hover:text-[#FFB800] hover:decoration-[#FFB800]
-                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50 rounded"
-      >
-        contact@ride-on.co.kr
-      </Link>
-    </dd>
-  </dl>
-</section>
+          {/* 우: 상단 링크 4개 / 중간 원형 아이콘 / 하단 정책·카피 */}
+          <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-4">
+            {/* 위: 링크 4개 */}
+            <nav aria-label="회사 주요 링크" className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              <Link href="/about" className="transition-colors duration-300 hover:text-[#FFB800]">회사소개</Link>
+              <Link href="/partnership" className="transition-colors duration-300 hover:text-[#FFB800]">제휴제안</Link>
+              <Link href="/location" className="transition-colors duration-300 hover:text-[#FFB800]">찾아오시는길</Link>
+              <Link href="/notice" className="transition-colors duration-300 hover:text-[#FFB800]">공지사항</Link>
+            </nav>
 
-          {/* C-Right: 3줄 스택(우측 정렬) */}
-          <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-3">
-            {/* Top: 소셜 원형 버튼(브랜드 옐로 인터랙션) */}
+            {/* 중: 소셜 아이콘 원형 버튼 */}
             <div className="flex items-center gap-3">
-              {/* 선택: 작은 브랜드 마크 */}
-              <span
-                aria-hidden
-                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 text-xs font-semibold
-                           transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800]"
-                title="RIDE ON"
+              {/* 네이버 블로그 */}
+              <a
+                href="https://blog.naver.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="네이버 블로그 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="Naver Blog"
               >
-                RO
-              </span>
+                {/* simple 'b' mark */}
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="4" fill="currentColor" />
+                  <path d="M10 7h3.2a2.8 2.8 0 0 1 0 5.6H10V17H8V7h2zm0 2v3.6h3.2a1.8 1.8 0 1 0 0-3.6H10Z" fill="#111111"/>
+                </svg>
+              </a>
 
-              {[
-                { href: "https://blog.naver.com/", label: "Blog", text: "blog" },
-                { href: "https://www.instagram.com/", label: "Instagram", text: "ig" },
-                { href: "https://www.threads.net/", label: "Threads", text: "th" },
-                { href: "https://www.youtube.com/", label: "YouTube", text: "yt" },
-                { href: "https://pf.kakao.com/", label: "KakaoTalk", text: "k" },
-              ].map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${s.label} 새 창에서 열기`}
-                  className="
-                    inline-flex items-center justify-center size-10 rounded-full
-                    border border-neutral-700 text-neutral-300 text-xs font-semibold tracking-tight
-                    transition-colors duration-300
-                    hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800]
-                    focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50
-                  "
-                  title={s.label}
-                >
-                  {s.text}
-                </a>
-              ))}
+              {/* YouTube */}
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="유튜브 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="YouTube"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path d="M22 12c0-3- .5-4-1.1-4.6C20.2 6.6 18 6.5 12 6.5s-8.2.1-8.9.9C2.5 8 2 9 2 12s.5 4 1.1 4.6c.7.8 2.9.9 8.9.9s8.2-.1 8.9-.9C21.5 16 22 15 22 12Z" fill="currentColor"/>
+                  <path d="M10 9.8v4.4L15 12 10 9.8Z" fill="#111111"/>
+                </svg>
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="인스타그램 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="Instagram"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+                  <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+                </svg>
+              </a>
+
+              {/* Threads */}
+              <a
+                href="https://www.threads.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="쓰레드 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="Threads"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+                  <path d="M12 3c5 0 9 4 9 9s-4 9-9 9S3 17 3 12 7 3 12 3Z" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M8.5 12c0-2 1.6-3.5 3.6-3.5 1.8 0 3.4 1 3.6 3 .2 1.8-1.6 3-3.6 3h-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M12 9.5c-.9 0-1.6.7-1.6 1.5s.7 1.5 1.6 1.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </a>
+
+              {/* KakaoTalk */}
+              <a
+                href="https://pf.kakao.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="카카오톡 채널 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="KakaoTalk"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+                  <path d="M12 4.5c-4.4 0-8 2.7-8 6s3.6 6 8 6c.4 0 .8 0 1.2-.1L16 18l-.7-1.8C17.8 14.9 20 13 20 10.5c0-3.3-3.6-6-8-6Z" fill="currentColor"/>
+                </svg>
+              </a>
             </div>
 
-            {/* Middle: 정책 링크 */}
+            {/* 아래: 정책 + 카피 */}
             <div className="flex items-center gap-4 text-sm">
-              <Link href="/privacy" className="transition-colors duration-300 hover:text-[#FFB800]">
-                개인정보처리방침
-              </Link>
+              <Link href="/privacy" className="transition-colors duration-300 hover:text-[#FFB800]">개인정보처리방침</Link>
               <span className="text-neutral-700">|</span>
-              <Link href="/terms" className="transition-colors duration-300 hover:text-[#FFB800]">
-                이용약관
-              </Link>
+              <Link href="/terms" className="transition-colors duration-300 hover:text-[#FFB800]">이용약관</Link>
             </div>
-
-            {/* Bottom: 카피라이트 */}
             <p className="text-xs text-neutral-500">© {year} RIDE ON. All rights reserved.</p>
           </div>
         </div>
