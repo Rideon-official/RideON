@@ -73,7 +73,7 @@ export default function CoreServices() {
   return (
     <section id="services" className="relative bg-[#111111] overflow-hidden">
       {/* ✅ 히어로 섹션 */}
-      <div className="relative w-screen h-[900px] sm:h-[950px] lg:h-[1000px]">
+      <div className="relative w-screen h-[800px] sm:h-[950px] lg:h-[800px]">
         <Image
           src="/hero/core.png"
           alt="RIDE ON Core Background"
