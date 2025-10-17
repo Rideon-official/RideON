@@ -3,7 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import ConvergeToText from "../components/ConvergeToText";
 import HeroParticles from "../components/HeroParticles";
-import ContactSection from "../components/ContactSection"; // ✅ 추가
+import ContactSection from "../components/ContactSection";
+import CoreServices from "@/components/CoreServices"; // ✅ 추가
 
 export default function Home() {
   return (
@@ -84,145 +85,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Services (4카드) ===== */}
-      <section id="services" className="px-6 sm:px-10 lg:px-20 py-16">
-        <h2 className="text-center font-extrabold text-white text-3xl md:text-4xl tracking-tight">
-          핵심 서비스
-        </h2>
-
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* 1. 본사 운영지원 */}
-          <div className="group rounded-2xl bg-[#1A1A1A] border border-neutral-800 hover:bg-[#222] transition-all text-center">
-            <div className="h-1 w-full bg-[#FFB800]" />
-            <div className="p-6">
-              <div className="mb-3 text-3xl md:text-4xl leading-none select-none">
-                ⚙️
-              </div>
-              <h3 className="mt-1 font-bold tracking-tight text-white text-[22px] md:text-[24px]">
-                본사 운영지원
-              </h3>
-              <p className="mt-3 text-[16px] text-gray-300">
-                지사는 현장 운영에 집중, 본사는 시스템으로 지원.
-              </p>
-              <ul className="mt-3 space-y-1 text-[15px] text-gray-400 text-left">
-                <li>· 정산·입금·본사 소통 대행</li>
-                <li>· 채용/홍보 대행(구인공고·블로그)</li>
-                <li>· 주간 운영 리포트</li>
-              </ul>
-              <div className="mt-5 flex flex-wrap justify-center gap-2">
-                <Link
-                  href="/contact?type=branch"
-                  className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
-                >
-                  회사 소개
-                </Link>
-                <Link
-                  href="/contact?type=partner"
-                  className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
-                >
-                  합병 문의
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* 2. RIDE ON BIKE */}
-          <div className="group rounded-2xl bg-[#1A1A1A] border border-neutral-800 hover:bg-[#222] transition-all text-center">
-            <div className="h-1 w-full bg-[#FFB800]" />
-            <div className="p-6">
-              <div className="mb-3 text-3xl md:text-4xl leading-none select-none">
-                🛵
-              </div>
-              <h3 className="mt-1 font-bold tracking-tight text-white text-[22px] md:text-[24px]">
-                RIDE ON BIKE
-              </h3>
-              <p className="mt-3 text-[16px] text-gray-300">
-                렌트·리스·튜닝·정비·사고처리까지 원스톱.
-              </p>
-              <ul className="mt-3 space-y-1 text-[15px] text-gray-400 text-left">
-                <li>· 모든 렌트 리스 과정을 간편하게</li>
-                <li>· 정비부터 사고 관리까지 통합 지</li>
-                <li>· 센터 직영(강동)</li>
-              </ul>
-              <div className="mt-5 flex justify-center flex-wrap gap-2">
-                <Link
-                  href="/bike"
-                  className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
-                >
-                  렌트 리스 문의
-                </Link>
-                <Link
-                  href="/contact?type=partner"
-                  className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
-                >
-                  센터 안내
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* 3. 정산 솔루션 */}
-          <div className="group rounded-2xl bg-[#1A1A1A] border border-neutral-800 hover:bg-[#222] transition-all text-center">
-            <div className="h-1 w-full bg-[#FFB800]" />
-            <div className="p-6">
-              <div className="mb-3 text-3xl md:text-4xl leading-none select-none">
-                📊
-              </div>
-              <h3 className="mt-1 font-bold tracking-tight text-white text-[22px] md:text-[24px]">
-                정산 솔루션
-              </h3>
-              <p className="mt-3 text-[16px] text-gray-300">
-                타 지사도 사용할 수 있는 정산·리포트 플랫폼.
-              </p>
-              <ul className="mt-3 space-y-1 text-[15px] text-gray-400 text-left">
-                <li>· 실적/수수료 자동수집</li>
-                <li>· 익일/주정산 알림</li>
-                <li>· CSV·API 연동</li>
-              </ul>
-              <div className="mt-5 flex justify-center gap-2">
-                <Link
-                  href="/settlement"
-                  className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
-                >
-                  정산 서비스 보기
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* 4. 라이더 스토어 */}
-          <div className="group rounded-2xl bg-[#1A1A1A] border border-neutral-800 hover:bg-[#222] transition-all text-center">
-            <div className="h-1 w-full bg-[#FFB800]" />
-            <div className="p-6">
-              <div className="mb-3 text-3xl md:text-4xl leading-none select-none">
-                🧤
-              </div>
-              <h3 className="mt-1 font-bold tracking-tight text-white text-[22px] md:text-[24px]">
-                라이더 스토어
-              </h3>
-              <p className="mt-3 text-[16px] text-gray-300">
-                공식 의류/장비/소모품 — 합리적 가격에 바로 구매.
-              </p>
-              <ul className="mt-3 space-y-1 text-[15px] text-gray-400 text-left">
-                <li>· 티셔츠·바람막이·오더판·조끼</li>
-                <li>· 헬멧·장갑·소모품</li>
-                <li>· 라이더 용품 및 튜닝제품</li>
-              </ul>
-              <div className="mt-5 flex justify-center gap-2">
-                <Link
-                  href="/store"
-                  className="px-3 py-2 text-sm rounded-lg border border-neutral-600 text-gray-200 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 transition"
-                >
-                  스토어 둘러보기
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ===== Core Services (4카드) ===== */}
+      <CoreServices /> {/* ✅ 새 섹션 */}
 
       {/* ===== Contact Section ===== */}
-      <ContactSection /> {/* ✅ 추가 */}
+      <ContactSection /> {/* ✅ 하단 문의 섹션 */}
     </main>
   );
 }
