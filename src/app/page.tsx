@@ -18,7 +18,7 @@ export default function Home() {
         {/* 작은 지도 오버레이 (기울임 + 투명) */}
         <div className="pointer-events-none absolute inset-0">
           <Image
-            src="/map-core.png"
+            src="/main-map.png"
             alt=""
             width={900}
             height={1200}
