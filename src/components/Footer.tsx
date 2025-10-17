@@ -18,6 +18,7 @@ export default function Footer() {
       role="contentinfo"
       aria-label="RIDE ON 사이트 푸터"
     >
+      {/* ===== 상단 컨테이너: 메뉴판은 기존 폭 유지 ===== */}
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-20">
         {/* ============== A. 메뉴판 (기존 유지 + hover 옐로) ============== */}
         <div className="flex flex-col gap-3 items-start md:items-center md:flex-row md:justify-between py-8">
@@ -109,17 +110,20 @@ export default function Footer() {
 
         {/* ============== B. 구분선 ============== */}
         <div className="border-t border-neutral-800" />
+      </div>{/* <-- 여기서 상단 컨테이너 닫음 */}
 
+      {/* ===== 하단 C 블록만 더 넓게: 별도 큰 컨테이너 ===== */}
+      <div className="mx-auto max-w-screen-2xl px-6 sm:px-10 lg:px-20">
         {/* ============== C. 하단 메인: 좌 | 중 | 우 ============== */}
         <div
           className="
             py-10
             grid gap-y-10 gap-x-8
-            lg:[grid-template-columns:auto_1fr_auto]
+            lg:[grid-template-columns:minmax(220px,auto)_minmax(640px,1fr)_minmax(280px,auto)]
           "
         >
-          {/* 좌: 로고/워드마크 (세로 중앙 고정 느낌) */}
-          <div className="flex items-center lg:items-center gap-3">
+          {/* 좌: 로고/워드마크 */}
+          <div className="flex items-center gap-3">
             <span className="relative block size-12 rounded-xl overflow-hidden ring-1 ring-neutral-800 bg-black/30">
               <Image
                 src="/logo/rideon-mark.png"
@@ -140,7 +144,7 @@ export default function Footer() {
             {/* 좌 칼럼 */}
             <section aria-labelledby="biz-info-left">
               <h3 id="biz-info-left" className="text-sm font-semibold text-white mb-3">회사정보</h3>
-              <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+              <dl className="grid grid-cols-[minmax(128px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
                 <dt className="text-neutral-500">사업자명</dt>
                 <dd className="text-neutral-300">주식회사 패온</dd>
 
@@ -158,7 +162,7 @@ export default function Footer() {
             {/* 우 칼럼 */}
             <section aria-labelledby="biz-info-right">
               <h3 id="biz-info-right" className="text-sm font-semibold text-white mb-3">연락/신고</h3>
-              <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+              <dl className="grid grid-cols-[minmax(128px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
                 <dt className="text-neutral-500 whitespace-nowrap">통신판매업 신고번호</dt>
                 <dd className="text-neutral-300">제2025-서울강동-0001호</dd>
 
@@ -185,68 +189,66 @@ export default function Footer() {
 
           {/* 우: 상단 링크 4개 / 중간 원형 아이콘 / 하단 정책·카피 */}
           <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-4">
+            {/* 위: 링크 4개 (hover 시 원형 배경 등장) */}
             <nav aria-label="회사 주요 링크" className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-  {[
-    { href: "/about", label: "회사소개" },
-    { href: "/partnership", label: "제휴제안" },
-    { href: "/location", label: "찾아오시는길" },
-    { href: "/notice", label: "공지사항" },
-  ].map((l) => (
-    <Link
-      key={l.href}
-      href={l.href}
-      className="
-        relative inline-flex items-center justify-center
-        h-9 px-4
-        text-neutral-300
-        transition-colors duration-300
-        hover:text-[#111111]
-        before:content-[''] before:absolute before:inset-0
-        before:rounded-full before:bg-[#FFB800]
-        before:scale-0 before:opacity-0
-        before:transition before:duration-300
-        hover:before:scale-100 hover:before:opacity-100
-      "
-    >
-      <span className="relative z-10">{l.label}</span>
-    </Link>
-  ))}
-</nav>
+              {[
+                { href: "/about", label: "회사소개" },
+                { href: "/partnership", label: "제휴제안" },
+                { href: "/location", label: "찾아오시는길" },
+                { href: "/notice", label: "공지사항" },
+              ].map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="
+                    relative inline-flex items-center justify-center
+                    h-9 px-4
+                    text-neutral-300
+                    transition-colors duration-300
+                    hover:text-[#111111]
+                    before:content-[''] before:absolute before:inset-0
+                    before:rounded-full before:bg-[#FFB800]
+                    before:scale-0 before:opacity-0
+                    before:transition before:duration-300
+                    hover:before:scale-100 hover:before:opacity-100
+                  "
+                >
+                  <span className="relative z-10">{l.label}</span>
+                </Link>
+              ))}
+            </nav>
 
             {/* 중: 소셜 아이콘 원형 버튼 */}
-            <div className="flex items-center gap-3">
-{/* Naver Blog */}
-<a
-  href="https://blog.naver.com/"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="네이버 블로그 새 창에서 열기"
-  className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
-  title="Naver Blog"
->
-  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
-    <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="2"/>
-    {/* 대문자 N */}
-    <path d="M8 16V8l8 8V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-</a>
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Naver Blog */}
+              <a
+                href="https://blog.naver.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="네이버 블로그 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="Naver Blog"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+                  <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M8 16V8l8 8V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
 
-            {/* YouTube */}
-<a
-  href="https://www.youtube.com/"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="유튜브 새 창에서 열기"
-  className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
-  title="YouTube"
->
-  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-    {/* 캡슐형 플레이 박스 */}
-    <path d="M22 12c0-3-.5-4-1.1-4.6-.7-.8-2.9-.9-8.9-.9s-8.2.1-8.9.9C2.5 8 2 9 2 12s.5 4 1.1 4.6c.7.8 2.9.9 8.9.9s8.2-.1 8.9-.9C21.5 16 22 15 22 12Z" fill="currentColor"/>
-    {/* 플레이 삼각형 */}
-    <path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="currentColor"/>
-  </svg>
-</a>
+              {/* YouTube */}
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="유튜브 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="YouTube"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path d="M22 12c0-3-.5-4-1.1-4.6-.7-.8-2.9-.9-8.9-.9s-8.2.1-8.9.9C2.5 8 2 9 2 12s.5 4 1.1 4.6c.7.8 2.9.9 8.9.9s8.2-.1 8.9-.9C21.5 16 22 15 22 12Z" fill="currentColor"/>
+                  <path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="currentColor"/>
+                </svg>
+              </a>
 
               {/* Instagram */}
               <a
