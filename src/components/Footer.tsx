@@ -8,13 +8,18 @@ import { INQUIRY_MENU } from "@/config/links";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+
   const linkBase =
     "transition-colors duration-300 hover:text-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50 rounded";
 
   return (
-    <footer className="mt-20 bg-[#111111] text-neutral-400 tracking-tight border-t border-neutral-800">
+    <footer
+      className="mt-20 bg-[#111111] text-neutral-400 tracking-tight border-t border-neutral-800"
+      role="contentinfo"
+      aria-label="RIDE ON 사이트 푸터"
+    >
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-20">
-        {/* ===== 블록 A: 메뉴판(기존 유지 + hover 옐로) ===== */}
+        {/* ===== A. 메뉴판(기존 유지, hover=옐로) ===== */}
         <div className="flex flex-col gap-3 items-start md:items-center md:flex-row md:justify-between py-8">
           <h3 className="text-xl font-bold text-white">
             전국 운영/정산/렌트 — RIDE ON과 시작하세요
@@ -27,7 +32,7 @@ export default function Footer() {
               className="inline-flex items-center rounded-lg border border-[#FFB800] px-4 py-2 text-sm font-semibold text-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/40"
               aria-label="카카오톡 상담 열기(새 탭)"
             >
-              카톡 상담<span className="ml-1" aria-hidden>↗</span>
+              카톡 상담 <span className="ml-1" aria-hidden>↗</span>
             </a>
             <a
               href="tel:01000000000"
@@ -47,6 +52,7 @@ export default function Footer() {
               <li><Link href="/brand#partner" className={linkBase}>협업/제휴 문의</Link></li>
             </ul>
           </div>
+
           {/* BIKE */}
           <div>
             <p className="text-sm font-semibold text-white">BIKE</p>
@@ -55,6 +61,7 @@ export default function Footer() {
               <li><Link href="/bike#center" className={linkBase}>센터 안내</Link></li>
             </ul>
           </div>
+
           {/* LogitEats */}
           <div>
             <p className="text-sm font-semibold text-white">LogitEats</p>
@@ -64,23 +71,37 @@ export default function Footer() {
               <li><Link href="/logiteats#contact" className={linkBase}>도입 문의</Link></li>
             </ul>
           </div>
+
           {/* STORE */}
           <div>
             <p className="text-sm font-semibold text-white">STORE</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li><Link href="/store" className={linkBase}>모든 상품 보기</Link></li>
               <li>
-                <a href="https://smartstore.naver.com/rideon" target="_blank" rel="noopener noreferrer" className={linkBase} aria-label="네이버 스토어(새 탭)">
+                <a
+                  href="https://smartstore.naver.com/rideon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkBase}
+                  aria-label="네이버 스토어(새 탭)"
+                >
                   네이버 스토어 <span aria-hidden>↗</span>
                 </a>
               </li>
               <li>
-                <a href="https://store.coupang.com/rideon" target="_blank" rel="noopener noreferrer" className={linkBase} aria-label="쿠팡 스토어(새 탭)">
+                <a
+                  href="https://store.coupang.com/rideon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkBase}
+                  aria-label="쿠팡 스토어(새 탭)"
+                >
                   쿠팡 스토어 <span aria-hidden>↗</span>
                 </a>
               </li>
             </ul>
           </div>
+
           {/* NOTICE */}
           <div>
             <p className="text-sm font-semibold text-white">NOTICE</p>
@@ -89,6 +110,7 @@ export default function Footer() {
               <li><Link href="/notice#recruit" className={linkBase}>채용/알림</Link></li>
             </ul>
           </div>
+
           {/* 문의하기 */}
           <div>
             <p className="text-sm font-semibold text-white">문의하기</p>
@@ -102,15 +124,18 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 구분선 */}
+        {/* ===== B. 구분선 ===== */}
         <div className="border-t border-neutral-800" />
 
-        {/* ===== 블록 B: 데스크탑=세로 한 줄 / 모바일=3열 =====
-            - 기본(base~sm): 3열 그리드
-            - md 이상(태블릿/데스크탑): 1열 세로 스택 + 가운데 정렬
-        */}
-        <div className="py-6 grid grid-cols-3 md:grid-cols-1 gap-6 justify-items-center text-center md:text-center">
-          {/* 1) 로고 */}
+        {/* ===== C. 하단 메인 레이아웃: 좌|중|우 (Desktop 3열 / Mobile 1열) ===== */}
+        <div
+          className="
+            py-8
+            grid gap-y-8 gap-x-8
+            lg:[grid-template-columns:auto_1fr_auto]
+          "
+        >
+          {/* C-Left: 로고 */}
           <div className="flex items-center gap-3">
             <span className="relative block size-12 rounded-xl overflow-hidden ring-1 ring-neutral-800 bg-black/30">
               <Image
@@ -127,8 +152,8 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* 2) 사업자 정보 (문장 한 줄 개념, 줄바꿈 허용) */}
-          <div className="text-sm leading-relaxed">
+          {/* C-Center: 사업자 정보 — 데스크탑 한 줄, 작은 화면 줄바꿈 */}
+          <div className="text-sm text-neutral-400 tracking-tight lg:whitespace-nowrap whitespace-normal leading-relaxed">
             <span className="text-neutral-500">사업자명</span> : <span className="text-neutral-300">주식회사 패온</span>
             {" · "}
             <span className="text-neutral-500">상호명</span> : <span className="text-neutral-300">RIDE ON ( 라이드온 )</span>
@@ -152,63 +177,61 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* 3) SNS + 정책 */}
-          <div className="flex items-center gap-4">
-            <a
-              href="https://facebook.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook 새 창에서 열기"
-              className="inline-flex items-center justify-center size-8 rounded-full border border-neutral-700 text-neutral-400 hover:text-[#FFB800] hover:border-[#FFB800] transition-colors duration-300"
-              title="Facebook"
-            >
-              f
-            </a>
-            <a
-              href="https://blog.naver.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="블로그 새 창에서 열기"
-              className="inline-flex items-center justify-center h-8 px-3 rounded-full border border-neutral-700 text-neutral-400 hover:text-[#FFB800] hover:border-[#FFB800] transition-colors duration-300 text-xs font-semibold"
-              title="Blog"
-            >
-              blog
-            </a>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="인스타그램 새 창에서 열기"
-              className="inline-flex items-center justify-center size-8 rounded-full border border-neutral-700 text-neutral-400 hover:text-[#FFB800] hover:border-[#FFB800] transition-colors duration-300"
-              title="Instagram"
-            >
-              ig
-            </a>
-            <a
-              href="https://pf.kakao.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="카카오톡 채널 새 창에서 열기"
-              className="inline-flex items-center justify-center size-8 rounded-full border border-neutral-700 text-neutral-400 hover:text-[#FFB800] hover:border-[#FFB800] transition-colors duration-300"
-              title="KakaoTalk"
-            >
-              k
-            </a>
+          {/* C-Right: 3줄 스택(우측 정렬) */}
+          <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-3">
+            {/* Top: 소셜 원형 버튼(브랜드 옐로 인터랙션) */}
+            <div className="flex items-center gap-3">
+              {/* 선택: 작은 브랜드 마크 */}
+              <span
+                aria-hidden
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 text-xs font-semibold
+                           transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800]"
+                title="RIDE ON"
+              >
+                RO
+              </span>
 
-            <span className="text-neutral-700">|</span>
+              {[
+                { href: "https://blog.naver.com/", label: "Blog", text: "blog" },
+                { href: "https://www.instagram.com/", label: "Instagram", text: "ig" },
+                { href: "https://www.threads.net/", label: "Threads", text: "th" },
+                { href: "https://www.youtube.com/", label: "YouTube", text: "yt" },
+                { href: "https://pf.kakao.com/", label: "KakaoTalk", text: "k" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${s.label} 새 창에서 열기`}
+                  className="
+                    inline-flex items-center justify-center size-10 rounded-full
+                    border border-neutral-700 text-neutral-300 text-xs font-semibold tracking-tight
+                    transition-colors duration-300
+                    hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800]
+                    focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50
+                  "
+                  title={s.label}
+                >
+                  {s.text}
+                </a>
+              ))}
+            </div>
 
-            <Link href="/privacy" className="text-sm hover:text-[#FFB800] transition-colors duration-300">
-              개인정보처리방침
-            </Link>
-            <Link href="/terms" className="text-sm hover:text-[#FFB800] transition-colors duration-300">
-              이용약관
-            </Link>
+            {/* Middle: 정책 링크 */}
+            <div className="flex items-center gap-4 text-sm">
+              <Link href="/privacy" className="transition-colors duration-300 hover:text-[#FFB800]">
+                개인정보처리방침
+              </Link>
+              <span className="text-neutral-700">|</span>
+              <Link href="/terms" className="transition-colors duration-300 hover:text-[#FFB800]">
+                이용약관
+              </Link>
+            </div>
+
+            {/* Bottom: 카피라이트 */}
+            <p className="text-xs text-neutral-500">© {year} RIDE ON. All rights reserved.</p>
           </div>
-        </div>
-
-        {/* 최하단 저작권 */}
-        <div className="py-4 border-t border-neutral-800">
-          <p className="text-xs text-neutral-500 text-center">© {year} RIDE ON. All rights reserved.</p>
         </div>
       </div>
     </footer>
