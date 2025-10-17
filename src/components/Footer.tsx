@@ -1,201 +1,190 @@
+// src/components/Footer.tsx
 "use client";
 
-import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { INQUIRY_MENU } from "@/config/links";
 
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-white/10 bg-[#111111] text-gray-300">
-      <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20">
-        {/* Top: CTA */}
-        <div className="flex flex-col gap-3 items-start md:items-center md:flex-row md:justify-between py-8">
-          <h3 className="text-xl font-bold text-white">
-            전국 운영/정산/렌트 — RIDE ON과 시작하세요
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            <a
-              href="https://pf.kakao.com/_link"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg border border-[#FFB800] px-4 py-2 text-sm font-semibold text-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40"
-              aria-label="카카오톡 상담 열기(새 탭)"
+    <footer
+      className="w-full bg-[#111111] text-neutral-400 tracking-tight border-t border-neutral-800"
+      role="contentinfo"
+      aria-label="RIDE ON 사이트 푸터"
+    >
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-20 py-12 space-y-10">
+        {/* 상단 블록 */}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+          {/* 좌: 로고 */}
+          <div className="shrink-0">
+            <Link
+              href="/"
+              aria-label="RIDE ON 홈으로 이동"
+              className="inline-flex items-center gap-3 group"
             >
-              카톡 상담<span className="ml-1" aria-hidden>↗</span>
-            </a>
-            <a
-              href="tel:01000000000"
-              className="inline-flex items-center rounded-lg border border-neutral-600 px-4 py-2 text-sm font-semibold text-gray-200 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40"
-            >
-              전화 상담
-            </a>
+              <span className="relative block size-16 rounded-xl overflow-hidden ring-1 ring-neutral-800">
+                <Image
+                  src="/logo/rideon-mark.png"
+                  alt="RIDE ON 로고"
+                  fill
+                  className="object-contain p-2"
+                  priority
+                />
+              </span>
+              <span className="text-lg md:text-xl font-black text-white">RIDE ON</span>
+            </Link>
+          </div>
+
+          {/* 우: 링크 그룹 2열 */}
+          <div className="w-full md:max-w-2xl">
+            <nav aria-labelledby="footer-links-title">
+              <h2 id="footer-links-title" className="sr-only">
+                푸터 링크
+              </h2>
+              {/* 모바일: 2열 카드식, 데스크탑: 두 열 정렬 */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2">
+                {/* 그룹 1 */}
+                <ul aria-label="회사 정보" className="space-y-2 rounded-lg border border-neutral-800 p-4 md:p-5">
+                  <li>
+                    <Link
+                      href="/about"
+                      className="transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+                    >
+                      회사소개
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/partnership"
+                      className="transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+                    >
+                      제휴제안
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/location"
+                      className="transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+                    >
+                      찾아오시는길
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/notice"
+                      className="transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+                    >
+                      공지사항
+                    </Link>
+                  </li>
+                </ul>
+
+                {/* 그룹 2 */}
+                <ul aria-label="채널 & 미디어" className="space-y-2 rounded-lg border border-neutral-800 p-4 md:p-5">
+                  <li>
+                    <Link
+                      href="https://blog.naver.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+                      aria-label="블로그 새 창에서 열기"
+                    >
+                      블로그
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.instagram.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+                      aria-label="인스타그램 새 창에서 열기"
+                    >
+                      인스타그램
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.threads.net/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+                      aria-label="쓰레드 새 창에서 열기"
+                    >
+                      쓰레드
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.youtube.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+                      aria-label="유튜브 새 창에서 열기"
+                    >
+                      유튜브
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </nav>
           </div>
         </div>
 
-        {/* Middle: link columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 py-10">
-          {/* BRAND */}
-          <div>
-            <p className="text-sm font-semibold text-white">BRAND</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/brand#story"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  브랜드 스토리
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/brand#partner"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  협업/제휴 문의
-                </Link>
-              </li>
-            </ul>
+        {/* 구분선 */}
+        <div className="border-t border-neutral-800" />
+
+        {/* 중단 블록: 사업자 정보 */}
+        <section aria-labelledby="business-info-title" className="text-sm leading-relaxed">
+          <h2 id="business-info-title" className="sr-only">
+            사업자 정보
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
+            <p><span className="text-neutral-500">사업자명</span> : RIDE ON</p>
+            <p><span className="text-neutral-500">대표</span> : 한선규</p>
+            <p><span className="text-neutral-500">사업자등록번호</span> : 123-45-67890</p>
+            <p className="sm:col-span-1 lg:col-span-1">
+              <span className="text-neutral-500">통신판매업 신고번호</span> : 제2025-서울강동-0001호
+            </p>
+            <p className="sm:col-span-2 lg:col-span-1">
+              <span className="text-neutral-500">주소</span> : 서울특별시 강동구 ○○로 123
+            </p>
+            <p><span className="text-neutral-500">연락처</span> : 02-1234-5678</p>
+            <p className="sm:col-span-2 lg:col-span-1">
+              <span className="text-neutral-500">이메일</span> :{" "}
+              <Link
+                href="mailto:contact@ride-on.co.kr"
+                className="underline underline-offset-4 decoration-neutral-700 hover:decoration-[#FFB800] transition-colors duration-300 hover:text-[#FFB800] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60"
+              >
+                contact@ride-on.co.kr
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        {/* 구분선 */}
+        <div className="border-t border-neutral-800" />
+
+        {/* 하단 블록 */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link
+              href="/privacy"
+              className="text-sm transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+            >
+              개인정보처리방침
+            </Link>
+            <span className="hidden md:inline text-neutral-700">|</span>
+            <Link
+              href="/terms"
+              className="text-sm transition-colors duration-300 hover:text-[#FFB800] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/60 rounded"
+            >
+              이용약관
+            </Link>
           </div>
 
-          {/* BIKE */}
-          <div>
-            <p className="text-sm font-semibold text-white">BIKE</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/bike#rent"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  렌트/리스 신청
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/bike#center"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  센터 안내
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* LogitEats */}
-          <div>
-            <p className="text-sm font-semibold text-white">LogitEats</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/logiteats#intro"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  소개
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/logiteats#process"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  정산 절차/자동화
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/logiteats#contact"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  도입 문의
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* STORE */}
-          <div>
-            <p className="text-sm font-semibold text-white">STORE</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/store"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  모든 상품 보기
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://smartstore.naver.com/rideon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                  aria-label="네이버 스토어(새 탭)"
-                >
-                  네이버 스토어 <span aria-hidden>↗</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://store.coupang.com/rideon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                  aria-label="쿠팡 스토어(새 탭)"
-                >
-                  쿠팡 스토어 <span aria-hidden>↗</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* NOTICE */}
-          <div>
-            <p className="text-sm font-semibold text-white">NOTICE</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/notice#update"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  공지사항
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/notice#recruit"
-                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                >
-                  채용/알림
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* ✅ INQUIRY (공통 문의 메뉴) */}
-          <div>
-            <p className="text-sm font-semibold text-white">문의하기</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              {INQUIRY_MENU.map((item) => (
-                <li key={item.key}>
-                  <Link
-                    href={item.href}
-                    className="hover:text-white focus:outline-none focus:ring-2 focus:ring-[#FFB800]/40 rounded"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom: legal */}
-        <div className="border-t border-white/10 py-6 text-sm flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-gray-400">
-            © {new Date().getFullYear()} RIDE ON. All rights reserved.
-          </p>
-          <p className="text-gray-500">
-            사업자등록·통신판매 신고 정보는 공지사항에서 확인하세요.
+          <p className="text-xs text-neutral-500">
+            © 2025 RIDE ON. All rights reserved.
           </p>
         </div>
       </div>
