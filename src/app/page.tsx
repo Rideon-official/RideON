@@ -16,27 +16,26 @@ export default function Home() {
           {/* ▶ Left: 헤드라인 + 좌측만 배경 오버레이 */}
           <div className="relative z-10">
             {/* 배경 오버레이(글자 뒤, 좌측 컬럼 한정) */}
-            <div className="pointer-events-none absolute inset-0 -z-10">
-              <Image
-                src="/main-map.png"
-                alt=""
-                fill
-                priority
-                className={`
-                  object-contain       /* 왜곡 없이 */
-                  opacity-60           /* 은은하게 */
-                  mix-blend-screen     /* 글자 뒤에서 빛나도록 */
-                  /* 위치/크기 조정 */
-                  translate-y-[6%]     /* 아래로 내리기 */
-                  md:translate-y-[4%]
-                  lg:translate-y-[2%]
-                  scale-[1.25]         /* 전체적으로 키우기 */
-                  md:scale-[1.35]
-                  lg:scale-[1.45]
-                  origin-left          /* 좌측 기준으로 스케일 */
-                `}
-              />
-            </div>
+<div className="pointer-events-none absolute inset-0 -z-10">
+  <Image
+    src="/main-map.png"
+    alt=""
+    fill
+    priority
+    className={`
+      object-contain
+      opacity-60
+      mix-blend-screen
+      select-none
+      /* 👇 모바일은 현재 유지 */
+      translate-y-[8%] scale-[1.2]
+      /* 👇 데스크탑은 아래로 내리고 크게 확장 */
+      md:translate-y-[10%] md:scale-[1.45]
+      lg:translate-y-[12%] lg:scale-[1.65]
+      origin-left
+    `}
+  />
+</div>
 
             <h1 className="font-black tracking-tight text-[clamp(28px,5.6vw,52px)] leading-[1.05]">
               전국을 잇는 배달 인프라,{" "}
