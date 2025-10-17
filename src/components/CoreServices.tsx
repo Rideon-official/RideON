@@ -80,14 +80,15 @@ export default function CoreServices() {
         <div className="-ml-6 sm:-ml-10 lg:-ml-20 w-[calc(100%+1.5rem)] sm:w-[calc(100%+2.5rem)] lg:w-[calc(100%+5rem)]">
           <div className="relative h-[240px] sm:h-[280px] lg:h-[320px] rounded-2xl overflow-hidden ring-1 ring-neutral-800 shadow-[0_25px_80px_-35px_rgba(0,0,0,0.8)]">
             <Image
-              src="/hero/services-hero.jpg" // 원하는 이미지로 교체 가능
+              src="/hero/core.jpg"   // ← 여기에 저장한 파일 사용!
               alt=""
               fill
               className="object-cover"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/45" />
-            <div className="absolute bottom-0 left-0 p-6 sm:p-8">
+            {/* 왼쪽 끝까지 붙이기: 좌측 패딩 제거 */}
+            <div className="absolute bottom-0 left-0 pr-6 sm:pr-8">
               <h2 className="font-black tracking-tight text-[clamp(24px,4.6vw,48px)] leading-[1.02] text-white">
                 RIDE ON
                 <br />
@@ -98,7 +99,7 @@ export default function CoreServices() {
         </div>
       </div>
 
-      {/* 2) 카드 4개: 사진 아래로 살짝 겹치게 (-mt) / 옐로우 긴 라인 없음 */}
+      {/* 2) 카드 4개: 사진 아래로 살짝 겹치게 시작 */}
       <div className="relative -mt-12 sm:-mt-14 lg:-mt-16">
         <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
