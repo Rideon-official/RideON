@@ -8,14 +8,13 @@ import { INQUIRY_MENU } from "@/config/links";
 
 export default function Footer() {
   const year = new Date().getFullYear();
-
   const linkBase =
     "transition-colors duration-300 hover:text-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50 rounded";
 
   return (
     <footer className="mt-20 bg-[#111111] text-neutral-400 tracking-tight border-t border-neutral-800">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-20">
-        {/* ====== 블록 A: 메뉴판(기존 유지) ====== */}
+        {/* ===== 블록 A: 메뉴판(기존 유지 + hover 옐로) ===== */}
         <div className="flex flex-col gap-3 items-start md:items-center md:flex-row md:justify-between py-8">
           <h3 className="text-xl font-bold text-white">
             전국 운영/정산/렌트 — RIDE ON과 시작하세요
@@ -44,118 +43,59 @@ export default function Footer() {
           <div>
             <p className="text-sm font-semibold text-white">BRAND</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link href="/brand#story" className={linkBase}>
-                  브랜드 스토리
-                </Link>
-              </li>
-              <li>
-                <Link href="/brand#partner" className={linkBase}>
-                  협업/제휴 문의
-                </Link>
-              </li>
+              <li><Link href="/brand#story" className={linkBase}>브랜드 스토리</Link></li>
+              <li><Link href="/brand#partner" className={linkBase}>협업/제휴 문의</Link></li>
             </ul>
           </div>
-
           {/* BIKE */}
           <div>
             <p className="text-sm font-semibold text-white">BIKE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link href="/bike#rent" className={linkBase}>
-                  렌트/리스 신청
-                </Link>
-              </li>
-              <li>
-                <Link href="/bike#center" className={linkBase}>
-                  센터 안내
-                </Link>
-              </li>
+              <li><Link href="/bike#rent" className={linkBase}>렌트/리스 신청</Link></li>
+              <li><Link href="/bike#center" className={linkBase}>센터 안내</Link></li>
             </ul>
           </div>
-
           {/* LogitEats */}
           <div>
             <p className="text-sm font-semibold text-white">LogitEats</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link href="/logiteats#intro" className={linkBase}>
-                  소개
-                </Link>
-              </li>
-              <li>
-                <Link href="/logiteats#process" className={linkBase}>
-                  정산 절차/자동화
-                </Link>
-              </li>
-              <li>
-                <Link href="/logiteats#contact" className={linkBase}>
-                  도입 문의
-                </Link>
-              </li>
+              <li><Link href="/logiteats#intro" className={linkBase}>소개</Link></li>
+              <li><Link href="/logiteats#process" className={linkBase}>정산 절차/자동화</Link></li>
+              <li><Link href="/logiteats#contact" className={linkBase}>도입 문의</Link></li>
             </ul>
           </div>
-
           {/* STORE */}
           <div>
             <p className="text-sm font-semibold text-white">STORE</p>
             <ul className="mt-3 space-y-2 text-sm">
+              <li><Link href="/store" className={linkBase}>모든 상품 보기</Link></li>
               <li>
-                <Link href="/store" className={linkBase}>
-                  모든 상품 보기
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://smartstore.naver.com/rideon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkBase}
-                  aria-label="네이버 스토어(새 탭)"
-                >
+                <a href="https://smartstore.naver.com/rideon" target="_blank" rel="noopener noreferrer" className={linkBase} aria-label="네이버 스토어(새 탭)">
                   네이버 스토어 <span aria-hidden>↗</span>
                 </a>
               </li>
               <li>
-                <a
-                  href="https://store.coupang.com/rideon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkBase}
-                  aria-label="쿠팡 스토어(새 탭)"
-                >
+                <a href="https://store.coupang.com/rideon" target="_blank" rel="noopener noreferrer" className={linkBase} aria-label="쿠팡 스토어(새 탭)">
                   쿠팡 스토어 <span aria-hidden>↗</span>
                 </a>
               </li>
             </ul>
           </div>
-
           {/* NOTICE */}
           <div>
             <p className="text-sm font-semibold text-white">NOTICE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link href="/notice#update" className={linkBase}>
-                  공지사항
-                </Link>
-              </li>
-              <li>
-                <Link href="/notice#recruit" className={linkBase}>
-                  채용/알림
-                </Link>
-              </li>
+              <li><Link href="/notice#update" className={linkBase}>공지사항</Link></li>
+              <li><Link href="/notice#recruit" className={linkBase}>채용/알림</Link></li>
             </ul>
           </div>
-
           {/* 문의하기 */}
           <div>
             <p className="text-sm font-semibold text-white">문의하기</p>
             <ul className="mt-3 space-y-2 text-sm">
               {INQUIRY_MENU.map((item) => (
                 <li key={item.key}>
-                  <Link href={item.href} className={linkBase}>
-                    {item.label}
-                  </Link>
+                  <Link href={item.href} className={linkBase}>{item.label}</Link>
                 </li>
               ))}
             </ul>
@@ -165,17 +105,12 @@ export default function Footer() {
         {/* 구분선 */}
         <div className="border-t border-neutral-800" />
 
-        {/* ====== 블록 B: Legal Bar (PC 한 줄 / 모바일 3행) ====== */}
-        <div
-          className="
-            py-6
-            grid gap-6
-            sm:grid-cols-1
-            md:grid-cols-1
-            xl:[grid-template-columns:auto_1fr_auto] xl:items-center
-          "
-        >
-          {/* Left: 로고 + 워드마크 */}
+        {/* ===== 블록 B: 데스크탑=세로 한 줄 / 모바일=3열 =====
+            - 기본(base~sm): 3열 그리드
+            - md 이상(태블릿/데스크탑): 1열 세로 스택 + 가운데 정렬
+        */}
+        <div className="py-6 grid grid-cols-3 md:grid-cols-1 gap-6 justify-items-center text-center md:text-center">
+          {/* 1) 로고 */}
           <div className="flex items-center gap-3">
             <span className="relative block size-12 rounded-xl overflow-hidden ring-1 ring-neutral-800 bg-black/30">
               <Image
@@ -192,8 +127,8 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Center: 사업자 정보 (데스크탑 한 줄, 모바일 자동 줄바꿈) */}
-          <div className="text-sm leading-relaxed xl:leading-none xl:whitespace-nowrap xl:overflow-x-visible">
+          {/* 2) 사업자 정보 (문장 한 줄 개념, 줄바꿈 허용) */}
+          <div className="text-sm leading-relaxed">
             <span className="text-neutral-500">사업자명</span> : <span className="text-neutral-300">주식회사 패온</span>
             {" · "}
             <span className="text-neutral-500">상호명</span> : <span className="text-neutral-300">RIDE ON ( 라이드온 )</span>
@@ -202,8 +137,7 @@ export default function Footer() {
             {" · "}
             <span className="text-neutral-500">사업자등록번호</span> : <span className="text-neutral-300">896-86-02776</span>
             {" · "}
-            <span className="text-neutral-500">통신판매업 신고번호</span> :{" "}
-            <span className="text-neutral-300">제2025-서울강동-0001호</span>
+            <span className="text-neutral-500">통신판매업 신고번호</span> : <span className="text-neutral-300">제2025-서울강동-0001호</span>
             {" · "}
             <span className="text-neutral-500">주소</span> : <span className="text-neutral-300">서울특별시 강동구 천중로 176</span>
             {" · "}
@@ -218,9 +152,8 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Right: SNS 아이콘 + 정책 링크 (PC 한 줄 묶음) */}
-          <div className="flex items-center justify-start xl:justify-end gap-4">
-            {/* 아이콘 버튼들(모노톤, hover 시 노랑) */}
+          {/* 3) SNS + 정책 */}
+          <div className="flex items-center gap-4">
             <a
               href="https://facebook.com/"
               target="_blank"
@@ -262,26 +195,20 @@ export default function Footer() {
               k
             </a>
 
-            {/* 구분자 */}
-            <span className="hidden xl:inline text-neutral-700">|</span>
+            <span className="text-neutral-700">|</span>
 
-            {/* 정책 링크 */}
-            <div className="flex items-center gap-4">
-              <Link href="/privacy" className="text-sm hover:text-[#FFB800] transition-colors duration-300">
-                개인정보처리방침
-              </Link>
-              <Link href="/terms" className="text-sm hover:text-[#FFB800] transition-colors duration-300">
-                이용약관
-              </Link>
-            </div>
+            <Link href="/privacy" className="text-sm hover:text-[#FFB800] transition-colors duration-300">
+              개인정보처리방침
+            </Link>
+            <Link href="/terms" className="text-sm hover:text-[#FFB800] transition-colors duration-300">
+              이용약관
+            </Link>
           </div>
         </div>
 
-        {/* 최하단 저작권(모바일/중소 해상도에서만 표기 여백 맞춤용) */}
+        {/* 최하단 저작권 */}
         <div className="py-4 border-t border-neutral-800">
-          <p className="text-xs text-neutral-500 text-center">
-            © {year} RIDE ON. All rights reserved.
-          </p>
+          <p className="text-xs text-neutral-500 text-center">© {year} RIDE ON. All rights reserved.</p>
         </div>
       </div>
     </footer>
