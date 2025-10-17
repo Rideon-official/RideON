@@ -5,6 +5,7 @@ import ConvergeToText from "../components/ConvergeToText";
 import HeroParticles from "../components/HeroParticles";
 import ContactSection from "../components/ContactSection";
 import CoreServices from "@/components/CoreServices"; // ✅ 추가
+import HeroServices from "@/components/HeroServices";
 
 export default function Home() {
   return (
