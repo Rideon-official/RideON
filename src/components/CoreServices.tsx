@@ -71,83 +71,78 @@ const cards: Card[] = [
 
 export default function CoreServices() {
   return (
-    <section id="services" className="relative bg-[#111111]">
-      {/* ============ HERO 이미지: 왼쪽 끝부터 꽉 차게 + 텍스트 중앙 정렬 ============ */}
-      <div className="relative w-screen overflow-hidden">
-        {/* 높이: 데스크탑에서 시원하게 보이도록 크게 */}
-        <div className="relative h-[560px] sm:h-[820px] lg:h-[1000px]">
-          <Image
-            src="/hero/core.png"      // public/hero/core.png
-            alt="RIDE ON Core Background"
-            fill
-            className="object-cover object-left"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/60" />
+    <section id="services" className="relative bg-[#111111] overflow-hidden">
+      {/* ✅ 히어로 섹션 */}
+      <div className="relative w-screen h-[900px] sm:h-[950px] lg:h-[1000px]">
+        <Image
+          src="/hero/core.png"
+          alt="RIDE ON Core Background"
+          fill
+          className="object-cover object-left"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/60" />
 
-          {/* 텍스트: 세로 중앙 정렬 (왼쪽 고정) */}
-          <div className="absolute inset-0 flex items-center">
-            <div className="px-6 sm:px-10 lg:px-20">
-              <h2 className="font-black tracking-tight text-white leading-[1.02] text-[clamp(36px,7vw,96px)]">
-                RIDE ON
-                <br />
-                <span className="text-white/90">핵심 서비스</span>
-              </h2>
-            </div>
+        {/* 텍스트 중앙보다 약간 아래 */}
+        <div className="absolute inset-0 flex items-end pb-[28%]">
+          <div className="px-6 sm:px-10 lg:px-20">
+            <h2 className="font-black tracking-tight text-white leading-[1.02] text-[clamp(38px,7vw,92px)]">
+              RIDE ON
+              <br />
+              <span className="text-white/90">핵심 서비스</span>
+            </h2>
           </div>
         </div>
       </div>
 
-      {/* ============ 카드: 사진 안쪽으로 겹치게(아랫여백 보일 정도) ============ */}
-      <div className="relative -mt-28 sm:-mt-40 lg:-mt-56 z-10">
-        <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-            {cards.map((c, i) => (
-              <article
-                key={i}
-                className={[
-                  "group relative isolate text-neutral-200",
-                  c.bg,
-                  i === 0 ? "rounded-t-2xl sm:rounded-tr-none lg:rounded-l-2xl" : "",
-                  i === cards.length - 1 ? "rounded-b-2xl sm:rounded-bl-none lg:rounded-r-2xl" : "",
-                ].join(" ")}
-              >
-                {/* 외곽선 + 상단 포인트 바 */}
-                <div className="absolute inset-0 ring-1 ring-neutral-800/70 transition-colors duration-300 group-hover:ring-[#FFB800]/60" />
-                <div className="absolute left-6 right-6 top-0 h-[5px] rounded-b-full bg-[#FFB800] scale-x-75 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+      {/* ✅ 카드 4개: 사진 안쪽으로 겹치기 */}
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-[12%] w-full max-w-screen-xl px-6 sm:px-10 lg:px-20 z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          {cards.map((c, i) => (
+            <article
+              key={i}
+              className={[
+                "group relative isolate text-neutral-200",
+                c.bg,
+                i === 0 ? "rounded-t-2xl sm:rounded-tr-none lg:rounded-l-2xl" : "",
+                i === cards.length - 1 ? "rounded-b-2xl sm:rounded-bl-none lg:rounded-r-2xl" : "",
+              ].join(" ")}
+            >
+              {/* 테두리 + hover 포인트 */}
+              <div className="absolute inset-0 ring-1 ring-neutral-800/70 transition-colors duration-300 group-hover:ring-[#FFB800]/60" />
+              <div className="absolute left-6 right-6 top-0 h-[5px] rounded-b-full bg-[#FFB800] scale-x-75 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
 
-                <div className="relative p-8 lg:p-10 flex min-h-[260px] flex-col gap-4">
-                  <div className="flex items-center justify-between">
-                    <p className="text-xs uppercase tracking-wider text-neutral-400">{c.eyebrow}</p>
-                    <div className="text-neutral-300 group-hover:text-[#FFB800] transition-colors duration-300">
-                      {c.icon}
-                    </div>
-                  </div>
-
-                  <h3 className="text-[20px] sm:text-[22px] font-extrabold tracking-tight text-white">
-                    {c.title}
-                  </h3>
-                  <p className="text-[15px] leading-relaxed text-neutral-400">{c.desc}</p>
-
-                  <div className="mt-auto">
-                    <Link
-                      href={c.href}
-                      className="
-                        inline-flex items-center justify-center rounded-full
-                        border border-neutral-500 px-4 py-2 text-sm font-semibold
-                        text-neutral-200
-                        transition-all duration-300
-                        hover:text-[#111111] hover:bg-[#FFB800] hover:border-[#FFB800]
-                        focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50
-                      "
-                    >
-                      자세히 보기
-                    </Link>
+              <div className="relative p-8 lg:p-10 flex min-h-[260px] flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs uppercase tracking-wider text-neutral-400">{c.eyebrow}</p>
+                  <div className="text-neutral-300 group-hover:text-[#FFB800] transition-colors duration-300">
+                    {c.icon}
                   </div>
                 </div>
-              </article>
-            ))}
-          </div>
+
+                <h3 className="text-[20px] sm:text-[22px] font-extrabold tracking-tight text-white">
+                  {c.title}
+                </h3>
+                <p className="text-[15px] leading-relaxed text-neutral-400">{c.desc}</p>
+
+                <div className="mt-auto">
+                  <Link
+                    href={c.href}
+                    className="
+                      inline-flex items-center justify-center rounded-full
+                      border border-neutral-500 px-4 py-2 text-sm font-semibold
+                      text-neutral-200
+                      transition-all duration-300
+                      hover:text-[#111111] hover:bg-[#FFB800] hover:border-[#FFB800]
+                      focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50
+                    "
+                  >
+                    자세히 보기
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
