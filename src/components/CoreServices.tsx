@@ -104,7 +104,7 @@ export default function CoreServices() {
             <h2 className="font-black tracking-tight text-white leading-[1.03] text-[clamp(44px,6.2vw,86px)]">
               RIDE ON
               <br />
-              <span className="text-white/90">핵심 서비스</span>
+              <span className="text-white/90 text-[clamp(28px,4vw,52px)]">핵심 서비스</span>
             </h2>
           </div>
         </div>
