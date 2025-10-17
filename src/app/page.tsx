@@ -23,7 +23,7 @@ export default function Home() {
     fill
     priority
     className={`
-      object-contain object-[20%_center]
+      object-contain object-[35%_center]
       opacity-60
       mix-blend-screen
       select-none
