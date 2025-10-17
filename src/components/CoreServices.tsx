@@ -94,7 +94,7 @@ export default function CoreServices() {
       </div>
 
       {/* 카드: 사진 밑에 겹쳐지게 */}
-      <div className="relative -mt-62 sm:-mt-14 lg:-mt-16">
+      <div className="relative -mt-82 sm:-mt-14 lg:-mt-16">
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {cards.map((c, i) => (
