@@ -7,7 +7,7 @@ import React from "react";
 type Card = {
   title: string;
   eyebrow: string;
-  desc: string;
+  desc: React.ReactNode; // ← 문자열 대신 노드로 변경
   href: string;
   icon: React.ReactNode;
   bg: string;
@@ -17,7 +17,17 @@ const cards: Card[] = [
   {
     eyebrow: "HQ SUPPORT",
     title: "본사 운영지원",
-    desc: "지사는 현장 운영에 집중, 본사는 시스템으로 지원.",
+    desc: (
+      <>
+        {/* 모바일: 한 줄 */}
+        <span className="md:hidden">지사는 현장 운영에 집중, 본사는 시스템으로 지원.</span>
+        {/* 데스크톱/태블릿: 두 줄 */}
+        <span className="hidden md:inline">
+          지사는 현장 운영에 집중,<br className="hidden md:block" />
+          본사는 시스템으로 지원.
+        </span>
+      </>
+    ),
     href: "/about",
     bg: "bg-[#171717]",
     icon: (
@@ -30,7 +40,15 @@ const cards: Card[] = [
   {
     eyebrow: "RIDE ON BIKE",
     title: "RIDE ON BIKE",
-    desc: "렌트·리스·튜닝·정비·사고 처리까지 원스톱.",
+    desc: (
+      <>
+        <span className="md:hidden">렌트·리스·튜닝·정비·사고 처리까지 원스톱.</span>
+        <span className="hidden md:inline">
+          렌트·리스·튜닝·정비·사고 처리<br className="hidden md:block" />
+          까지 원스톱.
+        </span>
+      </>
+    ),
     href: "/bike#rent",
     bg: "bg-[#141414]",
     icon: (
@@ -44,7 +62,15 @@ const cards: Card[] = [
   {
     eyebrow: "LOGITEATS",
     title: "정산 솔루션",
-    desc: "타 지사도 사용할 수 있는 정산·리포트 플랫폼.",
+    desc: (
+      <>
+        <span className="md:hidden">타 지사도 사용할 수 있는 정산·리포트 플랫폼.</span>
+        <span className="hidden md:inline">
+          타 지사도 사용할 수 있는 <br className="hidden md:block" />
+          정산·리포트 플랫폼.
+        </span>
+      </>
+    ),
     href: "/logiteats#intro",
     bg: "bg-[#151515]",
     icon: (
@@ -57,7 +83,15 @@ const cards: Card[] = [
   {
     eyebrow: "RIDER STORE",
     title: "라이더 스토어",
-    desc: "공식 의류/장비/소모품 — 합리적 가격에 바로 구매.",
+    desc: (
+      <>
+        <span className="md:hidden">공식 의류/장비/소모품 — 합리적 가격에 바로 구매.</span>
+        <span className="hidden md:inline">
+          공식 의류/장비/소모품 <br className="hidden md:block" />
+          — 합리적 가격에 바로 구매.
+        </span>
+      </>
+    ),
     href: "/store",
     bg: "bg-[#121212]",
     icon: (
@@ -96,14 +130,15 @@ export default function CoreServices() {
         <div className="hidden md:flex absolute inset-0 items-end">
           <div
             className="
-              pb-[22%]      /* 더 아래 */
-              md:pl-24 lg:pl-40  /* 더 오른쪽 */
-              translate-x-[4%]   /* 살짝 우측 오프셋 */
+              pb-[22%]          /* 더 아래 */
+              md:pl-24 lg:pl-40 /* 더 오른쪽 */
+              translate-x-[4%]  /* 살짝 우측 오프셋 */
             "
           >
             <h2 className="font-black tracking-tight text-white leading-[1.03] text-[clamp(44px,6.2vw,86px)]">
               RIDE ON
               <br />
+              {/* 핵심 서비스만 더 작게 */}
               <span className="text-white/90 text-[clamp(28px,4vw,52px)]">핵심 서비스</span>
             </h2>
           </div>
@@ -119,7 +154,7 @@ export default function CoreServices() {
         </div>
       </div>
 
-      {/* ✴ 모바일/태블릿: 카드 4개는 히어로 아래에 표시(이미지 가리지 않음) */}
+      {/* ✴ 모바일/태블릿: 카드 4개는 히어로 아래(이미지 가리지 않음) */}
       <div className="md:px-8 lg:px-20 px-6 pt-6 md:pt-10 lg:hidden">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6">
           {cards.map((c, i) => (
