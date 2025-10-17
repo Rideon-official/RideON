@@ -1,11 +1,9 @@
-// src/components/CoreServices.tsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-/* ===== 카드 데이터 (그래파이트 톤 + 옐로우 포인트) ===== */
 type Card = {
   title: string;
   eyebrow: string;
@@ -74,34 +72,30 @@ const cards: Card[] = [
 export default function CoreServices() {
   return (
     <section id="services" className="relative bg-[#111111]">
-      {/* 1) 사진 히어로: 왼쪽은 풀블리드, 오른쪽은 컨테이너 경계에서 컷 */}
-      <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20">
-        {/* 왼쪽으로 당기고 폭 보정해서 좌만 풀블리드 */}
-        <div className="-ml-6 sm:-ml-10 lg:-ml-20 w-[calc(100%+1.5rem)] sm:w-[calc(100%+2.5rem)] lg:w-[calc(100%+5rem)]">
-          <div className="relative h-[240px] sm:h-[280px] lg:h-[320px] rounded-2xl overflow-hidden ring-1 ring-neutral-800 shadow-[0_25px_80px_-35px_rgba(0,0,0,0.8)]">
-            <Image
-              src="/hero/core.jpg"   // ← 여기에 저장한 파일 사용!
-              alt=""
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/45" />
-            {/* 왼쪽 끝까지 붙이기: 좌측 패딩 제거 */}
-            <div className="absolute bottom-0 left-0 pr-6 sm:pr-8">
-              <h2 className="font-black tracking-tight text-[clamp(24px,4.6vw,48px)] leading-[1.02] text-white">
-                RIDE ON
-                <br />
-                <span className="text-white/90">핵심 서비스</span>
-              </h2>
-            </div>
+      {/* 사진: 왼쪽 끝부터 꽉 차게 */}
+      <div className="relative w-screen overflow-hidden">
+        <div className="relative h-[260px] sm:h-[300px] lg:h-[340px]">
+          <Image
+            src="/hero/core.png"  //
+            alt="RIDE ON Core Background"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/50" />
+          <div className="absolute bottom-0 left-0 px-6 sm:px-10 lg:px-20 pb-6">
+            <h2 className="font-black tracking-tight text-[clamp(24px,4.6vw,48px)] leading-[1.02] text-white">
+              RIDE ON
+              <br />
+              <span className="text-white/90">핵심 서비스</span>
+            </h2>
           </div>
         </div>
       </div>
 
-      {/* 2) 카드 4개: 사진 아래로 살짝 겹치게 시작 */}
+      {/* 카드: 사진 밑에 겹쳐지게 */}
       <div className="relative -mt-12 sm:-mt-14 lg:-mt-16">
-        <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20">
+        <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {cards.map((c, i) => (
               <article
@@ -113,9 +107,7 @@ export default function CoreServices() {
                   i === cards.length - 1 ? "rounded-b-2xl sm:rounded-bl-none lg:rounded-r-2xl" : "",
                 ].join(" ")}
               >
-                {/* 얇은 외곽선 + hover 시 옐로 강조 */}
                 <div className="absolute inset-0 ring-1 ring-neutral-800/70 transition-colors duration-300 group-hover:ring-[#FFB800]/60" />
-                {/* 상단 포인트 바 (카드 개별) */}
                 <div className="absolute left-6 right-6 top-0 h-[5px] rounded-b-full bg-[#FFB800] scale-x-75 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
 
                 <div className="relative p-8 lg:p-10 flex min-h-[260px] flex-col gap-4">
@@ -142,7 +134,6 @@ export default function CoreServices() {
                         hover:text-[#111111] hover:bg-[#FFB800] hover:border-[#FFB800]
                         focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50
                       "
-                      aria-label={`${c.title} 자세히 보기`}
                     >
                       자세히 보기
                     </Link>
