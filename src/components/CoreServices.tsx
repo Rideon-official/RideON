@@ -83,7 +83,7 @@ export default function CoreServices() {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/50" />
-          <div className="absolute bottom-0 left-0 px-6 sm:px-10 lg:px-20 pb-6">
+          <div className="absolute bottom-500 left-0 px-6 sm:px-10 lg:px-20 pb-6">
             <h2 className="font-black tracking-tight text-[clamp(24px,4.6vw,48px)] leading-[1.02] text-white">
               RIDE ON
               <br />
@@ -94,7 +94,7 @@ export default function CoreServices() {
       </div>
 
       {/* 카드: 사진 밑에 겹쳐지게 */}
-      <div className="relative -mt-12 sm:-mt-14 lg:-mt-16">
+      <div className="relative -mt-62 sm:-mt-14 lg:-mt-16">
         <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {cards.map((c, i) => (
