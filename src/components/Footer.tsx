@@ -152,30 +152,48 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* C-Center: 사업자 정보 — 데스크탑 한 줄, 작은 화면 줄바꿈 */}
-          <div className="text-sm text-neutral-400 tracking-tight lg:whitespace-nowrap whitespace-normal leading-relaxed">
-            <span className="text-neutral-500">사업자명</span> : <span className="text-neutral-300">주식회사 패온</span>
-            {" · "}
-            <span className="text-neutral-500">상호명</span> : <span className="text-neutral-300">RIDE ON ( 라이드온 )</span>
-            {" · "}
-            <span className="text-neutral-500">대표</span> : <span className="text-neutral-300">최수호</span>
-            {" · "}
-            <span className="text-neutral-500">사업자등록번호</span> : <span className="text-neutral-300">896-86-02776</span>
-            {" · "}
-            <span className="text-neutral-500">통신판매업 신고번호</span> : <span className="text-neutral-300">제2025-서울강동-0001호</span>
-            {" · "}
-            <span className="text-neutral-500">주소</span> : <span className="text-neutral-300">서울특별시 강동구 천중로 176</span>
-            {" · "}
-            <span className="text-neutral-500">연락처</span> : <span className="text-neutral-300">010-1234-5678</span>
-            {" · "}
-            <span className="text-neutral-500">이메일</span> :{" "}
-            <Link
-              href="mailto:contact@ride-on.co.kr"
-              className="underline underline-offset-4 decoration-neutral-700 hover:decoration-[#FFB800] hover:text-[#FFB800] transition-colors duration-300 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
-            >
-              contact@ride-on.co.kr
-            </Link>
-          </div>
+         {/* C-Center: 사업자 정보 — 항목별 줄바꿈 리스트 */}
+<section aria-labelledby="business-info-title" className="text-sm">
+  <h2 id="business-info-title" className="sr-only">사업자 정보</h2>
+
+  {/* 라벨/값 2열 그리드, 각 항목은 '한 줄'로 내려쓰기 */}
+  <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-neutral-400 tracking-tight">
+    <dt className="text-neutral-500">사업자명</dt>
+    <dd className="text-neutral-300">주식회사 패온</dd>
+
+    <dt className="text-neutral-500">상호명</dt>
+    <dd className="text-neutral-300">RIDE ON ( 라이드온 )</dd>
+
+    <dt className="text-neutral-500">대표</dt>
+    <dd className="text-neutral-300">최수호</dd>
+
+    <dt className="text-neutral-500">사업자등록번호</dt>
+    <dd className="text-neutral-300">896-86-02776</dd>
+
+    <dt className="text-neutral-500 whitespace-nowrap">통신판매업 신고번호</dt>
+    <dd className="text-neutral-300">제2025-서울강동-0001호</dd>
+
+    <dt className="text-neutral-500">주소</dt>
+    <dd className="text-neutral-300 break-words">
+      서울특별시 강동구 천중로 176
+    </dd>
+
+    <dt className="text-neutral-500">연락처</dt>
+    <dd className="text-neutral-300">010-1234-5678</dd>
+
+    <dt className="text-neutral-500">이메일</dt>
+    <dd>
+      <Link
+        href="mailto:contact@ride-on.co.kr"
+        className="text-neutral-300 underline underline-offset-4 decoration-neutral-700
+                   transition-colors duration-300 hover:text-[#FFB800] hover:decoration-[#FFB800]
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50 rounded"
+      >
+        contact@ride-on.co.kr
+      </Link>
+    </dd>
+  </dl>
+</section>
 
           {/* C-Right: 3줄 스택(우측 정렬) */}
           <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-3">
