@@ -15,11 +15,11 @@ export default function Home() {
         id="hero"
         className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24 noise"
       >
-{/* 🌌 배경 효과 제거 — 완전한 Graphite Core 톤 */}
-<div
-  className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#111111] to-[#1A1A1A]"
-  aria-hidden="true"
-></div>
+        {/* 🌌 배경 효과 제거 — 완전한 Graphite Core 톤 */}
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#111111] to-[#1A1A1A]"
+          aria-hidden="true"
+        ></div>
 
         <div className="relative mx-auto max-w-7xl px-4 grid lg:grid-cols-12 gap-10 items-center">
           {/* 왼쪽 텍스트 */}
@@ -32,12 +32,12 @@ export default function Home() {
             </h1>
 
             <p className="mt-4 text-gray-300 text-base sm:text-lg">
-              쿠팡·배민 B2B 운영 네트워크 1위 · 전국 25개 지부
+              쿠팡·배민플러스 공식 파트너 네트워크 — 전국 25개 지부가 함께 움직입니다.
             </p>
 
             {/* KPI strip */}
             <div className="mt-6 flex flex-wrap gap-2">
-              {["25개 지부", "월 ○○만 주문", "출고율 ○○%"].map((k) => (
+              {["25개 지부", "월 100만 건 처리", "출고율 99.2%"].map((k) => (
                 <span
                   key={k}
                   className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white"
@@ -70,11 +70,11 @@ export default function Home() {
                 alt="RIDE ON Network Map"
                 fill
                 priority
-                className="object-cover opacity-70"
+                className="object-cover opacity-80"
               />
 
               {/* 로고 오버레이 (지도 위에 겹침) */}
-              <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
                 <Image
                   src="/rideon-logo.png"
                   alt="RIDE ON Logo"
