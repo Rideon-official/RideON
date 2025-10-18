@@ -74,8 +74,7 @@ export default function Starfield({
       last = t;
 
       // 페이드(잔상)로 은은한 트레일
-      ctx.fillStyle = "rgba(17,17,17,0.35)"; // #111111
-      ctx.fillRect(0, 0, w, h);
+      ctx.clearRect(0, 0, w, h);
 
       // 별(트윙클)
       for (const s of stars) {
