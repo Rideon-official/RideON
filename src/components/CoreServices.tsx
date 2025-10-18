@@ -91,57 +91,67 @@ export default function CoreServices() {
           </p>
         </header>
 
-        <div className="grid gap-4 sm:gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {cards.map((c, i) => (
-            <CardItem key={i} c={c} />
-          ))}
-        </div>
+        {/* 카드 그리드 */}
+<div className="grid auto-rows-fr gap-5 lg:gap-6 sm:grid-cols-2 xl:grid-cols-4">
+  {cards.map((c, i) => (
+    <CardItem key={i} c={c} />
+  ))}
+</div>
       </div>
     </section>
   );
 }
 
-/* 재사용 카드 컴포넌트 (Hover 애니메이션 추가 버전) */
-function CardItem({ c, i }: { c: Card; i: number }) {
+/* 재사용 카드 컴포넌트 (컴팩트 + 포인트바 + 부드러운 hover) */
+function CardItem({ c }: { c: Card }) {
   return (
     <article
-  className={`
-    group relative isolate rounded-2xl overflow-hidden border border-white/10 
-    bg-white/5 p-8 lg:p-10 text-white transition-all duration-300
-    hover:bg-[#FFB800] hover:text-[#111111] hover:scale-[1.03]
-    hover:shadow-[0_0_24px_rgba(255,184,0,0.35)]
-  `}
->
-  <div className="flex items-center justify-between mb-2">  {/* 👈 여백 조정 */}
-    <p className="text-xs uppercase tracking-wider text-white/60 group-hover:text-[#111111]/70">
-      {c.eyebrow}
-    </p>
-    <div className="transition-colors duration-300 group-hover:text-[#111111]">
-      {c.icon}
-    </div>
-  </div>
-
-  <h3 className="text-[19px] sm:text-[21px] font-extrabold tracking-tight mt-2">
-    {c.title}
-  </h3>
-  <p className="mt-3 text-[15px] leading-relaxed text-neutral-400 group-hover:text-[#111111]/80">
-    {c.desc}
-  </p>
-
-  <div className="mt-8">  {/* 👈 버튼 아래 충분히 띄움 */}
-    <Link
-      href={c.href}
-      className="
-        inline-flex items-center justify-center rounded-full
-        border border-white/20 px-4 py-2 text-sm font-semibold
-        text-neutral-200 transition-all duration-300
-        group-hover:border-[#111111]
-        group-hover:bg-[#111111] group-hover:text-[#FFB800]
-      "
+      className={`
+        group relative isolate rounded-2xl overflow-hidden border border-white/10 
+        bg-white/5 p-7 lg:p-8 text-white transition-all duration-300
+        hover:bg-[#FFB800] hover:text-[#111111] hover:scale-[1.02]
+        hover:shadow-[0_8px_28px_rgba(255,184,0,0.28)]
+        min-h-[230px]
+      `}
     >
-      자세히 보기
-    </Link>
-  </div>
-</article>
+      {/* 상단 얇은 포인트 바 (호버 시 블랙으로 반전) */}
+      <div className="absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/10 group-hover:bg-[#111111]/50" />
+
+      {/* 헤더: 라벨 + 아이콘 */}
+      <div className="flex items-center justify-between mb-1">
+        <p className="text-xs uppercase tracking-wider text-white/55 group-hover:text-[#111111]/70">
+          {c.eyebrow}
+        </p>
+        <div className="text-white/85 group-hover:text-[#111111] transition-colors duration-300">
+          {/* 아이콘 살짝 키움 */}
+          <div className="scale-110">{c.icon}</div>
+        </div>
+      </div>
+
+      {/* 제목/본문: 밀도 높이고 간격 균형 */}
+      <h3 className="text-[20px] sm:text-[22px] font-extrabold tracking-tight mt-2">
+        {c.title}
+      </h3>
+      <p className="mt-3 text-[15px] leading-relaxed text-white/75 group-hover:text-[#111111]/80">
+        {c.desc}
+      </p>
+
+      {/* CTA: 아래 여백 충분히 줘서 안정감 */}
+      <div className="mt-7">
+        <Link
+          href={c.href}
+          className="
+            inline-flex items-center justify-center rounded-full
+            border border-white/20 px-4 py-2 text-sm font-semibold
+            text-white/95 transition-all duration-300
+            group-hover:border-[#111111]
+            group-hover:bg-[#111111] group-hover:text-[#FFB800]
+          "
+          aria-label={`${c.title} 자세히 보기`}
+        >
+          자세히 보기
+        </Link>
+      </div>
+    </article>
   );
 }
