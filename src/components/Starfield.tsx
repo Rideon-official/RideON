@@ -139,13 +139,8 @@ export default function Starfield({
 
   return (
     <canvas
-      ref={ref}
-      className="
-        absolute inset-0
-        pointer-events-none
-        [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0.9),rgba(0,0,0,0.2),rgba(0,0,0,1))]
-      "
-      aria-hidden
-    />
+  ref={ref}
+  className="absolute inset-0 z-[2] pointer-events-none [mix-blend-mode:screen]"
+/>
   );
 }
