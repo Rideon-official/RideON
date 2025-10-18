@@ -1,7 +1,7 @@
 // src/app/inquiry/page.tsx
 import type { Metadata } from "next";
 import InquiryPage from "../../components/InquiryPage";
-import HashTabSync from "./HashTabSync"; // 해시↔탭 동기화 전용
+import HashTabSync from "./HashTabSync";
 
 export const metadata: Metadata = {
   title: "문의하기 | RIDE ON",
