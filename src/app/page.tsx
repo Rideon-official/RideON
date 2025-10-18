@@ -53,14 +53,14 @@ export default function Home() {
             {/* CTA: 이원 체계 */}
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <a
-                href="#contact"
-                aria-label="지사 합병·창업 문의"
+                href="/inquiry#지사합병문의하기"
+                aria-label="지사 합병 문의"
                 className="inline-flex items-center justify-center rounded-xl bg-[#FFB800] px-5 py-3 text-sm font-semibold text-black shadow hover:brightness-95 active:translate-y-[1px] transition"
               >
                 지사 합병·창업 문의
               </a>
               <a
-                href="#contact"
+                href="/inquiry#파트너십문의하기"
                 aria-label="파트너십 문의"
                 className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
               >
