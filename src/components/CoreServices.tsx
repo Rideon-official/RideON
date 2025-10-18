@@ -101,24 +101,46 @@ export default function CoreServices() {
   );
 }
 
-function CardItem({ c }: { c: Card }) {
+/* 재사용 카드 컴포넌트 (Hover 애니메이션 추가 버전) */
+function CardItem({ c, i }: { c: Card; i: number }) {
   return (
-    <article className="card p-5 lg:p-6 group relative isolate text-white">
+    <article
+      className={`
+        group relative isolate rounded-2xl overflow-hidden border border-white/10 
+        bg-white/5 p-7 lg:p-9 text-white transition-all duration-300
+        hover:bg-[#FFB800] hover:text-[#111111] hover:scale-[1.03]
+        hover:shadow-[0_0_24px_rgba(255,184,0,0.35)]
+      `}
+    >
+      {/* 상단 헤더 (eyebrow + icon) */}
       <div className="flex items-center justify-between">
-        <p className="text-xs uppercase tracking-wider text-white/50">{c.eyebrow}</p>
-        <div className="text-white/80 group-hover:text-graphite-yellow transition-colors duration-300">
+        <p className="text-xs uppercase tracking-wider text-white/60 group-hover:text-[#111111]/70">
+          {c.eyebrow}
+        </p>
+        <div className="transition-colors duration-300 group-hover:text-[#111111]">
           {c.icon}
         </div>
       </div>
 
-      <h3 className="typo-h3 mt-3">{c.title}</h3>
-      <p className="typo-body text-white/80 mt-2">{c.desc}</p>
+      {/* 제목 + 설명 */}
+      <h3 className="text-[19px] sm:text-[21px] font-extrabold tracking-tight mt-3">
+        {c.title}
+      </h3>
+      <p className="mt-2 text-[15px] leading-relaxed text-neutral-400 group-hover:text-[#111111]/80">
+        {c.desc}
+      </p>
 
-      <div className="mt-5">
+      {/* 버튼 */}
+      <div className="mt-auto pt-5">
         <Link
           href={c.href}
-          className="btn-ghost px-4 py-2"
-          aria-label={`${c.title} 자세히 보기`}
+          className="
+            inline-flex items-center justify-center rounded-full
+            border border-white/20 px-4 py-2 text-sm font-semibold
+            text-neutral-200 transition-all duration-300
+            group-hover:border-[#111111]
+            group-hover:bg-[#111111] group-hover:text-[#FFB800]
+          "
         >
           자세히 보기
         </Link>
