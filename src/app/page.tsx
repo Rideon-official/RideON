@@ -15,26 +15,23 @@ export default function Home() {
         id="hero"
         className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24 noise"
       >
-        {/* 🌌 배경 오버레이: 섹션 기준, 좌~중앙까지 꽉 */}
+        {/* 🌌 오버레이(전폭) : 배경 PNG + 별똥별 */}
         <div className="pointer-events-none absolute inset-0 z-0">
-          {/* 네온 맵 */}
+          {/* 🗺️ 배경 PNG 전폭 */}
           <Image
             src="/main-map.png"
             alt="RIDE ON Network Map"
             fill
             priority
             className={`
-              object-contain object-left
+              object-cover object-[35%_center] /* 중앙보다 약간 왼쪽에 포커스 */
               opacity-60 mix-blend-screen select-none
-              translate-y-[8%] md:translate-y-[10%] lg:translate-y-[12%]
-              scale-[1.35] md:scale-[1.55] lg:scale-[1.75]
-              -translate-x-[6%] md:-translate-x-[8%] lg:-translate-x-[10%]
-              origin-left
-              z-0
+              /* 필요시 상하 그라데이션 마스크로 과한 영역 페이드 */
+              [mask-image:linear-gradient(to_bottom,rgba(0,0,0,.95),rgba(0,0,0,.65),rgba(0,0,0,1))]
             `}
           />
 
-          {/* 별똥별 */}
+          {/* ✨ 별똥별 */}
           <Starfield
             density={0.16}
             twinkleSpeed={0.9}
@@ -45,7 +42,7 @@ export default function Home() {
 
         {/* 콘텐츠 그리드 */}
         <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20 grid lg:grid-cols-2 gap-10 items-center">
-          {/* Left: 텍스트 */}
+          {/* Left: 텍스트 (배경 위로) */}
           <div className="relative z-10">
             <h1 className="font-black tracking-tight text-[clamp(28px,5.6vw,52px)] leading-[1.05]">
               전국을 잇는 배달 인프라,{" "}
