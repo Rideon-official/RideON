@@ -1,8 +1,11 @@
 // src/app/page.tsx
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import ContactSection from "../components/ContactSection";
 import CoreServices from "@/components/CoreServices";
+import Starfield from "@/components/Starfield"; // ✅ 별똥별 효과 추가
 
 export default function Home() {
   return (
@@ -13,30 +16,38 @@ export default function Home() {
         className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24 noise"
       >
         <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20 grid lg:grid-cols-2 gap-10 items-center">
-          {/* ▶ Left: 헤드라인 + 좌측만 배경 오버레이 */}
+          {/* ▶ Left: 헤드라인 + 배경 효과 */}
           <div className="relative z-10">
-            {/* 배경 오버레이(글자 뒤, 좌측 컬럼 한정) */}
-<div className="pointer-events-none absolute inset-0 -z-10">
-  <Image
-    src="/main-map.png"
-    alt=""
-    fill
-    priority
-    className={`
-      object-contain object-[35%_center]
-      opacity-60
-      mix-blend-screen
-      select-none
-      /* 👇 모바일은 현재 유지 */
-      translate-y-[8%] scale-[1.2]
-      /* 👇 데스크탑은 아래로 내리고 크게 확장 */
-      md:translate-y-[10%] md:scale-[1.45]
-      lg:translate-y-[12%] lg:scale-[1.65]
-      origin-left
-    `}
-  />
-</div>
+            {/* ✴ 별똥별 + 맵 오버레이 */}
+            <div className="pointer-events-none absolute inset-0 -z-10">
+              {/* 🌌 별똥별 효과 */}
+              <Starfield
+                density={0.16}
+                twinkleSpeed={0.9}
+                shootingEvery={0.08}
+                accent="#FFB800"
+              />
 
+              {/* 🗺️ 네온 맵 오버레이 */}
+              <Image
+                src="/main-map.png"
+                alt="RIDE ON Network Map"
+                fill
+                priority
+                className={`
+                  object-contain object-[35%_center]
+                  opacity-60
+                  mix-blend-screen
+                  select-none
+                  translate-y-[8%] scale-[1.2]
+                  md:translate-y-[10%] md:scale-[1.45]
+                  lg:translate-y-[12%] lg:scale-[1.65]
+                  origin-left
+                `}
+              />
+            </div>
+
+            {/* ✴ 텍스트 */}
             <h1 className="font-black tracking-tight text-[clamp(28px,5.6vw,52px)] leading-[1.05]">
               전국을 잇는 배달 인프라,{" "}
               <span id="rideon-text" className="text-[#FFB800]">
@@ -70,7 +81,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ▶ Right: 회사 로고 */}
+          {/* ▶ Right: 로고 */}
           <div className="relative flex justify-center lg:justify-end">
             <Image
               src="/rideon-logo.png"
