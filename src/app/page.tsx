@@ -72,7 +72,7 @@ export default function Home() {
               {/* 지도 이미지 */}
               <div className="relative h-[360px] w-full">
                 <Image
-                  src="/hero-map.png"
+                  src="/main-map.png"
                   alt="RIDE ON Network Map"
                   fill
                   priority
