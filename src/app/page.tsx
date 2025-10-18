@@ -15,13 +15,11 @@ export default function Home() {
         id="hero"
         className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24 noise"
       >
-        {/* 🌌 배경 효과 */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          aria-hidden="true"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_20%,rgba(255,184,0,0.10)_0%,rgba(0,0,0,0)_70%)]" />
-        </div>
+{/* 🌌 배경 효과 제거 — 완전한 Graphite Core 톤 */}
+<div
+  className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#111111] to-[#1A1A1A]"
+  aria-hidden="true"
+></div>
 
         <div className="relative mx-auto max-w-7xl px-4 grid lg:grid-cols-12 gap-10 items-center">
           {/* 왼쪽 텍스트 */}
