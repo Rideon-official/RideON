@@ -57,7 +57,7 @@ export default function Home() {
                 aria-label="지사 합병 문의"
                 className="inline-flex items-center justify-center rounded-xl bg-[#FFB800] px-5 py-3 text-sm font-semibold text-black shadow hover:brightness-95 active:translate-y-[1px] transition"
               >
-                지사 합병·창업 문의
+                지사 합병 문의
               </a>
               <a
                 href="/inquiry#파트너십문의하기"
