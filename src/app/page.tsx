@@ -30,21 +30,20 @@ export default function Home() {
 
               {/* 🗺️ 네온 맵 오버레이 */}
               <Image
-                src="/main-map.png"
-                alt="RIDE ON Network Map"
-                fill
-                priority
-                className={`
-                  object-contain object-[45%_center]
-                  opacity-60
-                  mix-blend-screen
-                  select-none
-                  translate-y-[8%] scale-[1.2]
-                  md:translate-y-[10%] md:scale-[1.45]
-                  lg:translate-y-[12%] lg:scale-[1.65]
-                  origin-left
-                `}
-              />
+  src="/main-map.png"
+  alt=""
+  fill
+  priority
+  className={`
+    object-contain object-left
+    opacity-60 mix-blend-screen select-none
+    translate-y-[8%] md:translate-y-[10%] lg:translate-y-[12%]
+    scale-[1.35] md:scale-[1.55] lg:scale-[1.75]
+    -translate-x-[6%] md:-translate-x-[8%] lg:-translate-x-[10%]  /* ← 왼쪽으로 당김 */
+    origin-left
+  `}
+/>
+
             </div>
 
             {/* ✴ 텍스트 */}
