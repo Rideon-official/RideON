@@ -16,7 +16,7 @@ export default function Home() {
         className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24 noise"
       >
         {/* 🌌 배경 오버레이: 섹션 기준, 좌~중앙까지 꽉 */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 right-[45%] z-0">
+        <div className="pointer-events-none absolute inset-0 z-0">
           {/* 네온 맵 */}
           <Image
             src="/main-map.png"
