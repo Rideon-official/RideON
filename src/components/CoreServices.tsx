@@ -2,7 +2,12 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import {
+  Building2,
+  Bike,
+  FileText,
+  ShoppingBag,
+} from "lucide-react"; // ← lucide-react에서 아이콘 불러옴
 
 type Card = {
   eyebrow: string;
@@ -26,12 +31,7 @@ const cards: Card[] = [
       </>
     ),
     href: "/about",
-    icon: (
-      <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden>
-        <path d="M4 20V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14" stroke="currentColor" strokeWidth="2" fill="none"/>
-        <path d="M4 20h16M8 10h8M8 14h5" stroke="currentColor" strokeWidth="2"/>
-      </svg>
-    ),
+    icon: <Building2 className="w-8 h-8" strokeWidth={1.8} />,
   },
   {
     eyebrow: "RIDE ON BIKE",
@@ -46,13 +46,7 @@ const cards: Card[] = [
       </>
     ),
     href: "/bike#rent",
-    icon: (
-      <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden>
-        <circle cx="6" cy="17" r="3" stroke="currentColor" strokeWidth="2" fill="none"/>
-        <circle cx="18" cy="17" r="3" stroke="currentColor" strokeWidth="2" fill="none"/>
-        <path d="M9 17l3-7h4l3 7M10 10l-2 4" stroke="currentColor" strokeWidth="2" fill="none"/>
-      </svg>
-    ),
+    icon: <Bike className="w-8 h-8" strokeWidth={1.8} />,
   },
   {
     eyebrow: "LOGITEATS",
@@ -67,12 +61,7 @@ const cards: Card[] = [
       </>
     ),
     href: "/logiteats#intro",
-    icon: (
-      <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden>
-        <rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
-        <path d="M7 12h10M7 8h6M7 16h5" stroke="currentColor" strokeWidth="2"/>
-      </svg>
-    ),
+    icon: <FileText className="w-8 h-8" strokeWidth={1.8} />,
   },
   {
     eyebrow: "RIDER STORE",
@@ -87,12 +76,7 @@ const cards: Card[] = [
       </>
     ),
     href: "/store",
-    icon: (
-      <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden>
-        <path d="M3 9l2-4h14l2 4v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" stroke="currentColor" strokeWidth="2" fill="none"/>
-        <path d="M8 14h8" stroke="currentColor" strokeWidth="2"/>
-      </svg>
-    ),
+    icon: <ShoppingBag className="w-8 h-8" strokeWidth={1.8} />,
   },
 ];
 
@@ -100,7 +84,6 @@ export default function CoreServices() {
   return (
     <section className="section-gray">
       <div className="container-xl section-pad">
-        {/* 섹션 헤더 */}
         <header className="mb-8 lg:mb-10">
           <h2 className="typo-h2">RIDE ON 솔루션의 3가지 핵심 가치</h2>
           <p className="typo-body text-white/70 mt-2">
@@ -108,7 +91,6 @@ export default function CoreServices() {
           </p>
         </header>
 
-        {/* 카드 그리드 */}
         <div className="grid gap-4 sm:gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((c, i) => (
             <CardItem key={i} c={c} />
@@ -119,7 +101,6 @@ export default function CoreServices() {
   );
 }
 
-/* 재사용 카드 컴포넌트 */
 function CardItem({ c }: { c: Card }) {
   return (
     <article className="card p-5 lg:p-6 group relative isolate text-white">
