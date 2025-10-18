@@ -92,7 +92,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      
       {/* ===== Core Services (4카드) ===== */}
       <CoreServices />
 
