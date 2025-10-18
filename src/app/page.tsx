@@ -15,9 +15,9 @@ export default function Home() {
         id="hero"
         className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24 noise"
       >
-        {/* ✅ 배경 오버레이를 '섹션' 기준으로 깔아 좌~중앙(50%) 차지 */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 right-1/2 -z-10">
-          {/* 네온 맵 (아래) */}
+        {/* 🌌 배경 오버레이: 섹션 기준, 좌~중앙까지 꽉 */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 right-[45%] z-0">
+          {/* 네온 맵 */}
           <Image
             src="/main-map.png"
             alt="RIDE ON Network Map"
@@ -33,7 +33,8 @@ export default function Home() {
               z-0
             `}
           />
-          {/* 별똥별 (위) */}
+
+          {/* 별똥별 */}
           <Starfield
             density={0.16}
             twinkleSpeed={0.9}
@@ -44,13 +45,11 @@ export default function Home() {
 
         {/* 콘텐츠 그리드 */}
         <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-20 grid lg:grid-cols-2 gap-10 items-center">
-          {/* ▶ Left: 헤드라인 (배경보다 위에 오도록 z-10) */}
+          {/* Left: 텍스트 */}
           <div className="relative z-10">
             <h1 className="font-black tracking-tight text-[clamp(28px,5.6vw,52px)] leading-[1.05]">
               전국을 잇는 배달 인프라,{" "}
-              <span id="rideon-text" className="text-[#FFB800]">
-                RIDE ON
-              </span>
+              <span className="text-[#FFB800]">RIDE ON</span>
             </h1>
 
             <p className="mt-4 text-gray-300 text-base sm:text-lg">
@@ -79,7 +78,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ▶ Right: 로고 */}
+          {/* Right: 로고 */}
           <div className="relative flex justify-center lg:justify-end">
             <Image
               src="/rideon-logo.png"
@@ -92,7 +91,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* ===== Core Services (4카드) ===== */}
       <CoreServices />
 
