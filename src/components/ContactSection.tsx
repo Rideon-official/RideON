@@ -2,33 +2,32 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  ArrowRight,
-} from "lucide-react";
+import { useMemo, useState } from "react";
+import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 
-/* =================================
-   채널(세로 카드) 데이터 모델 정의
-   ================================= */
+/* ================================
+   데이터 모델
+   ================================ */
+type Category = "합병" | "파트너십" | "기사" | "리스" | "기타";
+
 type PartnerChannel = {
   id: string;
-  logo: string;     // /logos/xxx.png (public 폴더)
-  name: string;     // 예: 야마하 강동점
-  subtitle: string; // 예: 공식 정비·보증 수리
-  desc: string;     // 1~2줄 설명
-  tags?: string[];  // ['정비','보증','부품']
+  logo: string;           // /public/logos/*.png
+  name: string;           // 카드 제목
+  subtitle: string;       // 부제
+  desc: string;           // 1~2줄 설명
+  tags?: string[];
   tel?: string;
   email?: string;
-  location?: string; // 예: '서울 강동구'
-  href?: string;     // 자세히 보기 링크
+  location?: string;
+  href?: string;          // 자세히/예약 등 이동 링크
+  cta?: string;           // 행동형 CTA 문구
+  category: Category;     // ← 필터용 카테고리
 };
 
-/* ===========================
-   세로 카드에 표시할 실제 데이터
-   =========================== */
+/* ================================
+   채널 데이터
+   ================================ */
 const CHANNELS: PartnerChannel[] = [
   {
     id: "yamaha-gangdong",
@@ -41,6 +40,8 @@ const CHANNELS: PartnerChannel[] = [
     email: "yamaha@rideon.co.kr",
     location: "서울 강동구",
     href: "/bike#center",
+    cta: "정비 예약하기",
+    category: "파트너십",
   },
   {
     id: "adjuster",
@@ -53,6 +54,8 @@ const CHANNELS: PartnerChannel[] = [
     email: "claim@rideon.co.kr",
     location: "전국",
     href: "/inquiry#파트너십문의하기",
+    cta: "사고 접수하기",
+    category: "파트너십",
   },
   {
     id: "hospital-network",
@@ -65,6 +68,8 @@ const CHANNELS: PartnerChannel[] = [
     email: "hospital@rideon.co.kr",
     location: "수도권 중심",
     href: "/inquiry#기사가입문의하기",
+    cta: "진료 문의하기",
+    category: "파트너십",
   },
   {
     id: "rideon-bike",
@@ -77,6 +82,8 @@ const CHANNELS: PartnerChannel[] = [
     email: "service@rideon.co.kr",
     location: "서울 송파구",
     href: "/bike#center",
+    cta: "정비 예약하기",
+    category: "파트너십",
   },
   {
     id: "munjeong-bike",
@@ -89,6 +96,8 @@ const CHANNELS: PartnerChannel[] = [
     email: "munjeong@rideon.co.kr",
     location: "서울 송파구 문정동",
     href: "/bike#center",
+    cta: "예약 문의하기",
+    category: "파트너십",
   },
   {
     id: "er-motors",
@@ -101,6 +110,8 @@ const CHANNELS: PartnerChannel[] = [
     email: "er@rideon.co.kr",
     location: "서울 강서권",
     href: "/bike#center",
+    cta: "점검 예약하기",
+    category: "파트너십",
   },
   {
     id: "kb-seorin",
@@ -113,17 +124,20 @@ const CHANNELS: PartnerChannel[] = [
     email: "kb@rideon.co.kr",
     location: "서울 종로구 서린동",
     href: "/contact",
+    cta: "전담 창구 연결",
+    category: "합병", // 임시: 필요에 맞게 분류 변경 가능
   },
 ];
 
-/* ===========================
-   빠른 문의 버튼 (위쪽 4개)
-   =========================== */
-const QUICK_CTAS = [
-  { label: "지사 합병 문의", href: "/inquiry#지사합병문의하기" },
-  { label: "파트너십 문의", href: "/inquiry#파트너십문의하기" },
-  { label: "기사 가입 문의", href: "/inquiry#기사가입문의하기" },
-  { label: "리스/렌탈 문의", href: "/inquiry#리스렌탈신청하기" },
+/* ================================
+   탭(필터) 정의 — 상단 4버튼을 탭처럼 동작
+   ================================ */
+const TABS: { key: Category | "전체"; label: string }[] = [
+  { key: "합병", label: "지사 합병 문의" },
+  { key: "파트너십", label: "파트너십 문의" },
+  { key: "기사", label: "기사 가입 문의" },
+  { key: "리스", label: "리스/렌탈 문의" },
+  // 필요하다면 "전체" 탭도 추가 가능
 ];
 
 export default function ContactSection() {
@@ -132,13 +146,23 @@ export default function ContactSection() {
       title: "CONNECT with RIDE ON",
       subtitle:
         "지사 합병·파트너십·기사·리스/렌탈 — 목적별 채널로 가장 빠르게 연결됩니다.",
+      microcopy:
+        "우리는 전국 1위 네트워크로 연결된 파트너입니다. 당신의 도전을 기다립니다.",
     }),
     []
   );
 
+  // 활성 탭 상태
+  const [active, setActive] = useState<Category>("파트너십");
+
+  const filtered = useMemo(
+    () => CHANNELS.filter((c) => c.category === active),
+    [active]
+  );
+
   return (
     <section className="relative w-full border-t border-neutral-900 bg-gradient-to-b from-[#121212] to-[#0F0F0F]">
-      {/* 미세 패턴 */}
+      {/* 배경 패턴 */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:radial-gradient(1px_1px_at_1px_1px,#fff_1px,transparent_0)] [background-size:16px_16px]"
@@ -154,106 +178,125 @@ export default function ContactSection() {
             {heading.title}
           </h2>
           <p className="mt-2 text-sm text-neutral-400">{heading.subtitle}</p>
+          <p className="mt-2 text-sm text-white/60">{heading.microcopy}</p>
         </div>
 
-        {/* 4개의 빠른 CTA */}
-        <div className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {QUICK_CTAS.map((btn) => (
-            <Link
-              key={btn.label}
-              href={btn.href}
-              className="text-center rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:scale-[1.02]"
-            >
-              {btn.label}
-            </Link>
-          ))}
+        {/* 상단 4버튼 → 탭처럼 동작 */}
+        <div
+          className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-4"
+          role="tablist"
+          aria-label="연결 카테고리"
+        >
+          {TABS.map((tab) => {
+            const isActive = active === tab.key;
+            return (
+              <button
+                key={tab.key}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActive(tab.key as Category)}
+                className={[
+                  "rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2",
+                  isActive
+                    ? "bg-[#FFD247] text-[#111111] border border-transparent shadow hover:brightness-95"
+                    : "text-white border border-white/10 bg-white/5 hover:bg-[#FFD247] hover:text-[#111111]",
+                ].join(" ")}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* 세로 그리드 카드 (컴팩트) */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {CHANNELS.map((ch) => (
+        {/* 필터된 카드 목록 (세로형/중간 밀도) */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
+          {filtered.map((ch) => (
             <article
               key={ch.id}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition-all duration-300 hover:scale-[1.01] hover:border-[#FFB800]/40 hover:shadow-[0_10px_28px_rgba(255,184,0,0.18)]"
+              className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/5 p-5 text-white transition-all duration-300 hover:scale-[1.01] hover:border-[#FFD247]/40 hover:shadow-[0_10px_28px_rgba(255,210,71,0.18)] min-h-[320px] sm:min-h-[360px]"
             >
-              <div className="flex items-start gap-4">
-                {/* 로고 */}
-                <div className="flex h-14 w-14 items-center justify-center rounded-lg border border-white/10 bg-[#141414] overflow-hidden shrink-0">
+              {/* 헤더: 로고 + 이름 */}
+              <header className="flex flex-col items-center text-center">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-[#141414] overflow-hidden mb-3">
                   <img
                     src={ch.logo}
                     alt={`${ch.name} logo`}
                     className="max-h-10 max-w-[48px] object-contain grayscale opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
                   />
                 </div>
+                <h3 className="text-[16px] sm:text-[17px] font-semibold leading-tight truncate max-w-[90%]">
+                  {ch.name}
+                </h3>
+                <p className="mt-1 text-[12px] text-white/60 truncate max-w-[92%]">
+                  {ch.subtitle}
+                </p>
+              </header>
 
-                {/* 본문 */}
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <h3 className="truncate text-[15px] font-semibold leading-tight">
-                      {ch.name}
-                    </h3>
-                    <span className="truncate text-xs text-white/70">
-                      ({ch.subtitle})
-                    </span>
-                  </div>
+              {/* 본문 */}
+              <div className="mt-3">
+                <p className="text-[13px] leading-relaxed text-white/80 line-clamp-3">
+                  {ch.desc}
+                </p>
 
-                  <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-white/80">
-                    {ch.desc}
-                  </p>
-
-                  {/* 태그 */}
-                  {ch.tags && ch.tags.length > 0 && (
-                    <div className="mt-2 flex flex-wrap gap-1.5">
-                      {ch.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/70"
-                        >
-                          #{t}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* 하단 액션/정보 */}
-                  <div className="mt-3 flex flex-wrap items-center gap-2 text-[12px]">
-                    {ch.tel && (
-                      <a
-                        href={`tel:${ch.tel.replaceAll(/[^0-9]/g, "")}`}
-                        className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-white hover:bg-[#FFB800] hover:text-[#111111] transition"
-                        aria-label={`${ch.name} 전화 연결`}
+                {ch.tags && ch.tags.length > 0 && (
+                  <div className="mt-2 flex flex-wrap justify-center gap-1.5">
+                    {ch.tags.slice(0, 2).map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/70"
                       >
-                        <Phone className="size-3.5" />
-                        {ch.tel}
-                      </a>
-                    )}
-                    {ch.email && (
-                      <a
-                        href={`mailto:${ch.email}`}
-                        className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-white hover:bg-[#FFB800] hover:text-[#111111] transition"
-                        aria-label={`${ch.name} 메일 보내기`}
-                      >
-                        <Mail className="size-3.5" />
-                        {ch.email}
-                      </a>
-                    )}
-                    {ch.location && (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-white/85">
-                        <MapPin className="size-3.5" />
-                        {ch.location}
+                        #{t}
+                      </span>
+                    ))}
+                    {ch.tags.length > 2 && (
+                      <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/60">
+                        +{ch.tags.length - 2}
                       </span>
                     )}
-                    {ch.href && (
-                      <Link
-                        href={ch.href}
-                        className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-white hover:bg-[#FFB800] hover:text-[#111111] transition"
-                        aria-label={`${ch.name} 자세히 보기`}
-                      >
-                        자세히 보기
-                        <ArrowRight className="size-3.5" />
-                      </Link>
-                    )}
                   </div>
+                )}
+              </div>
+
+              {/* 하단: CTA + 액션 */}
+              <div className="mt-auto pt-4 flex flex-col items-center gap-2">
+                {ch.href && (
+                  <Link
+                    href={ch.href}
+                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-[#FFD247]/10 px-4 py-2 text-[#FFD247] hover:bg-[#FFD247] hover:text-[#111111] transition font-semibold w-full"
+                    aria-label={`${ch.name} 이동`}
+                  >
+                    {ch.cta ?? "자세히 보기"}
+                    <ArrowRight className="size-4" />
+                  </Link>
+                )}
+
+                <div className="flex flex-wrap justify-center gap-2 text-[12px]">
+                  {ch.tel && (
+                    <a
+                      href={`tel:${ch.tel.replaceAll(/[^0-9]/g, "")}`}
+                      className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 hover:bg-[#FFD247] hover:text-[#111111] transition"
+                      aria-label={`${ch.name} 전화 연결`}
+                    >
+                      <Phone className="size-3.5" />
+                      {ch.tel}
+                    </a>
+                  )}
+                  {ch.email && (
+                    <a
+                      href={`mailto:${ch.email}`}
+                      className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 hover:bg-[#FFD247] hover:text-[#111111] transition"
+                      aria-label={`${ch.name} 메일 보내기`}
+                    >
+                      <Mail className="size-3.5" />
+                      {ch.email}
+                    </a>
+                  )}
+                  {ch.location && (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-white/85">
+                      <MapPin className="size-3.5" />
+                      {ch.location}
+                    </span>
+                  )}
                 </div>
               </div>
             </article>
