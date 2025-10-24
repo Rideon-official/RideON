@@ -1,12 +1,11 @@
 // src/components/ContactSection.tsx
 "use client";
 
-import Link from "next/link";
-import { useMemo, useState } from "react";
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { useMemo } from "react";
+import { Phone, Mail } from "lucide-react";
 
 /* ================================
-   데이터 모델
+   데이터 모델 (기존 유지: 타입만 둠)
    ================================ */
 type Category = "합병" | "파트너십" | "기사" | "리스" | "기타";
 
@@ -16,13 +15,13 @@ type PartnerChannel = {
   name: string;           // 카드 제목
   subtitle: string;       // 부제
   desc: string;           // 1~2줄 설명
-  tags?: string[];
+  tags?: string[];        // ← 더이상 렌더링하지 않음
   tel?: string;
   email?: string;
-  location?: string;
-  href?: string;          // 자세히/예약 등 이동 링크
-  cta?: string;           // 행동형 CTA 문구
-  category: Category;     // ← 필터용 카테고리
+  location?: string;      // ← 더이상 렌더링하지 않음
+  href?: string;          // ← 더이상 렌더링하지 않음
+  cta?: string;           // ← 더이상 렌더링하지 않음
+  category: Category;
 };
 
 /* ================================
@@ -34,9 +33,11 @@ const CHANNELS: PartnerChannel[] = [
     logo: "/logos/yamaha-gangdong.png",
     name: "야마하 강동점",
     subtitle: "공식 정비 · 보증 수리",
-    desc: "야마하 인증 장비/절차로 보증 수리 및 정기점검을 제공합니다.",
-    tags: ["정비", "보증", "부품"],
-    tel: "02-0000-0000",
+    // (요청 5) 문구 보강: 뒤에 정식 협업 관계 문장 추가
+    desc: "야마하 인증 장비/절차로 보증 수리 및 정기점검을 제공합니다. 라이드온과 정식 협업관계입니다.",
+    tags: ["정비", "보증", "부품"], // 이제 화면에는 안 보임
+    // (요청 3) 휴대폰 번호만 표시하고 싶다고 했으므로 모바일 번호 예시로 교체
+    tel: "010-0000-0000",
     email: "yamaha@rideon.co.kr",
     location: "서울 강동구",
     href: "/bike#center",
@@ -50,7 +51,7 @@ const CHANNELS: PartnerChannel[] = [
     subtitle: "사고·보험 처리 서류 전담",
     desc: "접수부터 정산까지 원스톱 지원. 사고 대응을 신속하고 투명하게.",
     tags: ["사고", "보험"],
-    tel: "02-0000-0001",
+    tel: "010-0000-0001",
     email: "claim@rideon.co.kr",
     location: "전국",
     href: "/inquiry#파트너십문의하기",
@@ -64,7 +65,7 @@ const CHANNELS: PartnerChannel[] = [
     subtitle: "라이더 전문 진료 네트워크",
     desc: "진단서 발급·치료 연계·사고 후 케어까지 지역 협력망 운영.",
     tags: ["의료", "사고케어"],
-    tel: "02-0000-0002",
+    tel: "010-0000-0002",
     email: "hospital@rideon.co.kr",
     location: "수도권 중심",
     href: "/inquiry#기사가입문의하기",
@@ -78,7 +79,7 @@ const CHANNELS: PartnerChannel[] = [
     subtitle: "튜닝 · 정비 · 사고 처리",
     desc: "RIDE ON 전용 프로세스. 렌트/리스 차량까지 통합 관리.",
     tags: ["정비", "튜닝", "사고처리"],
-    tel: "02-0000-0003",
+    tel: "010-0000-0003",
     email: "service@rideon.co.kr",
     location: "서울 송파구",
     href: "/bike#center",
@@ -92,7 +93,7 @@ const CHANNELS: PartnerChannel[] = [
     subtitle: "정기 점검 · 급속 수리",
     desc: "도심형 빠른 대응. 예약/대기 최소화.",
     tags: ["정비", "예약"],
-    tel: "02-0000-0004",
+    tel: "010-0000-0004",
     email: "munjeong@rideon.co.kr",
     location: "서울 송파구 문정동",
     href: "/bike#center",
@@ -106,7 +107,7 @@ const CHANNELS: PartnerChannel[] = [
     subtitle: "전문 메인터넌스",
     desc: "숙련 메카닉의 세밀 점검과 책임 정비.",
     tags: ["정비", "점검"],
-    tel: "02-0000-0005",
+    tel: "010-0000-0005",
     email: "er@rideon.co.kr",
     location: "서울 강서권",
     href: "/bike#center",
@@ -120,45 +121,31 @@ const CHANNELS: PartnerChannel[] = [
     subtitle: "라이더 금융 파트너",
     desc: "계좌 개설/카드/한도 지원. 지점 전담 창구 운영.",
     tags: ["금융", "계좌", "프로모션"],
-    tel: "02-0000-0006",
+    tel: "010-0000-0006",
     email: "kb@rideon.co.kr",
     location: "서울 종로구 서린동",
     href: "/contact",
     cta: "전담 창구 연결",
-    category: "합병", // 임시: 필요에 맞게 분류 변경 가능
+    category: "합병",
   },
 ];
 
 /* ================================
-   탭(필터) 정의 — 상단 4버튼을 탭처럼 동작
+   컴포넌트
    ================================ */
-const TABS: { key: Category | "전체"; label: string }[] = [
-  { key: "합병", label: "지사 합병 문의" },
-  { key: "파트너십", label: "파트너십 문의" },
-  { key: "기사", label: "기사 가입 문의" },
-  { key: "리스", label: "리스/렌탈 문의" },
-  // 필요하다면 "전체" 탭도 추가 가능
-];
-
 export default function ContactSection() {
   const heading = useMemo(
     () => ({
       title: "CONNECT with RIDE ON",
-      subtitle:
-        "지사 합병·파트너십·기사·리스/렌탈 — 목적별 채널로 가장 빠르게 연결됩니다.",
-      microcopy:
-        "우리는 전국 1위 네트워크로 연결된 파트너입니다. 당신의 도전을 기다립니다.",
+      // (요청 1) 상단 탭/버튼을 모두 삭제했으므로 안내 문구만 간결화
+      subtitle: "파트너 네트워크로 가장 빠르게 연결됩니다.",
+      microcopy: "우리는 전국 1위 네트워크로 연결된 파트너입니다.",
     }),
     []
   );
 
-  // 활성 탭 상태
-  const [active, setActive] = useState<Category>("파트너십");
-
-  const filtered = useMemo(
-    () => CHANNELS.filter((c) => c.category === active),
-    [active]
-  );
+  // (요청 1) 탭/필터 전체 제거 → 항상 전체 채널을 노출
+  const list = CHANNELS;
 
   return (
     <section className="relative w-full border-t border-neutral-900 bg-gradient-to-b from-[#121212] to-[#0F0F0F]">
@@ -181,41 +168,27 @@ export default function ContactSection() {
           <p className="mt-2 text-sm text-white/60">{heading.microcopy}</p>
         </div>
 
-        {/* 상단 4버튼 → 탭처럼 동작 */}
-        <div
-          className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-4"
-          role="tablist"
-          aria-label="연결 카테고리"
-        >
-          {TABS.map((tab) => {
-            const isActive = active === tab.key;
-            return (
-              <button
-                key={tab.key}
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setActive(tab.key as Category)}
-                className={[
-                  "rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2",
-                  isActive
-                    ? "bg-[#FFD247] text-[#111111] border border-transparent shadow hover:brightness-95"
-                    : "text-white border border-white/10 bg-white/5 hover:bg-[#FFD247] hover:text-[#111111]",
-                ].join(" ")}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
+        {/* (요청 1) 상단 4버튼 탭 UI 완전 삭제 */}
 
-        {/* 필터된 카드 목록 (세로형/중간 밀도) */}
+        {/* 카드 목록 */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
-          {filtered.map((ch) => (
+          {list.map((ch) => (
             <article
               key={ch.id}
               className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/5 p-5 text-white transition-all duration-300 hover:scale-[1.01] hover:border-[#FFD247]/40 hover:shadow-[0_10px_28px_rgba(255,210,71,0.18)] min-h-[320px] sm:min-h-[360px]"
             >
-              {/* 헤더: 로고 + 이름 */}
+              {/* 헤더: (요청 4) 야마하 글로벌 로고를 야마하 카드 위쪽에 추가 표시 */}
+              {ch.id === "yamaha-gangdong" && (
+                <div className="mb-3 flex justify-center">
+                  <img
+                    src="https://global.yamaha-motor.com/design/logo/img/logo_ymmc.png"
+                    alt="YAMAHA Logo"
+                    className="h-6 object-contain opacity-90"
+                  />
+                </div>
+              )}
+
+              {/* 브랜드 로고 + 이름 */}
               <header className="flex flex-col items-center text-center">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-[#141414] overflow-hidden mb-3">
                   <img
@@ -234,47 +207,22 @@ export default function ContactSection() {
 
               {/* 본문 */}
               <div className="mt-3">
-                <p className="text-[13px] leading-relaxed text-white/80 line-clamp-3">
+                <p className="text-[13px] leading-relaxed text-white/80">
                   {ch.desc}
                 </p>
 
-                {ch.tags && ch.tags.length > 0 && (
-                  <div className="mt-2 flex flex-wrap justify-center gap-1.5">
-                    {ch.tags.slice(0, 2).map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/70"
-                      >
-                        #{t}
-                      </span>
-                    ))}
-                    {ch.tags.length > 2 && (
-                      <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/60">
-                        +{ch.tags.length - 2}
-                      </span>
-                    )}
-                  </div>
-                )}
+                {/* (요청 2) 태그 전부 삭제 → 렌더링 자체 제거 */}
               </div>
 
-              {/* 하단: CTA + 액션 */}
+              {/* 하단: 연락 수단만 (요청 3, 6) */}
               <div className="mt-auto pt-4 flex flex-col items-center gap-2">
-                {ch.href && (
-                  <Link
-                    href={ch.href}
-                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-[#FFD247]/10 px-4 py-2 text-[#FFD247] hover:bg-[#FFD247] hover:text-[#111111] transition font-semibold w-full"
-                    aria-label={`${ch.name} 이동`}
-                  >
-                    {ch.cta ?? "자세히 보기"}
-                    <ArrowRight className="size-4" />
-                  </Link>
-                )}
-
+                {/* (요청 6) 카드 내 CTA 버튼/링크 전부 제거 */}
+                {/* (요청 3) 전화/이메일만 남기고 위치 뱃지 제거 */}
                 <div className="flex flex-wrap justify-center gap-2 text-[12px]">
                   {ch.tel && (
                     <a
                       href={`tel:${ch.tel.replaceAll(/[^0-9]/g, "")}`}
-                      className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 hover:bg-[#FFD247] hover:text-[#111111] transition"
+                      className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 hover:bg-[#FFD247] hover:text-[#111111] transition"
                       aria-label={`${ch.name} 전화 연결`}
                     >
                       <Phone className="size-3.5" />
@@ -284,18 +232,12 @@ export default function ContactSection() {
                   {ch.email && (
                     <a
                       href={`mailto:${ch.email}`}
-                      className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 hover:bg-[#FFD247] hover:text-[#111111] transition"
+                      className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 hover:bg-[#FFD247] hover:text-[#111111] transition"
                       aria-label={`${ch.name} 메일 보내기`}
                     >
                       <Mail className="size-3.5" />
                       {ch.email}
                     </a>
-                  )}
-                  {ch.location && (
-                    <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-white/85">
-                      <MapPin className="size-3.5" />
-                      {ch.location}
-                    </span>
                   )}
                 </div>
               </div>
