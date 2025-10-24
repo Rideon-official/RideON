@@ -107,7 +107,6 @@ function chunk<T>(arr: T[], size: number) {
   for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
   return out;
 }
-
 function telHref(t?: string) {
   if (!t) return undefined;
   return `tel:${t.replaceAll(/[^0-9+]/g, "")}`;
@@ -190,27 +189,16 @@ export default function ContactSection() {
         className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:radial-gradient(1px_1px_at_1px_1px,#fff_1px,transparent_0)] [background-size:16px_16px]"
       />
 
-      <div className="relative mx-auto max-w-screen-2xl px-6 py-16 lg:px-8">
-        {/* 헤더 */}
-        <div className="mb-6">
+      {/* 섹션 컨테이너: 위 섹션과 폭 정렬 (max-w-6xl) */}
+      <div className="relative mx-auto max-w-6xl px-6 py-16 lg:px-8">
+        {/* 헤더: 타이틀/설명 (좌측 정렬) */}
+        <div className="mb-4">
           <p className="text-xs font-semibold tracking-[.2em] text-neutral-400">
             CONNECT
           </p>
-
-          <div className="mt-2 flex items-end justify-between">
-            <h2 className="text-2xl font-extrabold tracking-tight text-white lg:text-3xl">
-              CONNECT with RIDE ON
-            </h2>
-
-            {/* 전체보기 토글 */}
-            <button
-              onClick={() => setShowAll((v) => !v)}
-              className="text-sm font-semibold rounded-full border border-white/15 bg-white/5 px-3.5 py-2 hover:bg-[#FFD247] hover:text-[#111111] transition"
-            >
-              {showAll ? "접기" : "전체보기"}
-            </button>
-          </div>
-
+          <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white lg:text-3xl">
+            CONNECT with RIDE ON
+          </h2>
           <p className="mt-2 text-sm text-neutral-400">
             파트너 네트워크로 가장 빠르게 연결됩니다.
           </p>
@@ -219,9 +207,9 @@ export default function ContactSection() {
           </p>
         </div>
 
-        {/* 탭: 동일 크기 & 줄바꿈 방지 & 아래 여백 확대 */}
+        {/* 탭: 가운데 정렬 & 동일 크기 */}
         <div
-          className="mb-8 flex flex-wrap gap-2"
+          className="mb-6 flex flex-wrap justify-center gap-2"
           role="tablist"
           aria-label="연결 카테고리"
         >
@@ -234,7 +222,7 @@ export default function ContactSection() {
                 aria-selected={isActive}
                 onClick={() => setActive(tab)}
                 className={[
-                  "h-10 w-24 justify-center whitespace-nowrap rounded-full px-0 text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 mb-2",
+                  "h-10 w-24 justify-center whitespace-nowrap rounded-full px-0 text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2",
                   isActive
                     ? "bg-[#FFB800] text-[#111111] border border-transparent shadow hover:brightness-95"
                     : "text-white border border-white/15 bg-white/5 hover:bg-[#FFB800] hover:text-[#111111]",
@@ -246,7 +234,17 @@ export default function ContactSection() {
           })}
         </div>
 
-        {/* 리스트 영역 */}
+        {/* 전체보기: 중앙 오른쪽 배치(반응형) */}
+        <div className="mb-6 flex items-center justify-center lg:justify-end">
+          <button
+            onClick={() => setShowAll((v) => !v)}
+            className="text-sm font-semibold rounded-full border border-white/15 bg-white/5 px-3.5 py-2 hover:bg-[#FFD247] hover:text-[#111111] transition"
+          >
+            {showAll ? "접기" : "전체보기"}
+          </button>
+        </div>
+
+        {/* 리스트 영역 (같은 폭 안에서 정렬) */}
         {showAll ? (
           // ===== 전체보기: 세로 스크롤 그리드(간격 슬림) =====
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -255,7 +253,7 @@ export default function ContactSection() {
             ))}
           </div>
         ) : (
-          // ===== 컴팩트 캐러셀: 더 많은 열 + 간격 축소 =====
+          // ===== 컴팩트 캐러셀: 같은 폭에 맞춘 페이지 단위 =====
           <div className="relative">
             {/* 좌/우 네비 버튼 - 카드 영역 수직 중앙 배치 */}
             <div className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden lg:flex">
@@ -291,7 +289,7 @@ export default function ContactSection() {
               `}</style>
 
               <div className="flex items-stretch gap-4">
-                {pages.map((page, idx) => (
+                {chunk(filtered, 6).map((page, idx) => (
                   <div key={idx} className="snap-start shrink-0 w-full">
                     {/* 페이지 그리드: xl 5열, 2xl 6열 / 간격 좁힘 */}
                     <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
