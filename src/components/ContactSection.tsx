@@ -155,9 +155,17 @@ function telHref(t?: string) {
    ================================ */
 function Card({ item }: { item: PartnerChannel }) {
   return (
-    <article className="group flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-3 text-white transition-all duration-300 hover:scale-[1.01] hover:-translate-y-0.5 hover:border-[#FFD247]/40 hover:shadow-[0_10px_28px_rgba(255,210,71,0.18)] w-full min-h-[340px]">
-      {/* 로고 배지 */}
-      <div className="h-14 w-14 mb-2.5 flex items-center justify-center overflow-hidden rounded-xl bg-[#141414] border border-white/10">
+    <article
+      className="
+        group flex flex-col items-center
+        rounded-2xl border border-white/10 bg-[#1A1A1A]/70 p-6
+        transition duration-300
+        hover:-translate-y-0.5 hover:border-white/20 hover:bg-[#1A1A1A]/80
+        w-full min-h-[340px]
+      "
+    >
+      {/* 로고 배지 (여백 스텝: 0 → 3 → 1 → 2 → 3 → 4) */}
+      <div className="mb-3 h-14 w-14 flex items-center justify-center overflow-hidden rounded-xl bg-[#141414] border border-white/10">
         <img
           src={item.logo}
           alt={`${item.name} logo`}
@@ -165,18 +173,25 @@ function Card({ item }: { item: PartnerChannel }) {
         />
       </div>
 
+      {/* 타이틀/서브텍스트 */}
       <h3 className="text-[16px] font-bold text-white text-center">{item.name}</h3>
-      <p className="mt-0.5 text-[12px] text-white/60 text-center">{item.subtitle}</p>
+      <p className="mt-1 text-[12px] text-white/60 text-center">{item.subtitle}</p>
 
-      <p className="mt-1.5 text-[12.5px] leading-relaxed text-white/80 text-center line-clamp-2">
+      {/* 본문 */}
+      <p className="mt-2 text-[12.5px] leading-relaxed text-white/80 text-center line-clamp-2">
         {item.desc}
       </p>
 
-      <div className="mt-auto pt-2 flex flex-wrap justify-center gap-1.5 text-[12px]">
+      {/* 연락처 */}
+      <div className="mt-3 flex flex-wrap justify-center gap-2 text-[12px]">
         {item.tel && (
           <a
             href={telHref(item.tel)}
-            className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 hover:bg-[#FFD247] hover:text-[#111111] transition"
+            className="
+              inline-flex items-center gap-1
+              rounded-full border border-white/15 bg-white/5 px-3 py-1.5
+              hover:bg-[#FFB800] hover:text-[#111111] transition
+            "
             aria-label={`${item.name} 전화 연결`}
           >
             <Phone className="size-4" />
@@ -186,7 +201,11 @@ function Card({ item }: { item: PartnerChannel }) {
         {item.email && (
           <a
             href={`mailto:${item.email}`}
-            className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 hover:bg-[#FFD247] hover:text-[#111111] transition"
+            className="
+              inline-flex items-center gap-1
+              rounded-full border border-white/15 bg-white/5 px-3 py-1.5
+              hover:bg-[#FFB800] hover:text-[#111111] transition
+            "
             aria-label={`${item.name} 메일 보내기`}
           >
             <Mail className="size-4" />
