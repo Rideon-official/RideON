@@ -109,12 +109,13 @@ export default function CoreServices() {
 function CardItem({ c }: { c: Card }) {
   return (
     <article
-  className="
+   className="
     group relative isolate rounded-2xl overflow-hidden
     border border-white/10 bg-[#1A1A1A]/70 p-7 lg:p-8 text-white
     transition-all duration-300 ease-out
     hover:scale-[1.015] hover:border-[#FFB800]/40 hover:bg-[#FFB800]
-    hover:text-[#111111] hover:shadow-[0_8px_28px_rgba(255,184,0,0.25)]
+    hover:text-[#111111] hover:[font-weight:800] hover:[-webkit-font-smoothing:auto]
+    hover:shadow-[0_8px_28px_rgba(255,184,0,0.25)]
     min-h-[230px]
   "
 >
