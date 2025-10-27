@@ -12,7 +12,7 @@ type WithAll = Category | "전체";
 
 type PartnerChannel = {
   id: string;
-  logo: string; // 단일 로고
+  logo: string; // 공식 로고(가능하면 SVG/PNG 투명)
   name: string;
   subtitle: string;
   desc: string;
@@ -24,18 +24,9 @@ type PartnerChannel = {
 /* ================================
    데이터
    ================================ */
+// 정비업체에서 '야마하 강동점'은 가장 뒤에 배치
 const CHANNELS: PartnerChannel[] = [
   // ----- 정비업체 -----
-  {
-    id: "yamaha-gangdong",
-    logo: "https://global.yamaha-motor.com/design/logo/img/logo_ymmc.png",
-    name: "야마하 강동점",
-    subtitle: "공식 정비 · 보증 수리",
-    desc: "야마하 인증 장비/절차로 보증 수리 및 정기점검을 제공합니다. 라이드온과 정식 협업관계입니다.",
-    tel: "010-0000-0000",
-    email: "yamaha@rideon.co.kr",
-    category: "정비업체",
-  },
   {
     id: "rideon-bike",
     logo: "/logos/rideon-bike.png",
@@ -64,6 +55,16 @@ const CHANNELS: PartnerChannel[] = [
     desc: "숙련 메카닉의 세밀 점검과 책임 정비.",
     tel: "010-0000-0005",
     email: "er@rideon.co.kr",
+    category: "정비업체",
+  },
+  {
+    id: "yamaha-gangdong",
+    logo: "https://global.yamaha-motor.com/design/logo/img/logo_ymmc.png",
+    name: "야마하 강동점",
+    subtitle: "공식 정비 · 보증 수리",
+    desc: "야마하 인증 장비/절차로 보증 수리 및 정기점검을 제공합니다. 라이드온과 정식 협업관계입니다.",
+    tel: "010-0000-0000",
+    email: "yamaha@rideon.co.kr",
     category: "정비업체",
   },
 
@@ -150,16 +151,17 @@ function telHref(t?: string) {
 }
 
 /* ================================
-   카드 (세로형, 슬림)
+   카드 (세로형, 슬림) + 로고 배지
    ================================ */
 function Card({ item }: { item: PartnerChannel }) {
   return (
-    <article className="group flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-3 text-white transition-all duration-300 hover:scale-[1.01] hover:border-[#FFD247]/40 hover:shadow-[0_10px_28px_rgba(255,210,71,0.18)] w-full min-h-[340px]">
+    <article className="group flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-3 text-white transition-all duration-300 hover:scale-[1.01] hover:-translate-y-0.5 hover:border-[#FFD247]/40 hover:shadow-[0_10px_28px_rgba(255,210,71,0.18)] w-full min-h-[340px]">
+      {/* 로고 배지 */}
       <div className="h-14 w-14 mb-2.5 flex items-center justify-center overflow-hidden rounded-xl bg-[#141414] border border-white/10">
         <img
           src={item.logo}
           alt={`${item.name} logo`}
-          className="max-h-11 max-w-12 object-contain"
+          className="max-h-11 max-w-12 object-contain grayscale opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
         />
       </div>
 
@@ -217,14 +219,14 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="relative w-full border-top border-neutral-900 bg-gradient-to-b from-[#121212] to-[#0F0F0F] py-14">
+    <section className="relative w-full bg-gradient-to-b from-[#121212] to-[#0F0F0F] py-14">
       {/* 배경 패턴 */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:radial-gradient(1px_1px_at_1px_1px,#fff_1px,transparent_0)] [background-size:16px_16px]"
       />
 
-      {/* 헤더/탭 컨테이너: 위 섹션과 라인 맞춤 (완전 동일 폭/패딩) */}
+      {/* 헤더/탭 컨테이너: 상단 섹션과 라인 맞춤 */}
       <div className="relative mx-auto max-w-6xl px-5 lg:px-6">
         {/* 헤더(좌측 정렬) */}
         <div className="mb-4">
@@ -242,7 +244,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        {/* 탭(가운데, 더 크고 조금 아래) */}
+        {/* 탭(가운데) */}
         <div className="mb-8 mt-3 grid grid-cols-[1fr_auto_1fr] items-center">
           <div />
           <div
@@ -270,14 +272,14 @@ export default function ContactSection() {
               );
             })}
           </div>
-          <div /> {/* (전체보기 제거) */}
+          <div />
         </div>
       </div>
 
-      {/* 카드 영역만 살짝 더 넓힘 */}
+      {/* 카드 영역만 넓힘 */}
       <div className="relative mx-auto max-w-[92rem] px-6 lg:px-8">
-        <div className="relative">
-          {/* 네비 버튼: 카드 밖쪽 배치(겹침 방지) */}
+        <div className="relative overflow-visible mt-4">
+          {/* 네비 버튼(카드 밖) */}
           <button
             onClick={() => scrollByPage(-1)}
             className="hidden lg:flex items-center justify-center absolute -left-10 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
@@ -306,7 +308,6 @@ export default function ContactSection() {
             <div className="flex items-stretch gap-4">
               {pages.map((page, idx) => (
                 <div key={idx} className="snap-start shrink-0 w-full">
-                  {/* 넓어진 폭에 맞춰 열 증가 */}
                   <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
                     {page.map((item) => (
                       <Card key={item.id} item={item} />
@@ -317,6 +318,11 @@ export default function ContactSection() {
             </div>
           </div>
         </div>
+
+        {/* 상표 고지(섹션 하단 안내) */}
+        <p className="mt-6 text-center text-[11px] text-white/40">
+          로고 및 상표는 각 소유자의 자산입니다.
+        </p>
       </div>
     </section>
   );
