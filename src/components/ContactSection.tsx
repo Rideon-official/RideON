@@ -225,7 +225,7 @@ export default function ContactSection() {
       />
 
       {/* 헤더/탭 컨테이너: 위 섹션과 라인 맞춤 (완전 동일 폭/패딩) */}
-      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
+      <div className="relative mx-auto max-w-6xl px-5 lg:px-6">
         {/* 헤더(좌측 정렬) */}
         <div className="mb-4">
           <p className="text-xs font-semibold tracking-[.2em] text-neutral-400">
@@ -243,7 +243,7 @@ export default function ContactSection() {
         </div>
 
         {/* 탭(가운데, 더 크고 조금 아래) */}
-        <div className="mb-5 mt-3 grid grid-cols-[1fr_auto_1fr] items-center">
+        <div className="mb-8 mt-3 grid grid-cols-[1fr_auto_1fr] items-center">
           <div />
           <div
             className="flex flex-wrap justify-center gap-3"
