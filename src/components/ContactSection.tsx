@@ -12,7 +12,7 @@ type WithAll = Category | "전체";
 
 type PartnerChannel = {
   id: string;
-  logo: string;      // 단일 로고만 사용
+  logo: string; // 단일 로고
   name: string;
   subtitle: string;
   desc: string;
@@ -39,7 +39,7 @@ const CHANNELS: PartnerChannel[] = [
   {
     id: "rideon-bike",
     logo: "/logos/rideon-bike.png",
-    name: "바이크정비소(라이드온바이크)",
+    name: "라이드온바이크",
     subtitle: "튜닝 · 정비 · 사고 처리",
     desc: "RIDE ON 전용 프로세스로 렌트/리스 차량까지 통합 관리.",
     tel: "010-0000-0003",
@@ -49,7 +49,7 @@ const CHANNELS: PartnerChannel[] = [
   {
     id: "munjeong-bike",
     logo: "/logos/munjeong-bike.png",
-    name: "바이크정비소(문정바이크)",
+    name: "문정바이크",
     subtitle: "정기 점검 · 급속 수리",
     desc: "도심형 빠른 대응. 예약/대기 최소화.",
     tel: "010-0000-0004",
@@ -59,7 +59,7 @@ const CHANNELS: PartnerChannel[] = [
   {
     id: "er-motors",
     logo: "/logos/er-motors.png",
-    name: "바이크정비소(ER모터스)",
+    name: "ER모터스",
     subtitle: "전문 메인터넌스",
     desc: "숙련 메카닉의 세밀 점검과 책임 정비.",
     tel: "010-0000-0005",
@@ -150,27 +150,27 @@ function telHref(t?: string) {
 }
 
 /* ================================
-   카드 (세로형, 슬림)
+   카드 (세로형, 더 슬림)
    ================================ */
 function Card({ item }: { item: PartnerChannel }) {
   return (
-    <article className="group flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-3.5 text-white transition-all duration-300 hover:scale-[1.01] hover:border-[#FFD247]/40 hover:shadow-[0_10px_28px_rgba(255,210,71,0.18)] w-full min-h-[360px]">
-      <div className="h-16 w-16 mb-3 flex items-center justify-center overflow-hidden rounded-xl bg-[#141414] border border-white/10">
+    <article className="group flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-3 text-white transition-all duration-300 hover:scale-[1.01] hover:border-[#FFD247]/40 hover:shadow-[0_10px_28px_rgba(255,210,71,0.18)] w-full min-h-[340px]">
+      <div className="h-14 w-14 mb-2.5 flex items-center justify-center overflow-hidden rounded-xl bg-[#141414] border border-white/10">
         <img
           src={item.logo}
           alt={`${item.name} logo`}
-          className="max-h-12 max-w-14 object-contain"
+          className="max-h-11 max-w-12 object-contain"
         />
       </div>
 
       <h3 className="text-[16px] font-bold text-white text-center">{item.name}</h3>
-      <p className="mt-1 text-[12px] text-white/60 text-center">{item.subtitle}</p>
+      <p className="mt-0.5 text-[12px] text-white/60 text-center">{item.subtitle}</p>
 
-      <p className="mt-2 text-[12.5px] leading-relaxed text-white/80 text-center line-clamp-2">
+      <p className="mt-1.5 text-[12.5px] leading-relaxed text-white/80 text-center line-clamp-2">
         {item.desc}
       </p>
 
-      <div className="mt-auto pt-3 flex flex-wrap justify-center gap-2 text-[12px]">
+      <div className="mt-auto pt-2 flex flex-wrap justify-center gap-1.5 text-[12px]">
         {item.tel && (
           <a
             href={telHref(item.tel)}
@@ -208,9 +208,8 @@ export default function ContactSection() {
     return CHANNELS.filter((c) => c.category === active);
   }, [active]);
 
-  // 컴팩트 캐러셀: 페이지 단위(6개)
-  const pageSize = 6;
-  const pages = useMemo(() => chunk(filtered, pageSize), [filtered]);
+  // 캐러셀
+  const pages = useMemo(() => chunk(filtered, 6), [filtered]);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const scrollByPage = (dir: -1 | 1) => {
     const el = scrollerRef.current;
@@ -226,9 +225,9 @@ export default function ContactSection() {
         className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:radial-gradient(1px_1px_at_1px_1px,#fff_1px,transparent_0)] [background-size:16px_16px]"
       />
 
-      {/* 섹션 컨테이너: 상단 섹션과 폭 정렬 */}
+      {/* 헤더/탭 컨테이너: 상단 섹션과 라인 맞춤 */}
       <div className="relative mx-auto max-w-6xl px-6 py-16 lg:px-8">
-        {/* 헤더(왼쪽 정렬) */}
+        {/* 헤더(좌측 정렬) */}
         <div className="mb-4">
           <p className="text-xs font-semibold tracking-[.2em] text-neutral-400">
             CONNECT
@@ -244,9 +243,9 @@ export default function ContactSection() {
           </p>
         </div>
 
-        {/* 탭 + 전체보기 (탭 가운데, 버튼 오른쪽) */}
+        {/* 탭(가운데) + 전체보기(오른쪽) */}
         <div className="mb-6 grid grid-cols-[1fr_auto_1fr] items-center">
-          <div />{/* 좌측 균형용 */}
+          <div />
           <div
             className="flex flex-wrap justify-center gap-2"
             role="tablist"
@@ -281,11 +280,13 @@ export default function ContactSection() {
             </button>
           </div>
         </div>
+      </div>
 
-        {/* 리스트 영역 */}
+      {/* ★ 카드 영역만 살짝 더 넓힘: max-w-[92rem] */}
+      <div className="relative mx-auto max-w-[92rem] px-6 lg:px-8">
         {showAll ? (
           // ===== 전체보기: 세로 그리드 =====
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
             {filtered.map((item) => (
               <Card key={item.id} item={item} />
             ))}
@@ -293,25 +294,21 @@ export default function ContactSection() {
         ) : (
           // ===== 컴팩트 캐러셀 =====
           <div className="relative">
-            {/* 좌/우 네비 */}
-            <div className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden lg:flex">
-              <button
-                onClick={() => scrollByPage(-1)}
-                className="pointer-events-auto inline-flex items-center justify-center rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
-                aria-label="이전"
-              >
-                <ChevronLeft className="size-6 text-white" />
-              </button>
-            </div>
-            <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden lg:flex">
-              <button
-                onClick={() => scrollByPage(1)}
-                className="pointer-events-auto inline-flex items-center justify-center rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
-                aria-label="다음"
-              >
-                <ChevronRight className="size-6 text-white" />
-              </button>
-            </div>
+            {/* 네비 버튼: 카드 밖쪽으로 배치(겹침 방지) */}
+            <button
+              onClick={() => scrollByPage(-1)}
+              className="hidden lg:flex items-center justify-center absolute -left-10 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
+              aria-label="이전"
+            >
+              <ChevronLeft className="size-6 text-white" />
+            </button>
+            <button
+              onClick={() => scrollByPage(1)}
+              className="hidden lg:flex items-center justify-center absolute -right-10 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
+              aria-label="다음"
+            >
+              <ChevronRight className="size-6 text-white" />
+            </button>
 
             {/* 스크롤 컨테이너 */}
             <div
@@ -324,8 +321,9 @@ export default function ContactSection() {
               `}</style>
 
               <div className="flex items-stretch gap-4">
-                {chunk(filtered, 6).map((page, idx) => (
+                {pages.map((page, idx) => (
                   <div key={idx} className="snap-start shrink-0 w-full">
+                    {/* 넓어진 폭에 맞춰 열도 자연스럽게 증가 */}
                     <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
                       {page.map((item) => (
                         <Card key={item.id} item={item} />
