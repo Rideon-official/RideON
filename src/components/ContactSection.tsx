@@ -150,7 +150,7 @@ function telHref(t?: string) {
 }
 
 /* ================================
-   카드 (세로형, 더 슬림)
+   카드 (세로형, 슬림)
    ================================ */
 function Card({ item }: { item: PartnerChannel }) {
   return (
@@ -201,7 +201,6 @@ function Card({ item }: { item: PartnerChannel }) {
    ================================ */
 export default function ContactSection() {
   const [active, setActive] = useState<WithAll>("전체");
-  const [showAll, setShowAll] = useState(false);
 
   const filtered = useMemo(() => {
     if (active === "전체") return CHANNELS;
@@ -218,15 +217,15 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="relative w-full border-t border-neutral-900 bg-gradient-to-b from-[#121212] to-[#0F0F0F]">
+    <section className="relative w-full border-top border-neutral-900 bg-gradient-to-b from-[#121212] to-[#0F0F0F] py-14">
       {/* 배경 패턴 */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:radial-gradient(1px_1px_at_1px_1px,#fff_1px,transparent_0)] [background-size:16px_16px]"
       />
 
-      {/* 헤더/탭 컨테이너: 상단 섹션과 라인 맞춤 */}
-      <div className="relative mx-auto max-w-6xl px-6 py-16 lg:px-8">
+      {/* 헤더/탭 컨테이너: 위 섹션과 라인 맞춤 (완전 동일 폭/패딩) */}
+      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         {/* 헤더(좌측 정렬) */}
         <div className="mb-4">
           <p className="text-xs font-semibold tracking-[.2em] text-neutral-400">
@@ -243,11 +242,11 @@ export default function ContactSection() {
           </p>
         </div>
 
-        {/* 탭(가운데) + 전체보기(오른쪽) */}
-        <div className="mb-6 grid grid-cols-[1fr_auto_1fr] items-center">
+        {/* 탭(가운데, 더 크고 조금 아래) */}
+        <div className="mb-5 mt-3 grid grid-cols-[1fr_auto_1fr] items-center">
           <div />
           <div
-            className="flex flex-wrap justify-center gap-2"
+            className="flex flex-wrap justify-center gap-3"
             role="tablist"
             aria-label="연결 카테고리"
           >
@@ -260,7 +259,7 @@ export default function ContactSection() {
                   aria-selected={isActive}
                   onClick={() => setActive(tab)}
                   className={[
-                    "h-10 w-24 justify-center whitespace-nowrap rounded-full px-0 text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2",
+                    "h-11 w-28 justify-center whitespace-nowrap rounded-full px-0 text-[14px] font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2",
                     isActive
                       ? "bg-[#FFB800] text-[#111111] border border-transparent shadow hover:brightness-95"
                       : "text-white border border-white/15 bg-white/5 hover:bg-[#FFB800] hover:text-[#111111]",
@@ -271,70 +270,53 @@ export default function ContactSection() {
               );
             })}
           </div>
-          <div className="flex justify-end">
-            <button
-              onClick={() => setShowAll((v) => !v)}
-              className="text-sm font-semibold rounded-full border border-white/15 bg-white/5 px-3.5 py-2 hover:bg-[#FFD247] hover:text-[#111111] transition"
-            >
-              {showAll ? "접기" : "전체보기"}
-            </button>
-          </div>
+          <div /> {/* (전체보기 제거) */}
         </div>
       </div>
 
-      {/* ★ 카드 영역만 살짝 더 넓힘: max-w-[92rem] */}
+      {/* 카드 영역만 살짝 더 넓힘 */}
       <div className="relative mx-auto max-w-[92rem] px-6 lg:px-8">
-        {showAll ? (
-          // ===== 전체보기: 세로 그리드 =====
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-            {filtered.map((item) => (
-              <Card key={item.id} item={item} />
-            ))}
-          </div>
-        ) : (
-          // ===== 컴팩트 캐러셀 =====
-          <div className="relative">
-            {/* 네비 버튼: 카드 밖쪽으로 배치(겹침 방지) */}
-            <button
-              onClick={() => scrollByPage(-1)}
-              className="hidden lg:flex items-center justify-center absolute -left-10 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
-              aria-label="이전"
-            >
-              <ChevronLeft className="size-6 text-white" />
-            </button>
-            <button
-              onClick={() => scrollByPage(1)}
-              className="hidden lg:flex items-center justify-center absolute -right-10 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
-              aria-label="다음"
-            >
-              <ChevronRight className="size-6 text-white" />
-            </button>
+        <div className="relative">
+          {/* 네비 버튼: 카드 밖쪽 배치(겹침 방지) */}
+          <button
+            onClick={() => scrollByPage(-1)}
+            className="hidden lg:flex items-center justify-center absolute -left-10 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
+            aria-label="이전"
+          >
+            <ChevronLeft className="size-6 text-white" />
+          </button>
+          <button
+            onClick={() => scrollByPage(1)}
+            className="hidden lg:flex items-center justify-center absolute -right-10 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
+            aria-label="다음"
+          >
+            <ChevronRight className="size-6 text-white" />
+          </button>
 
-            {/* 스크롤 컨테이너 */}
-            <div
-              ref={scrollerRef}
-              className="snap-x snap-mandatory overflow-x-auto overflow-y-visible mt-2 pb-2 [-ms-overflow-style:none] [scrollbar-width:none]"
-              style={{ scrollBehavior: "smooth" }}
-            >
-              <style jsx>{`
-                div::-webkit-scrollbar { display: none; }
-              `}</style>
+          {/* 스크롤 컨테이너 */}
+          <div
+            ref={scrollerRef}
+            className="snap-x snap-mandatory overflow-x-auto overflow-y-visible mt-2 pb-2 [-ms-overflow-style:none] [scrollbar-width:none]"
+            style={{ scrollBehavior: "smooth" }}
+          >
+            <style jsx>{`
+              div::-webkit-scrollbar { display: none; }
+            `}</style>
 
-              <div className="flex items-stretch gap-4">
-                {pages.map((page, idx) => (
-                  <div key={idx} className="snap-start shrink-0 w-full">
-                    {/* 넓어진 폭에 맞춰 열도 자연스럽게 증가 */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
-                      {page.map((item) => (
-                        <Card key={item.id} item={item} />
-                      ))}
-                    </div>
+            <div className="flex items-stretch gap-4">
+              {pages.map((page, idx) => (
+                <div key={idx} className="snap-start shrink-0 w-full">
+                  {/* 넓어진 폭에 맞춰 열 증가 */}
+                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
+                    {page.map((item) => (
+                      <Card key={item.id} item={item} />
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );
