@@ -238,7 +238,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#121212] to-[#0F0F0F] py-14">
+    <section className="relative w-full bg-dark-gradient py-14">
       {/* 배경 패턴 */}
       <div
         aria-hidden
