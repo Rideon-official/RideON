@@ -71,3 +71,8 @@ html, body {
     scroll-behavior: auto !important;
   }
 }
+
+/* === Global dark gradient unify === */
+.bg-dark-gradient {
+  background: linear-gradient(to bottom, #111111 0%, #0F0F0F 100%);
+}
