@@ -6,7 +6,7 @@ import { INQUIRY_MENU } from "@/config/links";
 
 export default function Hero() {
   return (
-    <section className="bg-white">
+    <section className="bg-dark-gradient">
       <div className="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-8 items-center">
         <div>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
