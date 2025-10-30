@@ -238,11 +238,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="relative w-full bg-dark-gradient py-14">
+    <section className="relative w-full bg-[#121212] py-14">
       {/* 배경 패턴 */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:radial-gradient(1px_1px_at_1px_1px,#fff_1px,transparent_0)] [background-size:16px_16px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.02] [background-image:radial-gradient(1px_1px_at_1px_1px,#ffffff_1px,transparent_0)] [background-size:18px_18px]"
       />
 
       {/* 헤더/탭 컨테이너: 상단 섹션과 라인 맞춤 */}
