@@ -2,8 +2,10 @@
 "use client";
 
 import Image from "next/image";
-import ContactSection from "../components/ContactSection";
 import CoreServices from "@/components/CoreServices";
+import ContactSection from "@/components/ContactSection";
+import Stats from "@/components/Stats";
+import MergeFlow from "@/components/MergeFlow";
 import Starfield from "@/components/Starfield";
 
 export default function Home() {
@@ -12,10 +14,8 @@ export default function Home() {
       {/* ===== Hero ===== */}
       <section
         id="hero"
-        // 헤더랑 살짝 띄우기: pt-16 -> pt-20
         className="relative overflow-hidden bg-[#0E0E0E] pt-20 pb-16 lg:pt-24 lg:pb-24"
       >
-        {/* 메인 그리드 */}
         <div className="relative mx-auto max-w-7xl px-4 grid gap-10 lg:grid-cols-12 items-center">
           {/* 왼쪽 텍스트 */}
           <div className="relative z-10 lg:col-span-7">
@@ -62,12 +62,14 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 오른쪽: 지도 박스 */}
+          {/* 오른쪽 비주얼 */}
           <div className="relative lg:col-span-5 mt-10 lg:mt-0 flex justify-center">
             <div className="relative w-[320px] h-[320px] md:w-[360px] md:h-[360px] rounded-2xl bg-[#0F0F0F] border border-white/5 overflow-hidden">
-              {/* 어둡게 덮는 레이어 */}
-              <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" aria-hidden="true" />
-
+              {/* 살짝 어둡게 */}
+              <div
+                className="absolute inset-0 bg-black/10 z-10 pointer-events-none"
+                aria-hidden="true"
+              />
               <Image
                 src="/main-map.png"
                 alt="RIDE ON Network Map"
@@ -75,8 +77,6 @@ export default function Home() {
                 priority
                 className="object-cover opacity-65"
               />
-
-              {/* 로고 오버레이는 위로 올린다 */}
               <div className="absolute inset-0 z-20 flex items-center justify-center">
                 <Image
                   src="/rideon-logo.png"
@@ -87,8 +87,6 @@ export default function Home() {
                   priority
                 />
               </div>
-
-              {/* 별똥별은 제일 위 */}
               <div className="absolute inset-0 z-30">
                 <Starfield density={0.16} twinkleSpeed={1.0} />
               </div>
@@ -97,8 +95,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Stats (숫자 섹션) ===== */}
+      <Stats />
+
       {/* ===== Core Services ===== */}
       <CoreServices />
+
+      {/* ===== Merge / Flow ===== */}
+      <MergeFlow />
 
       {/* ===== Contact ===== */}
       <div id="contact">
