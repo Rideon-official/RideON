@@ -2,35 +2,86 @@
 "use client";
 
 import Link from "next/link";
+import type { ReactNode } from "react";
+import { Building2, Bike, FileText, ShoppingBag } from "lucide-react";
 
-const SERVICES = [
+type Card = {
+  eyebrow: string;
+  title: string;
+  desc: ReactNode;
+  href: string;
+  icon: ReactNode;
+  buttonLabel: string;
+};
+
+const cards: Card[] = [
   {
-    id: "merge",
-    title: "지사 합병",
-    desc: "기존 조직을 본사 운영/정산 체계로 흡수합니다.",
-    href: "/inquiry#지사합병문의하기",
-    level: "primary",
+    eyebrow: "HQ SUPPORT",
+    title: "본사 운영지원",
+    desc: (
+      <>
+        <span className="md:hidden">지사는 현장 운영에 집중, 본사는 시스템으로 지원.</span>
+        <span className="hidden md:inline">
+          지사는 현장 운영에 집중,
+          <br className="hidden md:block" />
+          본사는 시스템으로 지원.
+        </span>
+      </>
+    ),
+    href: "/brand#story",
+    icon: <Building2 className="w-8 h-8" strokeWidth={1.6} />,
+    buttonLabel: "운영 방식 보기 →",
   },
   {
-    id: "bike",
-    title: "바이크·렌탈",
-    desc: "플릿 운영, 배달 특화 조건으로 제공.",
-    href: "/bike",
-    level: "normal",
+    eyebrow: "RIDE ON BIKE",
+    title: "RIDE ON BIKE",
+    desc: (
+      <>
+        <span className="md:hidden">렌트·리스·튜닝·정비·사고 처리까지 원스톱.</span>
+        <span className="hidden md:inline">
+          렌트·리스·튜닝·정비·사고 처리
+          <br className="hidden md:block" />
+          까지 원스톱.
+        </span>
+      </>
+    ),
+    href: "/bike#rent",
+    icon: <Bike className="w-8 h-8" strokeWidth={1.6} />,
+    buttonLabel: "렌트/리스 안내 →",
   },
   {
-    id: "logi",
-    title: "정산(Logiteats)",
-    desc: "수수료·배송비·가맹 정산의 단일 창구.",
-    href: "/logiteats",
-    level: "normal",
+    eyebrow: "LOGITEATS",
+    title: "정산 솔루션",
+    desc: (
+      <>
+        <span className="md:hidden">타 지사도 사용할 수 있는 정산·리포트 플랫폼.</span>
+        <span className="hidden md:inline">
+          타 지사도 사용할 수 있는
+          <br className="hidden md:block" />
+          정산·리포트 플랫폼.
+        </span>
+      </>
+    ),
+    href: "/logiteats#intro",
+    icon: <FileText className="w-8 h-8" strokeWidth={1.6} />,
+    buttonLabel: "정산 솔루션 보기 →",
   },
   {
-    id: "store",
+    eyebrow: "RIDER STORE",
     title: "라이더 스토어",
-    desc: "장비, 유니폼, 소모품 일괄 공급.",
+    desc: (
+      <>
+        <span className="md:hidden">공식 의류·장비·소모품 — 합리적 가격에 바로 구매.</span>
+        <span className="hidden md:inline">
+          공식 의류/장비/소모품
+          <br className="hidden md:block" />
+          — 합리적 가격에 바로 구매.
+        </span>
+      </>
+    ),
     href: "/store",
-    level: "muted",
+    icon: <ShoppingBag className="w-8 h-8" strokeWidth={1.6} />,
+    buttonLabel: "공식 스토어 이동 →",
   },
 ];
 
@@ -38,76 +89,66 @@ export default function CoreServices() {
   return (
     <section className="bg-[#0D0D0D] py-14">
       <div className="mx-auto max-w-6xl px-4">
-        <header className="flex items-center justify-between gap-4 mb-8">
-          <div>
-            <p className="text-xs tracking-[0.28em] text-white/35 uppercase">SERVICES</p>
-            <h2 className="mt-2 text-2xl font-semibold text-white">RIDE ON이 하는 일</h2>
-            <p className="mt-2 text-sm text-white/45">
-              지사합병을 중심으로 운영, 장비, 정산까지 한 번에 묶습니다.
-            </p>
-          </div>
-          <Link href="/inquiry" className="text-sm text-[#FFB800]">
-            전체 문의 →
-          </Link>
+        <header className="mb-8 lg:mb-10">
+          <h2 className="text-2xl font-semibold text-white">RIDE ON 솔루션의 4가지 핵심 가치</h2>
+          <p className="mt-2 text-sm text-white/70">
+            운영 · 정산 · 렌트 · 브랜드를 하나의 프로세스로 묶은 구조입니다.
+          </p>
         </header>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((service) => {
-            if (service.level === "primary") {
-              return (
-                <article
-                  key={service.id}
-                  className="rounded-2xl bg-[#FFB800] text-[#111111] p-6 flex flex-col justify-between min-h-[200px]"
-                >
-                  <div>
-                    <p className="text-xs tracking-wide uppercase">TOP PRIORITY</p>
-                    <h3 className="mt-3 text-xl font-semibold">{service.title}</h3>
-                    <p className="mt-3 text-sm text-black/70">{service.desc}</p>
-                  </div>
-                  <Link
-                    href={service.href}
-                    className="mt-6 inline-flex items-center gap-1 text-sm font-semibold"
-                  >
-                    상담하기
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </article>
-              );
-            }
-
-            if (service.level === "normal") {
-              return (
-                <article
-                  key={service.id}
-                  className="rounded-2xl border border-white/6 bg-[#151515] p-6 hover:border-[#FFB800]/35 transition-colors"
-                >
-                  <h3 className="text-lg font-medium text-white">{service.title}</h3>
-                  <p className="mt-2 text-sm text-white/55">{service.desc}</p>
-                  <Link href={service.href} className="mt-5 inline-flex text-sm text-white/80">
-                    자세히 →
-                  </Link>
-                </article>
-              );
-            }
-
-            // muted
-            return (
-              <article
-                key={service.id}
-                className="rounded-2xl border border-dashed border-white/10 bg-[#121212] p-6 flex flex-col justify-between"
-              >
-                <div>
-                  <h3 className="text-lg font-medium text-white/85">{service.title}</h3>
-                  <p className="mt-2 text-sm text-white/40">{service.desc}</p>
-                </div>
-                <Link href={service.href} className="mt-5 inline-flex text-sm text-[#FFB800]">
-                  입점/문의 →
-                </Link>
-              </article>
-            );
-          })}
+        <div className="grid auto-rows-fr gap-5 lg:gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {cards.map((c, i) => (
+            <CardItem key={i} c={c} />
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function CardItem({ c }: { c: Card }) {
+  return (
+    <article
+      className="
+        group relative isolate rounded-2xl overflow-hidden
+        border border-white/10 bg-[#1A1A1A]/70 p-7 lg:p-8 text-white
+        transition-all duration-200
+        hover:border-[#FFB800]/35 hover:bg-[#1A1A1A]/95
+        min-h-[230px]
+      "
+    >
+      {/* 상단 라인 */}
+      <div className="absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/4 group-hover:bg-[#FFB800]/60" />
+
+      <div className="mb-1 flex items-center justify-between gap-4">
+        <p className="text-xs uppercase tracking-[0.32em] text-white/55 group-hover:text-white/80">
+          {c.eyebrow}
+        </p>
+        <div className="text-white/80 group-hover:text-white transition-colors duration-200">
+          <div className="scale-105">{c.icon}</div>
+        </div>
+      </div>
+
+      <h3 className="mt-2 text-[20px] sm:text-[22px] font-bold tracking-tight text-white">
+        {c.title}
+      </h3>
+      <p className="mt-3 text-[15px] leading-relaxed text-white/70 group-hover:text-white/85">
+        {c.desc}
+      </p>
+
+      <div className="mt-7">
+        <Link
+          href={c.href}
+          className="
+            inline-flex items-center justify-center rounded-full
+            border border-white/20 px-4 py-2 text-sm font-semibold
+            text-white/95 transition-all duration-200
+            group-hover:border-[#FFB800] group-hover:text-[#FFB800]
+          "
+        >
+          {c.buttonLabel}
+        </Link>
+      </div>
+    </article>
   );
 }
