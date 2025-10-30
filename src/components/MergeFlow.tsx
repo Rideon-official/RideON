@@ -1,4 +1,3 @@
-// src/components/MergeFlow.tsx
 export default function MergeFlow() {
   const steps = [
     { title: "상담/현황 파악", desc: "지부 구조, 계약, 인원 파악" },
@@ -8,9 +7,8 @@ export default function MergeFlow() {
   ];
 
   return (
-    <section className="relative bg-[#111111] py-14 lg:py-16">
+    <section className="relative bg-[#0E0E0E] py-14 lg:py-16">
       <div className="mx-auto max-w-6xl px-4">
-        {/* ==== 통일된 섹션 헤더 ==== */}
         <header className="mb-8 lg:mb-10">
           <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
             MERGE FLOW
@@ -23,34 +21,20 @@ export default function MergeFlow() {
           </p>
         </header>
 
-        {/* ==== 단계 카드 ==== */}
         <div className="grid gap-5 md:grid-cols-4">
           {steps.map((s, idx) => (
             <div
               key={s.title}
-              className="
-                relative rounded-2xl border border-white/5 bg-[#121212] p-6
-                text-white transition-all duration-200
-                hover:border-[#FFB800]/35 hover:bg-[#1A1A1A]/95
-              "
+              className="relative rounded-2xl border border-white/5 bg-[#121212] p-6 text-white transition-all duration-200 hover:border-[#FFB800]/35 hover:bg-[#1A1A1A]/95"
             >
-              {/* 상단 라인 */}
-              <div className="absolute left-5 right-5 top-0 h-[3px] rounded-b-full bg-white/5 group-hover:bg-[#FFB800]/40" />
               <p className="text-xs text-white/40">STEP {idx + 1}</p>
-              <p className="mt-3 text-[16px] font-semibold text-white">
-                {s.title}
-              </p>
+              <p className="mt-3 text-[16px] font-semibold text-white">{s.title}</p>
               <p className="mt-2 text-sm text-white/55">{s.desc}</p>
             </div>
           ))}
         </div>
       </div>
-
-      {/* 배경 패턴 (섹션별 통일감용) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.02] [background-image:radial-gradient(1px_1px_at_1px_1px,#ffffff_1px,transparent_0)] [background-size:18px_18px]"
-      />
+      {/* ⛔️ 패턴 지움 */}
     </section>
   );
 }
