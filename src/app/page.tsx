@@ -1,7 +1,6 @@
 // src/app/page.tsx
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import ContactSection from "../components/ContactSection";
 import CoreServices from "@/components/CoreServices";
@@ -13,8 +12,8 @@ export default function Home() {
       {/* ===== Hero ===== */}
       <section
         id="hero"
-        // 여기만 위아래 패딩을 준다
-        className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-16 pb-16 lg:pt-20 lg:pb-24"
+        // 헤더랑 살짝 띄우기: pt-16 -> pt-20
+        className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24"
       >
         {/* 배경 오버레이 */}
         <div
@@ -52,7 +51,7 @@ export default function Home() {
               ))}
             </div>
 
-            {/* CTA: 이원 체계 */}
+            {/* CTA */}
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <a
                 href="/inquiry#지사합병문의하기"
@@ -69,32 +68,36 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 오른쪽: 지도 + 로고 + 효과 */}
+          {/* 오른쪽: 지도 박스 */}
           <div className="relative lg:col-span-5 mt-10 lg:mt-0 flex justify-center">
-            <div className="relative w-[320px] h-[320px] md:w-[360px] md:h-[360px] rounded-2xl bg-[#171717] border border-white/5 overflow-hidden">
-              {/* 지도 이미지 */}
+            <div className="relative w-[320px] h-[320px] md:w-[360px] md:h-[360px] rounded-2xl bg-[#0F0F0F] border border-white/5 overflow-hidden">
+              {/* 어둡게 덮는 레이어 */}
+              <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" aria-hidden="true" />
+
               <Image
                 src="/main-map.png"
                 alt="RIDE ON Network Map"
                 fill
                 priority
-                className="object-cover opacity-70"
+                className="object-cover opacity-65"
               />
 
-              {/* 로고 오버레이 */}
-              <div className="absolute inset-0 z-10 flex items-center justify-center">
+              {/* 로고 오버레이는 위로 올린다 */}
+              <div className="absolute inset-0 z-20 flex items-center justify-center">
                 <Image
                   src="/rideon-logo.png"
                   alt="RIDE ON Logo"
                   width={220}
                   height={220}
-                  className="opacity-95 mix-blend-lighten select-none"
+                  className="opacity-90 mix-blend-lighten select-none"
                   priority
                 />
               </div>
 
-              {/* 별똥별 효과 */}
-              <Starfield density={0.16} twinkleSpeed={1.0} />
+              {/* 별똥별은 제일 위 */}
+              <div className="absolute inset-0 z-30">
+                <Starfield density={0.16} twinkleSpeed={1.0} />
+              </div>
             </div>
           </div>
         </div>
