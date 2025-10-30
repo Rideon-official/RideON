@@ -7,7 +7,7 @@ export default function Stats() {
   ];
 
   return (
-    <section className="bg-[#0E0E0E] py-10">
+    <section className="bg-[#0E0E0E] py-14 lg:py-16">
       <div className="mx-auto max-w-6xl px-4 grid gap-5 md:grid-cols-3">
         {items.map((it) => (
           <div
