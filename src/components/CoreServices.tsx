@@ -87,7 +87,7 @@ const cards: Card[] = [
 
 export default function CoreServices() {
   return (
-    <section className="bg-[#0D0D0D] py-14">
+    <section className="bg-[#0E0E0E] py-14">
       <div className="mx-auto max-w-6xl px-4">
         <header className="mb-8 lg:mb-10">
           <h2 className="text-2xl font-semibold text-white">RIDE ON 솔루션의 4가지 핵심 가치</h2>
