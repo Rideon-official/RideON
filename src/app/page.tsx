@@ -27,7 +27,7 @@ export default function Home() {
             </h1>
 
             <p className="mt-4 text-gray-300 text-base sm:text-lg">
-              쿠팡·배민플러스 공식 파트너 네트워크. 전국 25개 지부가 함께 움직입니다.
+              쿠팡·배민플러스 공식 파트너 네트워크입니다. 전국 25개 지부가 하나로 운영됩니다.
             </p>
 
             {/* KPI strip */}
