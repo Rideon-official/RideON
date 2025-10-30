@@ -111,7 +111,7 @@ function CardItem({ c }: { c: Card }) {
     <article
       className="
         group relative isolate rounded-2xl overflow-hidden
-        border border-white/10 bg-[#1A1A1A]/70 p-7 lg:p-8 text-white
+        border border-white/10 bg-[#151515] p-7 lg:p-8 text-white
         transition-all duration-200
         hover:border-[#FFB800]/35 hover:bg-[#1A1A1A]/95
         min-h-[230px]
