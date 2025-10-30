@@ -4,15 +4,12 @@
 import { useMemo, useRef, useState } from "react";
 import { Phone, Mail, ChevronLeft, ChevronRight } from "lucide-react";
 
-/* ================================
-   타입
-   ================================ */
 type Category = "정비업체" | "사고·보험" | "협력병원" | "협력사";
 type WithAll = Category | "전체";
 
 type PartnerChannel = {
   id: string;
-  logo: string; // 공식 로고(가능하면 SVG/PNG 투명)
+  logo: string;
   name: string;
   subtitle: string;
   desc: string;
@@ -21,12 +18,7 @@ type PartnerChannel = {
   category: Category;
 };
 
-/* ================================
-   데이터
-   ================================ */
-// 정비업체에서 '야마하 강동점'은 가장 뒤에 배치
 const CHANNELS: PartnerChannel[] = [
-  // ----- 정비업체 -----
   {
     id: "rideon-bike",
     logo: "/logos/rideon-bike.png",
@@ -62,19 +54,17 @@ const CHANNELS: PartnerChannel[] = [
     logo: "https://global.yamaha-motor.com/design/logo/img/logo_ymmc.png",
     name: "야마하 강동점",
     subtitle: "공식 정비 · 보증 수리",
-    desc: "야마하 인증 장비/절차로 보증 수리 및 정기점검을 제공합니다. 라이드온과 정식 협업관계입니다.",
+    desc: "야마하 인증 절차로 보증 수리 및 정기점검 제공.",
     tel: "010-0000-0000",
     email: "yamaha@rideon.co.kr",
     category: "정비업체",
   },
-
-  // ----- 사고·보험 -----
   {
     id: "adjuster",
     logo: "/logos/adjuster.png",
     name: "손해사정사",
     subtitle: "사고·보험 처리 전담",
-    desc: "접수부터 정산까지 원스톱 지원. 빠르고 투명한 사고 대응.",
+    desc: "접수부터 정산까지 원스톱 지원.",
     tel: "010-0000-0001",
     email: "claim@rideon.co.kr",
     category: "사고·보험",
@@ -84,7 +74,7 @@ const CHANNELS: PartnerChannel[] = [
     logo: "/logos/hyundai-insurance.png",
     name: "현대해상",
     subtitle: "파트너 보험사",
-    desc: "사고 접수 및 보상 진행 지원. 파트너 전용 상담 채널 운영.",
+    desc: "사고 접수 및 보상 진행 지원.",
     tel: "010-0000-0100",
     email: "hi@rideon.co.kr",
     category: "사고·보험",
@@ -94,7 +84,7 @@ const CHANNELS: PartnerChannel[] = [
     logo: "/logos/kb-insurance.png",
     name: "KB보험",
     subtitle: "파트너 보험사",
-    desc: "신속한 보상 심사와 전담 창구 제공. 라이더 맞춤 상품 연계.",
+    desc: "라이더 맞춤 상품 연계.",
     tel: "010-0000-0200",
     email: "kbins@rideon.co.kr",
     category: "사고·보험",
@@ -104,40 +94,33 @@ const CHANNELS: PartnerChannel[] = [
     logo: "/logos/delivery-mutual.png",
     name: "배달서비스공제",
     subtitle: "배달업 공제조합",
-    desc: "업권 특화 공제상품 및 사고 처리 연계. 서류 발급/정산 지원.",
+    desc: "업권 특화 공제상품 및 사고 처리 연계.",
     tel: "010-0000-0300",
     email: "mutual@rideon.co.kr",
     category: "사고·보험",
   },
-
-  // ----- 협력병원 -----
   {
     id: "hospital-network",
     logo: "/logos/hospital.png",
     name: "협력병원",
     subtitle: "라이더 전문 진료",
-    desc: "진단서 발급·치료 연계·사고 후 케어까지 지역 네트워크 운영.",
+    desc: "진단서 발급·치료 연계·사고 후 케어.",
     tel: "010-0000-0002",
     email: "hospital@rideon.co.kr",
     category: "협력병원",
   },
-
-  // ----- 협력사 -----
   {
     id: "kb-seorin",
     logo: "/logos/kb.png",
     name: "KB국민은행 서린동지점",
     subtitle: "라이더 금융 파트너",
-    desc: "계좌·카드·한도 지원을 위한 전담 창구 운영.",
+    desc: "계좌·카드·한도 전담 창구.",
     tel: "010-0000-0006",
     email: "kb@rideon.co.kr",
     category: "협력사",
   },
 ];
 
-/* ================================
-   유틸
-   ================================ */
 const TABS: WithAll[] = ["전체", "정비업체", "사고·보험", "협력병원", "협력사"];
 
 function chunk<T>(arr: T[], size: number) {
@@ -145,26 +128,17 @@ function chunk<T>(arr: T[], size: number) {
   for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
   return out;
 }
+
 function telHref(t?: string) {
   if (!t) return undefined;
   return `tel:${t.replaceAll(/[^0-9+]/g, "")}`;
 }
 
-/* ================================
-   카드 (세로형, 슬림) + 로고 배지
-   ================================ */
 function Card({ item }: { item: PartnerChannel }) {
   return (
     <article
-      className="
-        group flex flex-col items-center
-        rounded-2xl border border-white/10 bg-[#1A1A1A]/70 p-6
-        transition duration-300
-        hover:-translate-y-0.5 hover:border-white/20 hover:bg-[#1A1A1A]/80
-        w-full min-h-[340px]
-      "
+      className="group flex flex-col items-center rounded-2xl border border-white/10 bg-[#1A1A1A] p-6 transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-[#1A1A1A]/95 w-full min-h-[340px]"
     >
-      {/* 로고 배지 (여백 스텝: 0 → 3 → 1 → 2 → 3 → 4) */}
       <div className="mb-3 h-14 w-14 flex items-center justify-center overflow-hidden rounded-xl bg-[#141414] border border-white/10">
         <img
           src={item.logo}
@@ -172,27 +146,16 @@ function Card({ item }: { item: PartnerChannel }) {
           className="max-h-11 max-w-12 object-contain grayscale opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
         />
       </div>
-
-      {/* 타이틀/서브텍스트 */}
       <h3 className="text-[16px] font-bold text-white text-center">{item.name}</h3>
       <p className="mt-1 text-[12px] text-white/60 text-center">{item.subtitle}</p>
-
-      {/* 본문 */}
       <p className="mt-2 text-[12.5px] leading-relaxed text-white/80 text-center line-clamp-2">
         {item.desc}
       </p>
-
-      {/* 연락처 */}
       <div className="mt-3 flex flex-wrap justify-center gap-2 text-[12px]">
         {item.tel && (
           <a
             href={telHref(item.tel)}
-            className="
-              inline-flex items-center gap-1
-              rounded-full border border-white/15 bg-white/5 px-3 py-1.5
-              hover:bg-[#FFB800] hover:text-[#111111] transition
-            "
-            aria-label={`${item.name} 전화 연결`}
+            className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 hover:bg-[#FFB800] hover:text-[#111111] transition"
           >
             <Phone className="size-4" />
             {item.tel}
@@ -201,12 +164,7 @@ function Card({ item }: { item: PartnerChannel }) {
         {item.email && (
           <a
             href={`mailto:${item.email}`}
-            className="
-              inline-flex items-center gap-1
-              rounded-full border border-white/15 bg-white/5 px-3 py-1.5
-              hover:bg-[#FFB800] hover:text-[#111111] transition
-            "
-            aria-label={`${item.name} 메일 보내기`}
+            className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 hover:bg-[#FFB800] hover:text-[#111111] transition"
           >
             <Mail className="size-4" />
             {item.email}
@@ -217,9 +175,6 @@ function Card({ item }: { item: PartnerChannel }) {
   );
 }
 
-/* ================================
-   메인
-   ================================ */
 export default function ContactSection() {
   const [active, setActive] = useState<WithAll>("전체");
 
@@ -228,9 +183,9 @@ export default function ContactSection() {
     return CHANNELS.filter((c) => c.category === active);
   }, [active]);
 
-  // 캐러셀
   const pages = useMemo(() => chunk(filtered, 6), [filtered]);
   const scrollerRef = useRef<HTMLDivElement>(null);
+
   const scrollByPage = (dir: -1 | 1) => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -239,19 +194,13 @@ export default function ContactSection() {
 
   return (
     <section className="relative w-full bg-[#121212] py-14">
-      {/* 배경 패턴 */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.02] [background-image:radial-gradient(1px_1px_at_1px_1px,#ffffff_1px,transparent_0)] [background-size:18px_18px]"
       />
-
-      {/* 헤더/탭 컨테이너: 상단 섹션과 라인 맞춤 */}
       <div className="relative mx-auto max-w-6xl px-5 lg:px-6">
-        {/* 헤더(좌측 정렬) */}
         <div className="mb-4">
-          <p className="text-xs font-semibold tracking-[.2em] text-neutral-400">
-            CONNECT
-          </p>
+          <p className="text-xs font-semibold tracking-[.2em] text-neutral-400">CONNECT</p>
           <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white lg:text-3xl">
             CONNECT with RIDE ON
           </h2>
@@ -263,42 +212,29 @@ export default function ContactSection() {
           </p>
         </div>
 
-        {/* 탭(가운데) */}
-        <div className="mb-8 mt-3 grid grid-cols-[1fr_auto_1fr] items-center">
-          <div />
-          <div
-            className="flex flex-wrap justify-center gap-3"
-            role="tablist"
-            aria-label="연결 카테고리"
-          >
-            {TABS.map((tab) => {
-              const isActive = active === tab;
-              return (
-                <button
-                  key={tab}
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setActive(tab)}
-                  className={[
-                    "h-11 w-28 justify-center whitespace-nowrap rounded-full px-0 text-[14px] font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2",
-                    isActive
-                      ? "bg-[#FFB800] text-[#111111] border border-transparent shadow hover:brightness-95"
-                      : "text-white border border-white/15 bg-white/5 hover:bg-[#FFB800] hover:text-[#111111]",
-                  ].join(" ")}
-                >
-                  {tab}
-                </button>
-              );
-            })}
-          </div>
-          <div />
+        <div className="mb-8 mt-3 flex flex-wrap justify-center gap-3" role="tablist">
+          {TABS.map((tab) => {
+            const isActive = active === tab;
+            return (
+              <button
+                key={tab}
+                onClick={() => setActive(tab)}
+                className={[
+                  "h-11 min-w-[6.5rem] justify-center rounded-full px-4 text-[14px] font-semibold transition-all duration-300",
+                  isActive
+                    ? "bg-[#FFB800] text-[#111111] border border-transparent shadow"
+                    : "text-white border border-white/15 bg-white/5 hover:bg-[#FFB800] hover:text-[#111111]",
+                ].join(" ")}
+              >
+                {tab}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* 카드 영역만 넓힘 */}
       <div className="relative mx-auto max-w-[92rem] px-6 lg:px-8">
         <div className="relative overflow-visible mt-4">
-          {/* 네비 버튼(카드 밖) */}
           <button
             onClick={() => scrollByPage(-1)}
             className="hidden lg:flex items-center justify-center absolute -left-10 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
@@ -314,16 +250,12 @@ export default function ContactSection() {
             <ChevronRight className="size-6 text-white" />
           </button>
 
-          {/* 스크롤 컨테이너 */}
+          {/* 여기가 스크롤 영역. no-scrollbar만 쓰면 됨 */}
           <div
             ref={scrollerRef}
-            className="snap-x snap-mandatory overflow-x-auto overflow-y-visible mt-2 pb-2 [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="no-scrollbar snap-x snap-mandatory overflow-x-auto overflow-y-visible mt-2 pb-2"
             style={{ scrollBehavior: "smooth" }}
           >
-            <style jsx>{`
-              div::-webkit-scrollbar { display: none; }
-            `}</style>
-
             <div className="flex items-stretch gap-4">
               {pages.map((page, idx) => (
                 <div key={idx} className="snap-start shrink-0 w-full">
@@ -338,7 +270,6 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* 상표 고지(섹션 하단 안내) */}
         <p className="mt-6 text-center text-[11px] text-white/40">
           로고 및 상표는 각 소유자의 자산입니다.
         </p>
