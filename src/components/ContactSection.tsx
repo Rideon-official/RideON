@@ -19,6 +19,7 @@ type PartnerChannel = {
 };
 
 const CHANNELS: PartnerChannel[] = [
+  // 정비업체
   {
     id: "rideon-bike",
     logo: "/logos/rideon-bike.png",
@@ -59,6 +60,8 @@ const CHANNELS: PartnerChannel[] = [
     email: "yamaha@rideon.co.kr",
     category: "정비업체",
   },
+
+  // 사고·보험
   {
     id: "adjuster",
     logo: "/logos/adjuster.png",
@@ -99,6 +102,8 @@ const CHANNELS: PartnerChannel[] = [
     email: "mutual@rideon.co.kr",
     category: "사고·보험",
   },
+
+  // 협력병원
   {
     id: "hospital-network",
     logo: "/logos/hospital.png",
@@ -109,6 +114,8 @@ const CHANNELS: PartnerChannel[] = [
     email: "hospital@rideon.co.kr",
     category: "협력병원",
   },
+
+  // 협력사
   {
     id: "kb-seorin",
     logo: "/logos/kb.png",
@@ -137,8 +144,15 @@ function telHref(t?: string) {
 function Card({ item }: { item: PartnerChannel }) {
   return (
     <article
-      className="group flex flex-col items-center rounded-2xl border border-white/10 bg-[#1A1A1A] p-6 transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-[#1A1A1A]/95 w-full min-h-[340px]"
+      className="
+        group flex flex-col items-center
+        rounded-2xl border border-white/10 bg-[#121212] p-6
+        transition duration-300
+        hover:-translate-y-0.5 hover:border-white/20 hover:bg-[#151515]
+        w-full min-h-[340px]
+      "
     >
+      {/* 로고 */}
       <div className="mb-3 h-14 w-14 flex items-center justify-center overflow-hidden rounded-xl bg-[#141414] border border-white/10">
         <img
           src={item.logo}
@@ -146,11 +160,15 @@ function Card({ item }: { item: PartnerChannel }) {
           className="max-h-11 max-w-12 object-contain grayscale opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
         />
       </div>
+
+      {/* 텍스트 */}
       <h3 className="text-[16px] font-bold text-white text-center">{item.name}</h3>
-      <p className="mt-1 text-[12px] text-white/60 text-center">{item.subtitle}</p>
+      <p className="mt-1 text-[12px] text-white/55 text-center">{item.subtitle}</p>
       <p className="mt-2 text-[12.5px] leading-relaxed text-white/80 text-center line-clamp-2">
         {item.desc}
       </p>
+
+      {/* 연락 수단 */}
       <div className="mt-3 flex flex-wrap justify-center gap-2 text-[12px]">
         {item.tel && (
           <a
@@ -193,32 +211,37 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="relative w-full bg-[#121212] py-14">
+    <section className="relative w-full bg-[#121212] py-14 lg:py-16">
+      {/* 패턴 */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.02] [background-image:radial-gradient(1px_1px_at_1px_1px,#ffffff_1px,transparent_0)] [background-size:18px_18px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.025] [background-image:radial-gradient(1px_1px_at_1px_1px,#ffffff_1px,transparent_0)] [background-size:18px_18px]"
       />
-      <div className="relative mx-auto max-w-6xl px-5 lg:px-6">
-        <div className="mb-4">
-          <p className="text-xs font-semibold tracking-[.2em] text-neutral-400">CONNECT</p>
-          <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white lg:text-3xl">
-            CONNECT with RIDE ON
-          </h2>
-          <p className="mt-2 text-sm text-neutral-400">
-            파트너 네트워크로 가장 빠르게 연결됩니다.
-          </p>
-          <p className="mt-1 text-sm text-white/60">
-            우리는 전국 1위 네트워크로 연결된 파트너입니다.
-          </p>
-        </div>
 
-        <div className="mb-8 mt-3 flex flex-wrap justify-center gap-3" role="tablist">
+      {/* 헤더 + 탭 */}
+      <div className="relative mx-auto max-w-6xl px-5 lg:px-6">
+        <header className="mb-6 lg:mb-7">
+          <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
+            CONNECT
+          </p>
+          <h2 className="mt-2 text-[22px] md:text-[26px] font-semibold text-white">
+            파트너 네트워크로 연결하세요
+          </h2>
+          <p className="mt-2 text-sm text-white/60">
+            정비·보험·병원·금융 파트너를 한 번에 조회하고 바로 연락할 수 있습니다.
+          </p>
+        </header>
+
+        {/* 탭 */}
+        <div className="mb-6 flex flex-wrap gap-3" role="tablist" aria-label="연결 카테고리">
           {TABS.map((tab) => {
             const isActive = active === tab;
             return (
               <button
                 key={tab}
                 onClick={() => setActive(tab)}
+                role="tab"
+                aria-selected={isActive}
                 className={[
                   "h-11 min-w-[6.5rem] justify-center rounded-full px-4 text-[14px] font-semibold transition-all duration-300",
                   isActive
@@ -233,8 +256,10 @@ export default function ContactSection() {
         </div>
       </div>
 
+      {/* 카드 영역 */}
       <div className="relative mx-auto max-w-[92rem] px-6 lg:px-8">
         <div className="relative overflow-visible mt-4">
+          {/* 좌우 버튼 */}
           <button
             onClick={() => scrollByPage(-1)}
             className="hidden lg:flex items-center justify-center absolute -left-10 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-2.5 backdrop-blur hover:bg-black/60 transition"
@@ -250,7 +275,7 @@ export default function ContactSection() {
             <ChevronRight className="size-6 text-white" />
           </button>
 
-          {/* 여기가 스크롤 영역. no-scrollbar만 쓰면 됨 */}
+          {/* 스크롤 컨테이너 */}
           <div
             ref={scrollerRef}
             className="no-scrollbar snap-x snap-mandatory overflow-x-auto overflow-y-visible mt-2 pb-2"
@@ -270,6 +295,7 @@ export default function ContactSection() {
           </div>
         </div>
 
+        {/* 하단 안내 */}
         <p className="mt-6 text-center text-[11px] text-white/40">
           로고 및 상표는 각 소유자의 자산입니다.
         </p>
