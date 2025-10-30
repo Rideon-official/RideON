@@ -13,7 +13,7 @@ export default function Home() {
       <section
         id="hero"
         // 헤더랑 살짝 띄우기: pt-16 -> pt-20
-        className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#1A1A1A] pt-20 pb-16 lg:pt-24 lg:pb-24"
+        className="relative overflow-hidden bg-[#0E0E0E] pt-20 pb-16 lg:pt-24 lg:pb-24"
       >
         {/* 배경 오버레이 */}
         <div
