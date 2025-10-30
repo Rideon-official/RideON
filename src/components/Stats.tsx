@@ -1,4 +1,3 @@
-// src/components/Stats.tsx
 export default function Stats() {
   const items = [
     { label: "전국 지부", value: "25", desc: "전국 단위 커버리지" },
@@ -9,7 +8,6 @@ export default function Stats() {
   return (
     <section className="bg-[#0E0E0E] py-14 lg:py-16">
       <div className="mx-auto max-w-6xl px-4">
-        {/* ==== 통일된 섹션 헤더 ==== */}
         <header className="mb-8 lg:mb-10">
           <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
             NETWORK
@@ -22,7 +20,6 @@ export default function Stats() {
           </p>
         </header>
 
-        {/* ==== KPI 카드 ==== */}
         <div className="grid gap-5 md:grid-cols-3">
           {items.map((it) => (
             <div
