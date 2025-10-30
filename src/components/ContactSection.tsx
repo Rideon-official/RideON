@@ -211,12 +211,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="relative w-full bg-[#121212] py-14 lg:py-16">
-      {/* 패턴 */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.025] [background-image:radial-gradient(1px_1px_at_1px_1px,#ffffff_1px,transparent_0)] [background-size:18px_18px]"
-      />
+    <section className="relative w-full bg-[#0E0E0E] py-14 lg:py-16">
 
       {/* 헤더 + 탭 */}
       <div className="relative mx-auto max-w-6xl px-5 lg:px-6">
