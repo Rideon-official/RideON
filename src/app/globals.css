@@ -14,6 +14,12 @@
   --brand-black: #111111;
   --brand-graphite: #1A1A1A;
   --brand-gray: #F1F1F1;
+
+  /* ADD: 우리가 많이 쓴 다크톤들을 변수로 박제 */
+  --app-bg-0: #0E0E0E;  /* 가장 어두운 섹션 (Hero, 바로 아래) */
+  --app-bg-1: #111111;  /* 중간 섹션 (MergeFlow 같은 애) */
+  --app-bg-2: #121212;  /* Contact, 카드 배경 */
+  --app-surface: #151515; /* 카드/박스용 */
 }
 
 html, body {
@@ -70,6 +76,7 @@ html, body {
   pointer-events: none;
 }
 
+/* 스크롤바 숨김 공용 클래스 */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -80,15 +87,10 @@ html, body {
 
 /* =========================================================
    역할 고정(색/컴포넌트 유틸) + 타이포 위계 통일
-   - Step 2: 색 역할 고정
-   - Step 3: 타이포 위계 통일
    ========================================================= */
-
 @layer base {
-  /* 기본 본문 가독 라인하이트 */
   p { @apply leading-relaxed; }
 
-  /* 헤딩 스케일 (사이트 전역 공통) */
   h1 { @apply text-[clamp(28px,6vw,48px)] font-semibold leading-tight text-white; }
   h2 { @apply text-2xl lg:text-3xl font-semibold leading-snug text-white; }
   h3 { @apply text-xl lg:text-2xl font-semibold leading-snug text-white; }
@@ -96,19 +98,22 @@ html, body {
 }
 
 @layer components {
-  /* 섹션 배경 역할 */
-  .section-core { @apply bg-graphite-core; }  /* 메인 암톤 */
-  .section-gray { @apply bg-graphite-gray; }  /* 카드/보조 구역 */
+  /* ADD: 우리가 쓸 섹션 배경 유틸 */
+  .bg-app-0 { background-color: var(--app-bg-0); }
+  .bg-app-1 { background-color: var(--app-bg-1); }
+  .bg-app-2 { background-color: var(--app-bg-2); }
+  .bg-surface { background-color: var(--app-surface); }
 
-  /* 섹션 패딩/컨테이너 (여백 시스템 골격) */
+  /* 기존 있던 애들 */
+  .section-core { @apply bg-graphite-core; }
+  .section-gray { @apply bg-graphite-gray; }
+
   .section-pad { @apply pt-20 pb-16 lg:pt-24 lg:pb-24; }
   .container-xl { @apply mx-auto max-w-7xl px-4; }
 
-  /* 카드 역할 */
   .card      { @apply rounded-card border border-white/10 bg-white/5 shadow-card; }
   .card-soft { @apply rounded-xl   border border-white/10 bg-white/5 shadow-soft; }
 
-  /* CTA 역할 = 무조건 옐로(brand) */
   .btn-primary {
     @apply inline-flex items-center justify-center rounded-xl
            bg-graphite-yellow px-5 py-3 text-sm font-semibold text-black
@@ -120,7 +125,6 @@ html, body {
            hover:bg-white/10 transition;
   }
 
-  /* 숫자/지표 역할 = KPI 뱃지 */
   .badge-kpi {
     @apply rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white;
   }
@@ -128,30 +132,23 @@ html, body {
     @apply mr-2 inline-block rounded-full bg-graphite-yellow px-2 py-0.5 text-[11px] font-medium text-black;
   }
 
-  /* 링크 역할 */
   .link { @apply text-white hover:text-graphite-yellow transition; }
 }
 
 @layer utilities {
-  /* 타이포 위계 유틸(필요한 곳에 명시적으로 적용 가능) */
   .typo-h1 { @apply text-[clamp(28px,6vw,48px)] font-semibold leading-tight text-white; }
   .typo-h2 { @apply text-2xl lg:text-3xl font-semibold leading-snug text-white; }
   .typo-h3 { @apply text-xl lg:text-2xl font-semibold leading-snug text-white; }
   .typo-body { @apply text-base leading-relaxed text-graphite-text; }
   .typo-caption { @apply text-xs leading-normal text-graphite-mute; }
 
-  /* 간격 리듬 유틸 (원하면 사용) */
   .stack-2 { @apply space-y-2; }
   .stack-3 { @apply space-y-3; }
   .stack-4 { @apply space-y-4; }
   .stack-6 { @apply space-y-6; }
   .stack-8 { @apply space-y-8; }
 }
-/* 스크롤바 숨김 공용 클래스 */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE, Edge */
-  scrollbar-width: none; /* Firefox */
-}
+
+/* (중복 방지용) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
