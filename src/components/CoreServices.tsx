@@ -89,14 +89,18 @@ export default function CoreServices() {
   return (
     // Hero랑 같은 톤
     <section className="bg-[#0E0E0E] py-14 lg:py-16">
-      {/* 폭을 6xl로 고정해서 위아래 섹션이랑 줄 맞춤 */}
+      {/* 위아래 섹션과 라인 맞춤 */}
       <div className="mx-auto max-w-6xl px-4 lg:px-5">
+        {/* ==== 통일된 섹션 헤더 ==== */}
         <header className="mb-8 lg:mb-10">
-          <h2 className="text-2xl lg:text-[28px] font-semibold text-white">
+          <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
+            SOLUTIONS
+          </p>
+          <h2 className="mt-2 text-[22px] md:text-[26px] font-semibold text-white">
             RIDE ON 솔루션의 4가지 핵심 가치
           </h2>
-          <p className="mt-2 text-sm lg:text-base text-white/70">
-            운영 · 정산 · 렌트 · 브랜드를 하나의 프로세스로 묶은 구조입니다.
+          <p className="mt-2 text-sm lg:text-base text-white/60">
+            운영 · 정산 · 렌트 · 브랜드를 하나의 프로세스로 묶어 동일한 품질로 배포합니다.
           </p>
         </header>
 
@@ -116,14 +120,14 @@ function CardItem({ c }: { c: Card }) {
     <article
       className="
         group relative isolate overflow-hidden
-        rounded-2xl border border-white/10 bg-[#151515] p-7 lg:p-8 text-white
+        rounded-2xl border border-white/5 bg-[#121212] p-7 lg:p-8 text-white
         transition-all duration-200
         hover:border-[#FFB800]/40 hover:bg-[#FFB800] hover:text-[#111111]
         min-h-[230px]
       "
     >
       {/* 상단 얇은 라인 */}
-      <div className="pointer-events-none absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/5 group-hover:bg-[#111111]/35" />
+      <div className="pointer-events-none absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/3 group-hover:bg-[#111111]/35" />
 
       <div className="mb-1 flex items-center justify-between gap-4">
         <p className="text-[11px] uppercase tracking-[0.32em] text-white/55 group-hover:text-[#111111]/70">
@@ -137,7 +141,7 @@ function CardItem({ c }: { c: Card }) {
       <h3 className="mt-2 text-[20px] sm:text-[22px] font-bold tracking-tight">
         {c.title}
       </h3>
-      <p className="mt-3 text-[14.5px] leading-relaxed text-white/70 group-hover:text-[#111111]/80">
+      <p className="mt-3 text-sm leading-relaxed text-white/70 group-hover:text-[#111111]/80">
         {c.desc}
       </p>
 
@@ -146,7 +150,7 @@ function CardItem({ c }: { c: Card }) {
           href={c.href}
           className="
             inline-flex items-center justify-center rounded-full
-            border border-white/20 px-4 py-2 text-sm font-semibold
+            border border-white/12 px-4 py-2 text-sm font-semibold
             text-white/95 transition-all duration-200
             group-hover:border-[#111111] group-hover:bg-[#111111] group-hover:text-[#FFB800]
           "
