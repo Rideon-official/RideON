@@ -72,7 +72,7 @@ export default function Home() {
           <div className="relative lg:col-span-5 mt-10 lg:mt-0 flex justify-center">
             <div className="relative w-[320px] h-[320px] md:w-[360px] md:h-[360px] rounded-2xl bg-[#0F0F0F] border border-white/5 overflow-hidden">
               {/* 어둡게 덮는 레이어 */}
-              <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" aria-hidden="true" />
+              <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" aria-hidden="true" />
 
               <Image
                 src="/main-map.png"
