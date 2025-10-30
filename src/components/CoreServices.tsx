@@ -87,11 +87,8 @@ const cards: Card[] = [
 
 export default function CoreServices() {
   return (
-    // Hero랑 같은 톤
     <section className="bg-[#0E0E0E] py-14 lg:py-16">
-      {/* 위아래 섹션과 라인 맞춤 */}
       <div className="mx-auto max-w-6xl px-4 lg:px-5">
-        {/* ==== 통일된 섹션 헤더 ==== */}
         <header className="mb-8 lg:mb-10">
           <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
             SOLUTIONS
@@ -104,7 +101,6 @@ export default function CoreServices() {
           </p>
         </header>
 
-        {/* 카드 4개 */}
         <div className="grid auto-rows-fr gap-5 lg:gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {cards.map((c, i) => (
             <CardItem key={i} c={c} />
@@ -126,9 +122,7 @@ function CardItem({ c }: { c: Card }) {
         min-h-[230px]
       "
     >
-      {/* 상단 얇은 라인 */}
       <div className="pointer-events-none absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/3 group-hover:bg-[#111111]/35" />
-
       <div className="mb-1 flex items-center justify-between gap-4">
         <p className="text-[11px] uppercase tracking-[0.32em] text-white/55 group-hover:text-[#111111]/70">
           {c.eyebrow}
@@ -137,14 +131,12 @@ function CardItem({ c }: { c: Card }) {
           {c.icon}
         </div>
       </div>
-
       <h3 className="mt-2 text-[20px] sm:text-[22px] font-bold tracking-tight">
         {c.title}
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-white/70 group-hover:text-[#111111]/80">
         {c.desc}
       </p>
-
       <div className="mt-7">
         <Link
           href={c.href}
