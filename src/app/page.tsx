@@ -18,18 +18,18 @@ export default function Home() {
       >
         <div className="relative mx-auto max-w-7xl px-4 grid gap-10 lg:grid-cols-12 items-center">
           {/* 왼쪽 텍스트 */}
-          <div className="relative z-10 lg:col-span-7">
+          <div className="relative z-10 lg:col-span-7 w-full max-w-xl">
             <p className="text-sm tracking-widest text-white/70">라이드온</p>
 
             <h1 className="mt-2 text-[clamp(28px,6vw,48px)] font-semibold leading-tight text-white">
-              전국 배달 인프라 · 운영/정산 통합 솔루션{" "}
+              전국 배달 인프라 통합 솔루션{" "}
               <span className="text-[#FFB800]">RIDE ON</span>
             </h1>
 
             <p className="mt-4 text-gray-300 text-base sm:text-lg">
-              쿠팡·배민 B2B 운영 네트워크를 기반으로, 전국 25개 지부를 하나의
-              시스템으로 연결합니다. 지사장, 라이더, 정비·보험 파트너 모두를
-              위한 배달 인프라를 제공합니다.
+              쿠팡·배민 B2B 네트워크를 기반으로 전국 25개 지부를 하나로
+              운영합니다. 지사장, 라이더, 정비·보험 파트너가 같은 기준으로
+              일하는 배달 인프라를 만듭니다.
             </p>
 
             {/* KPI strip */}
@@ -46,11 +46,6 @@ export default function Home() {
                 </span>
               ))}
             </div>
-
-            <p className="mt-3 text-xs text-white/60">
-              지사 합병·운영 안정화, 라이더 수급, 파트너 네트워크를 한 번에
-              관리하는 통합 구조를 지향합니다.
-            </p>
 
             {/* CTA */}
             <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
