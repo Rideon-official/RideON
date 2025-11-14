@@ -20,62 +20,70 @@ const cards: Card[] = [
     title: "본사 운영지원",
     desc: (
       <>
-        <span className="md:hidden">지사는 현장 운영에 집중, 본사는 시스템으로 지원.</span>
+        <span className="md:hidden">
+          지사는 현장 운영에 집중, 본사는 정산·모집·교육을 시스템으로 지원합니다.
+        </span>
         <span className="hidden md:inline">
-          지사는 현장 운영에 집중,
+          지사는 현장 운영에 집중하고,
           <br className="hidden md:block" />
-          본사는 시스템으로 지원.
+          본사는 정산·모집·교육을 시스템으로 지원합니다.
         </span>
       </>
     ),
     href: "/brand#story",
     icon: <Building2 className="w-8 h-8" strokeWidth={1.6} />,
-    buttonLabel: "운영 방식 보기 →",
+    buttonLabel: "지사장 운영지원 보기 →",
   },
   {
     eyebrow: "RIDE ON BIKE",
     title: "RIDE ON BIKE",
     desc: (
       <>
-        <span className="md:hidden">렌트·리스·튜닝·정비·사고 처리까지 원스톱.</span>
+        <span className="md:hidden">
+          라이더 렌트·리스·정비·사고 처리까지 본사 기준으로 통합 관리합니다.
+        </span>
         <span className="hidden md:inline">
-          렌트·리스·튜닝·정비·사고 처리
+          라이더 렌트·리스·튜닝·정비·사고 처리까지
           <br className="hidden md:block" />
-          까지 원스톱.
+          본사 기준으로 통합 관리합니다.
         </span>
       </>
     ),
     href: "/bike#rent",
     icon: <Bike className="w-8 h-8" strokeWidth={1.6} />,
-    buttonLabel: "렌트/리스 안내 →",
+    buttonLabel: "라이더 바이크 안내 →",
   },
   {
     eyebrow: "LOGITEATS",
     title: "정산 솔루션",
     desc: (
       <>
-        <span className="md:hidden">타 지사도 사용할 수 있는 정산·리포트 플랫폼.</span>
+        <span className="md:hidden">
+          타 지사도 사용할 수 있는 쿠팡·배민 B2B 정산·리포트 플랫폼입니다.
+        </span>
         <span className="hidden md:inline">
           타 지사도 사용할 수 있는
           <br className="hidden md:block" />
-          정산·리포트 플랫폼.
+          쿠팡·배민 B2B 정산·리포트 플랫폼입니다.
         </span>
       </>
     ),
     href: "/logiteats#intro",
     icon: <FileText className="w-8 h-8" strokeWidth={1.6} />,
-    buttonLabel: "정산 솔루션 보기 →",
+    buttonLabel: "정산 솔루션 살펴보기 →",
   },
   {
     eyebrow: "RIDER STORE",
     title: "라이더 스토어",
     desc: (
       <>
-        <span className="md:hidden">공식 의류·장비·소모품 — 합리적 가격에 바로 구매.</span>
+        <span className="md:hidden">
+          라이더 필수 공식 의류·장비·소모품을 합리적인 가격에 바로 구매할 수 있습니다.
+        </span>
         <span className="hidden md:inline">
-          공식 의류/장비/소모품
+          라이더 필수 공식 의류/장비/소모품을
           <br className="hidden md:block" />
-          — 합리적 가격에 바로 구매.
+          합리적인 가격에 바로 구매할 수 있습니다.
         </span>
       </>
     ),
@@ -94,10 +102,11 @@ export default function CoreServices() {
             SOLUTIONS
           </p>
           <h2 className="mt-2 text-[22px] md:text-[26px] font-semibold text-white">
-            RIDE ON 솔루션의 4가지 핵심 가치
+            지사 · 라이더 · 파트너를 위한 4가지 솔루션
           </h2>
           <p className="mt-2 text-sm lg:text-base text-white/60">
-            운영 · 정산 · 렌트 · 브랜드를 하나의 프로세스로 묶어 동일한 품질로 배포합니다.
+            본사 운영지원, 렌트/정비 인프라, 정산 솔루션, 라이더 스토어까지
+            하나의 구조 안에서 동일한 기준으로 제공합니다.
           </p>
         </header>
 
