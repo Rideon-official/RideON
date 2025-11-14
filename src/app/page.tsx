@@ -19,15 +19,15 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-4 grid gap-10 lg:grid-cols-12 items-center">
           {/* 왼쪽 텍스트 */}
           <div className="relative z-10 lg:col-span-7 w-full max-w-xl">
-            <p className="text-[14px] sm:text-[15px] tracking-[0.18em] text-white/70">
+            <p className="text-[14px] sm:text-[15px] tracking-[0.08em] text-white/70">
               라이드온
             </p>
 
             <h1 className="mt-3 font-semibold leading-tight text-white">
-              <span className="block text-[clamp(22px,4vw,34px)] whitespace-nowrap">
+              <span className="block text-[clamp(26px,4.5vw,38px)] whitespace-nowrap">
                 전국 배달 인프라 통합 솔루션
               </span>
-              <span className="block text-[clamp(34px,6.5vw,58px)] whitespace-nowrap text-[#FFB800]">
+              <span className="block text-[clamp(38px,7vw,62px)] whitespace-nowrap text-[#FFB800]">
                 RIDE ON
               </span>
             </h1>
@@ -53,7 +53,7 @@ export default function Home() {
             </div>
 
             {/* KPI strip */}
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap gap-1.5 lg:gap-2 max-w-[520px]">
               {[
                 "25개 지부",
                 "월 100만 건 처리",
@@ -62,9 +62,9 @@ export default function Home() {
               ].map((k) => (
                 <span
                   key={k}
-                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] sm:text-[13px] text-white"
+                  className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 text-[12px] sm:text-[13px] text-white whitespace-nowrap"
                 >
-                  <span className="mr-2 inline-block rounded-full bg-[#FFB800] px-2 py-0.5 text-[11px] font-medium text-black">
+                  <span className="mr-1.5 inline-block rounded-full bg-[#FFB800] px-1.5 py-0.5 text-[10px] sm:text-[11px] font-medium text-black">
                     KPI
                   </span>
                   {k}
