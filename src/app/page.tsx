@@ -36,9 +36,15 @@ export default function Home() {
             </p>
 
             <div className="mt-2 space-y-1 text-gray-300 text-sm sm:text-base">
-              <p>지사장에겐 안정된 운영</p>
-              <p>라이더에겐 정확한 정산</p>
-              <p>파트너에겐 꾸준한 수요를 연결합니다.</p>
+              <p>지사장에겐 안정된 운영과 리스·렌트·정산까지 한 번에 지원합니다.</p>
+              <p>
+                라이더에겐 몸만 와도 바로 일할 수 있는 바이크·장비·정산
+                풀패키지를 제공합니다.
+              </p>
+              <p>
+                파트너에겐 전국 1위급 라이더 네트워크와 꾸준한 수요를
+                연결합니다.
+              </p>
             </div>
 
             {/* KPI strip */}
@@ -47,45 +53,18 @@ export default function Home() {
                 "25개 지부",
                 "월 100만 건 처리",
                 "출고율 99.2%",
-                "렌트 운영 50대 이상",
+                "렌트·리스 50대+",
               ].map((k) => (
                 <span
                   key={k}
-                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white"
+                  className="rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] sm:text-xs text-white"
                 >
-                  <span className="mr-2 inline-block rounded-full bg-[#FFB800] px-2 py-0.5 text-[11px] font-medium text-black">
+                  <span className="mr-2 inline-block rounded-full bg-[#FFB800] px-2 py-0.5 text-[10px] font-medium text-black">
                     KPI
                   </span>
                   {k}
                 </span>
               ))}
-            </div>
-
-            {/* CTA */}
-            <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
-              {/* 1순위: 지사장 / 합병 */}
-              <a
-                href="/inquiry#지사합병문의하기"
-                className="inline-flex items-center justify-center rounded-xl bg-[#FFB800] px-5 py-3 text-sm font-semibold text-black shadow hover:brightness-95 active:translate-y-[1px] transition"
-              >
-                지사 합병 문의
-              </a>
-
-              {/* 2순위: 라이더 */}
-              <a
-                href="/inquiry#라이더가입문의"
-                className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
-              >
-                라이더 가입 문의
-              </a>
-
-              {/* 3순위: 정비/보험·병원 등 파트너 */}
-              <a
-                href="/inquiry#파트너십문의하기"
-                className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
-              >
-                파트너십 문의
-              </a>
             </div>
           </div>
 
