@@ -19,7 +19,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-4 grid gap-10 lg:grid-cols-12 items-center">
           {/* 왼쪽 텍스트 */}
           <div className="relative z-10 lg:col-span-7 w-full max-w-xl">
-            <p className="text-[13px] sm:text-sm tracking-[0.25em] text-white/70">
+            <p className="text-[14px] sm:text-[15px] tracking-[0.18em] text-white/70">
               라이드온
             </p>
 
@@ -39,15 +39,15 @@ export default function Home() {
 
             <div className="mt-3 space-y-1.5 text-gray-300 text-[13px] sm:text-[15px]">
               <p>
-                <span className="font-semibold text-[#FFB800]">지사장</span>
+                <span className="font-semibold text-[#FFC94D]">지사장</span>
                 에게는 안정된 운영과 리스·렌트·정산까지 한 번에 지원합니다.
               </p>
               <p>
-                <span className="font-semibold text-[#FFB800]">라이더</span>
+                <span className="font-semibold text-[#FFC94D]">라이더</span>
                 에겐 바로 일할 수 있는 바이크·장비·정산 패키지를 제공합니다.
               </p>
               <p>
-                <span className="font-semibold text-[#FFB800]">파트너십</span>
+                <span className="font-semibold text-[#FFC94D]">파트너십</span>
                 에는 전국 1위급 라이더 네트워크와 꾸준한 수요를 연결합니다.
               </p>
             </div>
@@ -62,9 +62,9 @@ export default function Home() {
               ].map((k) => (
                 <span
                   key={k}
-                  className="rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] sm:text-xs text-white"
+                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] sm:text-[13px] text-white"
                 >
-                  <span className="mr-2 inline-block rounded-full bg-[#FFB800] px-2 py-0.5 text-[10px] font-medium text-black">
+                  <span className="mr-2 inline-block rounded-full bg-[#FFB800] px-2 py-0.5 text-[11px] font-medium text-black">
                     KPI
                   </span>
                   {k}
@@ -75,7 +75,7 @@ export default function Home() {
 
           {/* 오른쪽 비주얼 */}
           <div className="relative lg:col-span-5 mt-10 lg:mt-0 flex justify-center">
-            <div className="relative w-[320px] h-[320px] md:w-[360px] md:h-[360px] rounded-2xl bg-[#0F0F0F] border border-white/5 overflow-hidden">
+            <div className="relative w-[360px] h-[360px] md:w-[400px] md:h-[400px] rounded-2xl bg-[#0F0F0F] border border-white/5 overflow-hidden">
               {/* 살짝 어둡게 */}
               <div
                 className="absolute inset-0 bg-black/10 z-10 pointer-events-none"
@@ -92,8 +92,8 @@ export default function Home() {
                 <Image
                   src="/rideon-logo.png"
                   alt="RIDE ON Logo"
-                  width={220}
-                  height={220}
+                  width={260}
+                  height={260}
                   className="opacity-90 mix-blend-lighten select-none"
                   priority
                 />
