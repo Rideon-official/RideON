@@ -21,7 +21,7 @@ export default function Home() {
           <div className="relative z-10 lg:col-span-7 w-full max-w-xl">
             <p className="text-sm tracking-widest text-white/70">라이드온</p>
 
-            <h1 className="mt-2 text-[clamp(28px,6vw,48px)] font-semibold leading-tight text-white">
+            <h1 className="mt-2 text-[clamp(32px,7vw,60px)] font-semibold leading-tight text-white">
               <span className="block whitespace-nowrap">
                 전국 배달 인프라 통합 솔루션
               </span>
@@ -34,14 +34,21 @@ export default function Home() {
               쿠팡·배민 B2B 네트워크를 기반으로 전국 25개 이상 지부를 하나로
               운영합니다.
             </p>
-            <p className="mt-2 text-gray-300 text-sm sm:text-base">
-              지사장에겐 안정된 운영, 라이더에겐 정확한 정산, 파트너에겐 꾸준한
-              수요를 연결합니다.
-            </p>
+
+            <div className="mt-2 space-y-1 text-gray-300 text-sm sm:text-base">
+              <p>지사장에겐 안정된 운영</p>
+              <p>라이더에겐 정확한 정산</p>
+              <p>파트너에겐 꾸준한 수요를 연결합니다.</p>
+            </div>
 
             {/* KPI strip */}
             <div className="mt-6 flex flex-wrap gap-2">
-              {["25개 지부", "월 100만 건 처리", "출고율 99.2%"].map((k) => (
+              {[
+                "25개 지부",
+                "월 100만 건 처리",
+                "출고율 99.2%",
+                "렌트 운영 50대 이상",
+              ].map((k) => (
                 <span
                   key={k}
                   className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white"
