@@ -22,12 +22,14 @@ export default function Home() {
             <p className="text-sm tracking-widest text-white/70">라이드온</p>
 
             <h1 className="mt-2 text-[clamp(28px,6vw,48px)] font-semibold leading-tight text-white">
-              전국 배달 인프라 운영의 기준{" "}
+              전국 배달 인프라 · 운영/정산 통합 솔루션{" "}
               <span className="text-[#FFB800]">RIDE ON</span>
             </h1>
 
             <p className="mt-4 text-gray-300 text-base sm:text-lg">
-              쿠팡·배민플러스 공식 파트너 네트워크입니다. 전국 25개 지부가 하나로 운영됩니다.
+              쿠팡·배민 B2B 운영 네트워크를 기반으로, 전국 25개 지부를 하나의
+              시스템으로 연결합니다. 지사장, 라이더, 정비·보험 파트너 모두를
+              위한 배달 인프라를 제공합니다.
             </p>
 
             {/* KPI strip */}
@@ -45,14 +47,30 @@ export default function Home() {
               ))}
             </div>
 
+            <p className="mt-3 text-xs text-white/60">
+              지사 합병·운영 안정화, 라이더 수급, 파트너 네트워크를 한 번에
+              관리하는 통합 구조를 지향합니다.
+            </p>
+
             {/* CTA */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
+              {/* 1순위: 지사장 / 합병 */}
               <a
                 href="/inquiry#지사합병문의하기"
                 className="inline-flex items-center justify-center rounded-xl bg-[#FFB800] px-5 py-3 text-sm font-semibold text-black shadow hover:brightness-95 active:translate-y-[1px] transition"
               >
                 지사 합병 문의
               </a>
+
+              {/* 2순위: 라이더 */}
+              <a
+                href="/inquiry#라이더가입문의"
+                className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
+              >
+                라이더 가입 문의
+              </a>
+
+              {/* 3순위: 정비/보험·병원 등 파트너 */}
               <a
                 href="/inquiry#파트너십문의하기"
                 className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
