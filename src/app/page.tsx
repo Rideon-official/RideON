@@ -19,31 +19,36 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-4 grid gap-10 lg:grid-cols-12 items-center">
           {/* 왼쪽 텍스트 */}
           <div className="relative z-10 lg:col-span-7 w-full max-w-xl">
-            <p className="text-sm tracking-widest text-white/70">라이드온</p>
+            <p className="text-[13px] sm:text-sm tracking-[0.25em] text-white/70">
+              라이드온
+            </p>
 
-            <h1 className="mt-2 text-[clamp(32px,7vw,60px)] font-semibold leading-tight text-white">
-              <span className="block whitespace-nowrap">
+            <h1 className="mt-3 font-semibold leading-tight text-white">
+              <span className="block text-[clamp(22px,4vw,34px)] whitespace-nowrap">
                 전국 배달 인프라 통합 솔루션
               </span>
-              <span className="block whitespace-nowrap text-[#FFB800]">
+              <span className="block text-[clamp(34px,6.5vw,58px)] whitespace-nowrap text-[#FFB800]">
                 RIDE ON
               </span>
             </h1>
 
-            <p className="mt-4 text-gray-300 text-sm sm:text-base whitespace-nowrap">
+            <p className="mt-5 text-gray-300 text-[15px] sm:text-[17px] whitespace-nowrap">
               쿠팡·배민 B2B 네트워크를 기반으로 전국 25개 이상 지부를 하나로
               운영합니다.
             </p>
 
-            <div className="mt-2 space-y-1 text-gray-300 text-sm sm:text-base">
-              <p>지사장에겐 안정된 운영과 리스·렌트·정산까지 한 번에 지원합니다.</p>
+            <div className="mt-3 space-y-1.5 text-gray-300 text-[13px] sm:text-[15px]">
               <p>
-                라이더에겐 몸만 와도 바로 일할 수 있는 바이크·장비·정산
-                풀패키지를 제공합니다.
+                <span className="font-semibold text-[#FFB800]">지사장</span>
+                에게는 안정된 운영과 리스·렌트·정산까지 한 번에 지원합니다.
               </p>
               <p>
-                파트너에겐 전국 1위급 라이더 네트워크와 꾸준한 수요를
-                연결합니다.
+                <span className="font-semibold text-[#FFB800]">라이더</span>
+                에겐 바로 일할 수 있는 바이크·장비·정산 패키지를 제공합니다.
+              </p>
+              <p>
+                <span className="font-semibold text-[#FFB800]">파트너십</span>
+                에는 전국 1위급 라이더 네트워크와 꾸준한 수요를 연결합니다.
               </p>
             </div>
 
