@@ -35,45 +35,45 @@ export default function MergeFlow() {
           <p className="mt-2 text-sm text-white/60">
             리스크 체크부터 운영 기준 통합, 안정화까지 네 단계로 정리합니다.
           </p>
+          <p className="mt-1 text-sm text-white/50 leading-relaxed">
+            기존 지사의 계약·정산·운영 구조를 그대로 가져오는 것이 아니라,
+            본사 기준에 맞춰 리스크를 최소화하고 구조를 다시 설계하는 데
+            초점을 둡니다.
+          </p>
         </header>
 
-        {/* 왼쪽 설명 + 오른쪽 스텝 리스트 */}
-        <div className="mt-6 grid gap-8 md:grid-cols-12">
-          {/* 왼쪽 설명 블록 */}
-          <div className="md:col-span-4">
-            <p className="text-sm text-white/60 leading-relaxed">
-              기존 지사의 계약·정산·운영 구조를 그대로 가져오는 것이 아니라,
-              <br className="hidden xl:block" />
-              본사 기준에 맞춰 리스크를 최소화하고 구조를 다시 설계하는 데
-              초점을 둡니다.
-            </p>
-          </div>
+        {/* 수평 타임라인 */}
+        <div className="mt-8">
+          <div className="relative">
+            {/* 데스크탑용 연결 라인 */}
+            <div className="pointer-events-none hidden md:block absolute left-6 right-6 top-8 h-px bg-white/15" />
 
-          {/* 오른쪽 세로 스텝 리스트 */}
-          <ol className="md:col-span-8 mt-2 md:mt-0 space-y-4 divide-y divide-white/10">
-            {steps.map((step, idx) => (
-              <li key={step.title} className="pt-4 first:pt-0">
-                <div className="flex gap-4 md:gap-6">
-                  {/* STEP 라벨 영역 */}
-                  <div className="min-w-[90px]">
-                    <p className="text-[11px] font-semibold tracking-[0.2em] text-[#FFB800]/80 uppercase">
+            <ol className="flex flex-col gap-6 md:flex-row md:gap-0">
+              {steps.map((step, idx) => (
+                <li
+                  key={step.title}
+                  className="relative flex md:flex-1 md:flex-col md:items-center gap-4"
+                >
+                  {/* STEP 번호 원형 */}
+                  <div className="relative flex-shrink-0 md:flex md:justify-center md:w-full">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-full border border-[#FFB800]/60 bg-[#181818] text-[11px] font-semibold tracking-[0.16em] text-[#FFB800] uppercase">
                       STEP {idx + 1}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-[#FFB800]">
-                      {step.title}
-                    </p>
+                    </div>
                   </div>
 
-                  {/* 설명 영역 */}
-                  <div className="flex-1">
-                    <p className="text-sm text-white/70 leading-relaxed">
+                  {/* 텍스트 블록 */}
+                  <div className="md:mt-3 md:text-center max-w-xs">
+                    <p className="text-sm font-semibold text-[#FFB800]">
+                      {step.title}
+                    </p>
+                    <p className="mt-1 text-xs md:text-sm text-white/70 leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ol>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </div>
     </section>
