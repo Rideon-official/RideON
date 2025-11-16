@@ -16,18 +16,19 @@ export default function Home() {
         id="hero"
         className="relative overflow-hidden bg-[#0E0E0E] pt-20 pb-16 lg:pt-24 lg:pb-24"
       >
-        <div className="relative mx-auto max-w-7xl px-4 grid gap-10 lg:grid-cols-12 items-center">
+        {/* 헤더와 맞춘 컨테이너 (max-w-7xl, lg:px-6) */}
+        <div className="relative mx-auto max-w-7xl px-4 lg:px-6 grid gap-10 lg:grid-cols-12 items-center">
           {/* 왼쪽 텍스트 */}
-          <div className="relative z-10 lg:col-span-7 w-full max-w-xl">
-            <p className="text-[14px] sm:text-[15px] tracking-[0.08em] text-white/70">
+          <div className="relative z-10 lg:col-span-7 w-full max-w-2xl">
+            <p className="text-[14px] sm:text-[15px] tracking-[0.18em] text-white/70">
               라이드온
             </p>
 
             <h1 className="mt-3 font-semibold leading-tight text-white">
-              <span className="block text-[clamp(26px,4.5vw,38px)] whitespace-nowrap">
+              <span className="block text-[clamp(22px,4vw,34px)] whitespace-nowrap">
                 전국 배달 인프라 통합 솔루션
               </span>
-              <span className="block text-[clamp(38px,7vw,62px)] whitespace-nowrap text-[#FFB800]">
+              <span className="block text-[clamp(34px,6.5vw,58px)] whitespace-nowrap text-[#FFB800]">
                 RIDE ON
               </span>
             </h1>
@@ -53,18 +54,18 @@ export default function Home() {
             </div>
 
             {/* KPI strip */}
-            <div className="mt-6 flex flex-wrap md:flex-nowrap gap-1.5 lg:gap-2">
+            <div className="mt-6 flex flex-wrap gap-2">
               {[
-                "지사 통합 운영 시스템",
-                "라이더 풀세트 원스톱 셋업",
-                "전국 단일 정산 프로세스",
-                "전문 렌트·리스 인프라",
+                "25개 지부",
+                "월 100만 건 처리",
+                "출고율 99.2%",
+                "렌트·리스 50대+",
               ].map((k) => (
                 <span
                   key={k}
-                  className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 text-[12px] sm:text-[13px] text-white whitespace-nowrap"
+                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] sm:text-[13px] text-white"
                 >
-                  <span className="mr-1.5 inline-block rounded-full bg-[#FFB800] px-1.5 py-0.5 text-[10px] sm:text-[11px] font-medium text-black">
+                  <span className="mr-2 inline-block rounded-full bg-[#FFB800] px-2 py-0.5 text-[11px] font-medium text-black">
                     KPI
                   </span>
                   {k}
