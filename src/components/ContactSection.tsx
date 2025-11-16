@@ -6,27 +6,24 @@ import { Users, Wrench, ShieldCheck, Building2 } from "lucide-react";
 export default function ContactSection() {
   return (
     <section className="bg-[#0E0E0E] py-16 lg:py-20">
-      {/* ✅ 다른 섹션과 같은 정렬: max-w-7xl + px-6 */}
+      {/* 다른 섹션과 같은 정렬: max-w-7xl + px-6 */}
       <div className="mx-auto max-w-7xl px-6">
-        {/* 상단: 설명 + CTA 카드 */}
-        <header className="mb-10 lg:mb-12">
-          <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
-            CONNECT
-          </p>
-        </header>
-
+        {/* 상단: 왼쪽 설명 + 오른쪽 CTA 카드 */}
         <div className="grid gap-8 lg:gap-12 md:grid-cols-12 items-stretch">
-          {/* 왼쪽 텍스트 */}
+          {/* 왼쪽 텍스트 블록 */}
           <div className="md:col-span-6 lg:col-span-5">
-            <h2 className="text-[22px] md:text-[26px] font-semibold text-white">
+            <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
+              CONNECT
+            </p>
+            <h2 className="mt-2 text-[24px] md:text-[28px] font-semibold text-white">
               파트너 네트워크로 연결하세요
             </h2>
-            <p className="mt-3 text-sm md:text-[15px] text-white/65 leading-relaxed">
-              전국 라이더 인프라, 정비/사고 처리, 금융·의료 파트너까지
-              한 구조 안에서 함께 운영합니다.
+            <p className="mt-3 text-[15px] md:text-[16px] text-white/70 leading-relaxed">
+              전국 단위 라이더 인프라를 기반으로 정비·사고 처리·금융·의료 네트워크까지
+              하나의 구조 안에서 통합 운영합니다.
               <br className="hidden lg:block" />
-              지사·센터·제휴사가 합류해도 본사 기준으로
-              정산·운영·리스크를 관리합니다.
+              새로 합류하는 지사·센터·제휴사 또한 본사 표준에 맞춰 정산·운영·리스크
+              체계를 안정적으로 재정비해 드립니다.
             </p>
           </div>
 
@@ -48,15 +45,16 @@ export default function ContactSection() {
                 <h3 className="mt-2 text-[20px] md:text-[22px] font-bold leading-snug">
                   지사 · 정비 · 사고대행 · 기업 제휴 문의
                 </h3>
-                <p className="mt-3 text-[13px] md:text-[14px] text-[#3B2A00]/85 leading-relaxed">
-                  운영 규모나 형태가 달라도 괜찮습니다.
-                  현재 상황과 목표를 듣고, 지역·조직 구조에 맞는
-                  합류/제휴 방식을 함께 설계해 드립니다.
+                <p className="mt-3 text-[14px] md:text-[15px] text-[#3B2A00]/85 leading-relaxed">
+                  규모나 상황이 달라도 문제 없습니다.
+                  <br className="hidden md:block" />
+                  현재 운영 방식·조직 구조·지역 특성을 함께 진단하여 지사 합류, 제휴 협력,
+                  파트너십 구축까지 가장 적합한 방식을 설계해 드립니다.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-3">
                   <a
-                    href="https://pf.kakao.com/_link" // 카톡 채널 URL로 바꿔 써도 됨
+                    href="https://pf.kakao.com/_link" // 실제 카톡 채널 URL로 교체
                     target="_blank"
                     rel="noopener noreferrer"
                     className="
@@ -83,7 +81,7 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* 하단: 파트너 유형 4타일 (비주얼형 아이콘) */}
+        {/* 하단: 파트너 유형 4 타일 */}
         <div className="mt-12 grid gap-5 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {/* 지사 / 지점 파트너 */}
           <article className="relative overflow-hidden rounded-2xl border border-white/8 bg-[#121212] px-6 py-6 lg:px-7 lg:py-7">
@@ -101,7 +99,7 @@ export default function ContactSection() {
             </p>
           </article>
 
-          {/* 정비/센터 제휴 */}
+          {/* 정비 / 센터 제휴 */}
           <article className="relative overflow-hidden rounded-2xl border border-white/8 bg-[#121212] px-6 py-6 lg:px-7 lg:py-7">
             <div className="mb-4 flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#FFB800]/10 border border-[#FFB800]/40">
@@ -112,8 +110,8 @@ export default function ContactSection() {
               </p>
             </div>
             <p className="text-xs md:text-[13px] text-white/65 leading-relaxed">
-              오토바이 정비/튜닝/타이어/소모품 센터와 장기적인 파트너십을
-              구축하고, 라이더 유입·정비 수요를 꾸준히 연결합니다.
+              오토바이 정비/튜닝/타이어/소모품 센터와 장기적인 파트너십을 구축하고,
+              라이더 유입·정비 수요를 꾸준히 연결합니다.
             </p>
           </article>
 
@@ -128,8 +126,8 @@ export default function ContactSection() {
               </p>
             </div>
             <p className="text-xs md:text-[13px] text-white/65 leading-relaxed">
-              사고대행, 보험사, 렌트/리스사와의 협업으로
-              라이더가 사고부터 복구까지 원스톱으로 지원받는 구조를 만듭니다.
+              사고대행, 보험사, 렌트/리스사와의 협업으로 라이더가 사고부터 복구까지
+              원스톱으로 지원받는 구조를 만듭니다.
             </p>
           </article>
 
@@ -149,11 +147,6 @@ export default function ContactSection() {
             </p>
           </article>
         </div>
-
-        {/* 하단 안내 문구 */}
-        <p className="mt-7 text-center text-[11px] text-white/35">
-          로고 및 상표는 각 소유자의 자산이며, 실제 제휴 범위는 별도 계약에 따라 달라질 수 있습니다.
-        </p>
       </div>
     </section>
   );
