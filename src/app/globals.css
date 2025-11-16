@@ -1,154 +1,46 @@
 /* src/app/globals.css */
-/* @config ../tailwind.config.ts */
+
+/* 1) 폰트 먼저 불러오기 (맨 위) */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap");
+
+/* 2) Tailwind 지시어 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* === Pretendard 폰트 임포트(상업적 사용 OK) === */
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.css');
-
-/* ===== 전역 베이스 ===== */
-:root {
-  /* 참고용 변수 (색상은 tailwind 토큰도 함께 사용) */
-  --brand-yellow: #FFB800;
-  --brand-black: #111111;
-  --brand-graphite: #1A1A1A;
-  --brand-gray: #F1F1F1;
-
-  /* ADD: 우리가 많이 쓴 다크톤들을 변수로 박제 */
-  --app-bg-0: #0E0E0E;  /* 가장 어두운 섹션 (Hero, 바로 아래) */
-  --app-bg-1: #111111;  /* 중간 섹션 (MergeFlow 같은 애) */
-  --app-bg-2: #121212;  /* Contact, 카드 배경 */
-  --app-surface: #151515; /* 카드/박스용 */
+/* 3) 기본 리셋/베이스 */
+html,
+body {
+  height: 100%;
 }
 
-html, body {
-  font-family: Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD 산돌고딕 Neo", "Noto Sans KR", system-ui, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  background-color: var(--brand-black);
-  color: #EDEDED;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* 폰트/라인하이트만 관리 (색/배경은 Tailwind로 조절) */
+body {
+  font-family: "Noto Sans KR", system-ui, -apple-system, "Pretendard",
+    "Spoqa Han Sans Neo", Arial, sans-serif;
+  line-height: 1.6;
 }
 
-/* 포커스 링(접근성) */
-:focus-visible {
-  outline: 2px solid var(--brand-yellow);
-  outline-offset: 2px;
+/* 4) 스크린리더 전용 util */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
-/* ===== 미세 노이즈(옵션) ===== */
-.noise { position: relative; }
-.noise::after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  opacity: .06;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIElEQVQoU2NkYGD4z0AEMFGkA0YwKQwGQ0YGhGg0HkQAAJbFBRq0x4fIAAAAAElFTkSuQmCC");
-}
-
-/* ===== Hero/비주얼 애니메이션 (유지) ===== */
-@keyframes nodePulse {
-  0%   { transform: scale(0.98); opacity: .35; }
-  50%  { transform: scale(1.03); opacity: .75; }
-  100% { transform: scale(0.98); opacity: .35; }
-}
-.node-pulse { animation: nodePulse 2.4s ease-in-out infinite; }
-
-@keyframes lineShimmer {
-  0%   { stroke-dashoffset: 120; }
-  100% { stroke-dashoffset: 0; }
-}
-.line-shimmer { stroke-dasharray: 120; animation: lineShimmer 6s linear infinite; }
-
-@keyframes twinkle {
-  0%, 100% { filter: drop-shadow(0 0 0px #FFB800); }
-  50% { filter: drop-shadow(0 0 12px #FFB800); }
-}
-.twinkle { animation: twinkle 2.4s ease-in-out infinite; }
-
-.particle-dot {
-  position: absolute;
-  width: 6px; height: 6px; border-radius: 9999px;
-  background: #FFB800;
-  box-shadow: 0 0 8px rgba(255,184,0,0.8);
-  pointer-events: none;
-}
-
-/* 스크롤바 숨김 공용 클래스 */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-/* 모션 최소화 환경 존중 */
-@media (prefers-reduced-motion: reduce) {
-  .node-pulse, .line-shimmer, .twinkle { animation: none !important; }
-}
-
-/* =========================================================
-   역할 고정(색/컴포넌트 유틸) + 타이포 위계 통일
-   ========================================================= */
-@layer base {
-  p { @apply leading-relaxed; }
-
-  h1 { @apply text-[clamp(28px,6vw,48px)] font-semibold leading-tight text-white; }
-  h2 { @apply text-2xl lg:text-3xl font-semibold leading-snug text-white; }
-  h3 { @apply text-xl lg:text-2xl font-semibold leading-snug text-white; }
-  small { @apply text-xs text-graphite-mute; }
-}
-
+/* 5) 링크 스타일 */
 @layer components {
-  /* ADD: 우리가 쓸 섹션 배경 유틸 */
-  .bg-app-0 { background-color: var(--app-bg-0); }
-  .bg-app-1 { background-color: var(--app-bg-1); }
-  .bg-app-2 { background-color: var(--app-bg-2); }
-  .bg-surface { background-color: var(--app-surface); }
-
-  /* 기존 있던 애들 */
-  .section-core { @apply bg-graphite-core; }
-  .section-gray { @apply bg-graphite-gray; }
-
-  .section-pad { @apply pt-20 pb-16 lg:pt-24 lg:pb-24; }
-  .container-xl { @apply mx-auto max-w-7xl px-4; }
-
-  .card      { @apply rounded-card border border-white/10 bg-white/5 shadow-card; }
-  .card-soft { @apply rounded-xl   border border-white/10 bg-white/5 shadow-soft; }
-
-  .btn-primary {
-    @apply inline-flex items-center justify-center rounded-xl
-           bg-graphite-yellow px-5 py-3 text-sm font-semibold text-black
-           shadow hover:brightness-95 active:translate-y-[1px] transition;
-  }
-  .btn-ghost {
-    @apply inline-flex items-center justify-center rounded-xl
-           border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white
-           hover:bg-white/10 transition;
+  .link {
+    @apply text-white transition;
   }
 
-  .badge-kpi {
-    @apply rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white;
+  .link:hover {
+    color: #ffb800; /* RIDE ON 포인트 컬러 */
   }
-  .badge-kpi .dot {
-    @apply mr-2 inline-block rounded-full bg-graphite-yellow px-2 py-0.5 text-[11px] font-medium text-black;
-  }
-
-  .link { @apply text-white hover:text-graphite-yellow transition; }
 }
-
-@layer utilities {
-  .typo-h1 { @apply text-[clamp(28px,6vw,48px)] font-semibold leading-tight text-white; }
-  .typo-h2 { @apply text-2xl lg:text-3xl font-semibold leading-snug text-white; }
-  .typo-h3 { @apply text-xl lg:text-2xl font-semibold leading-snug text-white; }
-  .typo-body { @apply text-base leading-relaxed text-graphite-text; }
-  .typo-caption { @apply text-xs leading-normal text-graphite-mute; }
-
-  .stack-2 { @apply space-y-2; }
-  .stack-3 { @apply space-y-3; }
-  .stack-4 { @apply space-y-4; }
-  .stack-6 { @apply space-y-6; }
-  .stack-8 { @apply space-y-8; }
-}
-
-/* (중복 방지용) */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
