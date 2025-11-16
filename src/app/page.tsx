@@ -55,10 +55,10 @@ export default function Home() {
             {/* KPI strip */}
             <div className="mt-6 flex flex-wrap md:flex-nowrap gap-1.5 lg:gap-2">
               {[
-                "25개 지부",
-                "월 100만 건 처리",
-                "출고율 99.2%",
-                "렌트·리스 50대+",
+                "지사 통합 운영 시스템",
+                "라이더 풀세트 원스톱 셋업",
+                "전국 단일 정산 프로세스",
+                "전문 렌트·리스 인프라",
               ].map((k) => (
                 <span
                   key={k}
