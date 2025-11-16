@@ -14,14 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
-      <head>
-        {/* Google Fonts 직접 로드 */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="bg-[#111111] text-white antialiased font-noto">
+      <body className="bg-[#111111] text-white antialiased">
         <Header />
         <main>{children}</main>
         <Footer />
