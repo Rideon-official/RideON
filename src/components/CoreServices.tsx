@@ -96,7 +96,8 @@ const cards: Card[] = [
 export default function CoreServices() {
   return (
     <section className="bg-[#0E0E0E] py-14 lg:py-16">
-      <div className="mx-auto max-w-6xl px-4 lg:px-5">
+      {/* 헤더/Hero/Stats와 같은 컨테이너 기준 */}
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <header className="mb-8 lg:mb-10">
           <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
             SOLUTIONS
