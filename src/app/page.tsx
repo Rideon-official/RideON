@@ -53,7 +53,7 @@ export default function Home() {
             </div>
 
             {/* KPI strip */}
-            <div className="mt-6 flex flex-wrap gap-1.5 lg:gap-2 max-w-[560px]">
+            <div className="mt-6 flex flex-wrap md:flex-nowrap gap-1.5 lg:gap-2">
               {[
                 "25개 지부",
                 "월 100만 건 처리",
