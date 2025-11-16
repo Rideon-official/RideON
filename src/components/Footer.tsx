@@ -14,13 +14,13 @@ export default function Footer() {
 
   return (
     <footer
-      className="mt-20 bg-dark-gradient text-neutral-400 tracking-tight border-t border-neutral-800"
+      className="mt-20 bg-[#0E0E0E] text-neutral-400 tracking-tight border-t border-neutral-800"
       role="contentinfo"
       aria-label="RIDE ON 사이트 푸터"
     >
-      {/* ===== 상단 컨테이너: 메뉴판은 기존 폭 유지 ===== */}
-      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-20">
-        {/* ============== A. 메뉴판 (기존 유지 + hover 옐로) ============== */}
+      {/* ===== 상단 컨테이너 ===== */}
+      <div className="mx-auto max-w-7xl px-6">
+        {/* ============== A. 상단 CTA ============== */}
         <div className="flex flex-col gap-3 items-start md:items-center md:flex-row md:justify-between py-8">
           <h3 className="text-xl font-bold text-white">
             전국 운영/정산/렌트 — RIDE ON과 시작하세요
@@ -44,77 +44,142 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* ============== 메뉴 그리드 ============== */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 py-10">
           {/* BRAND */}
           <div>
             <p className="text-sm font-semibold text-white">BRAND</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/brand#story" className={linkBase}>브랜드 스토리</Link></li>
-              <li><Link href="/brand#partner" className={linkBase}>협업/제휴 문의</Link></li>
+              <li>
+                <Link href="/brand#story" className={linkBase}>
+                  브랜드 스토리
+                </Link>
+              </li>
+              <li>
+                <Link href="/brand#partner" className={linkBase}>
+                  협업/제휴 문의
+                </Link>
+              </li>
             </ul>
           </div>
+
           {/* BIKE */}
           <div>
             <p className="text-sm font-semibold text-white">BIKE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/bike#rent" className={linkBase}>렌트/리스 신청</Link></li>
-              <li><Link href="/bike#center" className={linkBase}>센터 안내</Link></li>
+              {/* ✅ 새로 추가된 항목 */}
+              <li>
+                <Link href="/bike#guide" className={linkBase}>
+                  렌트/리스 안내
+                </Link>
+              </li>
+              <li>
+                <Link href="/bike#rent" className={linkBase}>
+                  렌트/리스 신청
+                </Link>
+              </li>
+              <li>
+                <Link href="/bike#center" className={linkBase}>
+                  센터 안내
+                </Link>
+              </li>
             </ul>
           </div>
+
           {/* LogitEats */}
           <div>
             <p className="text-sm font-semibold text-white">LogitEats</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/logiteats#intro" className={linkBase}>소개</Link></li>
-              <li><Link href="/logiteats#process" className={linkBase}>정산 절차/자동화</Link></li>
-              <li><Link href="/logiteats#contact" className={linkBase}>도입 문의</Link></li>
+              <li>
+                <Link href="/logiteats#intro" className={linkBase}>
+                  소개
+                </Link>
+              </li>
+              <li>
+                <Link href="/logiteats#process" className={linkBase}>
+                  정산 절차/자동화
+                </Link>
+              </li>
+              <li>
+                <Link href="/logiteats#contact" className={linkBase}>
+                  도입 문의
+                </Link>
+              </li>
             </ul>
           </div>
+
           {/* STORE */}
           <div>
             <p className="text-sm font-semibold text-white">STORE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/store" className={linkBase}>모든 상품 보기</Link></li>
               <li>
-                <a href="https://smartstore.naver.com/rideon" target="_blank" rel="noopener noreferrer" className={linkBase} aria-label="네이버 스토어(새 탭)">
+                <Link href="/store" className={linkBase}>
+                  모든 상품 보기
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://smartstore.naver.com/rideon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkBase}
+                  aria-label="네이버 스토어(새 탭)"
+                >
                   네이버 스토어 <span aria-hidden>↗</span>
                 </a>
               </li>
               <li>
-                <a href="https://store.coupang.com/rideon" target="_blank" rel="noopener noreferrer" className={linkBase} aria-label="쿠팡 스토어(새 탭)">
+                <a
+                  href="https://store.coupang.com/rideon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkBase}
+                  aria-label="쿠팡 스토어(새 탭)"
+                >
                   쿠팡 스토어 <span aria-hidden>↗</span>
                 </a>
               </li>
             </ul>
           </div>
+
           {/* NOTICE */}
           <div>
             <p className="text-sm font-semibold text-white">NOTICE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/notice#update" className={linkBase}>공지사항</Link></li>
-              <li><Link href="/notice#recruit" className={linkBase}>채용/알림</Link></li>
+              <li>
+                <Link href="/notice#update" className={linkBase}>
+                  공지사항
+                </Link>
+              </li>
+              <li>
+                <Link href="/notice#recruit" className={linkBase}>
+                  채용/알림
+                </Link>
+              </li>
             </ul>
           </div>
+
           {/* 문의하기 */}
           <div>
             <p className="text-sm font-semibold text-white">문의하기</p>
             <ul className="mt-3 space-y-2 text-sm">
               {INQUIRY_MENU.map((item) => (
                 <li key={item.key}>
-                  <Link href={item.href} className={linkBase}>{item.label}</Link>
+                  <Link href={item.href} className={linkBase}>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        {/* ============== B. 구분선 ============== */}
+        {/* ============== 구분선 ============== */}
         <div className="border-t border-neutral-800" />
-      </div>{/* <-- 여기서 상단 컨테이너 닫음 */}
+      </div>
 
-      {/* ===== 하단 C 블록만 더 넓게: 별도 큰 컨테이너 ===== */}
-      <div className="mx-auto max-w-screen-2xl px-6 sm:px-10 lg:px-20">
-        {/* ============== C. 하단 메인: 좌 | 중 | 우 ============== */}
+      {/* ===== 하단 블록 (회사 정보 / 소셜 / 카피) ===== */}
+      <div className="mx-auto max-w-7xl px-6">
         <div
           className="
             py-10
@@ -134,16 +199,25 @@ export default function Footer() {
                 priority
               />
             </span>
-            <Link href="/" aria-label="RIDE ON 홈으로 이동" className="text-white text-lg font-black">
+            <Link
+              href="/"
+              aria-label="RIDE ON 홈으로 이동"
+              className="text-white text-lg font-black"
+            >
               RIDE ON
             </Link>
           </div>
 
-          {/* 중: 2열(각 4줄) + 소제목 */}
+          {/* 중: 회사 정보 2열 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {/* 좌 칼럼 */}
             <section aria-labelledby="biz-info-left">
-              <h3 id="biz-info-left" className="text-sm font-semibold text-white mb-3">회사정보</h3>
+              <h3
+                id="biz-info-left"
+                className="text-sm font-semibold text-white mb-3"
+              >
+                회사정보
+              </h3>
               <dl className="grid grid-cols-[minmax(128px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
                 <dt className="text-neutral-500">사업자명</dt>
                 <dd className="text-neutral-300">주식회사 패온</dd>
@@ -161,13 +235,22 @@ export default function Footer() {
 
             {/* 우 칼럼 */}
             <section aria-labelledby="biz-info-right">
-              <h3 id="biz-info-right" className="text-sm font-semibold text-white mb-3">연락/신고</h3>
+              <h3
+                id="biz-info-right"
+                className="text-sm font-semibold text-white mb-3"
+              >
+                연락/신고
+              </h3>
               <dl className="grid grid-cols-[minmax(128px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
-                <dt className="text-neutral-500 whitespace-nowrap">통신판매업 신고번호</dt>
+                <dt className="text-neutral-500 whitespace-nowrap">
+                  통신판매업 신고번호
+                </dt>
                 <dd className="text-neutral-300">제2025-서울강동-0001호</dd>
 
                 <dt className="text-neutral-500">주소</dt>
-                <dd className="text-neutral-300 break-words">서울특별시 강동구 천중로 176</dd>
+                <dd className="text-neutral-300 break-words">
+                  서울특별시 강동구 천중로 176
+                </dd>
 
                 <dt className="text-neutral-500">연락처</dt>
                 <dd className="text-neutral-300">010-1234-5678</dd>
@@ -187,10 +270,13 @@ export default function Footer() {
             </section>
           </div>
 
-          {/* 우: 상단 링크 4개 / 중간 원형 아이콘 / 하단 정책·카피 */}
+          {/* 우: 링크 / 소셜 / 정책 */}
           <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-4">
-            {/* 위: 링크 4개 (hover 시 원형 배경 등장) */}
-            <nav aria-label="회사 주요 링크" className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+            {/* 상단 링크 4개 */}
+            <nav
+              aria-label="회사 주요 링크"
+              className="flex flex-wrap gap-x-4 gap-y-2 text-sm"
+            >
               {[
                 { href: "/about", label: "회사소개" },
                 { href: "/partnership", label: "제휴제안" },
@@ -218,7 +304,7 @@ export default function Footer() {
               ))}
             </nav>
 
-            {/* 중: 소셜 아이콘 원형 버튼 */}
+            {/* 소셜 아이콘 */}
             <div className="flex flex-wrap items-center gap-3">
               {/* Naver Blog */}
               <a
@@ -229,9 +315,29 @@ export default function Footer() {
                 className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
                 title="Naver Blog"
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
-                  <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M8 16V8l8 8V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                  fill="none"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M8 16V8l8 8V8"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </a>
 
@@ -244,9 +350,17 @@ export default function Footer() {
                 className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
                 title="YouTube"
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                  <path d="M22 12c0-3-.5-4-1.1-4.6-.7-.8-2.9-.9-8.9-.9s-8.2.1-8.9.9C2.5 8 2 9 2 12s.5 4 1.1 4.6c.7.8 2.9.9 8.9.9s8.2-.1 8.9-.9C21.5 16 22 15 22 12Z" fill="currentColor"/>
-                  <path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="currentColor"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M22 12c0-3-.5-4-1.1-4.6-.7-.8-2.9-.9-8.9-.9s-8.2.1-8.9.9C2.5 8 2 9 2 12s.5 4 1.1 4.6c.7.8 2.9.9 8.9.9s8.2-.1 8.9-.9C21.5 16 22 15 22 12Z"
+                    fill="currentColor"
+                  />
+                  <path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="currentColor" />
                 </svg>
               </a>
 
@@ -259,10 +373,30 @@ export default function Footer() {
                 className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
                 title="Instagram"
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
-                  <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                  fill="none"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <circle cx="17" cy="7" r="1.2" fill="currentColor" />
                 </svg>
               </a>
 
@@ -275,10 +409,30 @@ export default function Footer() {
                 className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
                 title="Threads"
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
-                  <path d="M12 3c5 0 9 4 9 9s-4 9-9 9S3 17 3 12 7 3 12 3Z" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M8.5 12c0-2 1.6-3.5 3.6-3.5 1.8 0 3.4 1 3.6 3 .2 1.8-1.6 3-3.6 3h-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M12 9.5c-.9 0-1.6.7-1.6 1.5s.7 1.5 1.6 1.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                  fill="none"
+                >
+                  <path
+                    d="M12 3c5 0 9 4 9 9s-4 9-9 9S3 17 3 12 7 3 12 3Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M8.5 12c0-2 1.6-3.5 3.6-3.5 1.8 0 3.4 1 3.6 3 .2 1.8-1.6 3-3.6 3h-1"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M12 9.5c-.9 0-1.6.7-1.6 1.5s.7 1.5 1.6 1.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </a>
 
@@ -291,19 +445,40 @@ export default function Footer() {
                 className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
                 title="KakaoTalk"
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
-                  <path d="M12 4.5c-4.4 0-8 2.7-8 6s3.6 6 8 6c.4 0 .8 0 1.2-.1L16 18l-.7-1.8C17.8 14.9 20 13 20 10.5c0-3.3-3.6-6-8-6Z" fill="currentColor"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                  fill="none"
+                >
+                  <path
+                    d="M12 4.5c-4.4 0-8 2.7-8 6s3.6 6 8 6c.4 0 .8 0 1.2-.1L16 18l-.7-1.8C17.8 14.9 20 13 20 10.5c0-3.3-3.6-6-8-6Z"
+                    fill="currentColor"
+                  />
                 </svg>
               </a>
             </div>
 
-            {/* 아래: 정책 + 카피 */}
+            {/* 정책 + 카피 */}
             <div className="flex items-center gap-4 text-sm">
-              <Link href="/privacy" className="transition-colors duration-300 hover:text-[#FFB800]">개인정보처리방침</Link>
+              <Link
+                href="/privacy"
+                className="transition-colors duration-300 hover:text-[#FFB800]"
+              >
+                개인정보처리방침
+              </Link>
               <span className="text-neutral-700">|</span>
-              <Link href="/terms" className="transition-colors duration-300 hover:text-[#FFB800]">이용약관</Link>
+              <Link
+                href="/terms"
+                className="transition-colors duration-300 hover:text-[#FFB800]"
+              >
+                이용약관
+              </Link>
             </div>
-            <p className="text-xs text-neutral-500">© {year} RIDE ON. All rights reserved.</p>
+            <p className="text-xs text-neutral-500">
+              © {year} RIDE ON. All rights reserved.
+            </p>
           </div>
         </div>
       </div>
