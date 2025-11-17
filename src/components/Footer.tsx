@@ -176,29 +176,29 @@ export default function Footer() {
         <div className="border-t border-neutral-800" />
       </div>
 
-      {/* ===== 하단 블록 (로고 / 회사정보 / 문의 및 신고 / 회사소개+아이콘) ===== */}
-      <div className="mx-auto max-w-[90rem] px-6">
+      {/* ===== 하단 블록 (로고 / 회사정보 / 회사 연락처 / 회사소개+아이콘) ===== */}
+      <div className="mx-auto max-w-[80rem] px-6">
         <div
           className="
             py-12 lg:py-14
             grid gap-y-10 gap-x-12
             grid-cols-1 sm:grid-cols-2
-            lg:[grid-template-columns:220px_minmax(0,1.25fr)_minmax(0,1.25fr)_minmax(0,1.1fr)]
+            lg:[grid-template-columns:200px_minmax(0,1.25fr)_minmax(0,1.25fr)_minmax(0,1.1fr)]
           "
         >
-          {/* 1. 로고 섹션 (로고 + 텍스트 한 덩어리, 둘 다 홈 링크) */}
+          {/* 1. 로고 섹션 (로고 + 텍스트, 둘 다 홈 링크) */}
           <Link
             href="/"
             aria-label="RIDE ON 홈으로 이동"
-            className="flex flex-col items-start gap-2 group"
+            className="flex flex-col items-start justify-center gap-2 group"
           >
-            <span className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-2xl overflow-hidden">
+            <span className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden">
               <Image
-                src="/rideon-mark.png"
+                src="/logo/rideon-mark.png"
                 alt="RIDE ON 로고"
                 fill
                 className="object-contain"
-                sizes="80px"
+                sizes="64px"
                 priority
               />
             </span>
@@ -208,7 +208,10 @@ export default function Footer() {
           </Link>
 
           {/* 2. 회사정보 */}
-          <section aria-labelledby="biz-info-left">
+          <section
+            aria-labelledby="biz-info-left"
+            className="self-center"
+          >
             <h3
               id="biz-info-left"
               className="text-sm font-semibold text-white mb-3"
@@ -227,7 +230,9 @@ export default function Footer() {
               </dd>
 
               <dt className="text-neutral-500">대표</dt>
-              <dd className="text-neutral-300 sm:whitespace-nowrap">최수호</dd>
+              <dd className="text-neutral-300 sm:whitespace-nowrap">
+                최수호
+              </dd>
 
               <dt className="text-neutral-500">사업자등록번호</dt>
               <dd className="text-neutral-300 sm:whitespace-nowrap">
@@ -236,13 +241,16 @@ export default function Footer() {
             </dl>
           </section>
 
-          {/* 3. 문의 및 신고 */}
-          <section aria-labelledby="biz-info-right">
+          {/* 3. 회사 연락처 */}
+          <section
+            aria-labelledby="biz-contact"
+            className="self-center"
+          >
             <h3
-              id="biz-info-right"
+              id="biz-contact"
               className="text-sm font-semibold text-white mb-3"
             >
-              문의 및 신고
+              회사 연락처
             </h3>
             <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
               <dt className="text-neutral-500 whitespace-nowrap">
@@ -277,7 +285,7 @@ export default function Footer() {
           </section>
 
           {/* 4. 회사소개 / 아이콘 / 정책 / 저작권 */}
-          <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-4">
+          <div className="flex flex-col justify-center items-start lg:items-end text-left lg:text-right gap-4">
             {/* 상단 링크 4개 */}
             <nav
               aria-label="회사 주요 링크"
