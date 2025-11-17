@@ -1,9 +1,9 @@
-// src/components/CoreServices.tsx
 "use client";
 
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Building2, Bike, FileText, ShoppingBag } from "lucide-react";
+import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 
 type Card = {
   eyebrow: string;
@@ -98,19 +98,21 @@ export default function CoreServices() {
     <section className="bg-[#0E0E0E] py-14 lg:py-16">
       {/* 헤더/Hero/Stats와 같은 컨테이너 기준 */}
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        {/* ===== Header ===== */}
         <header className="mb-8 lg:mb-10">
-          <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
-            SOLUTIONS
-          </p>
-          <h2 className="mt-2 text-[22px] md:text-[26px] font-semibold text-white">
+          <Eyebrow>SOLUTIONS</Eyebrow>
+
+          <Heading level={2} className="mt-2">
             지사 · 라이더 · 파트너를 위한 4가지 솔루션
-          </h2>
-          <p className="mt-2 text-sm lg:text-base text-white/60">
+          </Heading>
+
+          <BodyText muted className="mt-2 max-w-2xl">
             본사 운영지원, 렌트/정비 인프라, 정산 솔루션, 라이더 스토어까지
             하나의 구조 안에서 동일한 기준으로 제공합니다.
-          </p>
+          </BodyText>
         </header>
 
+        {/* ===== Cards ===== */}
         <div className="grid auto-rows-fr gap-5 lg:gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {cards.map((c, i) => (
             <CardItem key={i} c={c} />
@@ -132,21 +134,38 @@ function CardItem({ c }: { c: Card }) {
         min-h-[230px]
       "
     >
-      <div className="pointer-events-none absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/3 group-hover:bg-[#111111]/35" />
+      <div className="pointer-events-none absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/5 group-hover:bg-[#111111]/35" />
+
       <div className="mb-1 flex items-center justify-between gap-4">
-        <p className="text-[11px] uppercase tracking-[0.32em] text-white/55 group-hover:text-[#111111]/70">
+        {/* 카드 상단 라벨 */}
+        <Eyebrow className="text-white/60 group-hover:text-[#111111]/70">
           {c.eyebrow}
-        </p>
+        </Eyebrow>
+
+        {/* 아이콘 */}
         <div className="text-white/85 group-hover:text-[#111111] transition-colors duration-200">
           {c.icon}
         </div>
       </div>
-      <h3 className="mt-2 text-[20px] sm:text-[22px] font-bold tracking-tight">
+
+      {/* 카드 타이틀 */}
+      <Heading
+        level={3}
+        className="mt-2 text-[18px] sm:text-[20px] lg:text-[22px] font-semibold group-hover:text-[#111111]"
+      >
         {c.title}
-      </h3>
-      <p className="mt-3 text-sm leading-relaxed text-white/70 group-hover:text-[#111111]/80">
+      </Heading>
+
+      {/* 카드 설명 */}
+      <BodyText
+        size="sm"
+        muted
+        className="mt-3 group-hover:text-[#111111]/80"
+      >
         {c.desc}
-      </p>
+      </BodyText>
+
+      {/* 버튼 */}
       <div className="mt-7">
         <Link
           href={c.href}
