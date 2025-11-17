@@ -1,4 +1,3 @@
-// src/components/Footer.tsx
 "use client";
 
 import React from "react";
@@ -67,7 +66,6 @@ export default function Footer() {
           <div>
             <p className="text-sm font-semibold text-white">BIKE</p>
             <ul className="mt-3 space-y-2 text-sm">
-              {/* ✅ 새로 추가된 항목 */}
               <li>
                 <Link href="/bike#guide" className={linkBase}>
                   렌트/리스 안내
@@ -179,10 +177,11 @@ export default function Footer() {
       </div>
 
       {/* ===== 하단 블록 (회사 정보 / 소셜 / 카피) ===== */}
-      <div className="mx-auto max-w-7xl px-6">
+      {/* 상단 섹션과 라인 맞추지 않고, 좌우 여백만 두고 넓게 사용 */}
+      <div className="mx-auto w-full px-6 md:px-10 lg:px-16">
         <div
           className="
-            py-10
+            py-12 lg:py-14
             grid gap-y-10 gap-x-8
             lg:[grid-template-columns:minmax(220px,auto)_minmax(640px,1fr)_minmax(280px,auto)]
           "
@@ -245,10 +244,13 @@ export default function Footer() {
                 <dt className="text-neutral-500 whitespace-nowrap">
                   통신판매업 신고번호
                 </dt>
-                <dd className="text-neutral-300">제2025-서울강동-0001호</dd>
+                <dd className="text-neutral-300">
+                  제2025-서울강동-0001호
+                </dd>
 
                 <dt className="text-neutral-500">주소</dt>
-                <dd className="text-neutral-300 break-words">
+                {/* 모바일에서는 줄바꿈 허용, sm 이상에서는 한 줄 유지 */}
+                <dd className="text-neutral-300 whitespace-normal sm:whitespace-nowrap">
                   서울특별시 강동구 천중로 176
                 </dd>
 
@@ -275,7 +277,7 @@ export default function Footer() {
             {/* 상단 링크 4개 */}
             <nav
               aria-label="회사 주요 링크"
-              className="flex flex-wrap gap-x-4 gap-y-2 text-sm"
+              className="flex flex-wrap md:flex-nowrap gap-x-4 gap-y-2 text-sm"
             >
               {[
                 { href: "/about", label: "회사소개" },
