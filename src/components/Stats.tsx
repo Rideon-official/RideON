@@ -1,5 +1,6 @@
-// src/components/Stats.tsx
 "use client";
+
+import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 
 export default function Stats() {
   const items = [
@@ -27,32 +28,45 @@ export default function Stats() {
 
   return (
     <section className="bg-[#0E0E0E] py-14 lg:py-16">
-      {/* 헤더 / Hero랑 같은 폭·패딩으로 정렬 */}
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        {/* ===== Header ===== */}
         <header className="mb-8 lg:mb-10">
-          <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
-            NETWORK
-          </p>
-          <h2 className="mt-2 text-[22px] md:text-[26px] font-semibold text-white">
+          <Eyebrow>NETWORK</Eyebrow>
+
+          <Heading level={2} className="mt-2">
             전국 단위 운영 지표
-          </h2>
-          <p className="mt-2 text-sm text-white/60">
+          </Heading>
+
+          <BodyText muted className="mt-2 max-w-xl">
             활동 라이더부터 정산 정확도까지, 핵심 운영 지표를 하나의 기준으로
             관리합니다.
-          </p>
+          </BodyText>
         </header>
 
+        {/* ===== Cards ===== */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((it) => (
             <div
               key={it.label}
               className="rounded-2xl border border-white/5 bg-[#121212] p-7 text-white transition-all duration-200 hover:border-white/15 hover:bg-[#151515]"
             >
-              <p className="text-sm text-white/45">{it.label}</p>
-              <p className="mt-3 text-[32px] font-semibold leading-tight text-white">
+              {/* 라벨 */}
+              <Eyebrow className="text-neutral-400">
+                {it.label}
+              </Eyebrow>
+
+              {/* 숫자 */}
+              <Heading
+                level={3}
+                className="mt-3 text-3xl md:text-[34px] font-semibold"
+              >
                 {it.value}
-              </p>
-              <p className="mt-2 text-xs text-white/35">{it.desc}</p>
+              </Heading>
+
+              {/* 설명 */}
+              <BodyText size="sm" muted className="mt-2">
+                {it.desc}
+              </BodyText>
             </div>
           ))}
         </div>
