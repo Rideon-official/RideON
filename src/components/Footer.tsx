@@ -190,7 +190,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <span className="relative block size-12 rounded-xl overflow-hidden ring-1 ring-neutral-800 bg-black/30">
               <Image
-                src="/logo/rideon-mark.png"
+                src="/rideon-mark.png"
                 alt="RIDE ON 로고"
                 fill
                 className="object-contain p-2"
