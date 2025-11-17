@@ -176,112 +176,109 @@ export default function Footer() {
         <div className="border-t border-neutral-800" />
       </div>
 
-      {/* ===== 하단 블록 (회사 정보 / 소셜 / 카피) ===== */}
-      {/* 상단보다 폭을 조금 더 넓게 사용 */}
+      {/* ===== 하단 블록 (로고 / 회사정보 / 문의 및 신고 / 회사소개+아이콘) ===== */}
+      {/* 상단보다 살짝 넓은 폭 사용 */}
       <div className="mx-auto max-w-[90rem] px-6">
         <div
           className="
             py-12 lg:py-14
             grid gap-y-10 gap-x-10
-            lg:[grid-template-columns:260px_minmax(0,1.5fr)_minmax(0,1.1fr)]
+            grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
           "
         >
-          {/* 좌: 로고/워드마크 */}
-          <div className="flex items-center gap-3">
-            <span className="relative block size-12 rounded-xl overflow-hidden ring-1 ring-neutral-800 bg-black/30">
+          {/* 1. 로고 섹션 (로고 위, 텍스트 아래) */}
+          <div className="flex flex-col items-start gap-3">
+            <span className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-xl overflow-hidden ring-1 ring-neutral-800 bg-black/30">
               <Image
                 src="/rideon-mark.png"
                 alt="RIDE ON 로고"
                 fill
                 className="object-contain p-2"
-                sizes="48px"
+                sizes="64px"
                 priority
               />
             </span>
             <Link
               href="/"
               aria-label="RIDE ON 홈으로 이동"
-              className="text-white text-lg font-black"
+              className="text-white text-xl font-black tracking-tight"
             >
               RIDE ON
             </Link>
           </div>
 
-          {/* 중: 회사 정보 2열 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {/* 회사정보 */}
-            <section aria-labelledby="biz-info-left">
-              <h3
-                id="biz-info-left"
-                className="text-sm font-semibold text-white mb-3"
-              >
-                회사정보
-              </h3>
-              <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
-                <dt className="text-neutral-500">사업자명</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  주식회사 패온
-                </dd>
+          {/* 2. 회사정보 */}
+          <section aria-labelledby="biz-info-left">
+            <h3
+              id="biz-info-left"
+              className="text-sm font-semibold text-white mb-3"
+            >
+              회사정보
+            </h3>
+            <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+              <dt className="text-neutral-500">사업자명</dt>
+              <dd className="text-neutral-300 sm:whitespace-nowrap">
+                주식회사 패온
+              </dd>
 
-                <dt className="text-neutral-500">상호명</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  RIDE ON ( 라이드온 )
-                </dd>
+              <dt className="text-neutral-500">상호명</dt>
+              <dd className="text-neutral-300 sm:whitespace-nowrap">
+                RIDE ON ( 라이드온 )
+              </dd>
 
-                <dt className="text-neutral-500">대표</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">최수호</dd>
+              <dt className="text-neutral-500">대표</dt>
+              <dd className="text-neutral-300 sm:whitespace-nowrap">최수호</dd>
 
-                <dt className="text-neutral-500">사업자등록번호</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  896-86-02776
-                </dd>
-              </dl>
-            </section>
+              <dt className="text-neutral-500">사업자등록번호</dt>
+              <dd className="text-neutral-300 sm:whitespace-nowrap">
+                896-86-02776
+              </dd>
+            </dl>
+          </section>
 
-            {/* 연락/신고 */}
-            <section aria-labelledby="biz-info-right">
-              <h3
-                id="biz-info-right"
-                className="text-sm font-semibold text-white mb-3"
-              >
-                연락/신고
-              </h3>
-              <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
-                <dt className="text-neutral-500 whitespace-nowrap">
-                  통신판매업 신고번호
-                </dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  제2025-서울강동-0001호
-                </dd>
+          {/* 3. 문의 및 신고 (연락/주소/메일) */}
+          <section aria-labelledby="biz-info-right">
+            <h3
+              id="biz-info-right"
+              className="text-sm font-semibold text-white mb-3"
+            >
+              문의 및 신고
+            </h3>
+            <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+              <dt className="text-neutral-500 whitespace-nowrap">
+                통신판매업 신고번호
+              </dt>
+              <dd className="text-neutral-300 sm:whitespace-nowrap">
+                제2025-서울강동-0001호
+              </dd>
 
-                <dt className="text-neutral-500">주소</dt>
-                <dd className="text-neutral-300 whitespace-normal sm:whitespace-nowrap">
-                  서울특별시 강동구 천중로 176
-                </dd>
+              <dt className="text-neutral-500">주소</dt>
+              <dd className="text-neutral-300 whitespace-normal sm:whitespace-nowrap">
+                서울특별시 강동구 천중로 176
+              </dd>
 
-                <dt className="text-neutral-500">연락처</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  010-1234-5678
-                </dd>
+              <dt className="text-neutral-500">연락처</dt>
+              <dd className="text-neutral-300 sm:whitespace-nowrap">
+                010-1234-5678
+              </dd>
 
-                <dt className="text-neutral-500">이메일</dt>
-                <dd className="sm:whitespace-nowrap">
-                  <Link
-                    href="mailto:contact@ride-on.co.kr"
-                    className="text-neutral-300 underline underline-offset-4 decoration-neutral-700
-                               transition-colors duration-300 hover:text-[#FFB800] hover:decoration-[#FFB800]
-                               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50 rounded"
-                  >
-                    contact@ride-on.co.kr
-                  </Link>
-                </dd>
-              </dl>
-            </section>
-          </div>
+              <dt className="text-neutral-500">이메일</dt>
+              <dd className="sm:whitespace-nowrap">
+                <Link
+                  href="mailto:contact@ride-on.co.kr"
+                  className="text-neutral-300 underline underline-offset-4 decoration-neutral-700
+                             transition-colors duration-300 hover:text-[#FFB800] hover:decoration-[#FFB800]
+                             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50 rounded"
+                >
+                  contact@ride-on.co.kr
+                </Link>
+              </dd>
+            </dl>
+          </section>
 
-          {/* 우: 링크 / 소셜 / 정책 */}
+          {/* 4. 회사소개 / 아이콘 / 정책 / 저작권 */}
           <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-4">
-            {/* 상단 링크 4개 – 데스크탑에서 한 줄 유지 */}
+            {/* 상단 링크 4개 – 데스크탑에서 한 줄 유지 느낌 */}
             <nav
               aria-label="회사 주요 링크"
               className="flex flex-wrap gap-x-5 gap-y-2 text-sm"
