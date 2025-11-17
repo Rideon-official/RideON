@@ -177,12 +177,13 @@ export default function Footer() {
       </div>
 
       {/* ===== 하단 블록 (회사 정보 / 소셜 / 카피) ===== */}
-      <div className="mx-auto max-w-7xl px-6">
+      {/* 가운데 정렬 + 살짝 좁게 모은 레이아웃 */}
+      <div className="mx-auto max-w-6xl px-6">
         <div
           className="
             py-12 lg:py-14
-            grid gap-y-10 gap-x-10
-            lg:grid-cols-[240px_minmax(0,1.4fr)_minmax(0,1fr)]
+            grid gap-y-10 gap-x-8
+            lg:[grid-template-columns:260px_minmax(0,1fr)_320px]
           "
         >
           {/* 좌: 로고/워드마크 */}
@@ -208,7 +209,7 @@ export default function Footer() {
 
           {/* 중: 회사 정보 2열 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {/* 회사정보 */}
+            {/* 좌 칼럼 */}
             <section aria-labelledby="biz-info-left">
               <h3
                 id="biz-info-left"
@@ -216,30 +217,22 @@ export default function Footer() {
               >
                 회사정보
               </h3>
-              <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+              <dl className="grid grid-cols-[minmax(128px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
                 <dt className="text-neutral-500">사업자명</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  주식회사 패온
-                </dd>
+                <dd className="text-neutral-300">주식회사 패온</dd>
 
                 <dt className="text-neutral-500">상호명</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  RIDE ON ( 라이드온 )
-                </dd>
+                <dd className="text-neutral-300">RIDE ON ( 라이드온 )</dd>
 
                 <dt className="text-neutral-500">대표</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  최수호
-                </dd>
+                <dd className="text-neutral-300">최수호</dd>
 
                 <dt className="text-neutral-500">사업자등록번호</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  896-86-02776
-                </dd>
+                <dd className="text-neutral-300">896-86-02776</dd>
               </dl>
             </section>
 
-            {/* 연락/신고 */}
+            {/* 우 칼럼 */}
             <section aria-labelledby="biz-info-right">
               <h3
                 id="biz-info-right"
@@ -247,11 +240,11 @@ export default function Footer() {
               >
                 연락/신고
               </h3>
-              <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+              <dl className="grid grid-cols-[minmax(128px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
                 <dt className="text-neutral-500 whitespace-nowrap">
                   통신판매업 신고번호
                 </dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
+                <dd className="text-neutral-300">
                   제2025-서울강동-0001호
                 </dd>
 
@@ -261,12 +254,10 @@ export default function Footer() {
                 </dd>
 
                 <dt className="text-neutral-500">연락처</dt>
-                <dd className="text-neutral-300 sm:whitespace-nowrap">
-                  010-1234-5678
-                </dd>
+                <dd className="text-neutral-300">010-1234-5678</dd>
 
                 <dt className="text-neutral-500">이메일</dt>
-                <dd className="sm:whitespace-nowrap">
+                <dd>
                   <Link
                     href="mailto:contact@ride-on.co.kr"
                     className="text-neutral-300 underline underline-offset-4 decoration-neutral-700
@@ -282,10 +273,10 @@ export default function Footer() {
 
           {/* 우: 링크 / 소셜 / 정책 */}
           <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-4">
-            {/* 상단 링크 4개 – 데스크탑에서 한 줄 유지 */}
+            {/* 상단 링크 4개 - 항상 한 줄로 보이도록 whitespace-nowrap */}
             <nav
               aria-label="회사 주요 링크"
-              className="flex flex-wrap gap-x-5 gap-y-2 text-sm"
+              className="flex flex-wrap md:flex-nowrap gap-x-3 gap-y-2 text-sm"
             >
               {[
                 { href: "/about", label: "회사소개" },
@@ -296,13 +287,24 @@ export default function Footer() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-neutral-300 whitespace-nowrap transition-colors duration-300 hover:text-[#FFB800]"
+                  className="
+                    relative inline-flex items-center justify-center
+                    h-9 px-4
+                    text-neutral-300 whitespace-nowrap
+                    transition-colors duration-300
+                    hover:text-[#111111]
+                    before:content-[''] before:absolute before:inset-0
+                    before:rounded-full before:bg-[#FFB800]
+                    before:scale-0 before:opacity-0
+                    before:transition before:duration-300
+                    hover:before:scale-100 hover:before:opacity-100
+                  "
                 >
-                  {l.label}
+                  <span className="relative z-10">{l.label}</span>
                 </Link>
               ))}
             </nav>
-
+            
             {/* 소셜 아이콘 */}
             <div className="flex flex-wrap items-center gap-3">
               {/* Naver Blog */}
@@ -314,10 +316,149 @@ export default function Footer() {
                 className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
                 title="Naver Blog"
               >
-                {/* ...svg 그대로... */}
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                  fill="none"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M8 16V8l8 8V8"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </a>
 
-              {/* YouTube / Instagram / Threads / KakaoTalk 아이콘도 기존 코드 그대로 */}
+              {/* YouTube */}
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="유튜브 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="YouTube"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M22 12c0-3-.5-4-1.1-4.6-.7-.8-2.9-.9-8.9-.9s-8.2.1-8.9.9C2.5 8 2 9 2 12s.5 4 1.1 4.6c.7.8 2.9.9 8.9.9s8.2-.1 8.9-.9C21.5 16 22 15 22 12Z"
+                    fill="currentColor"
+                  />
+                  <path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="currentColor" />
+                </svg>
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="인스타그램 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="Instagram"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                  fill="none"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <circle cx="17" cy="7" r="1.2" fill="currentColor" />
+                </svg>
+              </a>
+
+              {/* Threads */}
+              <a
+                href="https://www.threads.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="쓰레드 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="Threads"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                  fill="none"
+                >
+                  <path
+                    d="M12 3c5 0 9 4 9 9s-4 9-9 9S3 17 3 12 7 3 12 3Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M8.5 12c0-2 1.6-3.5 3.6-3.5 1.8 0 3.4 1 3.6 3 .2 1.8-1.6 3-3.6 3h-1"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M12 9.5c-.9 0-1.6.7-1.6 1.5s.7 1.5 1.6 1.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </a>
+
+              {/* KakaoTalk */}
+              <a
+                href="https://pf.kakao.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="카카오톡 채널 새 창에서 열기"
+                className="inline-flex items-center justify-center size-10 rounded-full border border-neutral-700 text-neutral-300 transition-colors duration-300 hover:bg-[#FFB800] hover:text-[#111111] hover:border-[#FFB800] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB800]/50"
+                title="KakaoTalk"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                  fill="none"
+                >
+                  <path
+                    d="M12 4.5c-4.4 0-8 2.7-8 6s3.6 6 8 6c.4 0 .8 0 1.2-.1L16 18l-.7-1.8C17.8 14.9 20 13 20 10.5c0-3.3-3.6-6-8-6Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
             </div>
 
             {/* 정책 + 카피 */}
@@ -342,3 +483,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
+    </footer>
+  );
+}
