@@ -10,24 +10,28 @@ const steps = [
     title: "리스크 체크",
     desc: "계약 조건, 미수금·채권, 세무 리스크를 먼저 진단합니다.",
     icon: ShieldCheck,
+    offsetClass: "md:-translate-y-1",
   },
   {
     label: "STEP 2",
     title: "계약 · 정산 구조 재설계",
     desc: "본사 기준에 맞춰 계약·정산 구조를 다시 설계합니다.",
     icon: FileCog,
+    offsetClass: "md:-translate-y-4",
   },
   {
     label: "STEP 3",
     title: "지역별 운영 기준 설계",
     desc: "각 지역 상권·라이더 특성에 맞춰 단가·프로모션·근무 규칙을 재설계합니다.",
     icon: Gauge,
+    offsetClass: "md:-translate-y-2",
   },
   {
     label: "STEP 4",
     title: "모니터링 · 안정화",
     desc: "초반 3개월 집중 모니터링으로 이슈를 즉시 조정합니다.",
     icon: Activity,
+    offsetClass: "md:-translate-y-5",
   },
 ];
 
@@ -52,8 +56,8 @@ export default function MergeFlow() {
 
         {/* ===== Timeline ===== */}
         <div className="relative mt-10 lg:mt-14">
-          {/* 가운데 가로 라인 */}
-          <div className="pointer-events-none absolute left-0 right-0 top-[52px] h-px bg-gradient-to-r from-transparent via-[#FFB800]/35 to-transparent" />
+          {/* 가운데 가로 라인 (조금 더 아래로 / 살짝 얇게) */}
+          <div className="pointer-events-none absolute left-0 right-0 top-[70px] h-px bg-gradient-to-r from-transparent via-[#FFB800]/30 to-transparent" />
 
           <div className="grid gap-10 md:grid-cols-4">
             {steps.map((step) => {
@@ -61,13 +65,28 @@ export default function MergeFlow() {
               return (
                 <div
                   key={step.label}
-                  className="relative flex flex-col items-center text-center text-white"
+                  className={`
+                    group relative flex flex-col items-center text-center text-white
+                    transition-transform duration-300
+                    ${step.offsetClass}
+                    hover:-translate-y-3
+                  `}
                 >
-                  {/* 아이콘 + 발광링 */}
-                  <div className="relative mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#FFB800]/60 bg-black/40">
-                    <div className="absolute inset-0 rounded-full bg-[#FFB800]/40 blur-lg" />
-                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-[#FFB800] bg-black">
-                      <Icon className="h-6 w-6 text-[#FFB800]" strokeWidth={1.8} />
+                  {/* 아이콘 + 글로우 (동그라미 1개 + 바깥 글로우만) */}
+                  <div className="relative mb-4 flex h-16 w-16 items-center justify-center">
+                    {/* 바깥 글로우 */}
+                    <div className="absolute inset-0 rounded-full bg-[#FFB800]/22 blur-xl group-hover:bg-[#FFB800]/32 transition-colors duration-300" />
+                    {/* 실제 아이콘 컨테이너 */}
+                    <div
+                      className="
+                        relative flex h-14 w-14 items-center justify-center rounded-full
+                        bg-black/70 border border-[#FFB800]/60
+                        shadow-[0_0_24px_rgba(255,184,0,0.40)]
+                        group-hover:shadow-[0_0_40px_rgba(255,184,0,0.75)]
+                        transition-shadow duration-300
+                      "
+                    >
+                      <Icon className="h-7 w-7 text-[#FFB800]" strokeWidth={1.8} />
                     </div>
                   </div>
 
