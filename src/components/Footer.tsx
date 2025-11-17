@@ -183,7 +183,7 @@ export default function Footer() {
             py-12 lg:py-14
             grid gap-y-10 gap-x-12
             grid-cols-1 sm:grid-cols-2
-            lg:[grid-template-columns:200px_minmax(0,1.25fr)_minmax(0,1.25fr)_minmax(0,1.1fr)]
+            lg:[grid-template-columns:200px_minmax(0,1.2fr)_minmax(0,1.2fr)_minmax(0,1.4fr)]
           "
         >
           {/* 1. 로고 섹션 (로고 + 텍스트, 둘 다 홈 링크) */}
@@ -289,7 +289,7 @@ export default function Footer() {
             {/* 상단 링크 4개 */}
             <nav
               aria-label="회사 주요 링크"
-              className="flex flex-wrap gap-x-5 gap-y-2 text-sm"
+              className="flex flex-wrap lg:flex-nowrap lg:justify-end gap-x-4 gap-y-2 text-sm"
             >
               {[
                 { href: "/about", label: "회사소개" },
