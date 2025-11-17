@@ -177,8 +177,7 @@ export default function Footer() {
       </div>
 
       {/* ===== 하단 블록 (회사 정보 / 소셜 / 카피) ===== */}
-      {/* 상단 섹션과 라인 맞추지 않고, 좌우 여백만 두고 넓게 사용 */}
-      <div className="mx-auto w-full px-6 md:px-10 lg:px-16">
+      <div className="mx-auto max-w-6xl px-6">
         <div
           className="
             py-12 lg:py-14
