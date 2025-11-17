@@ -177,12 +177,13 @@ export default function Footer() {
       </div>
 
       {/* ===== 하단 블록 (회사 정보 / 소셜 / 카피) ===== */}
+      {/* 가운데 정렬 + 살짝 좁게 모은 레이아웃 */}
       <div className="mx-auto max-w-6xl px-6">
         <div
           className="
             py-12 lg:py-14
             grid gap-y-10 gap-x-8
-            lg:[grid-template-columns:minmax(220px,auto)_minmax(640px,1fr)_minmax(280px,auto)]
+            lg:[grid-template-columns:260px_minmax(0,1fr)_320px]
           "
         >
           {/* 좌: 로고/워드마크 */}
@@ -248,7 +249,6 @@ export default function Footer() {
                 </dd>
 
                 <dt className="text-neutral-500">주소</dt>
-                {/* 모바일에서는 줄바꿈 허용, sm 이상에서는 한 줄 유지 */}
                 <dd className="text-neutral-300 whitespace-normal sm:whitespace-nowrap">
                   서울특별시 강동구 천중로 176
                 </dd>
@@ -273,10 +273,10 @@ export default function Footer() {
 
           {/* 우: 링크 / 소셜 / 정책 */}
           <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-4">
-            {/* 상단 링크 4개 */}
+            {/* 상단 링크 4개 - 항상 한 줄로 보이도록 whitespace-nowrap */}
             <nav
               aria-label="회사 주요 링크"
-              className="flex flex-wrap md:flex-nowrap gap-x-4 gap-y-2 text-sm"
+              className="flex flex-wrap md:flex-nowrap gap-x-3 gap-y-2 text-sm"
             >
               {[
                 { href: "/about", label: "회사소개" },
@@ -290,7 +290,7 @@ export default function Footer() {
                   className="
                     relative inline-flex items-center justify-center
                     h-9 px-4
-                    text-neutral-300
+                    text-neutral-300 whitespace-nowrap
                     transition-colors duration-300
                     hover:text-[#111111]
                     before:content-[''] before:absolute before:inset-0
@@ -304,7 +304,7 @@ export default function Footer() {
                 </Link>
               ))}
             </nav>
-
+            
             {/* 소셜 아이콘 */}
             <div className="flex flex-wrap items-center gap-3">
               {/* Naver Blog */}
