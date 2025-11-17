@@ -177,13 +177,13 @@ export default function Footer() {
       </div>
 
       {/* ===== 하단 블록 (회사 정보 / 소셜 / 카피) ===== */}
-      {/* 가운데 정렬 + 살짝 좁게 모은 레이아웃 */}
-      <div className="mx-auto max-w-6xl px-6">
+      {/* 상단보다 폭을 조금 더 넓게 사용 */}
+      <div className="mx-auto max-w-[90rem] px-6">
         <div
           className="
             py-12 lg:py-14
-            grid gap-y-10 gap-x-8
-            lg:[grid-template-columns:260px_minmax(0,1fr)_320px]
+            grid gap-y-10 gap-x-10
+            lg:[grid-template-columns:260px_minmax(0,1.5fr)_minmax(0,1.1fr)]
           "
         >
           {/* 좌: 로고/워드마크 */}
@@ -209,7 +209,7 @@ export default function Footer() {
 
           {/* 중: 회사 정보 2열 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {/* 좌 칼럼 */}
+            {/* 회사정보 */}
             <section aria-labelledby="biz-info-left">
               <h3
                 id="biz-info-left"
@@ -217,22 +217,28 @@ export default function Footer() {
               >
                 회사정보
               </h3>
-              <dl className="grid grid-cols-[minmax(128px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+              <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
                 <dt className="text-neutral-500">사업자명</dt>
-                <dd className="text-neutral-300">주식회사 패온</dd>
+                <dd className="text-neutral-300 sm:whitespace-nowrap">
+                  주식회사 패온
+                </dd>
 
                 <dt className="text-neutral-500">상호명</dt>
-                <dd className="text-neutral-300">RIDE ON ( 라이드온 )</dd>
+                <dd className="text-neutral-300 sm:whitespace-nowrap">
+                  RIDE ON ( 라이드온 )
+                </dd>
 
                 <dt className="text-neutral-500">대표</dt>
-                <dd className="text-neutral-300">최수호</dd>
+                <dd className="text-neutral-300 sm:whitespace-nowrap">최수호</dd>
 
                 <dt className="text-neutral-500">사업자등록번호</dt>
-                <dd className="text-neutral-300">896-86-02776</dd>
+                <dd className="text-neutral-300 sm:whitespace-nowrap">
+                  896-86-02776
+                </dd>
               </dl>
             </section>
 
-            {/* 우 칼럼 */}
+            {/* 연락/신고 */}
             <section aria-labelledby="biz-info-right">
               <h3
                 id="biz-info-right"
@@ -240,11 +246,11 @@ export default function Footer() {
               >
                 연락/신고
               </h3>
-              <dl className="grid grid-cols-[minmax(128px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+              <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
                 <dt className="text-neutral-500 whitespace-nowrap">
                   통신판매업 신고번호
                 </dt>
-                <dd className="text-neutral-300">
+                <dd className="text-neutral-300 sm:whitespace-nowrap">
                   제2025-서울강동-0001호
                 </dd>
 
@@ -254,10 +260,12 @@ export default function Footer() {
                 </dd>
 
                 <dt className="text-neutral-500">연락처</dt>
-                <dd className="text-neutral-300">010-1234-5678</dd>
+                <dd className="text-neutral-300 sm:whitespace-nowrap">
+                  010-1234-5678
+                </dd>
 
                 <dt className="text-neutral-500">이메일</dt>
-                <dd>
+                <dd className="sm:whitespace-nowrap">
                   <Link
                     href="mailto:contact@ride-on.co.kr"
                     className="text-neutral-300 underline underline-offset-4 decoration-neutral-700
@@ -273,10 +281,10 @@ export default function Footer() {
 
           {/* 우: 링크 / 소셜 / 정책 */}
           <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-4">
-            {/* 상단 링크 4개 - 항상 한 줄로 보이도록 whitespace-nowrap */}
+            {/* 상단 링크 4개 – 데스크탑에서 한 줄 유지 */}
             <nav
               aria-label="회사 주요 링크"
-              className="flex flex-wrap md:flex-nowrap gap-x-3 gap-y-2 text-sm"
+              className="flex flex-wrap gap-x-5 gap-y-2 text-sm"
             >
               {[
                 { href: "/about", label: "회사소개" },
@@ -287,24 +295,13 @@ export default function Footer() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="
-                    relative inline-flex items-center justify-center
-                    h-9 px-4
-                    text-neutral-300 whitespace-nowrap
-                    transition-colors duration-300
-                    hover:text-[#111111]
-                    before:content-[''] before:absolute before:inset-0
-                    before:rounded-full before:bg-[#FFB800]
-                    before:scale-0 before:opacity-0
-                    before:transition before:duration-300
-                    hover:before:scale-100 hover:before:opacity-100
-                  "
+                  className="text-neutral-300 whitespace-nowrap transition-colors duration-300 hover:text-[#FFB800]"
                 >
-                  <span className="relative z-10">{l.label}</span>
+                  {l.label}
                 </Link>
               ))}
             </nav>
-            
+
             {/* 소셜 아이콘 */}
             <div className="flex flex-wrap items-center gap-3">
               {/* Naver Blog */}
