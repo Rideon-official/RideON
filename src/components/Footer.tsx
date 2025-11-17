@@ -181,9 +181,9 @@ export default function Footer() {
         <div
           className="
             py-12 lg:py-14
-            grid gap-y-10 gap-x-10
+            grid gap-y-10 gap-x-12
             grid-cols-1 sm:grid-cols-2
-            lg:[grid-template-columns:180px_minmax(0,1.3fr)_minmax(0,1.3fr)_minmax(0,1.1fr)]
+            lg:[grid-template-columns:220px_minmax(0,1.25fr)_minmax(0,1.25fr)_minmax(0,1.1fr)]
           "
         >
           {/* 1. 로고 섹션 (로고 + 텍스트 한 덩어리, 둘 다 홈 링크) */}
@@ -194,7 +194,7 @@ export default function Footer() {
           >
             <span className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-2xl overflow-hidden">
               <Image
-                src="/logo/rideon-mark.png"
+                src="/rideon-mark.png"
                 alt="RIDE ON 로고"
                 fill
                 className="object-contain"
