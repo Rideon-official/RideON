@@ -194,7 +194,7 @@ export default function Footer() {
           >
             <span className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden">
               <Image
-                src="/logo/rideon-mark.png"
+                src="/rideon-mark.png"
                 alt="RIDE ON 로고"
                 fill
                 className="object-contain"
