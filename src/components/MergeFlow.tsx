@@ -2,6 +2,7 @@
 "use client";
 
 import { ShieldCheck, FileCog, Gauge, Activity } from "lucide-react";
+import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 
 const steps = [
   {
@@ -33,23 +34,23 @@ const steps = [
 export default function MergeFlow() {
   return (
     <section className="bg-[#0E0E0E] py-14 lg:py-20">
-      <div className="mx-auto max-w-7xl px-6">
-        {/* 헤더 */}
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        {/* ===== Header ===== */}
         <header>
-          <p className="text-xs font-semibold tracking-[.2em] text-white/35 uppercase">
-            MERGE FLOW
-          </p>
-          <h2 className="mt-2 text-[22px] md:text-[26px] font-semibold text-white">
+          <Eyebrow>MERGE FLOW</Eyebrow>
+
+          <Heading level={2} className="mt-2">
             지사 합병은 이렇게 진행됩니다
-          </h2>
-          <p className="mt-2 text-sm text-white/60">
+          </Heading>
+
+          <BodyText muted className="mt-2 max-w-2xl">
             기존 지사의 계약·정산·운영 구조를 그대로 가져오는 것이 아니라,
             본사 기준에 맞춰 리스크를 최소화하고 구조를 다시 설계하는 데
             초점을 둡니다.
-          </p>
+          </BodyText>
         </header>
 
-        {/* 비주얼 타임라인 */}
+        {/* ===== Timeline ===== */}
         <div className="relative mt-10 lg:mt-14">
           {/* 가운데 가로 라인 */}
           <div className="pointer-events-none absolute left-0 right-0 top-[52px] h-px bg-gradient-to-r from-transparent via-[#FFB800]/35 to-transparent" />
@@ -71,19 +72,26 @@ export default function MergeFlow() {
                   </div>
 
                   {/* STEP 라벨 */}
-                  <p className="text-[11px] font-semibold tracking-[0.2em] text-white/45 uppercase">
+                  <Eyebrow className="text-white/55">
                     {step.label}
-                  </p>
+                  </Eyebrow>
 
                   {/* 타이틀 */}
-                  <p className="mt-1 text-sm font-semibold text-[#FFB800]">
+                  <Heading
+                    level={4}
+                    className="mt-1 text-[#FFB800]"
+                  >
                     {step.title}
-                  </p>
+                  </Heading>
 
                   {/* 설명 */}
-                  <p className="mt-2 text-xs sm:text-sm text-white/60 leading-relaxed">
+                  <BodyText
+                    size="sm"
+                    muted
+                    className="mt-2 max-w-xs leading-relaxed"
+                  >
                     {step.desc}
-                  </p>
+                  </BodyText>
                 </div>
               );
             })}
