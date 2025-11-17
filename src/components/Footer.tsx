@@ -177,35 +177,35 @@ export default function Footer() {
       </div>
 
       {/* ===== 하단 블록 (로고 / 회사정보 / 문의 및 신고 / 회사소개+아이콘) ===== */}
-      {/* 상단보다 살짝 넓은 폭 사용 */}
       <div className="mx-auto max-w-[90rem] px-6">
         <div
           className="
             py-12 lg:py-14
             grid gap-y-10 gap-x-10
-            grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
+            grid-cols-1 sm:grid-cols-2
+            lg:[grid-template-columns:180px_minmax(0,1.3fr)_minmax(0,1.3fr)_minmax(0,1.1fr)]
           "
         >
-          {/* 1. 로고 섹션 (로고 위, 텍스트 아래) */}
-          <div className="flex flex-col items-start gap-3">
-            <span className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-xl overflow-hidden ring-1 ring-neutral-800 bg-black/30">
+          {/* 1. 로고 섹션 (로고 + 텍스트 한 덩어리, 둘 다 홈 링크) */}
+          <Link
+            href="/"
+            aria-label="RIDE ON 홈으로 이동"
+            className="flex flex-col items-start gap-2 group"
+          >
+            <span className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-2xl overflow-hidden">
               <Image
-                src="/rideon-mark.png"
+                src="/logo/rideon-mark.png"
                 alt="RIDE ON 로고"
                 fill
-                className="object-contain p-2"
-                sizes="64px"
+                className="object-contain"
+                sizes="80px"
                 priority
               />
             </span>
-            <Link
-              href="/"
-              aria-label="RIDE ON 홈으로 이동"
-              className="text-white text-xl font-black tracking-tight"
-            >
+            <span className="text-white text-xl font-black tracking-tight group-hover:text-[#FFB800] transition-colors duration-300">
               RIDE ON
-            </Link>
-          </div>
+            </span>
+          </Link>
 
           {/* 2. 회사정보 */}
           <section aria-labelledby="biz-info-left">
@@ -236,7 +236,7 @@ export default function Footer() {
             </dl>
           </section>
 
-          {/* 3. 문의 및 신고 (연락/주소/메일) */}
+          {/* 3. 문의 및 신고 */}
           <section aria-labelledby="biz-info-right">
             <h3
               id="biz-info-right"
@@ -278,7 +278,7 @@ export default function Footer() {
 
           {/* 4. 회사소개 / 아이콘 / 정책 / 저작권 */}
           <div className="flex flex-col items-start lg:items-end text-left lg:text-right gap-4">
-            {/* 상단 링크 4개 – 데스크탑에서 한 줄 유지 느낌 */}
+            {/* 상단 링크 4개 */}
             <nav
               aria-label="회사 주요 링크"
               className="flex flex-wrap gap-x-5 gap-y-2 text-sm"
