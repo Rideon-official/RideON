@@ -8,6 +8,9 @@ import Stats from "@/components/Stats";
 import MergeFlow from "@/components/MergeFlow";
 import Starfield from "@/components/Starfield";
 
+// 타이포그래피 컴포넌트
+import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
+
 export default function Home() {
   return (
     <main>
@@ -20,37 +23,45 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-4 lg:px-6 grid gap-10 lg:grid-cols-12 items-center">
           {/* 왼쪽 텍스트 */}
           <div className="relative z-10 lg:col-span-7 w-full max-w-2xl">
-            <p className="text-[14px] sm:text-[15px] tracking-[0.18em] text-white/70">
+            {/* 상단 라벨 */}
+            <Eyebrow className="text-white/70">
               라이드온
-            </p>
+            </Eyebrow>
 
-            <h1 className="mt-3 font-semibold leading-tight text-white">
-              <span className="block text-[clamp(22px,4vw,34px)] whitespace-nowrap">
+            {/* 메인 타이틀 */}
+            <Heading
+              level={1}
+              align="left"
+              className="mt-3 max-w-3xl"
+            >
+              <span className="block">
                 전국 배달 인프라 통합 솔루션
               </span>
-              <span className="block text-[clamp(34px,6.5vw,58px)] whitespace-nowrap text-[#FFB800]">
+              <span className="block text-[#FFB800]">
                 RIDE ON
               </span>
-            </h1>
+            </Heading>
 
-            <p className="mt-5 text-gray-300 text-[15px] sm:text-[17px] whitespace-nowrap">
+            {/* 한 줄 설명 */}
+            <BodyText className="mt-5 max-w-xl">
               쿠팡·배민 B2B 네트워크를 기반으로 전국 25개 이상 지부를 하나로
               운영합니다.
-            </p>
+            </BodyText>
 
-            <div className="mt-3 space-y-1.5 text-gray-300 text-[13px] sm:text-[15px]">
-              <p>
+            {/* 대상별 설명 */}
+            <div className="mt-3 space-y-1.5">
+              <BodyText size="sm" muted>
                 <span className="font-semibold text-[#FFC94D]">지사장</span>
                 에게는 안정된 운영과 리스·렌트·정산까지 한 번에 지원합니다.
-              </p>
-              <p>
+              </BodyText>
+              <BodyText size="sm" muted>
                 <span className="font-semibold text-[#FFC94D]">라이더</span>
                 에겐 바로 일할 수 있는 바이크·장비·정산 패키지를 제공합니다.
-              </p>
-              <p>
+              </BodyText>
+              <BodyText size="sm" muted>
                 <span className="font-semibold text-[#FFC94D]">파트너십</span>
                 에는 전국 1위급 라이더 네트워크와 꾸준한 수요를 연결합니다.
-              </p>
+              </BodyText>
             </div>
 
             {/* KPI strip */}
