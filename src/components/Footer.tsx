@@ -190,7 +190,7 @@ export default function Footer() {
           <Link
             href="/"
             aria-label="RIDE ON 홈으로 이동"
-            className="flex flex-col items-start justify-center gap-2 group"
+            className="flex flex-col items-center justify-center gap-2 group"
           >
             <span className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden">
               <Image
@@ -252,7 +252,7 @@ export default function Footer() {
             >
               회사 연락처
             </h3>
-            <dl className="grid grid-cols-[minmax(110px,auto)_1fr] gap-x-3 gap-y-1.5 text-sm tracking-tight">
+            <dl className="grid grid-cols-[minmax(140px,auto)_1fr] gap-x-4 gap-y-1.5 text-sm tracking-tight">
               <dt className="text-neutral-500 whitespace-nowrap">
                 통신판매업 신고번호
               </dt>
