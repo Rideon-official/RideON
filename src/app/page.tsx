@@ -4,9 +4,9 @@
 import Image from "next/image";
 import CoreServices from "@/components/CoreServices";
 import ContactSection from "@/components/ContactSection";
-import Stats from "@/components/Stats";
 import MergeFlow from "@/components/MergeFlow";
 import Starfield from "@/components/Starfield";
+import QuickAccess from "@/components/QuickAccess";
 
 // 타이포그래피 컴포넌트
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
@@ -128,11 +128,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Section 2 (임시): Quick Access 자리에 둘 Stats ===== */}
-      {/* Step 2에서 Quick Access 3-Button으로 교체 예정 */}
-      <section id="quick-access">
-        <Stats />
-      </section>
+      {/* ===== Section 2: Quick Access (3-Card) ===== */}
+      <QuickAccess />
 
       {/* ===== Core Services (향후 Section 3: Core Systems로 리팩터링 예정) ===== */}
       <CoreServices />
