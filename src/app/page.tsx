@@ -14,83 +14,93 @@ import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 export default function Home() {
   return (
     <main>
-      {/* ===== Hero ===== */}
+      {/* ===== Section 1: Hero + Integrated KPI ===== */}
       <section
         id="hero"
-        className="relative overflow-hidden bg-[#0E0E0E] pt-20 pb-16 lg:pt-24 lg:pb-24"
+        className="relative overflow-hidden bg-graphite-core text-white"
       >
-        {/* 헤더와 맞춘 컨테이너 (max-w-7xl, lg:px-6) */}
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-6 grid gap-10 lg:grid-cols-12 items-center">
-          {/* 왼쪽 텍스트 */}
+        {/* 배경 그라데이션/노이즈 레이어 (필요 시 조정 가능) */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-80"
+          aria-hidden="true"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/60 via-graphite-core to-black" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 lg:px-6 py-section-y md:py-section-y-lg grid gap-12 lg:grid-cols-12 items-center">
+          {/* 왼쪽 텍스트 영역 */}
           <div className="relative z-10 lg:col-span-7 w-full max-w-2xl">
             {/* 상단 라벨 */}
-            <Eyebrow className="text-white/70">
-              라이드온
+            <Eyebrow className="text-brand-accent tracking-widest2 uppercase">
+              전국 라이더 운영 인프라
             </Eyebrow>
 
             {/* 메인 타이틀 */}
             <Heading
               level={1}
               align="left"
-              className="mt-3 max-w-3xl"
+              className="mt-4 max-w-3xl"
             >
               <span className="block">
-                전국 배달 인프라 통합 솔루션
+                전국을 연결하는
               </span>
-              <span className="block text-[#FFB800]">
-                RIDE ON
+              <span className="block text-brand-secondary">
+                라이더 운영 인프라
               </span>
             </Heading>
 
-            {/* 한 줄 설명 */}
-            <BodyText className="mt-5 max-w-xl">
-              쿠팡·배민 B2B 네트워크를 기반으로 전국 25개 이상 지부를 하나로
-              운영합니다.
+            {/* 서브 메시지 */}
+            <BodyText className="mt-5 max-w-xl text-white/80">
+              표준화된 시스템으로 안정적인 배달 운영을 지원합니다. 정산·출고·교육·렌탈까지,
+              라이더 성장의 모든 과정을 한 번에 관리하세요.
             </BodyText>
 
-            {/* 대상별 설명 */}
-            <div className="mt-3 space-y-1.5">
-              <BodyText size="sm" muted>
-                <span className="font-semibold text-[#FFC94D]">지사장</span>
-                에게는 안정된 운영과 리스·렌트·정산까지 한 번에 지원합니다.
-              </BodyText>
-              <BodyText size="sm" muted>
-                <span className="font-semibold text-[#FFC94D]">라이더</span>
-                에겐 바로 일할 수 있는 바이크·장비·정산 패키지를 제공합니다.
-              </BodyText>
-              <BodyText size="sm" muted>
-                <span className="font-semibold text-[#FFC94D]">파트너십</span>
-                에는 전국 1위급 라이더 네트워크와 꾸준한 수요를 연결합니다.
-              </BodyText>
+            {/* KPI 3개 통합 */}
+            <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3">
+              <div>
+                <div className="text-brand-accent text-2xl font-semibold font-mono">
+                  56개
+                </div>
+                <div className="mt-1 text-sm text-white/70">
+                  전국 지부
+                </div>
+              </div>
+              <div>
+                <div className="text-brand-accent text-2xl font-semibold font-mono">
+                  12,000+
+                </div>
+                <div className="mt-1 text-sm text-white/70">
+                  활동 라이더
+                </div>
+              </div>
+              <div>
+                <div className="text-brand-accent text-2xl font-semibold font-mono">
+                  98.7%
+                </div>
+                <div className="mt-1 text-sm text-white/70">
+                  정산 정확도
+                </div>
+              </div>
             </div>
 
-            {/* KPI strip */}
-            <div className="mt-6 flex flex-wrap gap-2">
-              {[
-                "25개 지부",
-                "월 100만 건 처리",
-                "출고율 99.2%",
-                "렌트·리스 50대+",
-              ].map((k) => (
-                <span
-                  key={k}
-                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] sm:text-[13px] text-white"
-                >
-                  <span className="mr-2 inline-block rounded-full bg-[#FFB800] px-2 py-0.5 text-[11px] font-medium text-black">
-                    KPI
-                  </span>
-                  {k}
-                </span>
-              ))}
+            {/* 서비스 둘러보기 CTA */}
+            <div className="mt-10">
+              <a
+                href="#quick-access"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-6 py-3 text-sm font-semibold text-white shadow-elev1 transition hover:shadow-elev2 hover:bg-brand-secondary/90"
+              >
+                서비스 둘러보기
+                <span aria-hidden="true">↓</span>
+              </a>
             </div>
           </div>
 
-          {/* 오른쪽 비주얼 */}
+          {/* 오른쪽 비주얼 영역 */}
           <div className="relative lg:col-span-5 mt-10 lg:mt-0 flex justify-center">
-            <div className="relative w-[360px] h-[360px] md:w-[400px] md:h-[400px] rounded-2xl bg-[#0F0F0F] border border-white/5 overflow-hidden">
+            <div className="relative w-[320px] h-[320px] md:w-[380px] md:h-[380px] rounded-2xl bg-[#0F0F0F] border border-white/10 overflow-hidden shadow-elev2">
               {/* 살짝 어둡게 */}
               <div
-                className="absolute inset-0 bg-black/10 z-10 pointer-events-none"
+                className="absolute inset-0 bg-black/20 z-10 pointer-events-none"
                 aria-hidden="true"
               />
               <Image
@@ -98,7 +108,7 @@ export default function Home() {
                 alt="RIDE ON Network Map"
                 fill
                 priority
-                className="object-cover opacity-65"
+                className="object-cover opacity-70"
               />
               <div className="absolute inset-0 z-20 flex items-center justify-center">
                 <Image
@@ -118,16 +128,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Stats (숫자 섹션) ===== */}
-      <Stats />
+      {/* ===== Section 2 (임시): Quick Access 자리에 둘 Stats ===== */}
+      {/* Step 2에서 Quick Access 3-Button으로 교체 예정 */}
+      <section id="quick-access">
+        <Stats />
+      </section>
 
-      {/* ===== Core Services ===== */}
+      {/* ===== Core Services (향후 Section 3: Core Systems로 리팩터링 예정) ===== */}
       <CoreServices />
 
-      {/* ===== Merge / Flow ===== */}
+      {/* ===== Merge / Flow (후속 단계에서 재배치/요약 가능) ===== */}
       <MergeFlow />
 
-      {/* ===== Contact ===== */}
+      {/* ===== Contact / Multi-CTA & Form 섹션으로 확장 예정 ===== */}
       <div id="contact">
         <ContactSection />
       </div>
