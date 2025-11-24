@@ -95,20 +95,32 @@ const cards: Card[] = [
 
 export default function CoreServices() {
   return (
-    <section className="bg-[#0E0E0E] py-14 lg:py-16">
-      {/* 헤더/Hero/Stats와 같은 컨테이너 기준 */}
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+    <section
+      id="core-systems"
+      className="bg-surface-base"
+    >
+      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-section-y md:py-section-y-lg">
         {/* ===== Header ===== */}
         <header className="mb-8 lg:mb-10">
-          <Eyebrow>SOLUTIONS</Eyebrow>
+          <Eyebrow className="text-brand-primary">
+            CORE SYSTEMS
+          </Eyebrow>
 
-          <Heading level={2} className="mt-2">
-            지사 · 라이더 · 파트너를 위한 4가지 솔루션
+          <Heading
+            level={2}
+            className="mt-2 text-text-heading"
+          >
+            지사 · 라이더 · 파트너를 위한
+            <br className="hidden md:block" />
+            통합 운영 시스템
           </Heading>
 
-          <BodyText muted className="mt-2 max-w-2xl">
+          <BodyText
+            muted
+            className="mt-2 max-w-2xl text-text-muted"
+          >
             본사 운영지원, 렌트/정비 인프라, 정산 솔루션, 라이더 스토어까지
-            하나의 구조 안에서 동일한 기준으로 제공합니다.
+            하나의 구조 안에서 동일한 기준으로 관리되는 RIDE ON의 핵심 시스템입니다.
           </BodyText>
         </header>
 
@@ -128,22 +140,24 @@ function CardItem({ c }: { c: Card }) {
     <article
       className="
         group relative isolate overflow-hidden
-        rounded-2xl border border-white/5 bg-[#121212] p-7 lg:p-8 text-white
+        rounded-2xl border border-slate-200/70 bg-surface-subtle p-7 lg:p-8
+        text-text-heading
+        shadow-sm
         transition-all duration-200
-        hover:border-[#FFB800]/40 hover:bg-[#FFB800] hover:text-[#111111]
+        hover:-translate-y-1 hover:border-brand-secondary/60 hover:bg-surface-base hover:shadow-elev2
         min-h-[230px]
       "
     >
-      <div className="pointer-events-none absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/5 group-hover:bg-[#111111]/35" />
+      <div className="pointer-events-none absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-slate-200/60 group-hover:bg-brand-secondary/30" />
 
       <div className="mb-1 flex items-center justify-between gap-4">
         {/* 카드 상단 라벨 */}
-        <Eyebrow className="text-white/60 group-hover:text-[#111111]/70">
+        <Eyebrow className="text-text-muted group-hover:text-brand-primary">
           {c.eyebrow}
         </Eyebrow>
 
         {/* 아이콘 */}
-        <div className="text-white/85 group-hover:text-[#111111] transition-colors duration-200">
+        <div className="text-brand-primary group-hover:text-brand-secondary transition-colors duration-200">
           {c.icon}
         </div>
       </div>
@@ -151,7 +165,7 @@ function CardItem({ c }: { c: Card }) {
       {/* 카드 타이틀 */}
       <Heading
         level={3}
-        className="mt-2 text-[18px] sm:text-[20px] lg:text-[22px] font-semibold group-hover:text-[#111111]"
+        className="mt-2 text-[18px] sm:text-[20px] lg:text-[22px] font-semibold"
       >
         {c.title}
       </Heading>
@@ -160,7 +174,7 @@ function CardItem({ c }: { c: Card }) {
       <BodyText
         size="sm"
         muted
-        className="mt-3 group-hover:text-[#111111]/80"
+        className="mt-3 text-text-muted"
       >
         {c.desc}
       </BodyText>
@@ -171,9 +185,9 @@ function CardItem({ c }: { c: Card }) {
           href={c.href}
           className="
             inline-flex items-center justify-center rounded-full
-            border border-white/12 px-4 py-2 text-sm font-semibold
-            text-white/95 transition-all duration-200
-            group-hover:border-[#111111] group-hover:bg-[#111111] group-hover:text-[#FFB800]
+            border border-slate-300 px-4 py-2 text-sm font-semibold
+            text-brand-primary transition-all duration-200
+            hover:border-brand-secondary hover:bg-brand-secondary hover:text-white
           "
         >
           {c.buttonLabel}
