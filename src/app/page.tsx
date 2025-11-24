@@ -7,6 +7,7 @@ import ContactSection from "@/components/ContactSection";
 import MergeFlow from "@/components/MergeFlow";
 import Starfield from "@/components/Starfield";
 import QuickAccess from "@/components/QuickAccess";
+import TrustBuilder from "@/components/TrustBuilder";
 
 // 타이포그래피 컴포넌트
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
@@ -131,13 +132,16 @@ export default function Home() {
       {/* ===== Section 2: Quick Access (3-Card) ===== */}
       <QuickAccess />
 
-      {/* ===== Core Services (향후 Section 3: Core Systems로 리팩터링 예정) ===== */}
+      {/* ===== Section 3: Core Systems (CoreServices) ===== */}
       <CoreServices />
 
-      {/* ===== Merge / Flow (후속 단계에서 재배치/요약 가능) ===== */}
+      {/* ===== Section 4: Trust Builder (데이터 + 후기) ===== */}
+      <TrustBuilder />
+
+      {/* ===== Section 5: Merge / Flow (후속 단계에서 재배치/요약 가능) ===== */}
       <MergeFlow />
 
-      {/* ===== Contact / Multi-CTA & Form 섹션으로 확장 예정 ===== */}
+      {/* ===== Section 6: Contact / Multi-CTA & Form (추후 확장 예정) ===== */}
       <div id="contact">
         <ContactSection />
       </div>
