@@ -59,6 +59,11 @@ export default function Footer() {
                   협업/제휴 문의
                 </Link>
               </li>
+                  <li>
+      <Link href="/network" className={linkBase}>
+        지부 네트워크
+      </Link>
+    </li>
             </ul>
           </div>
 

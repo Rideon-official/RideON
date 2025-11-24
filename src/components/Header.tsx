@@ -18,15 +18,20 @@ const navItems: NavItem[] = [
     href: "/brand",
     submenu: [
       { label: "브랜드 스토리", href: "/brand#story" },
-      // ⬇️ 기존 LINKS.branchMerge → INQUIRY.partner 로 교체
       { label: "협업/제휴 문의", href: INQUIRY.partner },
+    ],
+  },
+  {
+    label: "NETWORK",
+    href: "/network",
+    submenu: [
+      { label: "전국 지부 네트워크", href: "/network" },
     ],
   },
   {
     label: "BIKE",
     href: "/bike",
     submenu: [
-      // ⬇️ 내부 고정 앵커 대신 공통 상수 사용(도메인 변경에도 안전)
       { label: "렌트/리스 신청", href: INQUIRY.rent },
       { label: "센터 안내", href: "/bike#center" },
     ],
@@ -37,7 +42,7 @@ const navItems: NavItem[] = [
     submenu: [
       { label: "소개", href: "/logiteats#intro" },
       { label: "정산 절차/자동화", href: "/logiteats#process" },
-      { label: "도입 문의", href: "/logiteats#contact" }, // 필요 시 INQUIRY.branch 로 바꿔도 OK
+      { label: "도입 문의", href: "/logiteats#contact" },
     ],
   },
   {
@@ -45,8 +50,16 @@ const navItems: NavItem[] = [
     href: "/store",
     submenu: [
       { label: "모든 상품 보기", href: "/store" },
-      { label: "네이버 스토어 ↗", href: "https://smartstore.naver.com/rideon", external: true },
-      { label: "쿠팡 스토어 ↗", href: "https://store.coupang.com/rideon", external: true },
+      {
+        label: "네이버 스토어 ↗",
+        href: "https://smartstore.naver.com/rideon",
+        external: true,
+      },
+      {
+        label: "쿠팡 스토어 ↗",
+        href: "https://store.coupang.com/rideon",
+        external: true,
+      },
     ],
   },
   {
@@ -140,13 +153,17 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Right: 카톡 + 햄버거 */}
+          {/* Right: 지사 상담 CTA + 햄버거 */}
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-3">
-              <Button variant="primary" href="https://pf.kakao.com/_link" external>
+              <Button variant="primary" href={INQUIRY.branch}>
+                지사 상담하기
+              </Button>
+              <Button variant="secondary" href="https://pf.kakao.com/_link" external>
                 카톡 상담
               </Button>
             </div>
+
 
             {/* ✅ 절대배치 방식 햄버거: 완벽한 三→X */}
             <button
