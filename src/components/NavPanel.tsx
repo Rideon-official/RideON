@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { INQUIRY_MENU } from "@/config/links";
+import { INQUIRY } from "@/config/links";
 
 type NavPanelProps = {
   open: boolean;
@@ -12,65 +12,65 @@ type NavPanelProps = {
 
 export function NavPanel({ open, setOpen }: NavPanelProps) {
   const menu = [
-    {
-      title: "BRAND",
-      items: [
-        { label: "브랜드 스토리", href: "/brand#story" },
-        { label: "협업/제휴 문의", href: "/brand#partner" },
-      ],
-    },
-    {
-      title: "NETWORK",
-      items: [
-        { label: "전국 지부 네트워크", href: "/network" },
-      ],
-    },
-    {
-      title: "BIKE",
-      items: [
-        { label: "렌트/리스 신청", href: "/bike#rent" },
-        { label: "센터 안내", href: "/bike#center" },
-      ],
-    },
-    {
-      title: "LogitEats",
-      items: [
-        { label: "소개", href: "/logiteats#intro" },
-        { label: "정산 절차/자동화", href: "/logiteats#process" },
-        { label: "도입 문의", href: "/logiteats#contact" },
-      ],
-    },
-    {
-      title: "STORE",
-      items: [
-        { label: "모든 상품 보기", href: "/store" },
-        {
-          label: "네이버 스토어 ↗",
-          href: "https://smartstore.naver.com/rideon",
-          external: true,
-        },
-        {
-          label: "쿠팡 스토어 ↗",
-          href: "https://store.coupang.com/rideon",
-          external: true,
-        },
-      ],
-    },
-    {
-      title: "NOTICE",
-      items: [
-        { label: "업데이트", href: "/notice#update" },
-        { label: "채용/알림", href: "/notice#recruit" },
-      ],
-    },
-    {
-      title: "INQUIRY",
-      items: INQUIRY_MENU.map((item) => ({
-        label: item.label,
-        href: item.href,
-      })),
-    },
-  ];
+  {
+    title: "BRAND",
+    items: [
+      { label: "브랜드 스토리", href: "/brand#story" },
+      { label: "전국 지부 네트워크", href: "/brand#network" },
+      { label: "지사 개설/합병 프로세스", href: "/brand#merge-flow" },
+    ],
+  },
+  {
+    title: "BIKE",
+    items: [
+      { label: "렌트/리스 안내", href: "/bike#intro" },
+      { label: "센터 안내", href: "/bike#center" },
+      { label: "렌트/리스 신청", href: INQUIRY.rent },
+    ],
+  },
+  {
+    title: "PAYOUT",
+    items: [
+      { label: "정산 시스템 소개", href: "/payout#intro" },
+      { label: "자동화 프로세스 다이어그램", href: "/payout#process" },
+      { label: "도입 효과", href: "/payout#benefit" },
+      { label: "도입 문의", href: "/payout#contact" },
+    ],
+  },
+  {
+    title: "STORE",
+    items: [
+      { label: "자체 상품 보기", href: "/store" },
+      {
+        label: "네이버 스토어 ↗",
+        href: "https://smartstore.naver.com/rideon",
+        external: true,
+      },
+      {
+        label: "쿠팡 스토어 ↗",
+        href: "https://store.coupang.com/rideon",
+        external: true,
+      },
+    ],
+  },
+  {
+    title: "NOTICE",
+    items: [
+      { label: "공지사항 리스트", href: "/notice#list" },
+      { label: "업데이트", href: "/notice#update" },
+      { label: "채용/공고", href: "/notice#recruit" },
+    ],
+  },
+  {
+    title: "CONTACT",
+    items: [
+      { label: "기사 문의", href: "/contact#rider" },
+      { label: "지사 개설/합병 문의", href: "/contact#branch" },
+      { label: "리스/렌탈 신청하기", href: "/contact#lease" },
+      { label: "파트너십 제안", href: "/contact#partner" },
+    ],
+  },
+];
   
   const panelRef = useRef<HTMLDivElement>(null);
 
