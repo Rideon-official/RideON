@@ -89,7 +89,7 @@ const items: QuickAccessItem[] = [
 
 export default function QuickAccess() {
   return (
-    <section id="quick-access" className="bg-surface-subtle">
+    <section id="quick-access" className="bg-[#0E0E0E]">
       <div className="mx-auto max-w-7xl px-4 lg:px-6 py-section-y md:py-section-y-lg">
         <Eyebrow className="text-brand-primary">
           가장 많이 찾는 서비스
