@@ -23,7 +23,7 @@ const kpis = [
 
 export default function TrustBuilder() {
   return (
-    <section id="trust-builder" className="bg-surface-base">
+    <section id="trust-builder" className="bg-[#0E0E0E]">
       <div className="mx-auto max-w-7xl px-4 lg:px-6 py-section-y md:py-section-y-lg">
         {/* Header */}
         <header className="max-w-3xl">
