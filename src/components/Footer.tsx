@@ -13,7 +13,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="mt-20 bg-[#0E0E0E] text-neutral-400 tracking-tight border-t border-neutral-800"
+      className="mt-0 bg-[#0E0E0E] text-neutral-400 tracking-tight border-t border-neutral-800"
       role="contentinfo"
       aria-label="RIDE ON 사이트 푸터"
     >
