@@ -7,8 +7,11 @@ function cx(...classes: Array<string | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
+type HeadingLevel = 1 | 2 | 3 | 4;
+type HeadingTag = "h1" | "h2" | "h3" | "h4";
+
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
-  level?: 1 | 2 | 3 | 4;
+  level?: HeadingLevel;
   align?: "left" | "center" | "right";
 };
 
@@ -18,9 +21,9 @@ export function Heading({
   className,
   ...props
 }: HeadingProps) {
-  const Tag = (`h${level}` as unknown) as keyof JSX.IntrinsicElements;
+  const Tag = (`h${level}` as HeadingTag);
 
-  const sizeMap: Record<number, string> = {
+  const sizeMap: Record<HeadingLevel, string> = {
     1: "text-4xl md:text-5xl font-bold",
     2: "text-2xl md:text-3xl font-semibold",
     3: "text-lg md:text-xl font-semibold",
@@ -37,7 +40,7 @@ export function Heading({
   return (
     <Tag
       className={cx(
-        "tracking-tight text-white",
+        "tracking-tight text-inherit",
         sizeMap[level],
         alignClass,
         className
@@ -48,7 +51,6 @@ export function Heading({
 }
 
 type EyebrowProps = React.HTMLAttributes<HTMLDivElement>;
-
 export function Eyebrow({ className, ...props }: EyebrowProps) {
   return (
     <div
@@ -74,17 +76,8 @@ export function BodyText({
 }: BodyTextProps) {
   const sizeClass =
     size === "md" ? "text-sm md:text-[15px]" : "text-xs md:text-[13px]";
-  const colorClass = muted ? "text-neutral-400" : "text-neutral-300";
-
+  const colorClass = muted ? "text-white/65" : "text-white/80";
   return (
-    <p
-      className={cx(
-        sizeClass,
-        colorClass,
-        "leading-relaxed",
-        className
-      )}
-      {...props}
-    />
+    <p className={cx(sizeClass, colorClass, "leading-relaxed", className)} {...props} />
   );
 }
