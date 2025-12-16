@@ -6,7 +6,8 @@ import About from "./components/About";
 import CoreStrengths from "./components/CoreStrengths";
 import Journey from "./components/Journey";
 
-// ✅ 메인에서 쓰던 MergeFlow를 BRAND로 이동
+import NetworkMap from "@/components/NetworkMap";
+import BranchApplyForm from "@/components/BranchApplyForm";
 import MergeFlow from "@/components/MergeFlow";
 
 export default function BrandPage() {
@@ -18,54 +19,66 @@ export default function BrandPage() {
       {/* RIDEON 알파벳 의미 */}
       <RideonMeaning />
 
-      {/* ✅ BRAND: Story 앵커 (Header에서 /brand#story로 연결됨) */}
+      {/* ✅ /brand#story 목적지 */}
       <section id="story">
-        {/* About */}
         <About />
       </section>
 
-      {/* Journey */}
       <Journey />
 
-      {/* ✅ BRAND: Network 앵커 (Header에서 /brand#network로 연결될 예정)
-          - 지금은 “자리 확보 + 교통정리”가 목적이라 임시 블록만 둠
-          - 다음 단계에서 실제 지도/지부 데이터 컴포넌트를 여기에 삽입 */}
+      {/* ✅ /brand#network 목적지 (기존 /network 이관) */}
       <section id="network" className="py-16 lg:py-20">
+        {/* 네트워크 섹션 상단 인트로 (기존 /network Hero의 핵심만 압축) */}
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6 lg:p-8">
-            <p className="text-sm font-semibold text-white/70">NATIONAL NETWORK</p>
-            <h2 className="mt-2 text-2xl lg:text-3xl font-extrabold">
-              전국 지부 네트워크
-            </h2>
-            <p className="mt-3 text-white/70 leading-relaxed max-w-2xl">
-              이 섹션에는 전국 지도/지부 현황/모집 지역 안내가 들어갑니다.
-              다음 단계에서 기존 /network 내용을 이 위치로 옮겨서
-              BRAND 페이지 안에서 완성도 있게 보여주겠습니다.
+            <p className="text-sm font-semibold text-brand-accent tracking-widest2">
+              BRANCH NETWORK
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+
+            <h2 className="mt-3 text-2xl lg:text-3xl font-extrabold">
+              전국 배달 인프라,
+              <br className="hidden md:block" />
+              당신의 지역에서 이어갑니다.
+            </h2>
+
+            <p className="mt-4 max-w-2xl text-white/75 leading-relaxed">
+              RIDE ON은 수도권을 넘어 전국 주요 권역으로 지부 네트워크를 확장하고 있습니다.
+              운영 중인 지부와, 지금 막 지사 모집이 시작된 전략 지역을 한눈에 확인하세요.
+            </p>
+
+            <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="/network"
-                className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#111111]"
+                href="#branch-map"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-6 py-3 text-sm font-semibold text-white shadow-elev1 transition hover:shadow-elev2 hover:bg-brand-secondary/90"
               >
-                (임시) 네트워크 페이지 보기 →
+                전국 지부 현황 보기 <span aria-hidden="true">↓</span>
               </a>
               <a
-                href="#merge-flow"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white/90 hover:border-white/35 transition"
+                href="#branch-apply"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-brand-accent hover:text-brand-accent"
               >
-                지사 개설/합병 프로세스 ↓
+                지사 상담 바로 신청
               </a>
             </div>
           </div>
         </div>
+
+        {/* 지도 */}
+        <section id="branch-map" className="mt-10">
+          <NetworkMap />
+        </section>
+
+        {/* 상담 폼 (컴포넌트 내부에 id가 없다면, 래핑으로 앵커 제공) */}
+        <section id="branch-apply">
+          <BranchApplyForm />
+        </section>
       </section>
 
-      {/* ✅ BRAND: Merge Flow 앵커 (Header에서 /brand#merge-flow로 연결될 예정) */}
+      {/* ✅ /brand#merge-flow 목적지 (메인에서 BRAND로 이동) */}
       <section id="merge-flow">
         <MergeFlow />
       </section>
 
-      {/* Core Strengths */}
       <CoreStrengths />
     </main>
   );
