@@ -7,23 +7,17 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          dark: "#05070A",      // [배경] 메인 블랙 네이비
-          surface: "#0A0F14",   // [섹션] 살짝 밝은 블랙 (섹션 구분용)
-          accent: "#FFB800",    // [포인트] RIDE ON 옐로우
-          secondary: "#4C6EF5", // [보조] 신뢰의 블루
+          dark: "#05070A",      // [배경] 전체 페이지 통일 색상
+          accent: "#FFB800",    // [포인트] 수치 및 버튼 (옐로우)
         },
         text: {
-          main: "#FFFFFF",
-          body: "#94A3B8",
-        }
+          main: "#FFFFFF",      // 제목
+          body: "#94A3B8",      // 본문 설명 (가독성 높은 슬레이트)
+        },
       },
       spacing: {
-        'section-y': '5rem',    // 80px (과하지 않은 여백)
-        'section-y-lg': '8rem', // 128px
+        'section-y': '8rem',    // 넉넉하지만 과하지 않은 여백
       },
-      boxShadow: {
-        'soft-glow': '0 0 40px rgba(255, 184, 0, 0.1)',
-      }
     },
   },
   plugins: [],
