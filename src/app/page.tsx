@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { siteConfig } from "@/config/site";
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 import { FadeUp } from "@/components/ui/MotionWrapper";
-import { motion } from "framer-motion";
 
 // 섹션 컴포넌트들
 import CoreServices from "@/components/CoreServices";
@@ -16,44 +16,44 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark">
-      {/* ===== Section 1: Hero (Vivid Map & Clear Text) ===== */}
-      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
-        {/* 오른쪽 지도: 안개를 걷어내고 선명하게 (mix-blend-luminosity로 톤만 조정) */}
+      {/* ===== Section 1: Hero (Vivid Map & Safe Text) ===== */}
+      <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* 지도는 선명하게, 글자 자리는 마스크로 보호 */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/main-map.png"
-            alt="RIDE ON Network Map"
+            alt="RIDE ON Network"
             fill
             priority
-            className="object-cover opacity-80 mix-blend-luminosity"
+            className="object-cover opacity-90 mix-blend-luminosity"
           />
-          {/* 텍스트 가독성을 위한 핵심: 왼쪽에서 오른쪽으로 흐려지는 다크 마스크 */}
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent" />
+          <div className="absolute inset-0 bg-hero-mask z-10" />
+          <div className="absolute inset-0 bg-hero-glow z-10" />
         </div>
         
-        <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-6 py-section-y grid gap-12 lg:grid-cols-12 items-center">
-          <div className="lg:col-span-7">
+        <div className="relative z-20 mx-auto max-w-7xl px-4 lg:px-6 py-section-y grid gap-12 lg:grid-cols-12 items-center">
+          <div className="lg:col-span-8">
             <FadeUp delay={0.1}>
-              <Eyebrow className="text-brand-accent font-black tracking-[0.3em] mb-6">
+              <Eyebrow className="text-brand-accent font-black tracking-[0.3em] mb-6 drop-shadow-text">
                 {siteConfig.description}
               </Eyebrow>
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              <Heading level={1} align="left" className="text-white drop-shadow-2xl">
+              <Heading level={1} align="left" className="text-gradient drop-shadow-text leading-[1.1]">
                 전국을 연결하는 <br />
                 <span className="text-brand-accent">라이더 운영 인프라</span>
               </Heading>
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              <BodyText className="mt-8 max-w-xl text-text-body text-xl leading-relaxed">
+              <BodyText className="mt-8 max-w-xl text-text-body text-xl leading-relaxed drop-shadow-text">
                 표준화된 시스템으로 안정적인 배달 운영을 지원합니다. <br />
-                정산부터 렌탈까지, 모든 과정을 <span className="text-white font-bold">RIDE ON</span>에서 시작하세요.
+                모든 과정을 <span className="text-white font-bold underline decoration-brand-accent underline-offset-8">RIDE ON</span>과 함께하세요.
               </BodyText>
             </FadeUp>
 
-            {/* 통계 지표: 옐로우 포인트로 시선 집중 */}
+            {/* 통계 지표 */}
             <div className="mt-12 grid grid-cols-2 gap-10 sm:grid-cols-3">
               {[
                 { label: "전국 지부", value: siteConfig.stats.branches },
@@ -62,7 +62,7 @@ export default function Home() {
               ].map((stat, i) => (
                 <FadeUp key={i} delay={0.4 + i * 0.1}>
                   <div className="group">
-                    <div className="text-brand-accent text-4xl font-black font-mono tracking-tighter drop-shadow-lg group-hover:scale-105 transition-transform origin-left">
+                    <div className="text-brand-accent text-4xl font-black font-mono tracking-tighter transition-transform group-hover:scale-105 origin-left">
                       {stat.value}
                     </div>
                     <div className="mt-2 text-xs text-text-muted font-bold tracking-widest uppercase">{stat.label}</div>
@@ -75,9 +75,9 @@ export default function Home() {
               <div className="mt-14">
                 <motion.a 
                   href="#quick-access" 
-                  whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255, 184, 0, 0.4)" }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 rounded-full bg-brand-accent px-10 py-5 text-lg font-black text-brand-dark transition-all"
+                  className="inline-flex items-center gap-3 rounded-full bg-brand-accent px-10 py-5 text-lg font-black text-brand-dark shadow-glow-accent transition-all"
                 >
                   서비스 둘러보기 <span>↓</span>
                 </motion.a>
@@ -85,19 +85,15 @@ export default function Home() {
             </FadeUp>
           </div>
         </div>
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 opacity-30 animate-bounce">
-          <span className="text-white text-sm tracking-widest uppercase">Scroll</span>
-        </div>
       </section>
 
-      {/* ===== Section 2~5: Deep Dark Seamless Layout ===== */}
-      {/* 흰색 배경을 삭제하고, 미세한 경계(border-t)와 여백으로 섹션 구분 */}
-      <div className="relative z-20 space-y-0">
+      {/* ===== Section 2~5: Deep Dark Layout ===== */}
+      <div className="relative z-30">
         <section id="quick-access" className="bg-brand-dark border-t border-white/5 py-section-y-lg">
           <QuickAccess />
         </section>
         
-        <section className="bg-brand-surface py-section-y-lg shadow-inner">
+        <section className="bg-brand-surface py-section-y-lg">
           <CoreServices />
         </section>
         
