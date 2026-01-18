@@ -8,6 +8,9 @@ import Starfield from "@/components/Starfield";
 import QuickAccess from "@/components/QuickAccess";
 import TrustBuilder from "@/components/TrustBuilder";
 
+// 1. 설정 파일 임포트 (Step 2.2 핵심)
+import { siteConfig } from "@/config/site";
+
 // 타이포그래피 컴포넌트
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 
@@ -31,7 +34,7 @@ export default function Home() {
           {/* 왼쪽 텍스트 영역 */}
           <div className="relative z-10 lg:col-span-7 w-full max-w-2xl">
             <Eyebrow className="text-brand-accent tracking-widest2 uppercase">
-              전국 라이더 운영 인프라
+              {siteConfig.description} {/* 설정 파일에서 불러옴 */}
             </Eyebrow>
 
             <Heading level={1} align="left" className="mt-4 max-w-3xl">
@@ -44,22 +47,23 @@ export default function Home() {
               라이더 성장의 모든 과정을 한 번에 관리하세요.
             </BodyText>
 
+            {/* 통계 지표 영역 (siteConfig 적용) */}
             <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3">
               <div>
                 <div className="text-brand-accent text-2xl font-semibold font-mono">
-                  56개
+                  {siteConfig.stats.branches}
                 </div>
                 <div className="mt-1 text-sm text-white/70">전국 지부</div>
               </div>
               <div>
                 <div className="text-brand-accent text-2xl font-semibold font-mono">
-                  12,000+
+                  {siteConfig.stats.riders}
                 </div>
                 <div className="mt-1 text-sm text-white/70">활동 라이더</div>
               </div>
               <div>
                 <div className="text-brand-accent text-2xl font-semibold font-mono">
-                  98.7%
+                  {siteConfig.stats.payoutAccuracy}
                 </div>
                 <div className="mt-1 text-sm text-white/70">정산 정확도</div>
               </div>
@@ -84,7 +88,7 @@ export default function Home() {
               />
               <Image
                 src="/main-map.png"
-                alt="RIDE ON Network Map"
+                alt={`${siteConfig.name} Network Map`}
                 fill
                 priority
                 className="object-cover opacity-70"
@@ -92,7 +96,7 @@ export default function Home() {
               <div className="absolute inset-0 z-20 flex items-center justify-center">
                 <Image
                   src="/rideon-logo.png"
-                  alt="RIDE ON Logo"
+                  alt={`${siteConfig.name} Logo`}
                   width={260}
                   height={260}
                   className="opacity-90 mix-blend-lighten select-none"
@@ -107,20 +111,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Section 2~6: Light wrapper (가독성/완성감 통일) ===== */}
+      {/* ===== Section 2~6: Light wrapper ===== */}
       <section className="bg-white text-[#1A2B4A]">
-        {/* Section 2: Quick Access */}
         <div id="quick-access">
           <QuickAccess />
         </div>
-
-        {/* Section 3: Core Systems */}
         <CoreServices />
-
-        {/* Section 4: Trust Builder */}
         <TrustBuilder />
-
-        {/* Section 6: Contact (id 유지) */}
         <div id="contact">
           <ContactSection />
         </div>
