@@ -7,25 +7,26 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          dark: "#0A0C10",      // 더 깊고 선명한 블랙 네이비
-          primary: "#1A2B4A",   // 메인 네이비
-          secondary: "#FFB800", // 포인트 컬러 (기존 옐로우로 통일)
-          surface: "#161B22",   // 카드/섹션용 배경
+          dark: "#05070A",      // [배경] 가장 깊은 블랙 네이비
+          surface: "#0D131F",   // [카드] 배경보다 한 단계 밝은 레이어
+          primary: "#1A2B4A",   // [브랜드] 메인 네이비
+          secondary: "#4C6EF5", // [포인트] 블루
+          accent: "#FFB800",    // [강조] RIDE ON 옐로우 (가장 잘 보임)
         },
         text: {
-          main: "#FFFFFF",
-          dimmed: "#CBD5E1",    // 가독성을 확보한 연한 회색 (slate-300급)
-        }
+          heading: "#FFFFFF",   // 모든 제목은 순백색
+          body: "#94A3B8",      // 본문은 눈이 편한 슬레이트 그레이
+          muted: "#64748B",     // 보조 설명
+        },
+      },
+      spacing: {
+        'section-y': '6rem',    // 96px (여백 확대)
+        'section-y-lg': '10rem', // 160px (데스크탑 여백 대폭 확대)
       },
       boxShadow: {
-        // 글자가 배경에 묻히지 않게 도와주는 텍스트용 그림자
-        textGlow: "0 0 15px rgba(0,0,0,0.5)",
-        elevated: "0 20px 40px rgba(0,0,0,0.3)",
+        'glow-accent': '0 0 20px rgba(255, 184, 0, 0.2)',
+        'glass': 'inset 0 1px 1px rgba(255, 255, 255, 0.05)',
       },
-      backgroundImage: {
-        // 텍스트 가독성을 저해하지 않는 은은한 그라데이션
-        'hero-vignette': 'radial-gradient(circle at 30% 50%, rgba(26, 43, 74, 0.4) 0%, rgba(10, 12, 16, 0) 70%)',
-      }
     },
   },
   plugins: [],
