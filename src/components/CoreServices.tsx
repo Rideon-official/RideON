@@ -4,7 +4,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Building2, Bike, FileText, ShoppingBag } from "lucide-react";
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
-import { FadeUp } from "@/components/ui/MotionWrapper"; // 애니메이션 wrapper
 
 type Card = {
   eyebrow: string;
@@ -32,7 +31,7 @@ const cards: Card[] = [
       </>
     ),
     href: "/brand#story",
-    icon: <Building2 className="w-8 h-8" strokeWidth={1.2} />,
+    icon: <Building2 className="w-8 h-8" strokeWidth={1.6} />,
     buttonLabel: "지사장 운영지원 보기 →",
   },
   {
@@ -51,7 +50,7 @@ const cards: Card[] = [
       </>
     ),
     href: "/bike#rent",
-    icon: <Bike className="w-8 h-8" strokeWidth={1.2} />,
+    icon: <Bike className="w-8 h-8" strokeWidth={1.6} />,
     buttonLabel: "라이더 바이크 안내 →",
   },
   {
@@ -70,7 +69,7 @@ const cards: Card[] = [
       </>
     ),
     href: "/logiteats#intro",
-    icon: <FileText className="w-8 h-8" strokeWidth={1.2} />,
+    icon: <FileText className="w-8 h-8" strokeWidth={1.6} />,
     buttonLabel: "정산 솔루션 살펴보기 →",
   },
   {
@@ -89,7 +88,7 @@ const cards: Card[] = [
       </>
     ),
     href: "/store",
-    icon: <ShoppingBag className="w-8 h-8" strokeWidth={1.2} />,
+    icon: <ShoppingBag className="w-8 h-8" strokeWidth={1.6} />,
     buttonLabel: "공식 스토어 이동 →",
   },
 ];
@@ -97,39 +96,30 @@ const cards: Card[] = [
 export default function CoreServices() {
   return (
     <section id="core-systems" className="bg-transparent">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-20">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-20 md:py-24">
         {/* ===== Header ===== */}
-        <header className="mb-12 lg:mb-16">
-          <FadeUp>
-            <Eyebrow className="text-brand-accent tracking-[0.2em]">
-              CORE SYSTEMS
-            </Eyebrow>
+        <header className="mb-10">
+          {/* 색상을 brand-accent(노랑)로 통일 */}
+          <Eyebrow className="text-brand-accent">
+            CORE SYSTEMS
+          </Eyebrow>
 
-            <Heading
-              level={2}
-              className="mt-4 text-white font-black"
-            >
-              지사 · 라이더 · 파트너를 위한
-              <br className="hidden md:block" />
-              통합 운영 시스템
-            </Heading>
+          <Heading level={2} className="mt-2 text-white">
+            지사 · 라이더 · 파트너를 위한
+            <br className="hidden md:block" />
+            통합 운영 시스템
+          </Heading>
 
-            <BodyText
-              className="mt-6 max-w-2xl text-text-body text-lg"
-            >
-              본사 운영지원, 렌트/정비 인프라, 정산 솔루션, 라이더 스토어까지
-              <br className="hidden lg:block" />
-              하나의 구조 안에서 동일한 기준으로 관리되는 RIDE ON의 핵심 시스템입니다.
-            </BodyText>
-          </FadeUp>
+          <BodyText className="mt-4 max-w-2xl text-text-body">
+            본사 운영지원, 렌트/정비 인프라, 정산 솔루션, 라이더 스토어까지
+            하나의 구조 안에서 동일한 기준으로 관리되는 RIDE ON의 핵심 시스템입니다.
+          </BodyText>
         </header>
 
-        {/* ===== Cards: 사용자님 원본 로직 유지 + 다크 디자인 적용 ===== */}
-        <div className="grid auto-rows-fr gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        {/* ===== Cards ===== */}
+        <div className="grid auto-rows-fr gap-5 lg:gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {cards.map((c, i) => (
-            <FadeUp key={i} delay={i * 0.1}>
-              <CardItem c={c} />
-            </FadeUp>
+            <CardItem key={i} c={c} />
           ))}
         </div>
       </div>
@@ -141,36 +131,32 @@ function CardItem({ c }: { c: Card }) {
   return (
     <article
       className="
-        group relative overflow-hidden
-        rounded-3xl border border-white/10 bg-white/[0.03] p-8
-        transition-all duration-300
-        hover:-translate-y-2 hover:border-brand-accent/30 hover:bg-white/[0.07]
-        min-h-[280px] flex flex-col justify-between
+        group relative isolate overflow-hidden
+        rounded-2xl border border-white/10 bg-white/[0.03] p-7 lg:p-8
+        transition-all duration-200
+        hover:-translate-y-1 hover:border-brand-accent/40 hover:bg-white/[0.08]
+        min-h-[230px] flex flex-col justify-between
       "
     >
-      {/* 상단 포인트 라인 (사용자님 원본 느낌 살림) */}
-      <div className="pointer-events-none absolute left-8 right-8 top-0 h-[2px] bg-white/10 group-hover:bg-brand-accent/40 transition-colors" />
+      {/* 상단 장식선: 색상만 노란색 계열로 변경 */}
+      <div className="pointer-events-none absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/10 group-hover:bg-brand-accent/30" />
 
       <div>
-        <div className="mb-6 flex items-center justify-between">
-          <Eyebrow className="text-white/40 group-hover:text-brand-accent/70 transition-colors">
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <Eyebrow className="text-text-body group-hover:text-brand-accent transition-colors">
             {c.eyebrow}
           </Eyebrow>
-          <div className="text-brand-accent opacity-80 group-hover:opacity-100 transition-opacity">
+
+          <div className="text-brand-accent group-hover:text-white transition-colors duration-200">
             {c.icon}
           </div>
         </div>
 
-        <Heading
-          level={3}
-          className="text-2xl font-bold text-white tracking-tight"
-        >
+        <Heading level={3} className="mt-2 text-[20px] font-bold text-white">
           {c.title}
         </Heading>
 
-        <BodyText
-          className="mt-4 text-text-body text-sm leading-relaxed"
-        >
+        <BodyText size="sm" className="mt-3 text-text-body leading-relaxed">
           {c.desc}
         </BodyText>
       </div>
@@ -179,9 +165,10 @@ function CardItem({ c }: { c: Card }) {
         <Link
           href={c.href}
           className="
-            inline-flex items-center text-sm font-bold
-            text-brand-accent transition-all
-            hover:translate-x-1
+            inline-flex items-center justify-center rounded-full
+            border border-white/20 px-5 py-2 text-sm font-bold
+            text-brand-accent transition-all duration-200
+            hover:border-brand-accent hover:bg-brand-accent hover:text-brand-dark
           "
         >
           {c.buttonLabel}
