@@ -1,4 +1,3 @@
-// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -7,30 +6,28 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          dark: "#05070A",      // 배경
-          surface: "#0D131F",   // 카드/섹션
-          primary: "#1A2B4A",   // 네이비
-          secondary: "#4C6EF5", // 블루
-          accent: "#FFB800",    // 옐로우 (RIDE ON 포인트)
+          dark: "#05070A",      // 메인 배경 (가장 깊은 블랙 네이비)
+          surface: "#0D131F",   // 섹션 구분용 배경
+          primary: "#1A2B4A",   // 브랜드 네이비
+          secondary: "#4C6EF5", // 포인트 블루
+          accent: "#FFB800",    // RIDE ON 고유 옐로우 (데이터/수치 강조)
         },
         text: {
-          main: "#FFFFFF",
-          body: "#94A3B8",
-          muted: "#64748B",
+          main: "#FFFFFF",      // 기본 텍스트
+          body: "#94A3B8",      // 본문용 그레이
+          muted: "#64748B",     // 보조 설명
         },
       },
       spacing: {
-        'section-y': '6rem',
+        'section-y': '6rem',    // 상하 여백 확대
         'section-y-lg': '10rem',
       },
       boxShadow: {
-        'glow-accent': '0 0 25px rgba(255, 184, 0, 0.3)', // 버튼용
+        'glow-accent': '0 0 25px rgba(255, 184, 0, 0.3)',
         'glass': 'inset 0 1px 1px rgba(255, 255, 255, 0.05)',
       },
       backgroundImage: {
-        // 지도의 안개를 걷어내고 텍스트만 살려줄 마스크 그라데이션
-        'hero-mask': 'linear-gradient(to right, #05070A 15%, rgba(5, 7, 10, 0.8) 40%, transparent 100%)',
-        'hero-glow': 'radial-gradient(circle at 30% 50%, rgba(26, 43, 74, 0.5) 0%, transparent 70%)',
+        'hero-glow': 'radial-gradient(circle at 30% 50%, rgba(26, 43, 74, 0.4) 0%, transparent 70%)',
       }
     },
   },
