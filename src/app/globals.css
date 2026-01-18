@@ -5,12 +5,24 @@
 
 @layer base {
   body {
-    @apply bg-brand-dark text-text-body antialiased;
+    @apply bg-brand-dark text-text-body antialiased selection:bg-brand-accent selection:text-brand-dark;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
+  /* 텍스트 가독성을 위한 프리미엄 섀도우 */
+  .text-shadow-premium {
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* 부드러운 텍스트 그라데이션 */
   .text-gradient {
-    @apply bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-white via-white to-white/60 bg-clip-text text-transparent;
+  }
+
+  /* 섹션 간 부드러운 구분선 */
+  .section-divider {
+    @apply border-t border-white/[0.03];
   }
 }
