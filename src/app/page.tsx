@@ -16,37 +16,44 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark">
-      {/* ===== Section 1: Hero Section (가독성 강화 버전) ===== */}
-      <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* 가독성을 위해 배경을 더 어둡게 눌러주는 레이어 */}
-        <div className="absolute inset-0 bg-hero-vignette z-0" aria-hidden="true" />
-        <div className="absolute inset-0 bg-black/20 z-0" aria-hidden="true" />
-
-        <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-6 py-20 grid gap-12 lg:grid-cols-12 items-center">
-          
-          {/* 왼쪽 텍스트 영역: 가독성 핵심 */}
+      {/* ===== Section 1: Hero (Vivid Map & Clear Text) ===== */}
+      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+        {/* 오른쪽 지도: 안개를 걷어내고 선명하게 (mix-blend-luminosity로 톤만 조정) */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/main-map.png"
+            alt="RIDE ON Network Map"
+            fill
+            priority
+            className="object-cover opacity-80 mix-blend-luminosity"
+          />
+          {/* 텍스트 가독성을 위한 핵심: 왼쪽에서 오른쪽으로 흐려지는 다크 마스크 */}
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent" />
+        </div>
+        
+        <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-6 py-section-y grid gap-12 lg:grid-cols-12 items-center">
           <div className="lg:col-span-7">
             <FadeUp delay={0.1}>
-              <Eyebrow className="text-brand-secondary font-bold tracking-[0.2em] mb-4">
+              <Eyebrow className="text-brand-accent font-black tracking-[0.3em] mb-6">
                 {siteConfig.description}
               </Eyebrow>
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              <Heading level={1} align="left" className="drop-shadow-xl">
-                <span className="text-white">전국을 연결하는</span> <br />
-                <span className="text-brand-secondary">라이더 운영 인프라</span>
+              <Heading level={1} align="left" className="text-white drop-shadow-2xl">
+                전국을 연결하는 <br />
+                <span className="text-brand-accent">라이더 운영 인프라</span>
               </Heading>
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              <BodyText className="mt-8 max-w-xl text-text-dimmed leading-relaxed text-lg">
-                표준화된 시스템으로 안정적인 배달 운영을 지원합니다. <br className="hidden md:block" />
-                정산부터 렌탈까지, 라이더 성장의 모든 과정을 <span className="text-white font-semibold">RIDE ON</span>과 함께하세요.
+              <BodyText className="mt-8 max-w-xl text-text-body text-xl leading-relaxed">
+                표준화된 시스템으로 안정적인 배달 운영을 지원합니다. <br />
+                정산부터 렌탈까지, 모든 과정을 <span className="text-white font-bold">RIDE ON</span>에서 시작하세요.
               </BodyText>
             </FadeUp>
 
-            {/* 통계 지표: 가독성을 위해 대비 상향 */}
+            {/* 통계 지표: 옐로우 포인트로 시선 집중 */}
             <div className="mt-12 grid grid-cols-2 gap-10 sm:grid-cols-3">
               {[
                 { label: "전국 지부", value: siteConfig.stats.branches },
@@ -54,11 +61,11 @@ export default function Home() {
                 { label: "정산 정확도", value: siteConfig.stats.payoutAccuracy },
               ].map((stat, i) => (
                 <FadeUp key={i} delay={0.4 + i * 0.1}>
-                  <div className="relative">
-                    <div className="text-brand-secondary text-4xl font-black font-mono tracking-tighter">
+                  <div className="group">
+                    <div className="text-brand-accent text-4xl font-black font-mono tracking-tighter drop-shadow-lg group-hover:scale-105 transition-transform origin-left">
                       {stat.value}
                     </div>
-                    <div className="mt-2 text-sm text-slate-400 font-medium uppercase tracking-wider">{stat.label}</div>
+                    <div className="mt-2 text-xs text-text-muted font-bold tracking-widest uppercase">{stat.label}</div>
                   </div>
                 </FadeUp>
               ))}
@@ -68,53 +75,40 @@ export default function Home() {
               <div className="mt-14">
                 <motion.a 
                   href="#quick-access" 
-                  whileHover={{ scale: 1.05, backgroundColor: "#E6A700" }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255, 184, 0, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 rounded-full bg-brand-secondary px-10 py-5 text-base font-black text-brand-dark shadow-2xl transition-all"
+                  className="inline-flex items-center gap-3 rounded-full bg-brand-accent px-10 py-5 text-lg font-black text-brand-dark transition-all"
                 >
                   서비스 둘러보기 <span>↓</span>
                 </motion.a>
               </div>
             </FadeUp>
           </div>
-
-          {/* 오른쪽 비주얼 영역: 맵 이미지가 글자를 방해하지 않도록 처리 */}
-          <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-            <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px]">
-               {/* 뒤쪽 맵 이미지는 흐릿하고 어둡게 처리하여 텍스트 간섭 최소화 */}
-              <div className="absolute inset-0 rounded-full bg-brand-primary/20 blur-[80px]" />
-              <div className="relative w-full h-full rounded-3xl bg-brand-surface border border-white/10 overflow-hidden shadow-2xl">
-                <Image
-                  src="/main-map.png"
-                  alt="RIDE ON Network"
-                  fill
-                  className="object-cover opacity-20 mix-blend-luminosity"
-                />
-                <div className="absolute inset-0 flex items-center justify-center p-16">
-                  <Image
-                    src="/rideon-logo.png"
-                    alt="RIDE ON Logo"
-                    width={320}
-                    height={320}
-                    className="opacity-100 select-none drop-shadow-2xl"
-                  />
-                </div>
-                <Starfield density={0.08} />
-              </div>
-            </div>
-          </div>
+        </div>
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 opacity-30 animate-bounce">
+          <span className="text-white text-sm tracking-widest uppercase">Scroll</span>
         </div>
       </section>
 
-      {/* 하단 섹션들 */}
-      <section className="bg-white rounded-t-[50px] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.2)]">
-        <div id="quick-access" className="py-20">
+      {/* ===== Section 2~5: Deep Dark Seamless Layout ===== */}
+      {/* 흰색 배경을 삭제하고, 미세한 경계(border-t)와 여백으로 섹션 구분 */}
+      <div className="relative z-20 space-y-0">
+        <section id="quick-access" className="bg-brand-dark border-t border-white/5 py-section-y-lg">
           <QuickAccess />
-        </div>
-        <CoreServices />
-        <TrustBuilder />
-        <ContactSection />
-      </section>
+        </section>
+        
+        <section className="bg-brand-surface py-section-y-lg shadow-inner">
+          <CoreServices />
+        </section>
+        
+        <section className="bg-brand-dark py-section-y-lg">
+          <TrustBuilder />
+        </section>
+        
+        <section id="contact" className="bg-brand-surface border-y border-white/5 py-section-y-lg">
+          <ContactSection />
+        </section>
+      </div>
     </main>
   );
 }
