@@ -1,219 +1,116 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { NavPanel } from "./NavPanel";
-import { Button } from "./Button";
-import useScrollShrink from "@/hooks/useScrollShrink";
-import { INQUIRY, INQUIRY_MENU } from "@/config/links";
-
-type SubItem = { label: string; href: string; external?: boolean };
-type NavItem = { label: string; href: string; submenu?: SubItem[] };
-
-const navItems: NavItem[] = [
-  {
-    label: "BRAND",
-    href: "/brand",
-    submenu: [
-      { label: "브랜드 스토리", href: "/brand#story" },
-
-      // NETWORK를 BRAND로 편입 (추후 brand 페이지에 섹션 추가)
-      { label: "전국 지부 네트워크", href: "/brand#network" },
-
-      // MERGE FLOW도 BRAND로 편입
-      { label: "지사 개설/합병 프로세스", href: "/brand#merge-flow" },
-    ],
-  },
-  {
-    label: "BIKE",
-    href: "/bike",
-    submenu: [
-      { label: "렌트/리스 안내", href: "/bike#intro" },
-      { label: "센터 안내", href: "/bike#center" },
-      { label: "렌트/리스 신청", href: INQUIRY.rent },
-    ],
-  },
-  {
-    label: "PAYOUT",
-    href: "/payout",
-    submenu: [
-      { label: "정산 시스템 소개", href: "/payout#intro" },
-      { label: "자동화 프로세스 다이어그램", href: "/payout#process" },
-      { label: "도입 효과", href: "/payout#benefit" },
-      { label: "도입 문의", href: "/payout#contact" },
-    ],
-  },
-  {
-    label: "STORE",
-    href: "/store",
-    submenu: [
-      { label: "자체 상품 보기", href: "/store" },
-      {
-        label: "네이버 스토어 ↗",
-        href: "https://smartstore.naver.com/rideon",
-        external: true,
-      },
-      {
-        label: "쿠팡 스토어 ↗",
-        href: "https://store.coupang.com/rideon",
-        external: true,
-      },
-    ],
-  },
-  {
-    label: "NOTICE",
-    href: "/notice",
-    submenu: [
-      { label: "공지사항 리스트", href: "/notice#list" },
-      { label: "업데이트", href: "/notice#update" },
-      { label: "채용/공고", href: "/notice#recruit" },
-    ],
-  },
-  {
-    label: "CONTACT",
-    href: "/contact",
-    submenu: [
-      { label: "기사 문의", href: "/contact#rider" },
-      { label: "지사 개설/합병 문의", href: "/contact#branch" },
-      { label: "리스/렌탈 신청하기", href: "/contact#lease" },
-      { label: "파트너십 제안", href: "/contact#partner" },
-    ],
-  },
-];
+import { usePathname } from "next/navigation";
+import { siteConfig } from "@/config/site"; // 1. 설정 파일 임포트
+import { Menu, X, ChevronRight } from "lucide-react";
 
 export function Header() {
-  const [open, setOpen] = useState(false);
-  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
-  const { isShrunk } = useScrollShrink();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navItems = [
+    { name: "서비스 소개", href: "/#quick-access" },
+    { name: "지사 통합 문의", href: "/merge" },
+    { name: "공지사항", href: "/notice" },
+    { name: "문의하기", href: "/#contact" },
+  ];
 
   return (
-    <>
-      <motion.header
-        className="fixed top-0 z-50 w-full backdrop-blur bg-[#111111]/90 border-b border-white/10 transition-all"
-        animate={{ height: isShrunk ? 64 : 80 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
-        onMouseLeave={() => setHoveredMenu(null)}
-      >
-        <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
-          {/* Left: 로고 밸런스 */}
+    <header
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled
+          ? "bg-graphite-core/90 backdrop-blur-md py-3 shadow-lg"
+          : "bg-transparent py-5"
+      }`}
+    >
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        <nav className="flex items-center justify-between">
+          {/* 로고 영역 최적화 */}
           <Link href="/" className="flex items-center gap-2 group">
-            <Image
-              src="/logo2.png"
-              alt="RIDE ON Logo"
-              width={28}
-              height={28}
-              className="object-contain transition-transform group-hover:scale-105"
-            />
-            <span className="text-[18px] font-extrabold tracking-wide text-white group-hover:text-[#FFB800] transition">
-              RIDE&nbsp;ON
-            </span>
+            <div className="relative w-10 h-10 overflow-hidden rounded-lg border border-white/10">
+              <Image
+                src="/rideon-mark.png"
+                alt={`${siteConfig.name} 심볼`} // 2. siteConfig 적용
+                fill
+                priority // 3. 이미지 로딩 우선순위 부여
+                className="object-contain p-1.5 transition-transform group-hover:scale-110"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg font-bold tracking-tight text-white leading-none">
+                {siteConfig.name}
+              </span>
+              <span className="text-[10px] text-brand-accent font-medium tracking-widest uppercase opacity-80">
+                Infrastructure
+              </span>
+            </div>
           </Link>
 
-          {/* Center: 메뉴 */}
-          <nav className="hidden md:flex flex-1 justify-center items-center gap-10 relative">
-            {navItems.map(({ label, submenu }) => (
-              <div
-                key={label}
-                className="relative"
-                onMouseEnter={() => setHoveredMenu(label)}
+          {/* 데스크탑 메뉴 */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-sm font-medium text-white/80 transition-colors hover:text-brand-accent"
               >
-                <button
-                  className={`text-gray-200 hover:text-white font-medium transition ${
-                    hoveredMenu === label ? "text-white" : ""
-                  }`}
-                >
-                  {label}
-                </button>
-
-                <AnimatePresence>
-                  {hoveredMenu === label && submenu && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute left-1/2 -translate-x-1/2 mt-4 bg-[#1A1A1A]/95 border border-white/10 rounded-xl px-6 py-4 flex gap-8 shadow-2xl backdrop-blur-md"
-                    >
-                      {submenu.map((item) =>
-                        item.external ? (
-                          <a
-                            key={item.label}
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-300 hover:text-[#FFB800] text-sm whitespace-nowrap"
-                          >
-                            {item.label}
-                          </a>
-                        ) : (
-                          <Link
-                            key={item.label}
-                            href={item.href}
-                            className="text-gray-300 hover:text-[#FFB800] text-sm whitespace-nowrap"
-                          >
-                            {item.label}
-                          </Link>
-                        )
-                      )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                {item.name}
+              </Link>
             ))}
-          </nav>
-
-          {/* Right: 지사 상담 CTA + 햄버거 */}
-          <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-3">
-              <Button variant="primary" href={INQUIRY.branch}>
-                지사 상담하기
-              </Button>
-              <Button variant="secondary" href="https://pf.kakao.com/_link" external>
-                카톡 상담
-              </Button>
-            </div>
-
-
-            {/* ✅ 절대배치 방식 햄버거: 완벽한 三→X */}
-            <button
-              aria-label="메뉴 열기"
-              onClick={() => setOpen(!open)}
-              className="relative z-[90] ml-4 w-7 h-5 focus:outline-none"
+            <Link
+              href="/inquiry"
+              className="rounded-full bg-brand-secondary px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-brand-secondary/90 hover:scale-105"
             >
-              {/* 공통 스타일 */}
-              {["top", "middle", "bottom"].map((key, i) => (
-                <motion.span
-                  key={key}
-                  className="absolute left-0 right-0 top-1/2 block h-[2px] bg-white rounded-sm"
-                  style={{ transformOrigin: "50% 50%" }}
-                  initial={false}
-                  animate={
-                    open
-                      ? // X 상태: 모두 중앙(y:0)에서 교차 회전
-                        i === 0
-                        ? { rotate: 45, y: 0 }
-                        : i === 1
-                        ? { opacity: 0 }
-                        : { rotate: -45, y: 0 }
-                      : // 기본 三: 위/가운데/아래
-                        i === 0
-                      ? { rotate: 0, y: -6 }
-                      : i === 1
-                      ? { opacity: 1, rotate: 0, y: 0 }
-                      : { rotate: 0, y: 6 }
-                  }
-                  transition={{ duration: 0.25, ease: "easeInOut" }}
-                />
-              ))}
-            </button>
+              지사 가맹 신청
+            </Link>
+          </div>
+
+          {/* 모바일 메뉴 버튼 */}
+          <button
+            className="md:hidden text-white"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </nav>
+      </div>
+
+      {/* 모바일 메뉴 오버레이 */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-graphite-core pt-24 px-6 md:hidden">
+          <div className="flex flex-col gap-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-2xl font-bold text-white flex justify-between items-center"
+              >
+                {item.name} <ChevronRight className="text-brand-accent" />
+              </Link>
+            ))}
+            <Link
+              href="/inquiry"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mt-4 rounded-xl bg-brand-secondary py-4 text-center text-lg font-bold text-white"
+            >
+              지사 가맹 신청
+            </Link>
           </div>
         </div>
-      </motion.header>
-
-      {/* 패널은 헤더 밖에 */}
-      <NavPanel open={open} setOpen={setOpen} />
-    </>
+      )}
+    </header>
   );
 }
