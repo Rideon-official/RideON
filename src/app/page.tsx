@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client";
 
 import Image from "next/image";
@@ -7,22 +6,17 @@ import ContactSection from "@/components/ContactSection";
 import Starfield from "@/components/Starfield";
 import QuickAccess from "@/components/QuickAccess";
 import TrustBuilder from "@/components/TrustBuilder";
-
-// 1. 설정 파일 임포트 (Step 2.2 핵심)
 import { siteConfig } from "@/config/site";
-
-// 타이포그래피 컴포넌트
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 
 export default function Home() {
   return (
     <main>
-      {/* ===== Section 1: Hero + Integrated KPI (Dark) ===== */}
+      {/* ===== Section 1: Hero Section ===== */}
       <section
         id="hero"
         className="relative overflow-hidden bg-graphite-core text-white"
       >
-        {/* 배경 그라데이션/노이즈 레이어 */}
         <div
           className="pointer-events-none absolute inset-0 opacity-80"
           aria-hidden="true"
@@ -31,10 +25,9 @@ export default function Home() {
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 lg:px-6 py-section-y md:py-section-y-lg grid gap-12 lg:grid-cols-12 items-center">
-          {/* 왼쪽 텍스트 영역 */}
           <div className="relative z-10 lg:col-span-7 w-full max-w-2xl">
             <Eyebrow className="text-brand-accent tracking-widest2 uppercase">
-              {siteConfig.description} {/* 설정 파일에서 불러옴 */}
+              {siteConfig.description}
             </Eyebrow>
 
             <Heading level={1} align="left" className="mt-4 max-w-3xl">
@@ -47,7 +40,6 @@ export default function Home() {
               라이더 성장의 모든 과정을 한 번에 관리하세요.
             </BodyText>
 
-            {/* 통계 지표 영역 (siteConfig 적용) */}
             <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3">
               <div>
                 <div className="text-brand-accent text-2xl font-semibold font-mono">
@@ -79,28 +71,31 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 오른쪽 비주얼 영역 */}
+          {/* 오른쪽 비주얼 영역 최적화 */}
           <div className="relative lg:col-span-5 mt-10 lg:mt-0 flex justify-center">
             <div className="relative w-[320px] h-[320px] md:w-[380px] md:h-[380px] rounded-2xl bg-[#0F0F0F] border border-white/10 overflow-hidden shadow-elev2">
               <div
                 className="absolute inset-0 bg-black/20 z-10 pointer-events-none"
                 aria-hidden="true"
               />
+              {/* 네트워크 맵 이미지 최적화 */}
               <Image
                 src="/main-map.png"
-                alt={`${siteConfig.name} Network Map`}
+                alt={`${siteConfig.name} 전국 지부 네트워크망 지도`}
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, 50vw" // 반응형 크기 힌트 제공
                 className="object-cover opacity-70"
               />
               <div className="absolute inset-0 z-20 flex items-center justify-center">
+                {/* 메인 로고 이미지 최적화 */}
                 <Image
                   src="/rideon-logo.png"
-                  alt={`${siteConfig.name} Logo`}
+                  alt={`${siteConfig.name} 공식 로고`}
                   width={260}
                   height={260}
                   className="opacity-90 mix-blend-lighten select-none"
-                  priority
+                  priority // 우선순위 부여
                 />
               </div>
               <div className="absolute inset-0 z-30">
@@ -111,7 +106,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Section 2~6: Light wrapper ===== */}
       <section className="bg-white text-[#1A2B4A]">
         <div id="quick-access">
           <QuickAccess />
