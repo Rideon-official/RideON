@@ -1,34 +1,13 @@
-/* src/app/globals.css 전체 코드 */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --brand-dark: #0A0F1A;
-  --brand-primary: #1A2B4A;
-  --brand-secondary: #4C6EF5;
-  --brand-accent: #FACC15;
-}
-
+/* src/app/globals.css 추가분 */
 @layer base {
   body {
-    @apply bg-brand-dark text-text-main antialiased;
-    font-feature-settings: "cv11", "ss01";
-  }
-
-  /* 부드러운 스크롤 적용 */
-  html {
-    scroll-behavior: smooth;
+    @apply bg-brand-dark text-text-body antialiased selection:bg-brand-accent selection:text-brand-dark;
   }
 }
 
-/* 유틸리티 클래스: 텍스트 그라데이션 */
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent;
-  }
-  
-  .bg-hero-glow {
-    background: radial-gradient(circle at center, rgba(26, 43, 74, 0.4) 0%, rgba(10, 15, 26, 0) 70%);
+  /* 글자가 배경에 묻히지 않게 하는 텍스트 그림자 */
+  .drop-shadow-text {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
   }
 }
