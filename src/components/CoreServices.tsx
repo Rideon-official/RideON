@@ -97,7 +97,7 @@ export default function CoreServices() {
   return (
     <section
       id="core-systems"
-      className="bg-[#0E0E0E]"
+      className="bg-transparent"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-6 py-section-y md:py-section-y-lg">
         {/* ===== Header ===== */}
