@@ -1,4 +1,8 @@
-/* src/app/globals.css 추가분 */
+/* src/app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer base {
   body {
     @apply bg-brand-dark text-text-body antialiased selection:bg-brand-accent selection:text-brand-dark;
@@ -6,8 +10,13 @@
 }
 
 @layer utilities {
-  /* 글자가 배경에 묻히지 않게 하는 텍스트 그림자 */
+  /* 텍스트 가독성 치트키: 글자 뒤에 어두운 그림자 */
   .drop-shadow-text {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+  }
+  
+  /* 부드러운 텍스트 그라데이션 */
+  .text-gradient {
+    @apply bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent;
   }
 }
