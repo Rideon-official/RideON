@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Building2, Bike, FileText, ShoppingBag } from "lucide-react";
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
-import { FadeUp } from "@/components/ui/MotionWrapper";
+import { FadeUp } from "@/components/ui/MotionWrapper"; // 애니메이션 wrapper
 
 type Card = {
   eyebrow: string;
@@ -21,9 +21,14 @@ const cards: Card[] = [
     title: "본사 운영지원",
     desc: (
       <>
-        지사는 현장 운영에 집중하고,
-        <br className="hidden md:block" />
-        본사는 정산·모집·교육을 시스템으로 지원합니다.
+        <span className="md:hidden">
+          지사는 현장 운영에 집중, 본사는 정산·모집·교육을 시스템으로 지원합니다.
+        </span>
+        <span className="hidden md:inline">
+          지사는 현장 운영에 집중하고,
+          <br className="hidden md:block" />
+          본사는 정산·모집·교육을 시스템으로 지원합니다.
+        </span>
       </>
     ),
     href: "/brand#story",
@@ -35,9 +40,14 @@ const cards: Card[] = [
     title: "RIDE ON BIKE",
     desc: (
       <>
-        라이더 렌트·리스·튜닝·정비·사고 처리까지
-        <br className="hidden md:block" />
-        본사 기준으로 통합 관리합니다.
+        <span className="md:hidden">
+          라이더 렌트·리스·정비·사고 처리까지 본사 기준으로 통합 관리합니다.
+        </span>
+        <span className="hidden md:inline">
+          라이더 렌트·리스·튜닝·정비·사고 처리까지
+          <br className="hidden md:block" />
+          본사 기준으로 통합 관리합니다.
+        </span>
       </>
     ),
     href: "/bike#rent",
@@ -49,9 +59,14 @@ const cards: Card[] = [
     title: "정산 솔루션",
     desc: (
       <>
-        타 지사도 사용할 수 있는
-        <br className="hidden md:block" />
-        쿠팡·배민 B2B 정산·리포트 플랫폼입니다.
+        <span className="md:hidden">
+          타 지사도 사용할 수 있는 쿠팡·배민 B2B 정산·리포트 플랫폼입니다.
+        </span>
+        <span className="hidden md:inline">
+          타 지사도 사용할 수 있는
+          <br className="hidden md:block" />
+          쿠팡·배민 B2B 정산·리포트 플랫폼입니다.
+        </span>
       </>
     ),
     href: "/logiteats#intro",
@@ -63,9 +78,14 @@ const cards: Card[] = [
     title: "라이더 스토어",
     desc: (
       <>
-        라이더 필수 공식 의류/장비/소모품을
-        <br className="hidden md:block" />
-        합리적인 가격에 바로 구매할 수 있습니다.
+        <span className="md:hidden">
+          라이더 필수 공식 의류·장비·소모품을 합리적인 가격에 바로 구매할 수 있습니다.
+        </span>
+        <span className="hidden md:inline">
+          라이더 필수 공식 의류/장비/소모품을
+          <br className="hidden md:block" />
+          합리적인 가격에 바로 구매할 수 있습니다.
+        </span>
       </>
     ),
     href: "/store",
@@ -84,19 +104,28 @@ export default function CoreServices() {
             <Eyebrow className="text-brand-accent tracking-[0.2em]">
               CORE SYSTEMS
             </Eyebrow>
-            <Heading level={2} className="mt-4 text-white">
-              지사 · 라이더 · 파트너를 위한 <br className="hidden md:block" />
+
+            <Heading
+              level={2}
+              className="mt-4 text-white font-black"
+            >
+              지사 · 라이더 · 파트너를 위한
+              <br className="hidden md:block" />
               통합 운영 시스템
             </Heading>
-            <BodyText className="mt-6 max-w-2xl text-text-body text-lg">
-              본사 운영지원부터 정산 솔루션까지, 하나의 구조 안에서 
-              동일한 기준으로 관리되는 RIDE ON의 핵심 인프라입니다.
+
+            <BodyText
+              className="mt-6 max-w-2xl text-text-body text-lg"
+            >
+              본사 운영지원, 렌트/정비 인프라, 정산 솔루션, 라이더 스토어까지
+              <br className="hidden lg:block" />
+              하나의 구조 안에서 동일한 기준으로 관리되는 RIDE ON의 핵심 시스템입니다.
             </BodyText>
           </FadeUp>
         </header>
 
-        {/* ===== Cards: 줄무늬 없이 투명하고 고급스럽게 ===== */}
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        {/* ===== Cards: 사용자님 원본 로직 유지 + 다크 디자인 적용 ===== */}
+        <div className="grid auto-rows-fr gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {cards.map((c, i) => (
             <FadeUp key={i} delay={i * 0.1}>
               <CardItem c={c} />
@@ -113,28 +142,35 @@ function CardItem({ c }: { c: Card }) {
     <article
       className="
         group relative overflow-hidden
-        rounded-3xl border border-white/5 bg-white/5 p-8
+        rounded-3xl border border-white/10 bg-white/[0.03] p-8
         transition-all duration-300
-        hover:-translate-y-2 hover:border-brand-accent/30 hover:bg-white/[0.08]
-        min-h-[320px] flex flex-col justify-between
+        hover:-translate-y-2 hover:border-brand-accent/30 hover:bg-white/[0.07]
+        min-h-[280px] flex flex-col justify-between
       "
     >
+      {/* 상단 포인트 라인 (사용자님 원본 느낌 살림) */}
+      <div className="pointer-events-none absolute left-8 right-8 top-0 h-[2px] bg-white/10 group-hover:bg-brand-accent/40 transition-colors" />
+
       <div>
         <div className="mb-6 flex items-center justify-between">
-          {/* 아이콘: 브랜드 옐로우 포인트 */}
-          <div className="text-brand-accent">
-            {c.icon}
-          </div>
-          <Eyebrow className="text-white/30 group-hover:text-brand-accent/50 transition-colors">
+          <Eyebrow className="text-white/40 group-hover:text-brand-accent/70 transition-colors">
             {c.eyebrow}
           </Eyebrow>
+          <div className="text-brand-accent opacity-80 group-hover:opacity-100 transition-opacity">
+            {c.icon}
+          </div>
         </div>
 
-        <Heading level={3} className="text-2xl font-bold text-white">
+        <Heading
+          level={3}
+          className="text-2xl font-bold text-white tracking-tight"
+        >
           {c.title}
         </Heading>
 
-        <BodyText size="sm" className="mt-4 text-text-body leading-relaxed">
+        <BodyText
+          className="mt-4 text-text-body text-sm leading-relaxed"
+        >
           {c.desc}
         </BodyText>
       </div>
@@ -145,10 +181,12 @@ function CardItem({ c }: { c: Card }) {
           className="
             inline-flex items-center text-sm font-bold
             text-brand-accent transition-all
-            group-hover:translate-x-1
+            hover:translate-x-1
           "
         >
           {c.buttonLabel}
         </Link>
       </div>
     </article>
+  );
+}
