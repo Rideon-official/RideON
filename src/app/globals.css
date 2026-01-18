@@ -1,3 +1,4 @@
+/* src/app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +10,8 @@
   }
 }
 
-/* 스크롤 시 섹션이 뚝뚝 끊기지 않도록 부드러운 배경 전환 */
-section {
-  @apply transition-colors duration-500;
+@layer utilities {
+  .text-shadow-strong {
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+  }
 }
