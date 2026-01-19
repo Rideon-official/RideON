@@ -96,7 +96,6 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              {/* ml-auto(우)와 mr-auto(좌)의 중간인 mx-auto를 적용했습니다 */}
               className="relative w-full aspect-square max-w-[360px] mx-auto border border-white/10 rounded-2xl overflow-hidden bg-black backdrop-blur-2xl mt-0"
             >
               <div className="absolute inset-0"> 
