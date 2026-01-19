@@ -16,15 +16,15 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (정렬 라인 및 정사각형 지도박스) ===== */}
+      {/* ===== Section 1: Hero (라인 정렬 + 꽉 찬 지도 박스) ===== */}
       <section id="hero" className="relative min-h-[90vh] flex items-start pt-32 lg:pt-48 overflow-hidden">
-        {/* 배경 효과 */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(26,43,74,0.15),transparent_70%)]" />
+        {/* 배경 효과: 누리끼리한 톤을 배제하고 딥한 블루/블랙 톤 유지 */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,15,30,0.4),transparent_70%)]" />
         
-        {/* 컨테이너: items-start로 상단 라인(빨간 선) 일치시킴 */}
-        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-start">
+        {/* 컨테이너: items-start로 상단 라인 일치 */}
+        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           
-          {/* [좌측] 텍스트 영역: 마음에 들어하신 글자 크기 유지 */}
+          {/* [좌측] 텍스트 영역: 시작점 마진 제거 */}
           <div className="flex flex-col m-0 p-0"> 
             <FadeUp delay={0.1}>
               <Eyebrow className="text-brand-accent font-bold tracking-[0.15em] mb-4 text-sm">
@@ -74,47 +74,48 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* [우측] 지도 영역: 정사각형 박스(Square) 형태 */}
+          {/* [우측] 지도 영역: 1번 사진처럼 '꽉 차고 선명한' 사각형 박스 */}
           <div className="relative hidden lg:block w-full m-0 p-0">
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              // aspect-square로 완벽한 정사각형 박스 생성 + 은은한 테두리로 '네모낳게' 정돈
-              className="relative w-full aspect-square max-w-[460px] ml-auto bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden backdrop-blur-sm"
+              // 누리끼리한 배경색(white/0.02) 제거하고 더 투명하고 깨끗한 보더만 남김
+              className="relative w-full aspect-square max-w-[480px] ml-auto border border-white/10 rounded-2xl overflow-hidden bg-black/20 backdrop-blur-md"
             >
-              {/* 지도 이미지 */}
-              <div className="absolute inset-0 p-8">
+              {/* 지도 이미지: 1번 사진처럼 박스에 더 꽉 차게(p-4로 축소) 배치 */}
+              <div className="absolute inset-0 p-4"> 
                 <Image
                   src="/main-map.png"
                   alt="RIDE ON Network"
                   fill
-                  className="object-contain opacity-50 p-4" 
+                  className="object-contain opacity-70 p-2" 
                   priority
                 />
               </div>
               
-              {/* 로고와 글자 모두 포함된 이미지 (중앙 배치) */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+              {/* 로고 영역: 누리끼리한 노란광(brand-accent/10)을 화이트광으로 교체 */}
+              <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-brand-accent/10 blur-[50px] rounded-full scale-150 group-hover:bg-brand-accent/20 transition-colors" />
+                  {/* 글로우 효과를 화이트/블루 계열로 변경하여 청량감 부여 */}
+                  <div className="absolute inset-0 bg-blue-500/10 blur-[60px] rounded-full scale-150" />
                   <Image
                     src="/rideon-logo.png" 
                     alt="RIDE ON Logo"
-                    width={240} 
-                    height={240}
-                    className="relative drop-shadow-2xl animate-pulse"
+                    width={260} 
+                    height={260}
+                    className="relative drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                   />
                 </div>
               </div>
               
-              <Starfield density={0.02} />
+              <Starfield density={0.015} />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ===== 하단 섹션들 ===== */}
+      {/* ===== 하단 섹션 통합 ===== */}
       <div className="relative z-20">
         <section id="quick-access" className="py-20">
           <QuickAccess />
