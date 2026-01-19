@@ -96,7 +96,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }} // 왼쪽에서 살짝 들어오는 느낌으로 수정
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              {/* ml-auto를 제거하고 mr-auto를 주어 왼쪽으로 당겼습니다 */}
+
               className="relative w-full aspect-square max-w-[360px] mr-auto border border-white/10 rounded-2xl overflow-hidden bg-black backdrop-blur-2xl mt-0"
             >
               <div className="absolute inset-0"> 
