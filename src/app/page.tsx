@@ -16,7 +16,7 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (정렬 및 위치 최적화 버전) ===== */}
+      {/* ===== Section 1: Hero (지도 위치 중간 및 제목 간격 최적화) ===== */}
       <section id="hero" className="relative min-h-[90vh] flex items-start pt-32 lg:pt-44 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,25,50,0.25),transparent_70%)]" />
         
@@ -33,8 +33,8 @@ export default function Home() {
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              {/* 줄 간격을 2.2에서 2.6으로 넓혀서 확 띄웠습니다 */}
-              <Heading level={1} align="left" className="text-3xl lg:text-4xl xl:text-5xl font-black tracking-tighter leading-[2.6] m-0">
+              {/* 줄 간격을 2.6에서 3.2로 더 넓혀서 아주 시원하게 벌렸습니다 */}
+              <Heading level={1} align="left" className="text-3xl lg:text-4xl xl:text-5xl font-black tracking-tighter leading-[3.2] m-0">
                 전국을 연결하는 <br />
                 <span className="text-brand-accent">라이더 운영 인프라</span>
               </Heading>
@@ -54,7 +54,7 @@ export default function Home() {
               </div>
             </FadeUp>
 
-            {/* 수치 지표 (버튼보다 위로 올림) */}
+            {/* 수치 지표 */}
             <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/5 pt-8">
               {[
                 { label: "전국 지부", value: siteConfig.stats.branches },
@@ -70,7 +70,7 @@ export default function Home() {
               ))}
             </div>
 
-            {/* CTA 버튼 영역 (가장 하단으로 이동) */}
+            {/* CTA 버튼 영역 (하단 유지) */}
             <FadeUp delay={0.7}>
               <div className="mt-12 flex flex-wrap gap-4">
                 <Link 
@@ -90,14 +90,14 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* [우측] 지도 영역: 왼쪽으로 이동 (mr-auto 적용) */}
+          {/* [우측] 지도 영역: 딱 중간 지점 (mx-auto 적용) */}
           <div className="relative hidden lg:block w-full m-0 p-0"> 
             <motion.div
-              initial={{ opacity: 0, x: -20 }} // 왼쪽에서 살짝 들어오는 느낌으로 수정
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-
-              className="relative w-full aspect-square max-w-[360px] mr-auto border border-white/10 rounded-2xl overflow-hidden bg-black backdrop-blur-2xl mt-0"
+              {/* ml-auto(우)와 mr-auto(좌)의 중간인 mx-auto를 적용했습니다 */}
+              className="relative w-full aspect-square max-w-[360px] mx-auto border border-white/10 rounded-2xl overflow-hidden bg-black backdrop-blur-2xl mt-0"
             >
               <div className="absolute inset-0"> 
                 <Image
