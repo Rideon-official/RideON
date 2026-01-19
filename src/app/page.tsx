@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 import { FadeUp } from "@/components/ui/MotionWrapper";
-import { motion } from "framer-motion";
+import { motion, useInView, animate, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
 
 import CoreServices from "@/components/CoreServices";
@@ -13,16 +14,43 @@ import Starfield from "@/components/Starfield";
 import QuickAccess from "@/components/QuickAccess";
 import TrustBuilder from "@/components/TrustBuilder";
 
+// --- 숫자 카운트업 컴포넌트 ---
+function CountUpNumber({ value }: { value: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  // 숫자와 특수문자 분리 (ex: "1,500+" -> 1500 / "+")
+  const numericPart = parseFloat(value.replace(/,/g, "").replace(/[^0-9.]/g, ""));
+  const suffix = value.replace(/[0-9.,]/g, "");
+  const hasDecimal = value.includes(".");
+
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => {
+    const formatted = hasDecimal 
+      ? latest.toFixed(1) 
+      : Math.floor(latest).toLocaleString();
+    return `${formatted}${suffix}`;
+  });
+
+  useEffect(() => {
+    if (isInView) {
+      animate(count, numericPart, { duration: 2, ease: "easeOut" });
+    }
+  }, [isInView, count, numericPart]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+}
+
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (정밀 간격 및 CTA 강화 버전) ===== */}
+      {/* ===== Section 1: Hero (카운트업 & 정밀 간격 최적화) ===== */}
       <section id="hero" className="relative min-h-[95vh] flex items-start pt-32 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,25,50,0.25),transparent_70%)]" />
         
         <div className="relative z-10 mx-auto max-w-7xl w-full px-4 lg:px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           
-          {/* [좌측] 텍스트 영역 */}
+          {/* [좌측] 텍스트 및 버튼 영역 */}
           <div className="flex flex-col m-0 p-0 border-none"> 
             <FadeUp delay={0.1}>
               <div className="mt-0 pt-0">
@@ -33,16 +61,16 @@ export default function Home() {
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              {/* 제목 줄 간격을 leading-[5.2]로 더욱 시원하게 확장 */}
-              <Heading level={1} align="left" className="text-[30px] lg:text-[46px] xl:text-[58px] font-black tracking-tighter leading-[5.2] m-0">
+              {/* 제목 줄 간격을 leading-[5.8]로 대폭 확장 (겹침 완전 해소) */}
+              <Heading level={1} align="left" className="text-[30px] lg:text-[46px] xl:text-[58px] font-black tracking-tighter leading-[5.8] m-0">
                 전국을 연결하는 <br />
                 <span className="text-brand-accent">라이더 운영 인프라</span>
               </Heading>
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              {/* mt-5로 제목과 본문 사이의 간격을 확 좁혔습니다 */}
-              <div className="mt-5 flex flex-col gap-2">
+              {/* mt-4로 제목과 아주 가깝게 밀착 (응집력 강화) */}
+              <div className="mt-4 flex flex-col gap-2">
                 <BodyText className="max-w-md text-text-body text-xs lg:text-sm leading-relaxed opacity-90">
                   표준화된 시스템으로 안정적인 배달 운영을 지원합니다.
                 </BodyText>
@@ -55,7 +83,7 @@ export default function Home() {
               </div>
             </FadeUp>
 
-            {/* 수치 지표 (데이터 최신화 및 정렬) */}
+            {/* 수치 지표 (카운트업 적용) */}
             <div className="mt-12 grid grid-cols-3 gap-4 border-t border-white/5 pt-10">
               {[
                 { label: "전국 운영 지사", value: "30개" },
@@ -64,26 +92,28 @@ export default function Home() {
               ].map((stat, i) => (
                 <FadeUp key={i} delay={0.4 + i * 0.1}>
                   <div>
-                    <div className="text-xl md:text-2xl xl:text-3xl font-black font-mono text-brand-accent">{stat.value}</div>
+                    <div className="text-xl md:text-2xl xl:text-3xl font-black font-mono text-brand-accent">
+                      <CountUpNumber value={stat.value} />
+                    </div>
                     <div className="mt-2 text-[10px] lg:text-[11px] text-text-body font-bold tracking-tighter opacity-50 uppercase">{stat.label}</div>
                   </div>
                 </FadeUp>
               ))}
             </div>
 
-            {/* CTA 버튼 영역: 크기 키우고 훵하지 않게 꽉 찬 스타일 적용 */}
+            {/* CTA 버튼 영역 (디자인 강화) */}
             <FadeUp delay={0.7}>
-              <div className="mt-14 flex flex-wrap gap-4">
+              <div className="mt-14 flex flex-wrap gap-5">
                 <Link 
                   href="#contact" 
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-10 py-4 text-sm lg:text-base font-black text-brand-dark tracking-tight transition-transform hover:scale-105 shadow-2xl"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-10 py-4 text-sm lg:text-base font-black text-brand-dark tracking-tight transition-all hover:scale-105 shadow-[0_20px_40px_rgba(206,255,0,0.2)] active:scale-95"
                 >
                   지사 가맹 문의 <span>→</span>
                 </Link>
 
                 <Link 
                   href="#quick-access" 
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-white/20 bg-white/5 px-10 py-4 text-sm lg:text-base font-black text-white tracking-tight transition-all hover:bg-white/10 hover:scale-105 backdrop-blur-sm shadow-xl"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-white/20 bg-white/5 px-10 py-4 text-sm lg:text-base font-black text-white tracking-tight transition-all hover:bg-white/10 hover:scale-105 backdrop-blur-sm shadow-xl active:scale-95"
                 >
                   운영 구조 보기 <span>→</span>
                 </Link>
@@ -91,7 +121,7 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* [우측] 지도 영역 */}
+          {/* [우측] 지도 영역 (위치 유지) */}
           <div className="relative hidden lg:block w-full m-0 p-0"> 
             <motion.div
               initial={{ opacity: 0, x: 20 }}
