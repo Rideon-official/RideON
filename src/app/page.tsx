@@ -16,15 +16,13 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (라인 정렬 + 꽉 찬 지도 박스) ===== */}
+      {/* ===== Section 1: Hero (네모 크기 축소 & 지도 선명도 극대화) ===== */}
       <section id="hero" className="relative min-h-[90vh] flex items-start pt-32 lg:pt-48 overflow-hidden">
-        {/* 배경 효과: 누리끼리한 톤을 배제하고 딥한 블루/블랙 톤 유지 */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,15,30,0.4),transparent_70%)]" />
         
-        {/* 컨테이너: items-start로 상단 라인 일치 */}
         <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           
-          {/* [좌측] 텍스트 영역: 시작점 마진 제거 */}
+          {/* [좌측] 텍스트 영역 (유지) */}
           <div className="flex flex-col m-0 p-0"> 
             <FadeUp delay={0.1}>
               <Eyebrow className="text-brand-accent font-bold tracking-[0.15em] mb-4 text-sm">
@@ -46,7 +44,6 @@ export default function Home() {
               </BodyText>
             </FadeUp>
 
-            {/* 수치 지표 */}
             <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/5 pt-8">
               {[
                 { label: "전국 지부", value: siteConfig.stats.branches },
@@ -74,42 +71,41 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* [우측] 지도 영역: 1번 사진처럼 '꽉 차고 선명한' 사각형 박스 */}
+          {/* [우측] 지도 영역: 네모 크기 줄이고 이미지 꽉 채움 */}
           <div className="relative hidden lg:block w-full m-0 p-0">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              // 누리끼리한 배경색(white/0.02) 제거하고 더 투명하고 깨끗한 보더만 남김
-              className="relative w-full aspect-square max-w-[480px] ml-auto border border-white/10 rounded-2xl overflow-hidden bg-black/20 backdrop-blur-md"
+              // max-w-[400px]로 네모 크기 축소 및 배경 더 어둡게 처리하여 대비 극대화
+              className="relative w-full aspect-square max-w-[400px] ml-auto border border-white/10 rounded-2xl overflow-hidden bg-black/40 backdrop-blur-xl"
             >
-              {/* 지도 이미지: 1번 사진처럼 박스에 더 꽉 차게(p-4로 축소) 배치 */}
-              <div className="absolute inset-0 p-4"> 
+              {/* 지도 이미지: 패딩 제거(p-0) 및 투명도 제거(opacity-100)로 꽉 차고 선명하게 */}
+              <div className="absolute inset-0"> 
                 <Image
                   src="/main-map.png"
                   alt="RIDE ON Network"
                   fill
-                  className="object-contain opacity-70 p-2" 
+                  className="object-cover opacity-100 scale-105" // object-cover와 scale로 박스에 꽉 차게
                   priority
                 />
               </div>
               
-              {/* 로고 영역: 누리끼리한 노란광(brand-accent/10)을 화이트광으로 교체 */}
+              {/* 로고 영역: 선명한 화이트 글로우만 살짝 추가 */}
               <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div className="relative group">
-                  {/* 글로우 효과를 화이트/블루 계열로 변경하여 청량감 부여 */}
-                  <div className="absolute inset-0 bg-blue-500/10 blur-[60px] rounded-full scale-150" />
+                  <div className="absolute inset-0 bg-white/5 blur-[40px] rounded-full scale-150" />
                   <Image
                     src="/rideon-logo.png" 
                     alt="RIDE ON Logo"
-                    width={260} 
-                    height={260}
-                    className="relative drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                    width={240} 
+                    height={240}
+                    className="relative drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]"
                   />
                 </div>
               </div>
               
-              <Starfield density={0.015} />
+              <Starfield density={0.01} />
             </motion.div>
           </div>
         </div>
