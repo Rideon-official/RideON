@@ -16,7 +16,7 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (로고 확대 & 제목 디테일 조정) ===== */}
+      {/* ===== Section 1: Hero (정밀 간격 및 CTA 강화 버전) ===== */}
       <section id="hero" className="relative min-h-[95vh] flex items-start pt-32 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,25,50,0.25),transparent_70%)]" />
         
@@ -33,16 +33,16 @@ export default function Home() {
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              {/* 1. 글자 크기 1~2px 미세 조정 (임의 값 사용) */}
-              {/* 2. 줄 간격 leading-[4.5]로 더 시원하게 확장 */}
-              <Heading level={1} align="left" className="text-[30px] lg:text-[46px] xl:text-[58px] font-black tracking-tighter leading-[4.5] m-0">
+              {/* 제목 줄 간격을 leading-[5.2]로 더욱 시원하게 확장 */}
+              <Heading level={1} align="left" className="text-[30px] lg:text-[46px] xl:text-[58px] font-black tracking-tighter leading-[5.2] m-0">
                 전국을 연결하는 <br />
                 <span className="text-brand-accent">라이더 운영 인프라</span>
               </Heading>
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              <div className="mt-10 flex flex-col gap-2">
+              {/* mt-5로 제목과 본문 사이의 간격을 확 좁혔습니다 */}
+              <div className="mt-5 flex flex-col gap-2">
                 <BodyText className="max-w-md text-text-body text-xs lg:text-sm leading-relaxed opacity-90">
                   표준화된 시스템으로 안정적인 배달 운영을 지원합니다.
                 </BodyText>
@@ -55,8 +55,8 @@ export default function Home() {
               </div>
             </FadeUp>
 
-            {/* 수치 지표 */}
-            <div className="mt-14 grid grid-cols-3 gap-4 border-t border-white/5 pt-10">
+            {/* 수치 지표 (데이터 최신화 및 정렬) */}
+            <div className="mt-12 grid grid-cols-3 gap-4 border-t border-white/5 pt-10">
               {[
                 { label: "전국 운영 지사", value: "30개" },
                 { label: "실운행 라이더", value: "1,500+" },
@@ -71,19 +71,19 @@ export default function Home() {
               ))}
             </div>
 
-            {/* CTA 버튼 영역 */}
+            {/* CTA 버튼 영역: 크기 키우고 훵하지 않게 꽉 찬 스타일 적용 */}
             <FadeUp delay={0.7}>
-              <div className="mt-16 flex flex-wrap gap-4">
+              <div className="mt-14 flex flex-wrap gap-4">
                 <Link 
                   href="#contact" 
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-8 py-4 text-xs lg:text-sm font-black text-brand-dark transition-transform hover:scale-105 shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-10 py-4 text-sm lg:text-base font-black text-brand-dark tracking-tight transition-transform hover:scale-105 shadow-2xl"
                 >
                   지사 가맹 문의 <span>→</span>
                 </Link>
 
                 <Link 
                   href="#quick-access" 
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-xs lg:text-sm font-black text-white transition-all hover:bg-white/10 hover:scale-105 backdrop-blur-sm"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-white/20 bg-white/5 px-10 py-4 text-sm lg:text-base font-black text-white tracking-tight transition-all hover:bg-white/10 hover:scale-105 backdrop-blur-sm shadow-xl"
                 >
                   운영 구조 보기 <span>→</span>
                 </Link>
@@ -109,11 +109,9 @@ export default function Home() {
                 />
               </div>
               
-              {/* 로고 영역 */}
               <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div className="relative group">
                   <div className="absolute inset-0 bg-white/5 blur-[40px] rounded-full scale-150" />
-                  {/* 3. 로고 크기 30% 확대 (200 -> 260) */}
                   <Image
                     src="/rideon-logo.png" 
                     alt="RIDE ON Logo"
