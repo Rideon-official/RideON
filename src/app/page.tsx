@@ -16,17 +16,16 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (최종 카피 및 정밀 간격 조정) ===== */}
+      {/* ===== Section 1: Hero (로고 확대 & 제목 디테일 조정) ===== */}
       <section id="hero" className="relative min-h-[95vh] flex items-start pt-32 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,25,50,0.25),transparent_70%)]" />
         
         <div className="relative z-10 mx-auto max-w-7xl w-full px-4 lg:px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           
-          {/* [좌측] 텍스트 및 버튼 영역 */}
+          {/* [좌측] 텍스트 영역 */}
           <div className="flex flex-col m-0 p-0 border-none"> 
             <FadeUp delay={0.1}>
               <div className="mt-0 pt-0">
-                {/* 부제목: 차세대 배달 운영의 표준 (제목에 밀착) */}
                 <Eyebrow className="text-brand-accent font-black tracking-wider text-[10px] lg:text-xs mt-0 pt-0 py-0 leading-none inline-block mb-2">
                   차세대 배달 운영의 표준
                 </Eyebrow>
@@ -34,15 +33,15 @@ export default function Home() {
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              {/* 메인제목 줄 간격을 4.2로 대폭 확장하여 시원한 느낌 극대화 */}
-              <Heading level={1} align="left" className="text-3xl lg:text-5xl xl:text-6xl font-black tracking-tighter leading-[4.2] m-0">
+              {/* 1. 글자 크기 1~2px 미세 조정 (임의 값 사용) */}
+              {/* 2. 줄 간격 leading-[4.5]로 더 시원하게 확장 */}
+              <Heading level={1} align="left" className="text-[30px] lg:text-[46px] xl:text-[58px] font-black tracking-tighter leading-[4.5] m-0">
                 전국을 연결하는 <br />
                 <span className="text-brand-accent">라이더 운영 인프라</span>
               </Heading>
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              {/* 본문 3줄: 촘촘하고 단정하게 정렬 */}
               <div className="mt-10 flex flex-col gap-2">
                 <BodyText className="max-w-md text-text-body text-xs lg:text-sm leading-relaxed opacity-90">
                   표준화된 시스템으로 안정적인 배달 운영을 지원합니다.
@@ -56,7 +55,7 @@ export default function Home() {
               </div>
             </FadeUp>
 
-            {/* 수치 지표: 라벨 크기 1px 상향 반영 */}
+            {/* 수치 지표 */}
             <div className="mt-14 grid grid-cols-3 gap-4 border-t border-white/5 pt-10">
               {[
                 { label: "전국 운영 지사", value: "30개" },
@@ -92,7 +91,7 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* [우측] 지도 영역: 중간 지점으로 절묘하게 이동 (-translate-x-20) */}
+          {/* [우측] 지도 영역 */}
           <div className="relative hidden lg:block w-full m-0 p-0"> 
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -110,15 +109,17 @@ export default function Home() {
                 />
               </div>
               
+              {/* 로고 영역 */}
               <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div className="relative group">
                   <div className="absolute inset-0 bg-white/5 blur-[40px] rounded-full scale-150" />
+                  {/* 3. 로고 크기 30% 확대 (200 -> 260) */}
                   <Image
                     src="/rideon-logo.png" 
                     alt="RIDE ON Logo"
-                    width={200} 
-                    height={200}
-                    className="relative drop-shadow-[0_0_30px_rgba(0,0,0,1)]"
+                    width={260} 
+                    height={260}
+                    className="relative drop-shadow-[0_0_40px_rgba(0,0,0,1)]"
                   />
                 </div>
               </div>
