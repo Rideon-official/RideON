@@ -16,16 +16,19 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (네모 크기 축소 & 지도 선명도 극대화) ===== */}
+      {/* ===== Section 1: Hero (칼각 정렬 + 지도 우측 밀착) ===== */}
       <section id="hero" className="relative min-h-[90vh] flex items-start pt-32 lg:pt-48 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,15,30,0.4),transparent_70%)]" />
+        {/* 배경 광채 (청량한 블루톤 반영) */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,25,50,0.3),transparent_70%)]" />
         
-        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        {/* 컨테이너: items-start로 상단 라인(빨간 선) 일치 */}
+        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           
-          {/* [좌측] 텍스트 영역 (유지) */}
+          {/* [좌측] 텍스트 영역: 첫 시작점의 마진을 0으로 고정 */}
           <div className="flex flex-col m-0 p-0"> 
             <FadeUp delay={0.1}>
-              <Eyebrow className="text-brand-accent font-bold tracking-[0.15em] mb-4 text-sm">
+              {/* mt-0으로 상단 라인 고정 */}
+              <Eyebrow className="text-brand-accent font-bold tracking-[0.15em] mb-4 text-sm mt-0 leading-none">
                 {siteConfig.description}
               </Eyebrow>
             </FadeUp>
@@ -44,6 +47,7 @@ export default function Home() {
               </BodyText>
             </FadeUp>
 
+            {/* 수치 지표 영역 */}
             <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/5 pt-8">
               {[
                 { label: "전국 지부", value: siteConfig.stats.branches },
@@ -71,36 +75,36 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* [우측] 지도 영역: 네모 크기 줄이고 이미지 꽉 채움 */}
-          <div className="relative hidden lg:block w-full m-0 p-0">
+          {/* [우측] 지도 영역: 네모 크기 줄이고 우측으로 더 이동 */}
+          <div className="relative hidden lg:block w-full m-0 p-0 lg:translate-x-8"> 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              // max-w-[400px]로 네모 크기 축소 및 배경 더 어둡게 처리하여 대비 극대화
-              className="relative w-full aspect-square max-w-[400px] ml-auto border border-white/10 rounded-2xl overflow-hidden bg-black/40 backdrop-blur-xl"
+              // mt-0으로 좌측 텍스트와 상단 시작점 일치
+              className="relative w-full aspect-square max-w-[380px] ml-auto border border-white/10 rounded-2xl overflow-hidden bg-black/40 backdrop-blur-2xl mt-0"
             >
-              {/* 지도 이미지: 패딩 제거(p-0) 및 투명도 제거(opacity-100)로 꽉 차고 선명하게 */}
-              <div className="absolute inset-0"> 
+              {/* 지도 이미지: object-contain으로 사진 전체가 다 보이게 함 + 선명도 100% */}
+              <div className="absolute inset-0 p-2"> 
                 <Image
                   src="/main-map.png"
                   alt="RIDE ON Network"
                   fill
-                  className="object-cover opacity-100 scale-105" // object-cover와 scale로 박스에 꽉 차게
+                  className="object-contain opacity-100" 
                   priority
                 />
               </div>
               
-              {/* 로고 영역: 선명한 화이트 글로우만 살짝 추가 */}
+              {/* 로고 영역: 중앙 안착 및 화이트 글로우 */}
               <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div className="relative group">
                   <div className="absolute inset-0 bg-white/5 blur-[40px] rounded-full scale-150" />
                   <Image
                     src="/rideon-logo.png" 
                     alt="RIDE ON Logo"
-                    width={240} 
-                    height={240}
-                    className="relative drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]"
+                    width={220} 
+                    height={220}
+                    className="relative drop-shadow-[0_0_25px_rgba(0,0,0,0.9)]"
                   />
                 </div>
               </div>
@@ -111,7 +115,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== 하단 섹션 통합 ===== */}
+      {/* ===== 하단 섹션들 ===== */}
       <div className="relative z-20">
         <section id="quick-access" className="py-20">
           <QuickAccess />
