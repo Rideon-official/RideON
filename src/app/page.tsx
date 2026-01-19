@@ -16,61 +16,57 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (글자 및 지도 크기 축소, 1:1 비율) ===== */}
-      <section id="hero" className="relative min-h-[85vh] flex items-center overflow-hidden">
-        {/* 은은한 광채 효과 (그대로 유지) */}
+      {/* ===== Section 1: Hero (시작점 정렬 및 지도 복구) ===== */}
+      <section id="hero" className="relative min-h-[85vh] flex items-start pt-32 lg:pt-40 overflow-hidden">
+        {/* 은은한 배경 효과 */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(26,43,74,0.15),transparent_70%)]" />
         
-        {/* 컨테이너: 너비를 적당히 줄여서(max-w-6xl) 옹골찬 느낌을 줌 */}
-        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8 py-16 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* 컨테이너: items-start로 변경하여 모든 요소의 시작점을 상단 빨간 선 라인에 맞춤 */}
+        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-start">
           
-          {/* [좌측] 텍스트 영역: 글자 크기 전체적으로 축소 */}
-          <div className="flex flex-col">
+          {/* [좌측] 텍스트 영역: 글자 크기를 더 줄여서 세련되게 조정 */}
+          <div className="flex flex-col pt-2"> {/* 미세 조정을 위한 상단 패딩 */}
             <FadeUp delay={0.1}>
-              <Eyebrow className="text-brand-accent font-bold tracking-[0.2em] mb-3 text-sm lg:text-base"> {/* 글자 크기 축소 */}
+              <Eyebrow className="text-brand-accent font-bold tracking-[0.15em] mb-4 text-sm">
                 {siteConfig.description}
               </Eyebrow>
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              {/* 제목 크기 대폭 축소 (text-5xl/7xl -> text-4xl/5xl) */}
-              <Heading level={1} align="left" className="text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter leading-[1.15]">
+              <Heading level={1} align="left" className="text-4xl lg:text-5xl font-black tracking-tighter leading-[1.2]">
                 전국을 연결하는 <br />
                 <span className="text-brand-accent">라이더 인프라</span>
               </Heading>
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              {/* 본문 크기 축소 (text-lg/xl -> text-base/lg) 및 불투명도 조절 */}
-              <BodyText className="mt-6 max-w-lg text-text-body text-base lg:text-lg leading-relaxed opacity-90">
+              <BodyText className="mt-6 max-w-md text-text-body text-base leading-relaxed opacity-80">
                 표준화된 시스템으로 압도적인 운영을 지원합니다. <br />
-                대한민국 1등 인프라 <span className="text-white font-bold underline decoration-brand-accent underline-offset-4">RIDE ON</span>
+                대한민국 1등 인프라 <span className="text-white font-semibold underline decoration-brand-accent underline-offset-4">RIDE ON</span>
               </BodyText>
             </FadeUp>
 
-            {/* 수치 지표 배열: 숫자 크기 축소 */}
-            <div className="mt-10 grid grid-cols-3 gap-6">
+            {/* 수치 지표: 크기 축소 및 간격 조정 */}
+            <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/5 pt-8">
               {[
                 { label: "전국 지부", value: siteConfig.stats.branches },
                 { label: "활동 라이더", value: siteConfig.stats.riders },
                 { label: "정산 정확도", value: siteConfig.stats.payoutAccuracy },
               ].map((stat, i) => (
                 <FadeUp key={i} delay={0.4 + i * 0.1}>
-                  <div className="text-brand-accent">
-                    {/* 숫자 크기 축소 (text-3xl/4xl -> text-2xl/3xl) */}
-                    <div className="text-2xl md:text-3xl font-black font-mono tracking-tighter">{stat.value}</div>
-                    <div className="mt-1 text-[10px] lg:text-xs text-text-body font-bold tracking-widest uppercase opacity-70">{stat.label}</div>
+                  <div>
+                    <div className="text-xl md:text-2xl font-black font-mono text-brand-accent">{stat.value}</div>
+                    <div className="mt-1 text-[10px] text-text-body font-bold tracking-tighter opacity-50 uppercase">{stat.label}</div>
                   </div>
                 </FadeUp>
               ))}
             </div>
 
             <FadeUp delay={0.7}>
-              <div className="mt-12">
+              <div className="mt-10">
                 <Link 
                   href="#quick-access" 
-                  // 버튼 크기 및 글자 축소
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-8 py-4 text-base font-black text-brand-dark transition-transform hover:scale-105"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-7 py-3.5 text-sm font-black text-brand-dark transition-transform hover:scale-105"
                 >
                   서비스 시작하기 <span>→</span>
                 </Link>
@@ -78,56 +74,55 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* [우측] 비주얼 영역: 지도 크기 축소 및 선명도 확보 */}
-          {/* 높이를 줄이고(h-450px), 최대 너비(max-w-lg)를 주어 크기 제한 */}
-          <div className="relative hidden lg:flex items-center justify-end h-[400px] xl:h-[500px] max-w-lg ml-auto">
+          {/* [우측] 비주얼 영역: 지도를 다시 살리고 시작점을 좌측 글자와 맞춤 */}
+          <div className="relative hidden lg:block w-full">
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-              className="relative w-full h-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full aspect-square max-w-[480px] ml-auto"
             >
-              {/* 지도가 작아지면서 더 선명해 보임. object-contain 유지 */}
+              {/* 지도 이미지: 다시 보이도록 fill 속성과 부모 높이(aspect-square) 확보 */}
               <Image
                 src="/main-map.png"
                 alt="RIDE ON Network"
                 fill
+                className="object-contain opacity-60" 
                 priority
-                className="object-contain object-right opacity-80" 
               />
               
-              {/* 로고 마크: 크기를 조금 줄여서 지도와 어우러지게 함 */}
-              <div className="absolute inset-0 flex items-center justify-center z-10 translate-x-4"> {/* 위치 미세 조정 */}
-                <div className="relative">
-                  <div className="absolute inset-0 bg-brand-accent/30 blur-[80px] rounded-full scale-125" />
+              {/* 로고 마크: 텍스트가 포함된 'rideon-logo.png'를 사용하여 아래 글자까지 보이게 함 */}
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-brand-accent/20 blur-[60px] rounded-full scale-125 group-hover:bg-brand-accent/30 transition-colors" />
                   <Image
-                    src="/rideon-mark.png" 
-                    alt="RIDE ON Mark"
-                    width={220} // 크기 축소
-                    height={220}
-                    className="relative drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] animate-pulse"
+                    src="/rideon-logo.png" 
+                    alt="RIDE ON Logo"
+                    width={260} // 적당한 크기로 조절
+                    height={260}
+                    className="relative drop-shadow-2xl animate-pulse"
                   />
                 </div>
               </div>
               
-              <Starfield density={0.03} />
+              <Starfield density={0.02} />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ===== 하단 섹션 통합 ===== */}
+      {/* ===== 하단 섹션들 ===== */}
       <div className="relative z-20">
-        <section id="quick-access" className="bg-transparent py-section-y">
+        <section id="quick-access" className="py-20">
           <QuickAccess />
         </section>
-        <section className="bg-transparent py-section-y">
+        <section className="py-20">
           <CoreServices />
         </section>
-        <section className="bg-transparent py-section-y">
+        <section className="py-20">
           <TrustBuilder />
         </section>
-        <section id="contact" className="bg-transparent py-section-y">
+        <section id="contact" className="py-20">
           <ContactSection />
         </section>
       </div>
