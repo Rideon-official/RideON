@@ -98,7 +98,6 @@ export default function Home() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              {/* -translate-x-16을 통해 지도 박스를 왼쪽(중앙)으로 더 당겼습니다 */}
               className="relative w-full aspect-square max-w-[400px] mx-auto lg:-translate-x-16 border border-white/10 rounded-2xl overflow-hidden bg-black backdrop-blur-2xl mt-0"
             >
               <div className="absolute inset-0"> 
