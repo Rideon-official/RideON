@@ -16,16 +16,16 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (시작점 정렬 및 지도 복구) ===== */}
-      <section id="hero" className="relative min-h-[85vh] flex items-start pt-32 lg:pt-40 overflow-hidden">
-        {/* 은은한 배경 효과 */}
+      {/* ===== Section 1: Hero (정렬 라인 및 정사각형 지도박스) ===== */}
+      <section id="hero" className="relative min-h-[90vh] flex items-start pt-32 lg:pt-48 overflow-hidden">
+        {/* 배경 효과 */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(26,43,74,0.15),transparent_70%)]" />
         
-        {/* 컨테이너: items-start로 변경하여 모든 요소의 시작점을 상단 빨간 선 라인에 맞춤 */}
-        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-start">
+        {/* 컨테이너: items-start로 상단 라인(빨간 선) 일치시킴 */}
+        <div className="relative z-10 mx-auto max-w-6xl w-full px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-start">
           
-          {/* [좌측] 텍스트 영역: 글자 크기를 더 줄여서 세련되게 조정 */}
-          <div className="flex flex-col pt-2"> {/* 미세 조정을 위한 상단 패딩 */}
+          {/* [좌측] 텍스트 영역: 마음에 들어하신 글자 크기 유지 */}
+          <div className="flex flex-col m-0 p-0"> 
             <FadeUp delay={0.1}>
               <Eyebrow className="text-brand-accent font-bold tracking-[0.15em] mb-4 text-sm">
                 {siteConfig.description}
@@ -33,20 +33,20 @@ export default function Home() {
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              <Heading level={1} align="left" className="text-4xl lg:text-5xl font-black tracking-tighter leading-[1.2]">
+              <Heading level={1} align="left" className="text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter leading-[1.1] m-0">
                 전국을 연결하는 <br />
                 <span className="text-brand-accent">라이더 인프라</span>
               </Heading>
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              <BodyText className="mt-6 max-w-md text-text-body text-base leading-relaxed opacity-80">
+              <BodyText className="mt-6 max-w-md text-text-body text-base lg:text-lg leading-relaxed opacity-80">
                 표준화된 시스템으로 압도적인 운영을 지원합니다. <br />
                 대한민국 1등 인프라 <span className="text-white font-semibold underline decoration-brand-accent underline-offset-4">RIDE ON</span>
               </BodyText>
             </FadeUp>
 
-            {/* 수치 지표: 크기 축소 및 간격 조정 */}
+            {/* 수치 지표 */}
             <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/5 pt-8">
               {[
                 { label: "전국 지부", value: siteConfig.stats.branches },
@@ -74,32 +74,35 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* [우측] 비주얼 영역: 지도를 다시 살리고 시작점을 좌측 글자와 맞춤 */}
-          <div className="relative hidden lg:block w-full">
+          {/* [우측] 지도 영역: 정사각형 박스(Square) 형태 */}
+          <div className="relative hidden lg:block w-full m-0 p-0">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative w-full aspect-square max-w-[480px] ml-auto"
+              // aspect-square로 완벽한 정사각형 박스 생성 + 은은한 테두리로 '네모낳게' 정돈
+              className="relative w-full aspect-square max-w-[460px] ml-auto bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden backdrop-blur-sm"
             >
-              {/* 지도 이미지: 다시 보이도록 fill 속성과 부모 높이(aspect-square) 확보 */}
-              <Image
-                src="/main-map.png"
-                alt="RIDE ON Network"
-                fill
-                className="object-contain opacity-60" 
-                priority
-              />
+              {/* 지도 이미지 */}
+              <div className="absolute inset-0 p-8">
+                <Image
+                  src="/main-map.png"
+                  alt="RIDE ON Network"
+                  fill
+                  className="object-contain opacity-50 p-4" 
+                  priority
+                />
+              </div>
               
-              {/* 로고 마크: 텍스트가 포함된 'rideon-logo.png'를 사용하여 아래 글자까지 보이게 함 */}
-              <div className="absolute inset-0 flex items-center justify-center z-10">
+              {/* 로고와 글자 모두 포함된 이미지 (중앙 배치) */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-brand-accent/20 blur-[60px] rounded-full scale-125 group-hover:bg-brand-accent/30 transition-colors" />
+                  <div className="absolute inset-0 bg-brand-accent/10 blur-[50px] rounded-full scale-150 group-hover:bg-brand-accent/20 transition-colors" />
                   <Image
                     src="/rideon-logo.png" 
                     alt="RIDE ON Logo"
-                    width={260} // 적당한 크기로 조절
-                    height={260}
+                    width={240} 
+                    height={240}
                     className="relative drop-shadow-2xl animate-pulse"
                   />
                 </div>
