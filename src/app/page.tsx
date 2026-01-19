@@ -42,10 +42,11 @@ function CountUpNumber({ value }: { value: string }) {
 
 export default function Home() {
   return (
-    <main className="bg-brand-dark min-h-screen text-white overflow-x-hidden">
+    <main className="bg-[#05070A] min-h-screen text-white overflow-x-hidden">
       
       {/* ===== Section 1: Hero ===== */}
       <section id="hero" className="relative min-h-[95vh] flex items-start pt-32 lg:pt-48 overflow-hidden">
+        {/* 히어로 배경 광채 */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,25,50,0.3),transparent_70%)]" />
         
         <div className="relative z-10 mx-auto max-w-7xl w-full px-4 lg:px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -126,11 +127,11 @@ export default function Home() {
       </section>
 
       {/* ===== 하단 섹션 통합 영역 (배경색 및 광채 통일) ===== */}
-      <div className="relative z-20 bg-brand-dark">
+      <div className="relative z-20">
         
-        {/* Section 2: Quick Access */}
-        <section id="quick-access" className="relative py-24 overflow-hidden border-t border-white/5">
-          {/* 히어로와 연결되는 은은한 그라데이션 */}
+        {/* Section 2: Quick Access - 히어로 색감 강제 유지 */}
+        <section id="quick-access" className="relative py-24 overflow-hidden bg-[#05070A]">
+          {/* 오른쪽에서 오는 은은한 빛 */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(10,25,50,0.2),transparent_70%)]" />
           <div className="relative z-10">
             <QuickAccess />
@@ -138,7 +139,8 @@ export default function Home() {
         </section>
 
         {/* Section 3: Core Services */}
-        <section className="relative py-24 border-t border-white/5">
+        <section className="relative py-24 bg-[#05070A] overflow-hidden">
+           {/* 왼쪽에서 오는 은은한 빛 */}
            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,25,50,0.15),transparent_70%)]" />
            <div className="relative z-10">
             <CoreServices />
@@ -146,7 +148,8 @@ export default function Home() {
         </section>
 
         {/* Section 4: Trust Builder */}
-        <section className="relative py-24 border-t border-white/5">
+        <section className="relative py-24 bg-[#05070A] overflow-hidden">
+          {/* 중앙 깊은 곳의 빛 */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(10,25,50,0.1),transparent_70%)]" />
           <div className="relative z-10">
             <TrustBuilder />
@@ -154,7 +157,7 @@ export default function Home() {
         </section>
 
         {/* Section 5: Contact */}
-        <section id="contact" className="relative py-24 border-t border-white/5">
+        <section id="contact" className="relative py-24 bg-[#05070A]">
           <ContactSection />
         </section>
       </div>
