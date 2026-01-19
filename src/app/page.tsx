@@ -16,49 +16,48 @@ import TrustBuilder from "@/components/TrustBuilder";
 export default function Home() {
   return (
     <main className="bg-brand-dark min-h-screen text-white">
-      {/* ===== Section 1: Hero (글자 크기 최적화 및 문구 수정 버전) ===== */}
+      {/* ===== Section 1: Hero (1px 단위 정밀 조정 버전) ===== */}
       <section id="hero" className="relative min-h-[90vh] flex items-start pt-32 lg:pt-48 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,25,50,0.25),transparent_70%)]" />
         
-        {/* 컨테이너: 왼쪽 로고 라인 정렬 유지 (max-w-7xl) */}
         <div className="relative z-10 mx-auto max-w-7xl w-full px-4 lg:px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           
           {/* [좌측] 텍스트 영역 */}
           <div className="flex flex-col m-0 p-0 border-none"> 
             <FadeUp delay={0.1}>
               <div className="mt-0 pt-0">
-                {/* 1. 자간을 줄여서 응집력 있게 (tracking-widest), 크기 축소 */}
-                <Eyebrow className="text-brand-accent font-black tracking-widest text-xs lg:text-sm mt-0 pt-0 leading-none inline-block mb-6">
+                {/* py-[2px]로 미세하게 높이 조절, tracking-wider로 자간 최적화 */}
+                <Eyebrow className="text-brand-accent font-black tracking-wider text-xs lg:text-sm mt-0 pt-0 py-[2px] leading-none inline-block mb-6">
                   전국 라이더 운영 인프라
                 </Eyebrow>
               </div>
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              {/* 2. 글자 크기 축소 (text-5xl~7xl -> 4xl~6xl) 및 줄 간격 확대 (leading-[1.5]) */}
-              <Heading level={1} align="left" className="text-3xl lg:text-5xl xl:text-6xl font-black tracking-tighter leading-[1.5] m-0">
+              {/* leading-[1.6]으로 줄 간격을 조금 더 시원하게 조절 */}
+              <Heading level={1} align="left" className="text-3xl lg:text-5xl xl:text-6xl font-black tracking-tighter leading-[1.6] m-0">
                 전국을 연결하는 <br />
                 <span className="text-brand-accent">라이더 운영 인프라</span>
               </Heading>
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              {/* 3. 본문 문구 수정 및 1줄 추가, 글자 크기 축소 (text-base) */}
-              <div className="mt-8 space-y-2">
-                <BodyText className="max-w-md text-text-body text-sm lg:text-base leading-relaxed opacity-90">
+              {/* gap-3으로 세 줄의 간격을 완벽하게 통일 (불균형 해소) */}
+              <div className="mt-10 flex flex-col gap-3">
+                <BodyText className="max-w-md text-text-body text-sm lg:text-base leading-none opacity-90">
                   표준화된 시스템으로 안정적인 배달 운영을 지원합니다.
                 </BodyText>
-                <BodyText className="max-w-md text-brand-accent/90 text-sm lg:text-base font-medium leading-relaxed">
+                <BodyText className="max-w-md text-brand-accent/90 text-sm lg:text-base font-medium leading-none">
                   정산·출고·교육·렌탈까지, 모든 과정을 한 번에 관리하세요.
                 </BodyText>
-                <BodyText className="pt-2 max-w-md text-text-body text-sm lg:text-base leading-relaxed opacity-90">
+                <BodyText className="max-w-md text-text-body text-sm lg:text-base leading-none opacity-90">
                   대한민국 1등 배달대행 인프라 <span className="text-white font-black underline decoration-brand-accent underline-offset-8">RIDE ON</span>
                 </BodyText>
               </div>
             </FadeUp>
 
             {/* 수치 지표 */}
-            <div className="mt-12 grid grid-cols-3 gap-4 border-t border-white/5 pt-8">
+            <div className="mt-14 grid grid-cols-3 gap-4 border-t border-white/5 pt-8">
               {[
                 { label: "전국 지부", value: siteConfig.stats.branches },
                 { label: "활동 라이더", value: siteConfig.stats.riders },
@@ -77,7 +76,7 @@ export default function Home() {
               <div className="mt-12">
                 <Link 
                   href="#quick-access" 
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-6 py-3 text-sm font-black text-brand-dark transition-transform hover:scale-105"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-7 py-3.5 text-sm font-black text-brand-dark transition-transform hover:scale-105 shadow-[0_5px_15px_rgba(206,255,0,0.1)]"
                 >
                   서비스 시작하기 <span>→</span>
                 </Link>
@@ -85,7 +84,7 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* [우측] 지도 영역: 네모 박스 꽉 찬 느낌 유지 */}
+          {/* [우측] 지도 영역 (유지) */}
           <div className="relative hidden lg:block w-full m-0 p-0"> 
             <motion.div
               initial={{ opacity: 0, x: 40 }}
