@@ -108,7 +108,6 @@ export default function QuickAccess() {
           <p className="text-base lg:text-lg text-text-body/90 font-medium leading-relaxed tracking-tight">
             <span className="text-brand-accent font-black mr-4 tracking-widest text-xs uppercase bg-brand-accent/10 px-2 py-1 rounded">Check Point</span>
             <span className="text-white font-bold">직영 정비 센터</span> 기반의 <span className="text-white font-bold">자체 렌탈/리스 인프라</span>, 전국 30개 지사 연동 망, <span className="text-white font-bold">브랜드 전용 굿즈(조끼·탑박스)</span> 제작 지원 — 
-            <span className="text-brand-accent/90 font-black ml-2 underline underline-offset-8"> 인프라가 없는 타 본사와 당당히 비교하십시오.</span>
           </p>
         </div>
       </FadeUp>
