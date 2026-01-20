@@ -10,7 +10,7 @@ const items = [
   {
     title: "지사 가맹 문의",
     subtitle: "PARTNERSHIP",
-    description: "초기 비용부터 지역권 확보까지, 전문가와의 1:1 상담을 통해 명확한 로드맵을 그려보세요.",
+    description: "초기 비용에 대한 부담은 내려놓고 몸과 열정으로 시작하세요.\n지역권 확보부터 라이더 모집 노하우까지, 성공적인 지사 설립을 위한\n명확한 로드맵과 현장 맞춤형 전략을 함께 설계해 드립니다.",
     link: "#contact",
     cta: "무료 상담 신청",
     icon: <Users className="w-6 h-6 text-brand-accent" />,
@@ -22,7 +22,7 @@ const items = [
     description: "정산 자동화부터 라이더 교육까지, 지사장은 영업에만 집중할 수 있도록 본사가 모든 인프라를 지원합니다.",
     link: "/brand",
     cta: "지원 항목 전체보기",
-    icon: <Wrench className="w-6 h-6 text-brand-accent" />, // 도구 느낌의 아이콘으로 변경
+    icon: <Wrench className="w-6 h-6 text-brand-accent" />,
     color: "from-indigo-500/20 to-transparent",
   },
   {
@@ -44,11 +44,10 @@ export default function QuickAccess() {
         <FadeUp>
           <Eyebrow className="text-brand-accent/80 mb-2 font-bold tracking-tight">가장 많이 찾는 서비스</Eyebrow>
           
-          <Heading level={2} className="text-3xl lg:text-5xl font-black tracking-tighter mb-8">
-            라이드온 <span className="text-white">빠른 메뉴</span>
+          <Heading level={2} className="text-3xl lg:text-5xl font-black tracking-tighter mb-8 italic">
+            라이드온 <span className="text-white not-italic">빠른 메뉴</span>
           </Heading>
 
-          {/* 1번: 3줄 설명글 유지 */}
           <div className="flex flex-col gap-1.5 border-l-2 border-brand-accent/20 pl-6">
             <BodyText className="text-text-body/80 text-sm lg:text-lg leading-relaxed font-medium">
               복잡한 배달 운영, 이제 감이 아닌 데이터와 시스템으로 관리할 때입니다.
@@ -72,31 +71,25 @@ export default function QuickAccess() {
                 whileHover={{ y: -8 }}
                 className="group relative h-full overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-md transition-all hover:border-brand-accent/40 hover:bg-white/[0.06]"
               >
-                {/* 배경 앰비언트 조명 효과 */}
                 <div className={`absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br ${item.color} blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
                 <div className="relative z-10 flex flex-col h-full">
-                  {/* 아이콘 영역 */}
                   <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 border border-white/10 group-hover:border-brand-accent/50 group-hover:bg-brand-accent/10 transition-all duration-300">
                     {item.icon}
                   </div>
                   
-                  {/* 부제목(영문) */}
                   <div className="mb-2 text-[10px] font-black tracking-[0.25em] text-brand-accent/50 uppercase">
                     {item.subtitle}
                   </div>
                   
-                  {/* 카드 제목 */}
                   <h3 className="mb-4 text-xl lg:text-2xl font-black text-white group-hover:text-brand-accent transition-colors">
                     {item.title}
                   </h3>
                   
-                  {/* 카드 설명 */}
-                  <p className="mb-10 text-sm lg:text-base leading-relaxed text-text-body opacity-70 group-hover:opacity-100 transition-opacity flex-grow">
+                  <p className="mb-10 text-sm lg:text-base leading-relaxed text-text-body opacity-70 group-hover:opacity-100 transition-opacity flex-grow whitespace-pre-line">
                     {item.description}
                   </p>
                   
-                  {/* CTA 문구 수정 반영 */}
                   <div className="flex items-center gap-2 text-xs lg:text-sm font-black text-white/40 group-hover:text-brand-accent transition-colors mt-auto">
                     {item.cta} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
                   </div>
@@ -107,15 +100,13 @@ export default function QuickAccess() {
         ))}
       </div>
 
-      {/* --- 3번: 하단 비교 슬로건 수정 반영 --- */}
+      {/* --- 하단 슬로건: A형 + 추가 의견(사이드 바 디자인) 적용 --- */}
       <FadeUp delay={0.4}>
-        <div className="py-8 px-10 rounded-2xl bg-gradient-to-r from-white/[0.03] to-transparent border border-white/5 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
-          <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-accent/10 flex items-center justify-center text-xl">
-            🛡️
-          </div>
+        <div className="py-6 px-8 rounded-xl bg-white/[0.02] border-l-4 border-brand-accent backdrop-blur-sm transition-all hover:bg-white/[0.04]">
           <p className="text-sm lg:text-base text-text-body/80 font-medium leading-relaxed tracking-tight">
-            <span className="text-white font-black block md:inline mb-1 md:mb-0 md:mr-3 text-lg italic">왜 라이드온인가?</span>
-            "직영 정비 센터 기반의 자체 렌탈 인프라, 전국 30개 지사 연동 망, 브랜드 전용 굿즈(조끼·탑박스) 제작 지원 — <span className="text-brand-accent font-black underline underline-offset-4 decoration-2">인프라가 없는 타 본사와 당당히 비교하십시오.</span>"
+            <span className="text-brand-accent font-black mr-3 tracking-widest text-xs uppercase">Check Point</span>
+            "직영 정비 센터 기반의 자체 렌탈 인프라, 전국 30개 지사 연동 망, 브랜드 전용 굿즈(조끼·탑박스) 제작 지원 — 
+            <span className="text-white font-bold ml-1"> 인프라가 없는 타 본사와 당당히 비교하십시오.</span>"
           </p>
         </div>
       </FadeUp>
