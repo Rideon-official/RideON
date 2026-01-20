@@ -1,179 +1,116 @@
 "use client";
 
-import Link from "next/link";
-import type { ReactNode } from "react";
-import { Building2, Bike, FileText, ShoppingBag } from "lucide-react";
-import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
+import { motion } from "framer-motion";
+import { Building2, Bike, FileText, CheckCircle2 } from "lucide-react";
+import { FadeUp } from "./ui/MotionWrapper";
+import { Heading, Eyebrow, BodyText } from "./ui/typography";
 
-type Card = {
-  eyebrow: string;
-  title: string;
-  desc: ReactNode;
-  href: string;
-  icon: ReactNode;
-  buttonLabel: string;
-};
-
-const cards: Card[] = [
+const systems = [
   {
-    eyebrow: "HQ SUPPORT",
-    title: "본사 운영지원",
-    desc: (
-      <>
-        <span className="md:hidden">
-          지사는 현장 운영에 집중, 본사는 정산·모집·교육을 시스템으로 지원합니다.
-        </span>
-        <span className="hidden md:inline">
-          지사는 현장 운영에 집중하고,
-          <br className="hidden md:block" />
-          본사는 정산·모집·교육을 시스템으로 지원합니다.
-        </span>
-      </>
-    ),
-    href: "/brand#story",
-    icon: <Building2 className="w-8 h-8" strokeWidth={1.6} />,
-    buttonLabel: "지사장 운영지원 보기 →",
+    title: "지사 운영 시스템",
+    role: "BRANCH MANAGEMENT",
+    features: [
+      "실시간 오더 현황 및 모니터링",
+      "효율적인 지사 간 오더 공유 망",
+      "지사별 수익 및 실적 분석 통계",
+      "지점 운영 최적화 솔루션 제공"
+    ],
+    icon: <Building2 className="w-8 h-8 text-brand-accent" />,
+    gradient: "from-blue-600/10 to-transparent"
   },
   {
-    eyebrow: "RIDE ON BIKE",
-    title: "RIDE ON BIKE",
-    desc: (
-      <>
-        <span className="md:hidden">
-          라이더 렌트·리스·정비·사고 처리까지 본사 기준으로 통합 관리합니다.
-        </span>
-        <span className="hidden md:inline">
-          라이더 렌트·리스·튜닝·정비·사고 처리까지
-          <br className="hidden md:block" />
-          본사 기준으로 통합 관리합니다.
-        </span>
-      </>
-    ),
-    href: "/bike#rent",
-    icon: <Bike className="w-8 h-8" strokeWidth={1.6} />,
-    buttonLabel: "라이더 바이크 안내 →",
+    title: "라이더 관리 인프라",
+    role: "RIDER INFRASTRUCTURE",
+    features: [
+      "실시간 위치 기반 자동 배차",
+      "체계적인 근태 및 성과 관리",
+      "자체 정비/리스 인프라 연동",
+      "라이더 전용 물품 및 굿즈 지원"
+    ],
+    icon: <Bike className="w-8 h-8 text-brand-accent" />,
+    gradient: "from-indigo-600/10 to-transparent"
   },
   {
-    eyebrow: "LOGITEATS",
-    title: "정산 솔루션",
-    desc: (
-      <>
-        <span className="md:hidden">
-          타 지사도 사용할 수 있는 쿠팡·배민 B2B 정산·리포트 플랫폼입니다.
-        </span>
-        <span className="hidden md:inline">
-          타 지사도 사용할 수 있는
-          <br className="hidden md:block" />
-          쿠팡·배민 B2B 정산·리포트 플랫폼입니다.
-        </span>
-      </>
-    ),
-    href: "/logiteats#intro",
-    icon: <FileText className="w-8 h-8" strokeWidth={1.6} />,
-    buttonLabel: "정산 솔루션 살펴보기 →",
-  },
-  {
-    eyebrow: "RIDER STORE",
-    title: "라이더 스토어",
-    desc: (
-      <>
-        <span className="md:hidden">
-          라이더 필수 공식 의류·장비·소모품을 합리적인 가격에 바로 구매할 수 있습니다.
-        </span>
-        <span className="hidden md:inline">
-          라이더 필수 공식 의류/장비/소모품을
-          <br className="hidden md:block" />
-          합리적인 가격에 바로 구매할 수 있습니다.
-        </span>
-      </>
-    ),
-    href: "/store",
-    icon: <ShoppingBag className="w-8 h-8" strokeWidth={1.6} />,
-    buttonLabel: "공식 스토어 이동 →",
-  },
+    title: "파트너 정산 솔루션",
+    role: "PARTNER & ACCOUNTING",
+    features: [
+      "투명하고 정확한 실시간 정산",
+      "가맹점/제휴점 통합 관리 시스템",
+      "세금 계산서 및 영수증 자동 발행",
+      "미수금 방지 및 리스크 관리"
+    ],
+    icon: <FileText className="w-8 h-8 text-brand-accent" />,
+    gradient: "from-purple-600/10 to-transparent"
+  }
 ];
 
 export default function CoreServices() {
   return (
-    <section id="core-systems" className="bg-transparent">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-20 md:py-24">
-        {/* ===== Header ===== */}
-        <header className="mb-10">
-          {/* 색상을 brand-accent(노랑)로 통일 */}
-          <Eyebrow className="text-brand-accent">
-            CORE SYSTEMS
+    <div className="mx-auto max-w-7xl px-4 lg:px-6 py-12">
+      {/* --- 섹션 헤더: QuickAccess와 스타일 통일 --- */}
+      <div className="mb-16 lg:mb-24 text-center">
+        <FadeUp>
+          <Eyebrow className="text-brand-accent/80 mb-2 font-bold tracking-tight">
+            통합 운영의 새로운 기준
           </Eyebrow>
-
-          <Heading level={2} className="mt-2 text-white">
-            지사 · 라이더 · 파트너를 위한
-            <br className="hidden md:block" />
-            통합 운영 시스템
+          
+          <Heading level={2} className="text-3xl lg:text-5xl font-black tracking-tighter mb-8">
+            All-in-One <span className="text-white">인프라 시스템</span>
           </Heading>
 
-          <BodyText className="mt-4 max-w-2xl text-text-body">
-            본사 운영지원, 렌트/정비 인프라, 정산 솔루션, 라이더 스토어까지
-            하나의 구조 안에서 동일한 기준으로 관리되는 RIDE ON의 핵심 시스템입니다.
-          </BodyText>
-        </header>
-
-        {/* ===== Cards ===== */}
-        <div className="grid auto-rows-fr gap-5 lg:gap-6 sm:grid-cols-2 xl:grid-cols-4">
-          {cards.map((c, i) => (
-            <CardItem key={i} c={c} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CardItem({ c }: { c: Card }) {
-  return (
-    <article
-      className="
-        group relative isolate overflow-hidden
-        rounded-2xl border border-white/10 bg-white/[0.03] p-7 lg:p-8
-        transition-all duration-200
-        hover:-translate-y-1 hover:border-brand-accent/40 hover:bg-white/[0.08]
-        min-h-[230px] flex flex-col justify-between
-      "
-    >
-      {/* 상단 장식선: 색상만 노란색 계열로 변경 */}
-      <div className="pointer-events-none absolute left-6 right-6 top-0 h-[3px] rounded-b-full bg-white/10 group-hover:bg-brand-accent/30" />
-
-      <div>
-        <div className="mb-4 flex items-center justify-between gap-4">
-          <Eyebrow className="text-text-body group-hover:text-brand-accent transition-colors">
-            {c.eyebrow}
-          </Eyebrow>
-
-          <div className="text-brand-accent group-hover:text-white transition-colors duration-200">
-            {c.icon}
+          <div className="max-w-3xl mx-auto flex flex-col gap-2">
+            <BodyText className="text-text-body/80 text-sm lg:text-lg leading-relaxed font-medium">
+              지사, 라이더, 파트너가 하나의 유기적인 시스템 안에서 연결됩니다.
+            </BodyText>
+            <BodyText className="text-brand-accent font-bold text-sm lg:text-lg">
+              복잡했던 운영은 라이드온에게 맡기고, 지사장님은 성장에만 집중하십시오.
+            </BodyText>
           </div>
-        </div>
-
-        <Heading level={3} className="mt-2 text-[20px] font-bold text-white">
-          {c.title}
-        </Heading>
-
-        <BodyText size="sm" className="mt-3 text-text-body leading-relaxed">
-          {c.desc}
-        </BodyText>
+        </FadeUp>
       </div>
 
-      <div className="mt-8">
-        <Link
-          href={c.href}
-          className="
-            inline-flex items-center justify-center rounded-full
-            border border-white/20 px-5 py-2 text-sm font-bold
-            text-brand-accent transition-all duration-200
-            hover:border-brand-accent hover:bg-brand-accent hover:text-brand-dark
-          "
-        >
-          {c.buttonLabel}
-        </Link>
+      {/* --- 시스템 카드 섹션 --- */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {systems.map((system, index) => (
+          <FadeUp key={index} delay={index * 0.2}>
+            <div className="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-8 lg:p-10 transition-all hover:bg-white/[0.04] hover:border-brand-accent/30 overflow-hidden h-full flex flex-col">
+              
+              {/* 은은한 배경 그라데이션 */}
+              <div className={`absolute -right-16 -top-16 w-32 h-32 bg-gradient-to-br ${system.gradient} blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+
+              {/* 아이콘 및 서브타이틀 */}
+              <div className="mb-10 relative z-10">
+                <div className="w-16 h-16 rounded-2xl bg-brand-accent/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {system.icon}
+                </div>
+                <div className="text-[10px] font-black tracking-[0.2em] text-brand-accent/60 uppercase mb-2">
+                  {system.role}
+                </div>
+                <h3 className="text-2xl font-black text-white group-hover:text-brand-accent transition-colors">
+                  {system.title}
+                </h3>
+              </div>
+
+              {/* 기능 리스트 */}
+              <ul className="space-y-4 mb-8 relative z-10 flex-grow">
+                {system.features.map((feature, fIndex) => (
+                  <li key={fIndex} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-brand-accent/40 mt-0.5 shrink-0" />
+                    <span className="text-sm lg:text-base text-text-body/70 group-hover:text-text-body transition-colors">
+                      {feature}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* 구분선 (데코레이션) */}
+              <div className="mt-auto pt-6 border-t border-white/5 flex items-center gap-2">
+                <div className="h-1 w-8 bg-brand-accent/30 rounded-full group-hover:w-full transition-all duration-500" />
+              </div>
+            </div>
+          </FadeUp>
+        ))}
       </div>
-    </article>
+    </div>
   );
 }
