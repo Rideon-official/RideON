@@ -10,46 +10,46 @@ const systems = [
     title: "지사 통합 운영 시스템",
     role: "BRANCH MANAGEMENT",
     features: [
-      "실시간 오더 현황 모니터링",
-      "효율적인 지사 간 물량 공유망",
-      "지사별 수익 및 실적 분석 통계",
-      "운영 최적화 소프트웨어 제공"
+      "쿠팡이츠·배민 B2B 관제 최적화 지원",
+      "지사 간 유기적인 인력 공유 체계 구축",
+      "본사 직영급 운영 노하우 및 매뉴얼 전수",
+      "실시간 지표 관리용 통합 대시보드 제공"
     ],
     icon: <Building2 className="w-7 h-7 text-brand-accent" />,
     gradient: "from-blue-600/10 to-transparent"
   },
   {
-    title: "자동 정산 및 관리 솔루션",
-    role: "ACCOUNTING SYSTEM",
-    features: [
-      "번거로운 정산 업무의 자동화",
-      "투명한 실시간 정산 데이터",
-      "가맹점 관리 및 미수금 방지",
-      "세무 증빙 서류 자동 발행"
-    ],
-    icon: <FileText className="w-7 h-7 text-brand-accent" />,
-    gradient: "from-indigo-600/10 to-transparent"
-  },
-  {
     title: "렌탈 및 리스 인프라",
     role: "RENTAL & LEASE",
     features: [
-      "직영 정비 센터 연계 관리",
-      "자체 리스 시스템 (비용 절감)",
-      "고성능 차량의 안정적 공급",
-      "상시 차량 컨디션 모니터링"
+      "본사 직영 정비 센터 기반 상시 관리",
+      "자체 리스 시스템을 통한 운영비 절감",
+      "고성능 신규 차량의 안정적인 우선 공급",
+      "전국 서비스 센터 및 인프라 비즈니스 지원"
     ],
     icon: <Wrench className="w-7 h-7 text-brand-accent" />,
     gradient: "from-purple-600/10 to-transparent"
   },
   {
+    title: "자동 정산 및 대여금 관리",
+    role: "ACCOUNTING SYSTEM",
+    features: [
+      "번거로운 정산 업무의 완전 자동화 구현",
+      "365일 정산 전담팀의 상시 밀착 응대",
+      "대여금 관리 양식 제공 및 채권 리스크 방지",
+      "세무 신고용 증빙 자료 및 서류 신속 지원"
+    ],
+    icon: <FileText className="w-7 h-7 text-brand-accent" />,
+    gradient: "from-indigo-600/10 to-transparent"
+  },
+  {
     title: "브랜드 마케팅 및 물품 지원",
     role: "BRANDING & GOODS",
     features: [
-      "전용 굿즈(조끼, 탑박스) 지원",
-      "본사 차원의 라이더 수급 마케팅",
-      "프리미엄 브랜드 이미지 구축",
-      "온·오프라인 홍보 대행 지원"
+      "전용 굿즈(조끼·의류·소모품) 제작 지원",
+      "본사 차원의 라이더 수급 마케팅 전개",
+      "프리미엄 브랜드 이미지 및 홍보 대행",
+      "전국 지사망 연계 정보 및 노하우 공유"
     ],
     icon: <Palette className="w-7 h-7 text-brand-accent" />,
     gradient: "from-emerald-600/10 to-transparent"
@@ -85,7 +85,7 @@ export default function CoreServices() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {systems.map((system, index) => (
           <FadeUp key={index} delay={index * 0.1}>
-            <div className="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-7 transition-all hover:bg-white/[0.04] hover:border-brand-accent/30 overflow-hidden h-full flex flex-col">
+            <div className="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-7 transition-all hover:bg-white/[0.04] hover:border-brand-accent/40 overflow-hidden h-full flex flex-col">
               
               {/* 은은한 배경 조명 효과 */}
               <div className={`absolute -right-16 -top-16 w-32 h-32 bg-gradient-to-br ${system.gradient} blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
@@ -103,7 +103,7 @@ export default function CoreServices() {
                 </h3>
               </div>
 
-              {/* 카드 본문: 핵심 기능 리스트 */}
+              {/* 카드 본문: 핵심 기능 리스트 (4줄로 통일) */}
               <ul className="space-y-3 mb-8 relative z-10 flex-grow">
                 {system.features.map((feature, fIndex) => (
                   <li key={fIndex} className="flex items-start gap-2.5">
@@ -115,7 +115,7 @@ export default function CoreServices() {
                 ))}
               </ul>
 
-              {/* 카드 하단 장식선 */}
+              {/* 카드 하단 장식선 애니메이션 */}
               <div className="mt-auto pt-5 border-t border-white/5">
                 <div className="h-1 w-6 bg-brand-accent/30 rounded-full group-hover:w-full transition-all duration-700" />
               </div>
