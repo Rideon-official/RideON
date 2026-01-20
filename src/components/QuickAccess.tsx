@@ -10,7 +10,7 @@ const items = [
   {
     title: "지사 가맹 문의",
     subtitle: "PARTNERSHIP",
-    description: "초기 비용에 대한 부담은 내려놓고 몸과 열정으로 시작하세요.\n지역권 확보부터 라이더 모집 노하우까지, 성공적인 지사 설립을 위한\n명확한 로드맵과 현장 맞춤형 전략을 함께 설계해 드립니다.",
+    description: "초기 비용 부담 없이 몸과 열정만으로 시작하십시오.\n지역권 확보부터 라이더 모집까지, 지사 설립을 위한\n명확한 로드맵과 현장 맞춤형 전략을 설계해 드립니다.",
     link: "#contact",
     cta: "무료 상담 신청",
     icon: <Users className="w-6 h-6 text-brand-accent" />,
@@ -44,8 +44,9 @@ export default function QuickAccess() {
         <FadeUp>
           <Eyebrow className="text-brand-accent/80 mb-2 font-bold tracking-tight">가장 많이 찾는 서비스</Eyebrow>
           
-          <Heading level={2} className="text-3xl lg:text-5xl font-black tracking-tighter mb-8 italic">
-            라이드온 <span className="text-white not-italic">빠른 메뉴</span>
+          {/* 라이드온 기울임 제거 (원복) */}
+          <Heading level={2} className="text-3xl lg:text-5xl font-black tracking-tighter mb-8">
+            라이드온 <span className="text-white">빠른 메뉴</span>
           </Heading>
 
           <div className="flex flex-col gap-1.5 border-l-2 border-brand-accent/20 pl-6">
@@ -86,6 +87,7 @@ export default function QuickAccess() {
                     {item.title}
                   </h3>
                   
+                  {/* 첫 번째 카드 문구 최적화 반영 (whitespace-pre-line) */}
                   <p className="mb-10 text-sm lg:text-base leading-relaxed text-text-body opacity-70 group-hover:opacity-100 transition-opacity flex-grow whitespace-pre-line">
                     {item.description}
                   </p>
@@ -100,13 +102,13 @@ export default function QuickAccess() {
         ))}
       </div>
 
-      {/* --- 하단 슬로건: A형 + 추가 의견(사이드 바 디자인) 적용 --- */}
+      {/* --- 하단 슬로건: 폰트 사이즈 및 포인트 강화 --- */}
       <FadeUp delay={0.4}>
-        <div className="py-6 px-8 rounded-xl bg-white/[0.02] border-l-4 border-brand-accent backdrop-blur-sm transition-all hover:bg-white/[0.04]">
-          <p className="text-sm lg:text-base text-text-body/80 font-medium leading-relaxed tracking-tight">
-            <span className="text-brand-accent font-black mr-3 tracking-widest text-xs uppercase">Check Point</span>
-            "직영 정비 센터 기반의 자체 렌탈 인프라, 전국 30개 지사 연동 망, 브랜드 전용 굿즈(조끼·탑박스) 제작 지원 — 
-            <span className="text-white font-bold ml-1"> 인프라가 없는 타 본사와 당당히 비교하십시오.</span>"
+        <div className="py-8 px-10 rounded-xl bg-white/[0.02] border-l-4 border-brand-accent backdrop-blur-sm transition-all hover:bg-white/[0.04]">
+          <p className="text-base lg:text-lg text-text-body/90 font-medium leading-relaxed tracking-tight">
+            <span className="text-brand-accent font-black mr-4 tracking-widest text-xs uppercase bg-brand-accent/10 px-2 py-1 rounded">Check Point</span>
+            <span className="text-white font-bold">직영 정비 센터</span> 기반의 <span className="text-white font-bold">자체 렌탈/리스 인프라</span>, 전국 30개 지사 연동 망, <span className="text-white font-bold">브랜드 전용 굿즈(조끼·탑박스)</span> 제작 지원 — 
+            <span className="text-brand-accent/90 font-black ml-2 underline underline-offset-8"> 인프라가 없는 타 본사와 당당히 비교하십시오.</span>
           </p>
         </div>
       </FadeUp>
