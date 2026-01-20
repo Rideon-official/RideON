@@ -10,7 +10,8 @@ const items = [
   {
     title: "지사 가맹 문의",
     subtitle: "PARTNERSHIP",
-    description: "초기 비용 부담 없이 몸과 열정만으로 시작하십시오.\n지역권 확보부터 라이더 모집까지, 지사 설립을 위한\n명확한 로드맵과 현장 맞춤형 전략을 설계해 드립니다.",
+    // 문장을 자연스럽게 연결하여 여백을 채우고 밀도감을 높였습니다.
+    description: "초기 비용의 부담은 덜어내고 몸과 열정만으로 시작할 수 있는 최적의 환경을 제공합니다. 지역권 확보부터 라이더 모집까지 지사장님의 성공적인 안착을 위해 라이드온만의 현장 맞춤형 로드맵을 완벽하게 설계해 드립니다.",
     link: "#contact",
     cta: "무료 상담 신청",
     icon: <Users className="w-6 h-6 text-brand-accent" />,
@@ -19,7 +20,7 @@ const items = [
   {
     title: "본사 지원 시스템",
     subtitle: "SYSTEM & BENEFIT",
-    description: "정산 자동화부터 라이더 교육까지, 지사장은 영업에만 집중할 수 있도록 본사가 모든 인프라를 지원합니다.",
+    description: "복잡한 정산 업무의 자동화부터 현장 라이더 교육 시스템까지, 지사장님이 오직 영업과 운영에만 집중하실 수 있도록 라이드온 본사가 보유한 모든 인프라를 전폭적으로 지원합니다.",
     link: "/brand",
     cta: "지원 항목 전체보기",
     icon: <Wrench className="w-6 h-6 text-brand-accent" />,
@@ -28,7 +29,7 @@ const items = [
   {
     title: "성공 사례/수익 모델",
     subtitle: "SUCCESS STORY",
-    description: "라이드온과 함께하며 안정적인 수익을 창출하고 있는 전국 지사장님들의 실제 데이터와 성공 노하우를 확인하세요.",
+    description: "라이드온과 파트너십을 맺고 안정적인 수익을 창출하고 있는 전국 지사장님들의 실제 운영 데이터와 성공 노하우를 확인하고, 귀하의 지역에 적합한 최적의 비즈니스 모델을 발견해 보세요.",
     link: "/network",
     cta: "실제 수익 확인하기",
     icon: <BarChart3 className="w-6 h-6 text-brand-accent" />,
@@ -44,7 +45,6 @@ export default function QuickAccess() {
         <FadeUp>
           <Eyebrow className="text-brand-accent/80 mb-2 font-bold tracking-tight">가장 많이 찾는 서비스</Eyebrow>
           
-          {/* 라이드온 기울임 제거 (원복) */}
           <Heading level={2} className="text-3xl lg:text-5xl font-black tracking-tighter mb-8">
             라이드온 <span className="text-white">빠른 메뉴</span>
           </Heading>
@@ -87,8 +87,8 @@ export default function QuickAccess() {
                     {item.title}
                   </h3>
                   
-                  {/* 첫 번째 카드 문구 최적화 반영 (whitespace-pre-line) */}
-                  <p className="mb-10 text-sm lg:text-base leading-relaxed text-text-body opacity-70 group-hover:opacity-100 transition-opacity flex-grow whitespace-pre-line">
+                  {/* 설명글: whitespace-pre-line 대신 일반 텍스트 흐름을 사용해 여백을 자연스럽게 채움 */}
+                  <p className="mb-10 text-sm lg:text-base leading-relaxed text-text-body opacity-70 group-hover:opacity-100 transition-opacity flex-grow">
                     {item.description}
                   </p>
                   
@@ -102,12 +102,12 @@ export default function QuickAccess() {
         ))}
       </div>
 
-      {/* --- 하단 슬로건: 폰트 사이즈 및 포인트 강화 --- */}
+      {/* --- 하단 슬로건: 요청대로 비교 멘트 삭제 및 폰트 강조 --- */}
       <FadeUp delay={0.4}>
         <div className="py-8 px-10 rounded-xl bg-white/[0.02] border-l-4 border-brand-accent backdrop-blur-sm transition-all hover:bg-white/[0.04]">
           <p className="text-base lg:text-lg text-text-body/90 font-medium leading-relaxed tracking-tight">
             <span className="text-brand-accent font-black mr-4 tracking-widest text-xs uppercase bg-brand-accent/10 px-2 py-1 rounded">Check Point</span>
-            <span className="text-white font-bold">직영 정비 센터</span> 기반의 <span className="text-white font-bold">자체 렌탈/리스 인프라</span>, 전국 30개 지사 연동 망, <span className="text-white font-bold">브랜드 전용 굿즈(조끼·탑박스)</span> 제작 지원 — 
+            <span className="text-white font-bold">직영 정비 센터</span> 기반의 <span className="text-white font-bold">자체 렌탈/리스 인프라</span>, 전국 30개 지사 연동 망, <span className="text-white font-bold">브랜드 전용 굿즈(조끼·탑박스)</span> 제작 지원
           </p>
         </div>
       </FadeUp>
