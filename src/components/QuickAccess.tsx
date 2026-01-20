@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Settings2, Bike } from "lucide-react";
 import { FadeUp } from "./ui/MotionWrapper";
-import { Heading, Eyebrow } from "./ui/typography";
+import { Heading, Eyebrow, BodyText } from "./ui/typography";
 
 const items = [
   {
@@ -36,13 +36,24 @@ const items = [
 export default function QuickAccess() {
   return (
     <div className="mx-auto max-w-7xl px-4 lg:px-6">
-      {/* --- 섹션 제목 추가 (사라졌던 부분!) --- */}
+      {/* --- 섹션 헤더: 히어로 섹션과 디자인 언어 통일 --- */}
       <div className="mb-12 lg:mb-16">
         <FadeUp>
-          <Eyebrow className="text-brand-accent/60 mb-2">QUICK ACCESS</Eyebrow>
-          <Heading level={2} className="text-3xl lg:text-5xl font-black tracking-tighter">
-            라이드온 <span className="text-brand-accent">빠른 메뉴</span>
+          {/* 부제목 한글화 */}
+          <Eyebrow className="text-brand-accent/80 mb-2 font-bold">가장 많이 찾는 서비스</Eyebrow>
+          
+          {/* 제목 */}
+          <Heading level={2} className="text-3xl lg:text-5xl font-black tracking-tighter mb-5">
+            RIDE ON <span className="text-brand-accent">빠른 메뉴</span>
           </Heading>
+
+          {/* 설명글 추가: 히어로 섹션의 BodyText 스타일과 맞춤 */}
+          <div className="max-w-2xl">
+            <BodyText className="text-text-body/70 text-sm lg:text-base leading-relaxed">
+              라이드온의 핵심 서비스를 빠르게 확인하고,<br className="hidden md:block" />
+              귀사의 비즈니스에 최적화된 운영 파트너십을 찾아보세요.
+            </BodyText>
+          </div>
         </FadeUp>
       </div>
 
@@ -55,7 +66,7 @@ export default function QuickAccess() {
                 whileHover={{ y: -5 }}
                 className="group relative h-full overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-sm transition-all hover:border-brand-accent/30 hover:bg-white/[0.05]"
               >
-                {/* 배경 은은한 그라데이션 효과 */}
+                {/* 배경 은은한 조명 효과 */}
                 <div className={`absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br ${item.color} blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`} />
 
                 <div className="relative z-10 flex flex-col h-full">
