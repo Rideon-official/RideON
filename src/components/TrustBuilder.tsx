@@ -40,7 +40,7 @@ export default function TrustBuilder() {
         {/* Chart Section */}
         <div className="relative w-full bg-white/[0.03] rounded-[40px] border border-white/10 p-8 lg:p-14 backdrop-blur-sm">
           
-          {/* 범례 - 한글 및 스타일 강조 */}
+          {/* 범례 */}
           <div className="flex gap-8 mb-16">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-brand-accent shadow-[0_0_12px_rgba(var(--brand-accent-rgb),0.5)]" />
@@ -55,7 +55,7 @@ export default function TrustBuilder() {
           {/* 그래프 영역 */}
           <div className="relative h-[350px] w-full flex items-end px-2">
             
-            {/* 가이드 라인 (배경 격자) */}
+            {/* 가이드 라인 */}
             <div className="absolute inset-0 flex flex-col justify-between opacity-[0.05]">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="w-full h-[1px] bg-white" />
@@ -63,10 +63,9 @@ export default function TrustBuilder() {
             </div>
 
             <svg viewBox="0 0 1000 350" className="w-full h-full overflow-visible">
-              {/* 1. 활동 파트너 인원 (상단 선 - 흰색 점선) 
-                  지사 수보다 월등히 높은 수치를 시각화 (Y값 작게) */}
+              {/* 1. 활동 파트너 인원 (상단 선 - 흰색 점선) - 지사보다 무조건 높은 위치(Y값이 작음) */}
               <motion.path
-                d="M 0 240 L 166 210 L 332 150 L 498 90 L 664 60 L 830 40 L 1000 38"
+                d="M 0 220 L 166 190 L 332 130 L 498 80 L 664 50 L 830 35 L 1000 32"
                 fill="none"
                 stroke="white" 
                 strokeWidth="3"
@@ -76,10 +75,9 @@ export default function TrustBuilder() {
                 transition={{ duration: 1.5, ease: "easeInOut" }}
               />
 
-              {/* 2. 전국 지사 규모 (하단 선 - 브랜드 컬러 실선)
-                  파트너 인원보다 낮은 위치에서 안정적으로 성장 (Y값 크게) */}
+              {/* 2. 전국 지사 규모 (하단 선 - 브랜드 컬러 실선) - 인원 선보다 아래 위치(Y값이 큼) */}
               <motion.path
-                d="M 0 320 L 166 300 L 332 250 L 498 180 L 664 140 L 830 115 L 1000 112"
+                d="M 0 320 L 166 300 L 332 240 L 498 170 L 664 130 L 830 110 L 1000 108"
                 fill="none"
                 stroke="var(--brand-accent)"
                 strokeWidth="6"
@@ -90,24 +88,24 @@ export default function TrustBuilder() {
                 transition={{ duration: 2, ease: "easeOut" }}
               />
 
-              {/* 현재 지점 포인트 - 지사 규모 (브랜드 컬러) */}
+              {/* 현재 지점 포인트 - 지사 규모 (선 끝 좌표인 1000, 108과 완벽 일치) */}
               <motion.circle
-                cx="1000" cy="112" r="8"
+                cx="1000" cy="108" r="8"
                 fill="var(--brand-accent)"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.8 }}
-                className="shadow-[0_0_30px_var(--brand-accent)]"
+                style={{ filter: "drop-shadow(0 0 10px var(--brand-accent))" }}
               />
 
-              {/* 현재 지점 포인트 - 파트너 인원 (화이트) */}
+              {/* 현재 지점 포인트 - 파트너 인원 (선 끝 좌표인 1000, 32와 완벽 일치) */}
               <motion.circle
-                cx="1000" cy="38" r="6"
+                cx="1000" cy="32" r="6"
                 fill="white"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.8 }}
-                className="shadow-[0_0_20px_white]"
+                style={{ filter: "drop-shadow(0 0 8px white)" }}
               />
             </svg>
 
