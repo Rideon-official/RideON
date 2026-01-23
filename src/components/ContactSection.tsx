@@ -55,40 +55,40 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
           
-          {/* 좌측: 제휴 상담 채널 (여백 최적화 버전) */}
+          {/* 좌측: 제휴 상담 채널 (여백을 싹 제거하여 옹골차게 구성) */}
           <div className="lg:col-span-5">
             <FadeUp delay={0.3} className="h-full">
               <div className="flex flex-col h-full p-10 lg:p-14 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-sm">
-                {/* 시인성 높인 흰색 라벨 */}
-                <div className="flex items-center gap-2 mb-8 text-white/70 text-[11px] font-bold tracking-[0.2em] uppercase">
-                  <ShieldCheck className="w-3.5 h-3.5" /> 전문 파트너십 안내
+                {/* 시인성 개선 및 제목과의 간격 축소 */}
+                <div className="flex items-center gap-2 mb-4 text-white/90 text-[11px] font-bold tracking-[0.2em] uppercase">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#FFB800]" /> 전문 파트너십 안내
                 </div>
                 
-                <div className="flex-grow flex flex-col justify-center">
+                <div className="mb-8">
                   <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4 tracking-tight">제휴 및 상담 문의</h3>
-                  <p className="text-white/40 font-light leading-relaxed text-sm lg:text-base mb-8">
+                  <p className="text-white/40 font-light leading-relaxed text-sm lg:text-base">
                     라이드온의 독보적인 인프라와 함께할<br/>
                     비즈니스 파트너의 문의를 기다립니다.
                   </p>
+                </div>
 
-                  {/* 체크 리스트: 여백을 줄여 옹골차게 배치 */}
-                  <div className="space-y-3.5 py-6 border-y border-white/5 mb-8">
-                    <div className="flex items-center gap-3 text-white/60 text-[13px] lg:text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
-                      <span>업계 최장기 무사고 운영 인프라</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-white/60 text-[13px] lg:text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
-                      <span>전담 파트너 매니저 1:1 배정</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-white/60 text-[13px] lg:text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
-                      <span>24시간 이내 제휴 제안 검토</span>
-                    </div>
+                {/* 체크 리스트: 카드 중간에 콤팩트하게 배치 */}
+                <div className="space-y-3 py-6 border-y border-white/5 mb-8">
+                  <div className="flex items-center gap-3 text-white/70 text-[13px] lg:text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
+                    <span>업계 최장기 무사고 운영 인프라</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white/70 text-[13px] lg:text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
+                    <span>전담 파트너 매니저 1:1 배정</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white/70 text-[13px] lg:text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
+                    <span>24시간 이내 제휴 제안 검토</span>
                   </div>
                 </div>
                 
-                <div className="space-y-4">
+                <div className="space-y-4 mt-auto">
                   <a 
                     href="#" 
                     className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-[#FAE100] text-[#371D1E] font-bold transition-transform hover:scale-[1.02] active:scale-[0.98]"
@@ -108,12 +108,12 @@ export default function ContactSection() {
             </FadeUp>
           </div>
 
-          {/* 우측: 파트너십 카테고리 */}
-          <div className="lg:col-span-7 grid grid-cols-1 gap-6">
+          {/* 우측: 파트너십 카테고리 (카드 사이 여백 제거 버전) */}
+          <div className="lg:col-span-7 flex flex-col rounded-[32px] bg-white/[0.02] border border-white/5 overflow-hidden">
             {partnerships.map((item, i) => (
-              <FadeUp key={item.title} delay={0.4 + i * 0.1}>
-                <div className="group flex items-start gap-6 p-8 rounded-3xl bg-white/[0.02] border border-white/5 transition-all hover:bg-white/[0.05] hover:border-[#FFB800]/20">
-                  <div className="p-4 rounded-2xl bg-white/[0.05] group-hover:bg-[#FFB800]/10 transition-colors">
+              <FadeUp key={item.title} delay={0.4 + i * 0.1} className="w-full">
+                <div className={`group flex items-start gap-6 p-8 transition-all hover:bg-white/[0.05] ${i !== partnerships.length - 1 ? 'border-b border-white/5' : ''}`}>
+                  <div className="p-4 rounded-2xl bg-white/[0.05] group-hover:bg-[#FFB800]/10 transition-colors shrink-0">
                     {item.icon}
                   </div>
                   <div>
@@ -129,7 +129,7 @@ export default function ContactSection() {
 
         </div>
 
-        {/* 하단 역사 강조 문구 (2줄 최적화) */}
+        {/* 하단 역사 강조 문구 */}
         <FadeUp delay={0.8}>
           <div className="mt-10 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
             <p className="text-white/80 text-sm lg:text-base font-normal tracking-tight text-center md:text-left leading-relaxed">
