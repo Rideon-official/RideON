@@ -7,12 +7,12 @@ import { FadeUp } from "@/components/ui/MotionWrapper";
 import { MessageCircle, Mail, MapPin, ShieldCheck, Building2, Wrench } from "lucide-react";
 
 export default function ContactSection() {
-  const BRAND_COLOR = "#FFB800"; // 라이드온 브랜드 컬러 (옐로우)
+  const BRAND_COLOR = "#FFB800"; // 라이드온 브랜드 컬러
 
   const partnerships = [
     {
       title: "지사 및 지점 파트너",
-      desc: "국내 최대 업력과 본사가 신뢰하는 1위 네트워크를 기반으로\n성공적인 비즈니스 궤도에 합류할 파트너를 찾습니다.",
+      desc: "국내 최대 업력과 본사 모델의 안착을 지원해온 노하우로\n성공적인 비즈니스 궤도에 합류할 파트너를 찾습니다.",
       icon: <MapPin className="w-5 h-5" style={{ color: BRAND_COLOR }} />,
     },
     {
@@ -22,7 +22,7 @@ export default function ContactSection() {
     },
     {
       title: "기업 비즈니스 제휴",
-      desc: "본사 직계 인프라와 검증된 운영 노하우를 바탕으로 하여\n가장 빠르고 정확한 라스트마일 최적화 솔루션을 제공합니다.",
+      desc: "초기 태동기부터 검증된 운영 역량과 본사 직계 인프라로\n가장 효율적인 라스트마일 최적화 솔루션을 제공합니다.",
       icon: <Building2 className="w-5 h-5" style={{ color: BRAND_COLOR }} />,
     },
   ];
@@ -47,15 +47,15 @@ export default function ContactSection() {
 
           <FadeUp delay={0.3}>
             <BodyText className="mt-8 text-text-body text-sm lg:text-base opacity-70 font-light leading-relaxed max-w-3xl">
-              정확한 데이터는 운영의 투명성을 증명하고, 안정적인 시스템은 협력의 기반이 됩니다. <br className="hidden sm:block" />
-              라이드온은 전국 단위의 견고한 인프라를 통해 물류 현장의 새로운 표준을 구축하고 있습니다.
+              정확한 데이터는 운영의 투명성을 증명하고, 안정적인 시스템은 파트너 성공의 기반이 됩니다. <br className="hidden sm:block" />
+              라이드온은 전국 단위의 견고한 인프라를 통해 라스트마일 배달의 가장 앞선 현장 경험을 제공합니다.
             </BodyText>
           </FadeUp>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
           
-          {/* 좌측: 제휴 상담 채널 (h-full과 flex-1을 활용해 오른쪽 높이와 완벽히 일치시킴) */}
+          {/* 좌측: 제휴 상담 채널 (오른쪽 카드 하단과 높이 완벽 일치) */}
           <div className="lg:col-span-5">
             <FadeUp delay={0.3} className="h-full">
               <div className="flex flex-col h-full p-10 lg:p-16 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-sm">
@@ -63,7 +63,6 @@ export default function ContactSection() {
                   <ShieldCheck className="w-3 h-3" /> 전문 파트너십 안내
                 </div>
                 
-                {/* 텍스트 영역을 위로 밀어내고 버튼을 아래로 배치하기 위해 flex-grow 사용 */}
                 <div className="flex-grow">
                   <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6 tracking-tight">제휴 및 상담 문의</h3>
                   <p className="text-white/50 font-light leading-relaxed text-sm lg:text-base">
@@ -92,7 +91,7 @@ export default function ContactSection() {
             </FadeUp>
           </div>
 
-          {/* 우측: 파트너십 카테고리 */}
+          {/* 우측: 파트너십 카테고리 (내용 2줄 고정) */}
           <div className="lg:col-span-7 grid grid-cols-1 gap-6">
             {partnerships.map((item, i) => (
               <FadeUp key={item.title} delay={0.4 + i * 0.1}>
@@ -113,11 +112,11 @@ export default function ContactSection() {
 
         </div>
 
-        {/* 하단 역사 강조 문구 */}
+        {/* 하단 역사 강조 문구 (확정하신 [수정 제안 A] 반영) */}
         <FadeUp delay={0.8}>
           <div className="mt-10 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
             <p className="text-white/80 text-sm lg:text-base font-normal tracking-tight text-center md:text-left">
-              2022년 강남특공대부터 시작된 라이드온은 본사의 두터운 신뢰를 바탕으로 가장 오래된 업력을 쌓아온 국내 최대 규모의 운영 네트워크입니다.
+              초기 B2B 배달 모델의 태동기부터 현장 중심의 실행력으로 파트너십의 가치를 증명해온 라이드온은, 이제 가장 견고한 업력을 바탕으로 국내 최대 규모의 운영 네트워크를 구축하고 있습니다.
             </p>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#FFB800]/20 bg-[#FFB800]/5 shrink-0">
               <span className="text-[10px] font-bold text-[#FFB800]">RIDE ON UNIVERSE</span>
