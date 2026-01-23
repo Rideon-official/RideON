@@ -60,11 +60,10 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
           
-          {/* 좌측: 제휴 상담 채널 (옹골차게 구성) */}
+          {/* 좌측: 제휴 상담 채널 */}
           <div className="lg:col-span-5">
             <FadeUp delay={0.3} className="h-full">
               <div className="flex flex-col h-full p-10 lg:p-14 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-sm">
-                {/* 시인성 개선 및 제목과의 간격 축소 */}
                 <div className="flex items-center gap-2 mb-4 text-white/90 text-[11px] font-bold tracking-[0.2em] uppercase">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#FFB800]" /> 전문 파트너십 안내
                 </div>
@@ -77,7 +76,6 @@ export default function ContactSection() {
                   </p>
                 </div>
 
-                {/* 체크 리스트: 카드 중간에 콤팩트하게 배치 */}
                 <div className="space-y-3 py-6 border-y border-white/5 mb-8">
                   <div className="flex items-center gap-3 text-white/70 text-[13px] lg:text-sm">
                     <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
@@ -94,17 +92,11 @@ export default function ContactSection() {
                 </div>
                 
                 <div className="space-y-4 mt-auto">
-                  <a 
-                    href="#" 
-                    className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-[#FAE100] text-[#371D1E] font-bold transition-transform hover:scale-[1.02] active:scale-[0.98]"
-                  >
+                  <a href="#" className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-[#FAE100] text-[#371D1E] font-bold transition-transform hover:scale-[1.02] active:scale-[0.98]">
                     <MessageCircle className="w-5 h-5 fill-current" />
                     카카오톡 실시간 상담
                   </a>
-                  <a 
-                    href="mailto:contact@rideon.co.kr" 
-                    className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-white/10 text-white font-bold border border-white/5 transition-all hover:bg-white/20"
-                  >
+                  <a href="mailto:contact@rideon.co.kr" className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-white/10 text-white font-bold border border-white/5 transition-all hover:bg-white/20">
                     <Mail className="w-5 h-5" />
                     공식 제휴 제안서 발송
                   </a>
@@ -113,11 +105,11 @@ export default function ContactSection() {
             </FadeUp>
           </div>
 
-          {/* 우측: 파트너십 카테고리 (순서 재조정 및 여백 제거) */}
+          {/* 우측: 파트너십 카테고리 (상하 여백 py-8로 동일하게 맞춤) */}
           <div className="lg:col-span-7 flex flex-col rounded-[32px] bg-white/[0.02] border border-white/5 overflow-hidden">
             {partnerships.map((item, i) => (
               <FadeUp key={item.title} delay={0.4 + i * 0.1} className="w-full">
-                <div className={`group flex items-start gap-6 p-7 transition-all hover:bg-white/[0.05] ${i !== partnerships.length - 1 ? 'border-b border-white/5' : ''}`}>
+                <div className={`group flex items-start gap-6 px-8 py-8 transition-all hover:bg-white/[0.05] ${i !== partnerships.length - 1 ? 'border-b border-white/5' : ''}`}>
                   <div className="p-4 rounded-2xl bg-white/[0.05] group-hover:bg-[#FFB800]/10 transition-colors shrink-0">
                     {item.icon}
                   </div>
