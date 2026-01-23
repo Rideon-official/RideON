@@ -4,10 +4,10 @@
 import React from "react";
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 import { FadeUp } from "@/components/ui/MotionWrapper";
-import { MessageCircle, Mail, MapPin, ShieldCheck, Building2, Wrench } from "lucide-react";
+import { MessageCircle, Mail, MapPin, ShieldCheck, Building2, Wrench, CheckCircle2 } from "lucide-react";
 
 export default function ContactSection() {
-  const BRAND_COLOR = "#FFB800"; // 라이드온 브랜드 컬러
+  const BRAND_COLOR = "#FFB800";
 
   const partnerships = [
     {
@@ -55,7 +55,7 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
           
-          {/* 좌측: 제휴 상담 채널 (오른쪽 카드 하단과 높이 완벽 일치) */}
+          {/* 좌측: 제휴 상담 채널 (공간을 채우기 위해 배지 요소 추가) */}
           <div className="lg:col-span-5">
             <FadeUp delay={0.3} className="h-full">
               <div className="flex flex-col h-full p-10 lg:p-16 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-sm">
@@ -65,10 +65,26 @@ export default function ContactSection() {
                 
                 <div className="flex-grow">
                   <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6 tracking-tight">제휴 및 상담 문의</h3>
-                  <p className="text-white/50 font-light leading-relaxed text-sm lg:text-base">
+                  <p className="text-white/50 font-light leading-relaxed text-sm lg:text-base mb-12">
                     라이드온의 독보적인 인프라와 함께할<br/>
                     비즈니스 파트너의 문의를 기다립니다.
                   </p>
+
+                  {/* 텅 비어 보이는 공간을 채워줄 신뢰 요소 (Badges) */}
+                  <div className="grid grid-cols-1 gap-4 py-8 border-y border-white/5">
+                    <div className="flex items-center gap-3 text-white/60 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
+                      <span>업계 최장기 무사고 운영 인프라</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-white/60 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
+                      <span>전담 파트너 매니저 1:1 배정</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-white/60 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
+                      <span>24시간 이내 제휴 제안 검토</span>
+                    </div>
+                  </div>
                 </div>
                 
                 <div className="space-y-5 mt-12">
@@ -91,7 +107,7 @@ export default function ContactSection() {
             </FadeUp>
           </div>
 
-          {/* 우측: 파트너십 카테고리 (내용 2줄 고정) */}
+          {/* 우측: 파트너십 카테고리 */}
           <div className="lg:col-span-7 grid grid-cols-1 gap-6">
             {partnerships.map((item, i) => (
               <FadeUp key={item.title} delay={0.4 + i * 0.1}>
@@ -112,11 +128,12 @@ export default function ContactSection() {
 
         </div>
 
-        {/* 하단 역사 강조 문구 (확정하신 [수정 제안 A] 반영) */}
+        {/* 하단 역사 강조 문구 (요청하신 대로 2줄 구성) */}
         <FadeUp delay={0.8}>
           <div className="mt-10 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-white/80 text-sm lg:text-base font-normal tracking-tight text-center md:text-left">
-              초기 B2B 배달 모델의 태동기부터 현장 중심의 실행력으로 파트너십의 가치를 증명해온 라이드온은, 이제 가장 견고한 업력을 바탕으로 국내 최대 규모의 운영 네트워크를 구축하고 있습니다.
+            <p className="text-white/80 text-sm lg:text-base font-normal tracking-tight text-center md:text-left leading-relaxed">
+              초기 B2B 배달 모델의 태동기부터 현장 중심의 실행력으로 파트너십의 가치를 증명해온 라이드온은,<br className="hidden md:block" />
+              이제 가장 견고한 업력을 바탕으로 국내 최대 규모의 운영 네트워크를 구축하고 있습니다.
             </p>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#FFB800]/20 bg-[#FFB800]/5 shrink-0">
               <span className="text-[10px] font-bold text-[#FFB800]">RIDE ON UNIVERSE</span>
