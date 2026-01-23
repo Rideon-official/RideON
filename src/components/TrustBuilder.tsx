@@ -5,7 +5,7 @@ import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 import { FadeUp } from "@/components/ui/MotionWrapper";
 import { motion } from "framer-motion";
 
-const timeline = ["23년 1분기", "23년 3분기", "24년 1분기", "24년 3분기", "25년 1분기", "25년 3분기", "26년 1분기"];
+const timeline = ["23년 상반기", "23년 하반기", "24년 상반기", "24년 하반기", "25년 상반기", "25년 하반기", "26년 상반기"];
 
 export default function TrustBuilder() {
   return (
@@ -47,8 +47,9 @@ export default function TrustBuilder() {
               <span className="text-xs font-bold text-white tracking-tight">전국 지사 규모</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-white/80" />
-              <span className="text-xs font-bold text-white/80 tracking-tight">활동 파트너 인원</span>
+              {/* 활동 파트너 인원 색상을 순수 화이트로 변경하여 눈에 띄게 함 */}
+              <div className="w-3 h-3 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.3)]" />
+              <span className="text-xs font-bold text-white tracking-tight">활동 파트너 인원</span>
             </div>
           </div>
 
@@ -63,21 +64,21 @@ export default function TrustBuilder() {
             </div>
 
             <svg viewBox="0 0 1000 320" className="w-full h-full overflow-visible">
-              {/* 활동 파트너 인원 (보조선 - 밝은 화이트 점선으로 가독성 UP) */}
+              {/* 1. 활동 파트너 인원 (보조선 - 흰색 굵은 점선으로 가시성 극대화) */}
               <motion.path
-                d="M 0 300 L 166 280 L 332 250 L 498 210 L 664 170 L 830 130 L 1000 80"
+                d="M 0 300 L 166 285 L 332 260 L 498 220 L 664 190 L 830 150 L 1000 110"
                 fill="none"
-                stroke="rgba(255,255,255,0.8)"
+                stroke="white" 
                 strokeWidth="3"
-                strokeDasharray="10 6"
+                strokeDasharray="12 8"
                 initial={{ pathLength: 0 }}
                 whileInView={{ pathLength: 1 }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}
               />
 
-              {/* 전국 지사 규모 (주선 - 브랜드 컬러 강조) */}
+              {/* 2. 전국 지사 규모 (주선 - 브랜드 컬러 강조 및 좌표 상향 조정) */}
               <motion.path
-                d="M 0 310 L 166 290 L 332 240 L 498 160 L 664 110 L 830 50 L 1000 15"
+                d="M 0 310 L 166 295 L 332 230 L 498 140 L 664 90 L 830 40 L 1000 10"
                 fill="none"
                 stroke="var(--brand-accent)"
                 strokeWidth="6"
@@ -90,7 +91,7 @@ export default function TrustBuilder() {
 
               {/* 현재 지점 포인트 */}
               <motion.circle
-                cx="1000" cy="15" r="10"
+                cx="1000" cy="10" r="10"
                 fill="var(--brand-accent)"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -99,17 +100,17 @@ export default function TrustBuilder() {
               />
             </svg>
 
-            {/* X축 라벨 */}
+            {/* X축 라벨 - 상반기/하반기 반영 */}
             <div className="absolute -bottom-14 w-full flex justify-between">
               {timeline.map((date) => (
-                <span key={date} className="text-[11px] font-semibold text-white/30 tracking-tighter">
+                <span key={date} className="text-[11px] font-semibold text-white/40 tracking-tighter">
                   {date}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* 우상단 현재 데이터 요약 */}
+          {/* 우상단 현재 데이터 요약 - 2026 1Q STATUS 유지 */}
           <div className="mt-28 lg:mt-0 lg:absolute lg:top-14 lg:right-14 text-left lg:text-right">
             <FadeUp delay={1.2}>
               <div className="text-[10px] text-brand-accent font-black mb-3 tracking-[0.2em]">2026 1Q STATUS</div>
