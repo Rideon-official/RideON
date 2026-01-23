@@ -2,102 +2,107 @@
 "use client";
 
 import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
+import { FadeUp } from "@/components/ui/MotionWrapper";
 
 const kpis = [
   {
-    label: "전국 지부",
-    value: "25개+",
-    desc: "주요 권역을 기준으로 운영되는 지부 네트워크",
+    label: "전국 지사",
+    value: "30개",
+    desc: "주요 권역별로 촘촘하게 구축된 운영 네트워크",
   },
   {
     label: "정산 정확도",
     value: "99.9%",
-    desc: "표준화된 프로세스로 관리되는 월별 정산 내역",
+    desc: "표준화된 시스템으로 관리되는 투명한 정산 프로세스",
   },
   {
-    label: "활동 라이더",
-    value: "1,200+",
-    desc: "전국에서 활동 중인 RIDE ON 라이더",
+    label: "실운행 라이더",
+    value: "1,500+",
+    desc: "전국에서 신뢰를 바탕으로 활동 중인 RIDE ON 파트너",
   },
 ];
 
 export default function TrustBuilder() {
   return (
     <section className="bg-transparent">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-section-y md:py-section-y-lg">
-        {/* Header */}
-        <header className="max-w-3xl">
-          <Eyebrow className="text-brand-primary">
-            TRUST &amp; DATA
-          </Eyebrow>
+      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-24">
+        {/* Header 영역 - 히어로 섹션과 폰트 위계 통일 */}
+        <header className="max-w-3xl mb-16">
+          <FadeUp delay={0.1}>
+            {/* 부제목: 한글로 변경 및 히어로 섹션 Eyebrow 스타일 적용 */}
+            <Eyebrow className="text-brand-accent font-black tracking-wider text-[10px] lg:text-xs mb-3">
+              신뢰와 데이터
+            </Eyebrow>
+          </FadeUp>
 
-          <Heading
-            level={2}
-            align="left"
-            className="mt-3 text-text-heading"
-          >
-            운영 데이터와 현장의 목소리로
-            <br className="hidden md:block" />
-            신뢰를 증명합니다.
-          </Heading>
+          <FadeUp delay={0.2}>
+            {/* 제목: 히어로 섹션과 유사한 굵기(font-black) 적용 */}
+            <Heading
+              level={2}
+              align="left"
+              className="text-[28px] lg:text-[40px] font-black tracking-tighter leading-tight m-0 text-white"
+            >
+              운영 데이터와 현장의 목소리로 <br className="hidden md:block" />
+              RIDE ON의 가치를 증명합니다.
+            </Heading>
+          </FadeUp>
 
-          <BodyText className="mt-3 text-text-muted">
-            숫자는 운영의 안정성을, 후기는 실제 현장의 신뢰를 보여줍니다.
-            RIDE ON은 지부와 라이더 모두가 안심하고 성장할 수 있는 환경을 만드는 것을
-            가장 중요한 가치로 두고 있습니다.
-          </BodyText>
+          <FadeUp delay={0.3}>
+            <BodyText className="mt-6 text-text-body text-xs lg:text-sm leading-relaxed opacity-80 max-w-2xl">
+              숫자는 운영의 안정성을, 후기는 실제 현장의 신뢰를 보여줍니다. <br className="hidden sm:block" />
+              라이드온은 지사와 라이더 모두가 안심하고 성장할 수 있는 물류 인프라를 만듭니다.
+            </BodyText>
+          </FadeUp>
         </header>
 
-        {/* KPI 3개 */}
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {kpis.map((item) => (
-            <div
-              key={item.label}
-              className="rounded-2xl border border-slate-200/70 bg-surface-subtle px-5 py-6 shadow-sm"
-            >
-              <div className="text-xs font-semibold uppercase tracking-widest2 text-text-muted">
-                {item.label}
+        {/* KPI 섹션 - 히어로 섹션의 Stat 스타일과 일치 */}
+        <div className="grid gap-6 sm:grid-cols-3 mb-16">
+          {kpis.map((item, i) => (
+            <FadeUp key={item.label} delay={0.4 + i * 0.1}>
+              <div className="rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm px-6 py-8 transition-all hover:bg-white/10">
+                <div className="text-[10px] lg:text-[11px] text-text-body font-bold tracking-tighter opacity-50 uppercase mb-3">
+                  {item.label}
+                </div>
+                <div className="text-2xl lg:text-3xl font-black font-mono text-brand-accent">
+                  {item.value}
+                </div>
+                <p className="mt-3 text-xs text-text-body opacity-70 leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
-              <div className="mt-3 text-2xl font-semibold text-brand-accent font-mono">
-                {item.value}
-              </div>
-              <p className="mt-2 text-sm text-text-muted">
-                {item.desc}
-              </p>
-            </div>
+            </FadeUp>
           ))}
         </div>
 
-        {/* 후기 카드 2개 */}
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          <article className="relative rounded-2xl border border-slate-200/80 bg-surface-subtle px-6 py-7 shadow-sm">
-            <div className="mb-3 text-3xl leading-none text-brand-secondary">
-              “
-            </div>
-            <p className="text-sm leading-relaxed text-text-body">
-              RIDE ON과 함께한 뒤로 정산 스트레스가 사라졌습니다. 월말·월초에
-              정산 내역을 다시 확인해야 하는 일이 거의 없고, 문제가 생겨도 본사에서
-              데이터를 바로 공유해 주기 때문에 지부 운영에만 집중할 수 있습니다.
-            </p>
-            <div className="mt-5 text-xs font-semibold text-text-muted">
-              부산 지부장 박OO
-            </div>
-          </article>
+        {/* 후기 섹션 - 다크 모드에 최적화된 카드 디자인 */}
+        <div className="grid gap-6 md:grid-cols-2">
+          <FadeUp delay={0.7}>
+            <article className="relative h-full rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm px-8 py-10">
+              <div className="mb-4 text-3xl font-black text-brand-accent opacity-50">“</div>
+              <p className="text-sm lg:text-base leading-relaxed text-text-body font-medium">
+                RIDE ON과 함께한 뒤로 정산 스트레스가 사라졌습니다. 월말·월초에
+                정산 내역을 다시 확인해야 하는 일이 거의 없고, 모든 데이터가 투명하게 공유되어 지부 운영에만 집중할 수 있습니다.
+              </p>
+              <div className="mt-8 flex items-center gap-3">
+                <div className="w-8 h-[1px] bg-brand-accent/30" />
+                <span className="text-[11px] font-bold text-text-body opacity-60">부산 지사 지사장 박OO</span>
+              </div>
+            </article>
+          </FadeUp>
 
-          <article className="relative rounded-2xl border border-slate-200/80 bg-surface-subtle px-6 py-7 shadow-sm">
-            <div className="mb-3 text-3xl leading-none text-brand-secondary">
-              “
-            </div>
-            <p className="text-sm leading-relaxed text-text-body">
-              처음 배달 일을 시작할 때 가장 걱정됐던 건 정산과 사고 처리였는데,
-              RIDE ON에서는 교육 과정에서부터 상황별 대응 방법을 자세히 알려주고
-              실제로 문제가 생겼을 때도 지부와 본사가 함께 도와줘서 혼자라는 느낌이
-              들지 않습니다.
-            </p>
-            <div className="mt-5 text-xs font-semibold text-text-muted">
-              수도권 전담 라이더 김OO
-            </div>
-          </article>
+          <FadeUp delay={0.8}>
+            <article className="relative h-full rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm px-8 py-10">
+              <div className="mb-4 text-3xl font-black text-brand-accent opacity-50">“</div>
+              <p className="text-sm lg:text-base leading-relaxed text-text-body font-medium">
+                처음 일을 시작할 때 가장 걱정됐던 건 사고 처리와 정산이었는데,
+                RIDE ON은 교육부터 현장 지원까지 체계적입니다. 지부와 본사가 함께 도와주니 라이더로서 존중받으며 일한다는 느낌을 받습니다.
+              </p>
+              <div className="mt-8 flex items-center gap-3">
+                <div className="w-8 h-[1px] bg-brand-accent/30" />
+                <span className="text-[11px] font-bold text-text-body opacity-60">수도권 전담 라이더 김OO</span>
+              </div>
+            </article>
+          </FadeUp>
         </div>
       </div>
     </section>
