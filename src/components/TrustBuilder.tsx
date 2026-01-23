@@ -40,33 +40,33 @@ export default function TrustBuilder() {
         {/* Chart Section */}
         <div className="relative w-full bg-white/[0.03] rounded-[40px] border border-white/10 p-8 lg:p-14 backdrop-blur-sm">
           
-          {/* 범례 - 색상 및 가독성 강화 */}
+          {/* 범례 */}
           <div className="flex gap-8 mb-16">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-brand-accent shadow-[0_0_12px_rgba(var(--brand-accent-rgb),0.5)]" />
               <span className="text-xs font-bold text-white tracking-tight">전국 지사 규모</span>
             </div>
             <div className="flex items-center gap-3">
-              {/* 활동 파트너 인원 색상을 순수 화이트로 변경하여 눈에 띄게 함 */}
               <div className="w-3 h-3 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.3)]" />
               <span className="text-xs font-bold text-white tracking-tight">활동 파트너 인원</span>
             </div>
           </div>
 
           {/* 그래프 영역 */}
-          <div className="relative h-[320px] w-full flex items-end px-2">
+          <div className="relative h-[350px] w-full flex items-end px-2">
             
             {/* 가이드 라인 */}
             <div className="absolute inset-0 flex flex-col justify-between opacity-[0.05]">
-              {[...Array(5)].map((_, i) => (
+              {[...Array(6)].map((_, i) => (
                 <div key={i} className="w-full h-[1px] bg-white" />
               ))}
             </div>
 
-            <svg viewBox="0 0 1000 320" className="w-full h-full overflow-visible">
-              {/* 1. 활동 파트너 인원 (보조선 - 흰색 굵은 점선으로 가시성 극대화) */}
+            <svg viewBox="0 0 1000 350" className="w-full h-full overflow-visible">
+              {/* 1. 활동 파트너 인원 (상단 선 - 흰색 점선) 
+                  지사보다 훨씬 많은 인원을 표현하기 위해 Y축 값을 작게(위쪽) 설정 */}
               <motion.path
-                d="M 0 300 L 166 285 L 332 260 L 498 220 L 664 190 L 830 150 L 1000 110"
+                d="M 0 250 L 166 220 L 332 170 L 498 110 L 664 70 L 830 50 L 1000 45"
                 fill="none"
                 stroke="white" 
                 strokeWidth="3"
@@ -76,9 +76,10 @@ export default function TrustBuilder() {
                 transition={{ duration: 1.5, ease: "easeInOut" }}
               />
 
-              {/* 2. 전국 지사 규모 (주선 - 브랜드 컬러 강조 및 좌표 상향 조정) */}
+              {/* 2. 전국 지사 규모 (하단 선 - 브랜드 컬러 실선)
+                  상대적으로 적은 수치를 표현하기 위해 Y축 값을 크게(아래쪽) 설정 */}
               <motion.path
-                d="M 0 310 L 166 295 L 332 230 L 498 140 L 664 90 L 830 40 L 1000 10"
+                d="M 0 320 L 166 300 L 332 260 L 498 200 L 664 160 L 830 130 L 1000 125"
                 fill="none"
                 stroke="var(--brand-accent)"
                 strokeWidth="6"
@@ -89,18 +90,28 @@ export default function TrustBuilder() {
                 transition={{ duration: 2, ease: "easeOut" }}
               />
 
-              {/* 현재 지점 포인트 */}
+              {/* 현재 지점 포인트 (지사 규모 끝점) */}
               <motion.circle
-                cx="1000" cy="10" r="10"
+                cx="1000" cy="125" r="8"
                 fill="var(--brand-accent)"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.8 }}
                 className="shadow-[0_0_30px_var(--brand-accent)]"
               />
+
+              {/* 현재 지점 포인트 (파트너 인원 끝점) */}
+              <motion.circle
+                cx="1000" cy="45" r="6"
+                fill="white"
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.8 }}
+                className="shadow-[0_0_20px_white]"
+              />
             </svg>
 
-            {/* X축 라벨 - 상반기/하반기 반영 */}
+            {/* X축 라벨 */}
             <div className="absolute -bottom-14 w-full flex justify-between">
               {timeline.map((date) => (
                 <span key={date} className="text-[11px] font-semibold text-white/40 tracking-tighter">
@@ -110,7 +121,7 @@ export default function TrustBuilder() {
             </div>
           </div>
 
-          {/* 우상단 현재 데이터 요약 - 2026 1Q STATUS 유지 */}
+          {/* 우상단 현재 데이터 요약 */}
           <div className="mt-28 lg:mt-0 lg:absolute lg:top-14 lg:right-14 text-left lg:text-right">
             <FadeUp delay={1.2}>
               <div className="text-[10px] text-brand-accent font-black mb-3 tracking-[0.2em]">2026 1Q STATUS</div>
@@ -120,7 +131,7 @@ export default function TrustBuilder() {
           </div>
         </div>
 
-        {/* 하단 설명 - 1줄로 통합 */}
+        {/* 하단 설명 - 1줄 */}
         <FadeUp delay={0.6}>
           <p className="mt-24 text-text-body text-xs lg:text-sm opacity-50 font-light tracking-tight text-center lg:text-left">
             라이드온은 2023년 런칭 이후 매 분기 폭발적인 성장을 기록하며, 단순한 숫자를 넘어 데이터로 그 신뢰를 증명하고 있습니다.
