@@ -1,7 +1,7 @@
 // src/components/TrustBuilder.tsx
 "use client";
 
-import { Heading, Eyebrow } from "@/components/ui/typography";
+import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 import { FadeUp } from "@/components/ui/MotionWrapper";
 import { motion } from "framer-motion";
 
@@ -12,8 +12,8 @@ export default function TrustBuilder() {
     <section className="bg-transparent overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-6 py-32">
         
-        {/* Header - 무조건 1줄 */}
-        <header className="mb-20 text-left">
+        {/* Header - 제목 1줄 + 설명 2줄 */}
+        <header className="mb-20">
           <FadeUp delay={0.1}>
             <Eyebrow className="text-brand-accent font-normal text-[10px] lg:text-xs mb-6 opacity-80">
               신뢰와 데이터
@@ -28,59 +28,59 @@ export default function TrustBuilder() {
               현장에서 검증된 압도적 지표
             </Heading>
           </FadeUp>
+
+          <FadeUp delay={0.3}>
+            <BodyText className="mt-8 text-text-body text-sm lg:text-base opacity-70 font-light leading-relaxed max-w-3xl">
+              숫자는 운영의 안정성을, 후기는 실제 현장의 신뢰를 보여줍니다. <br className="hidden sm:block" />
+              라이드온은 지사와 라이더 모두가 안심하고 성장할 수 있는 물류 인프라를 만듭니다.
+            </BodyText>
+          </FadeUp>
         </header>
 
         {/* Chart Section */}
-        <div className="relative w-full bg-white/[0.02] rounded-[32px] border border-white/5 p-8 lg:p-12">
+        <div className="relative w-full bg-white/[0.03] rounded-[40px] border border-white/10 p-8 lg:p-14 backdrop-blur-sm">
           
-          {/* 범례 - 한글화 */}
+          {/* 범례 - 색상 및 가독성 강화 */}
           <div className="flex gap-8 mb-16">
-            <div className="flex items-center gap-2.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-brand-accent shadow-[0_0_8px_var(--brand-accent)]" />
-              <span className="text-xs font-medium text-white/70 uppercase tracking-tight">전국 지사 규모</span>
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-brand-accent shadow-[0_0_12px_rgba(var(--brand-accent-rgb),0.5)]" />
+              <span className="text-xs font-bold text-white tracking-tight">전국 지사 규모</span>
             </div>
-            <div className="flex items-center gap-2.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
-              <span className="text-xs font-medium text-white/40 uppercase tracking-tight">활동 파트너 인원</span>
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-white/80" />
+              <span className="text-xs font-bold text-white/80 tracking-tight">활동 파트너 인원</span>
             </div>
           </div>
 
           {/* 그래프 영역 */}
-          <div className="relative h-[300px] w-full flex items-end px-4">
+          <div className="relative h-[320px] w-full flex items-end px-2">
             
-            {/* 가로 그리드 라인 */}
-            <div className="absolute inset-0 flex flex-col justify-between opacity-[0.03]">
+            {/* 가이드 라인 */}
+            <div className="absolute inset-0 flex flex-col justify-between opacity-[0.05]">
               {[...Array(5)].map((_, i) => (
                 <div key={i} className="w-full h-[1px] bg-white" />
               ))}
             </div>
 
-            <svg viewBox="0 0 1000 300" className="w-full h-full overflow-visible">
-              <defs>
-                <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="var(--brand-accent)" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="var(--brand-accent)" stopOpacity="1" />
-                </linearGradient>
-              </defs>
-
-              {/* 활동 파트너 인원 (보조선 - 점선으로 처리하여 겹침 방지) */}
+            <svg viewBox="0 0 1000 320" className="w-full h-full overflow-visible">
+              {/* 활동 파트너 인원 (보조선 - 밝은 화이트 점선으로 가독성 UP) */}
               <motion.path
-                d="M 0 280 L 166 260 L 332 230 L 498 190 L 664 160 L 830 130 L 1000 90"
+                d="M 0 300 L 166 280 L 332 250 L 498 210 L 664 170 L 830 130 L 1000 80"
                 fill="none"
-                stroke="rgba(255,255,255,0.15)"
-                strokeWidth="2"
-                strokeDasharray="8 6"
+                stroke="rgba(255,255,255,0.8)"
+                strokeWidth="3"
+                strokeDasharray="10 6"
                 initial={{ pathLength: 0 }}
                 whileInView={{ pathLength: 1 }}
-                transition={{ duration: 1.5, ease: "linear" }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
               />
 
-              {/* 전국 지사 규모 (주선 - 더 굵고 선명하게) */}
+              {/* 전국 지사 규모 (주선 - 브랜드 컬러 강조) */}
               <motion.path
-                d="M 0 290 L 166 275 L 332 240 L 498 150 L 664 110 L 830 60 L 1000 20"
+                d="M 0 310 L 166 290 L 332 240 L 498 160 L 664 110 L 830 50 L 1000 15"
                 fill="none"
-                stroke="url(#lineGradient)"
-                strokeWidth="5"
+                stroke="var(--brand-accent)"
+                strokeWidth="6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 initial={{ pathLength: 0 }}
@@ -88,42 +88,41 @@ export default function TrustBuilder() {
                 transition={{ duration: 2, ease: "easeOut" }}
               />
 
-              {/* 끝점 강조 포인트 */}
+              {/* 현재 지점 포인트 */}
               <motion.circle
-                cx="1000" cy="20" r="8"
+                cx="1000" cy="15" r="10"
                 fill="var(--brand-accent)"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.8 }}
-                className="shadow-[0_0_25px_var(--brand-accent)]"
+                className="shadow-[0_0_30px_var(--brand-accent)]"
               />
             </svg>
 
-            {/* X축 라벨 - 한글 분기 단위 */}
-            <div className="absolute -bottom-12 w-full flex justify-between">
+            {/* X축 라벨 */}
+            <div className="absolute -bottom-14 w-full flex justify-between">
               {timeline.map((date) => (
-                <span key={date} className="text-[10px] lg:text-[11px] font-medium text-white/30 tracking-tighter">
+                <span key={date} className="text-[11px] font-semibold text-white/30 tracking-tighter">
                   {date}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* 현재 시점 요약 (26년 1분기 데이터) */}
-          <div className="mt-24 lg:mt-0 lg:absolute lg:top-12 lg:right-12 text-left lg:text-right">
+          {/* 우상단 현재 데이터 요약 */}
+          <div className="mt-28 lg:mt-0 lg:absolute lg:top-14 lg:right-14 text-left lg:text-right">
             <FadeUp delay={1.2}>
-              <div className="text-[10px] text-brand-accent font-bold mb-2 tracking-widest">현재 기준 (26년 1분기)</div>
-              <div className="text-4xl lg:text-5xl font-black text-white tracking-tighter mb-2">30개 지사 돌파</div>
-              <div className="text-sm lg:text-base text-white/40 font-light">전국 1,500명 이상의 파트너와 함께합니다</div>
+              <div className="text-[10px] text-brand-accent font-black mb-3 tracking-[0.2em]">2026 1Q STATUS</div>
+              <div className="text-5xl lg:text-6xl font-black text-white tracking-tighter mb-3">30개 지사</div>
+              <div className="text-base lg:text-lg text-white/50 font-light">전국 1,500명 이상의 파트너 활동 중</div>
             </FadeUp>
           </div>
         </div>
 
-        {/* 추가 설명 */}
+        {/* 하단 설명 - 1줄로 통합 */}
         <FadeUp delay={0.6}>
-          <p className="mt-16 text-text-body text-xs lg:text-sm opacity-40 font-light leading-relaxed max-w-2xl">
-            라이드온은 2023년 서비스 런칭 이후 매 분기 폭발적인 성장을 기록하고 있습니다. <br className="hidden md:block" />
-            단순한 숫자 이상의 신뢰를 데이터로 증명하며, 더 넓은 인프라를 향해 나아갑니다.
+          <p className="mt-24 text-text-body text-xs lg:text-sm opacity-50 font-light tracking-tight text-center lg:text-left">
+            라이드온은 2023년 런칭 이후 매 분기 폭발적인 성장을 기록하며, 단순한 숫자를 넘어 데이터로 그 신뢰를 증명하고 있습니다.
           </p>
         </FadeUp>
 
