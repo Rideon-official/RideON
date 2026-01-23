@@ -6,11 +6,11 @@ import { FadeUp } from "@/components/ui/MotionWrapper";
 import { motion } from "framer-motion";
 
 /**
- * 데이터 설정부: 수정이 훨씬 간편해졌습니다.
+ * 데이터 설정부
  */
 const timeline = ["23년 상반기", "23년 하반기", "24년 상반기", "24년 하반기", "25년 상반기", "25년 하반기", "26년 상반기"];
-const branchValues = [3, 12, 18, 24, 28, 29, 30];      // 23년 상반기 지사 규모 3으로 수정
-const riderValues = [100, 580, 850, 1100, 1380, 1450, 1500]; // 23년 상반기 기사수 100명으로 수정
+const branchValues = [3, 12, 18, 24, 28, 29, 30];
+const riderValues = [100, 580, 850, 1100, 1380, 1450, 1500];
 
 export default function TrustBuilder() {
   const BRAND_COLOR = "#FFB800"; 
@@ -28,8 +28,8 @@ export default function TrustBuilder() {
     <section className="bg-transparent overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-6 py-32">
         
-        {/* Header - 설명 문구 '후기' 삭제 및 재구성 */}
-        <header className="mb-20">
+        {/* Header */}
+        <header className="mb-12"> {/* mb-20에서 mb-12로 줄여 표와 더 가깝게 조정 */}
           <FadeUp delay={0.1}>
             <Eyebrow className="text-[#FFB800] font-normal text-[10px] lg:text-xs mb-6 opacity-90">
               신뢰를 만드는 데이터
@@ -56,7 +56,7 @@ export default function TrustBuilder() {
         {/* Chart Section */}
         <div className="relative w-full bg-white/[0.03] rounded-[40px] border border-white/10 p-8 lg:p-14 backdrop-blur-sm">
           
-          <div className="flex gap-8 mb-20">
+          <div className="flex gap-8 mb-16">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full" style={{ backgroundColor: BRAND_COLOR, boxShadow: `0 0 10px ${BRAND_COLOR}` }} />
               <span className="text-xs font-bold text-white tracking-tight">전국 지사 규모</span>
@@ -131,10 +131,8 @@ export default function TrustBuilder() {
             </div>
           </div>
 
-          {/* 우상단 현황 - 폰트 크기 및 굵기 조정 */}
           <div className="mt-28 lg:mt-0 lg:absolute lg:top-14 lg:right-14 text-left lg:text-right">
             <FadeUp delay={1.2}>
-              {/* 글자 크게(text-xl), 굵기 제거(font-light) */}
               <div className="text-xl lg:text-2xl font-light mb-4 tracking-tight" style={{ color: BRAND_COLOR }}>
                 2026년 상반기 운영 현황
               </div>
@@ -144,10 +142,10 @@ export default function TrustBuilder() {
           </div>
         </div>
 
-        {/* 하단 한 줄 문구 - 간격 조정(mt-16) 및 문장 재구성 */}
+        {/* 하단 한 줄 문구 - 여백 축소(mt-10), 흰색(text-white/80), 크기 확대(text-sm lg:text-base) */}
         <FadeUp delay={0.6}>
-          <p className="mt-16 text-text-body text-xs lg:text-sm opacity-50 font-light tracking-tight text-center lg:text-left">
-            라이드온은 2023년 첫 발을 내딛은 이후, 지속적인 인프라 확장을 통해 단순한 지표 이상의 신뢰를 데이터로 직접 증명하고 있습니다.
+          <p className="mt-10 text-white/80 text-sm lg:text-base font-normal tracking-tight text-center lg:text-left">
+            2022년 강남특공대부터 시작된 라이드온은 본사의 두터운 신뢰를 바탕으로 가장 오래된 업력을 쌓아온 국내 최대 규모의 운영 인프라입니다.
           </p>
         </FadeUp>
       </div>
