@@ -55,49 +55,50 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
           
-          {/* 좌측: 제휴 상담 채널 (공간을 채우기 위해 배지 요소 추가) */}
+          {/* 좌측: 제휴 상담 채널 (간격 및 색상 최적화) */}
           <div className="lg:col-span-5">
             <FadeUp delay={0.3} className="h-full">
-              <div className="flex flex-col h-full p-10 lg:p-16 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-sm">
-                <div className="flex items-center gap-2 mb-10 text-white/40 text-[10px] font-bold tracking-widest uppercase">
-                  <ShieldCheck className="w-3 h-3" /> 전문 파트너십 안내
+              <div className="flex flex-col h-full p-10 lg:p-14 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+                {/* 텍스트 흰색 계열로 변경 및 간격 조정 */}
+                <div className="flex items-center gap-2 mb-8 text-white/60 text-[11px] font-bold tracking-[0.2em] uppercase">
+                  <ShieldCheck className="w-3.5 h-3.5" /> 전문 파트너십 안내
                 </div>
                 
-                <div className="flex-grow">
-                  <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6 tracking-tight">제휴 및 상담 문의</h3>
-                  <p className="text-white/50 font-light leading-relaxed text-sm lg:text-base mb-12">
+                <div className="flex-grow flex flex-col">
+                  <h3 className="text-3xl lg:text-4xl font-bold text-white mb-5 tracking-tight">제휴 및 상담 문의</h3>
+                  <p className="text-white/40 font-light leading-relaxed text-sm lg:text-base mb-10">
                     라이드온의 독보적인 인프라와 함께할<br/>
                     비즈니스 파트너의 문의를 기다립니다.
                   </p>
 
-                  {/* 텅 비어 보이는 공간을 채워줄 신뢰 요소 (Badges) */}
-                  <div className="grid grid-cols-1 gap-4 py-8 border-y border-white/5">
-                    <div className="flex items-center gap-3 text-white/60 text-sm">
+                  {/* 배지 영역: 간격 최적화 */}
+                  <div className="grid grid-cols-1 gap-5 py-8 border-y border-white/5 my-auto">
+                    <div className="flex items-center gap-3 text-white/70 text-[13px] lg:text-sm">
                       <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
                       <span>업계 최장기 무사고 운영 인프라</span>
                     </div>
-                    <div className="flex items-center gap-3 text-white/60 text-sm">
+                    <div className="flex items-center gap-3 text-white/70 text-[13px] lg:text-sm">
                       <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
                       <span>전담 파트너 매니저 1:1 배정</span>
                     </div>
-                    <div className="flex items-center gap-3 text-white/60 text-sm">
+                    <div className="flex items-center gap-3 text-white/70 text-[13px] lg:text-sm">
                       <CheckCircle2 className="w-4 h-4 text-[#FFB800]" />
                       <span>24시간 이내 제휴 제안 검토</span>
                     </div>
                   </div>
                 </div>
                 
-                <div className="space-y-5 mt-12">
+                <div className="space-y-4 mt-10">
                   <a 
                     href="#" 
-                    className="flex items-center justify-center gap-3 w-full py-6 rounded-2xl bg-[#FAE100] text-[#371D1E] font-bold transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-[#FAE100] text-[#371D1E] font-bold transition-transform hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <MessageCircle className="w-5 h-5 fill-current" />
                     카카오톡 실시간 상담
                   </a>
                   <a 
                     href="mailto:contact@rideon.co.kr" 
-                    className="flex items-center justify-center gap-3 w-full py-6 rounded-2xl bg-white/10 text-white font-bold border border-white/5 transition-all hover:bg-white/20"
+                    className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-white/10 text-white font-bold border border-white/5 transition-all hover:bg-white/20"
                   >
                     <Mail className="w-5 h-5" />
                     공식 제휴 제안서 발송
@@ -128,7 +129,7 @@ export default function ContactSection() {
 
         </div>
 
-        {/* 하단 역사 강조 문구 (요청하신 대로 2줄 구성) */}
+        {/* 하단 역사 강조 문구 (2줄 최적화) */}
         <FadeUp delay={0.8}>
           <div className="mt-10 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
             <p className="text-white/80 text-sm lg:text-base font-normal tracking-tight text-center md:text-left leading-relaxed">
