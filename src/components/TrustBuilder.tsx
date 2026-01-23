@@ -8,17 +8,17 @@ import { motion } from "framer-motion";
 const timeline = ["23년 상반기", "23년 하반기", "24년 상반기", "24년 하반기", "25년 상반기", "25년 하반기", "26년 상반기"];
 
 export default function TrustBuilder() {
-  // 브랜드 컬러 강제 지정
-  const BRAND_COLOR = "#FF5C00";
+  // 라이드온의 진짜 브랜드 컬러 (#FFB800)
+  const BRAND_COLOR = "#FFB800";
 
   return (
     <section className="bg-transparent overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-6 py-32">
         
-        {/* Header */}
+        {/* Header - 요청하신 텍스트로 수정 완료 */}
         <header className="mb-20">
           <FadeUp delay={0.1}>
-            <Eyebrow className="text-brand-accent font-normal text-[10px] lg:text-xs mb-6 opacity-80">
+            <Eyebrow className="text-[#FFB800] font-normal text-[10px] lg:text-xs mb-6 opacity-90">
               신뢰를 만드는 데이터
             </Eyebrow>
           </FadeUp>
@@ -40,27 +40,26 @@ export default function TrustBuilder() {
           </FadeUp>
         </header>
 
-        {/* Chart Section */}
+        {/* 차트 박스 */}
         <div className="relative w-full bg-white/[0.03] rounded-[40px] border border-white/10 p-8 lg:p-14 backdrop-blur-sm">
           
-          {/* 범례 */}
+          {/* 범례 - 브랜드색 동그라미 복구 */}
           <div className="flex gap-8 mb-16">
             <div className="flex items-center gap-3">
               <div 
-                className="w-3 h-3 rounded-full" 
-                style={{ backgroundColor: BRAND_COLOR, boxShadow: `0 0 12px ${BRAND_COLOR}80` }} 
+                className="w-3.5 h-3.5 rounded-full" 
+                style={{ backgroundColor: BRAND_COLOR, boxShadow: `0 0 15px ${BRAND_COLOR}60` }} 
               />
               <span className="text-xs font-bold text-white tracking-tight">전국 지사 규모</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.4)]" />
+              <div className="w-3.5 h-3.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
               <span className="text-xs font-bold text-white tracking-tight">활동 파트너 인원</span>
             </div>
           </div>
 
-          {/* 그래프 영역 */}
           <div className="relative h-[350px] w-full flex items-end px-2">
-            
+            {/* 가이드 라인 */}
             <div className="absolute inset-0 flex flex-col justify-between opacity-[0.05]">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="w-full h-[1px] bg-white" />
@@ -68,9 +67,9 @@ export default function TrustBuilder() {
             </div>
 
             <svg viewBox="0 0 1000 350" className="w-full h-full overflow-visible">
-              {/* 1. 활동 파트너 인원 (상단 흰색 점선) */}
+              {/* 1. 활동 파트너 인원 (상단 선 - 흰색 점선) / 좌표: 위쪽 */}
               <motion.path
-                d="M 0 220 L 166 180 L 332 120 L 498 80 L 664 60 L 830 50 L 1000 48"
+                d="M 0 240 L 166 210 L 332 150 L 498 90 L 664 60 L 830 50 L 1000 45"
                 fill="none"
                 stroke="white" 
                 strokeWidth="3"
@@ -80,9 +79,9 @@ export default function TrustBuilder() {
                 transition={{ duration: 1.5, ease: "easeInOut" }}
               />
 
-              {/* 2. 전국 지사 규모 (하단 브랜드색 실선) */}
+              {/* 2. 전국 지사 규모 (하단 선 - 브랜드 컬러 실선) / 좌표: 아래쪽 */}
               <motion.path
-                d="M 0 320 L 166 300 L 332 250 L 498 180 L 664 150 L 830 135 L 1000 132"
+                d="M 0 320 L 166 300 L 332 260 L 498 190 L 664 160 L 830 145 L 1000 142"
                 fill="none"
                 stroke={BRAND_COLOR} 
                 strokeWidth="6"
@@ -93,38 +92,38 @@ export default function TrustBuilder() {
                 transition={{ duration: 2, ease: "easeOut" }}
               />
 
-              {/* 끝점 포인트 - 지사 */}
+              {/* 끝점 포인트 - 지사 규모 (좌표: 1000, 142) */}
               <motion.circle
-                cx="1000" cy="132" r="8"
+                cx="1000" cy="142" r="8"
                 fill={BRAND_COLOR}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.8 }}
-                style={{ filter: `drop-shadow(0 0 20px ${BRAND_COLOR})` }}
+                style={{ filter: `drop-shadow(0 0 15px ${BRAND_COLOR})` }}
               />
 
-              {/* 끝점 포인트 - 인원 */}
+              {/* 끝점 포인트 - 파트너 인원 (좌표: 1000, 45) */}
               <motion.circle
-                cx="1000" cy="48" r="6"
+                cx="1000" cy="45" r="6"
                 fill="white"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.8 }}
-                style={{ filter: "drop-shadow(0 0 15px white)" }}
+                style={{ filter: "drop-shadow(0 0 10px white)" }}
               />
             </svg>
 
             {/* X축 라벨 */}
             <div className="absolute -bottom-14 w-full flex justify-between px-2">
               {timeline.map((date) => (
-                <span key={date} className="text-[11px] font-semibold text-white/30 tracking-tighter">
+                <span key={date} className="text-[11px] font-semibold text-white/40 tracking-tighter">
                   {date}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* 요약 텍스트 */}
+          {/* 우상단 현황 요약 */}
           <div className="mt-28 lg:mt-0 lg:absolute lg:top-14 lg:right-14 text-left lg:text-right">
             <FadeUp delay={1.2}>
               <div className="text-[10px] font-black mb-3 tracking-[0.2em]" style={{ color: BRAND_COLOR }}>
