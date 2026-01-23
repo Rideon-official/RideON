@@ -5,17 +5,34 @@ import { Heading, BodyText, Eyebrow } from "@/components/ui/typography";
 import { FadeUp } from "@/components/ui/MotionWrapper";
 import { motion } from "framer-motion";
 
+/**
+ * 데이터 설정부: 이 숫자들만 수정하면 그래프가 자동으로 업데이트됩니다.
+ */
 const timeline = ["23년 상반기", "23년 하반기", "24년 상반기", "24년 하반기", "25년 상반기", "25년 하반기", "26년 상반기"];
+const branchValues = [5, 12, 18, 24, 28, 29, 30];      // 전국 지사 수
+const riderValues = [250, 580, 850, 1100, 1380, 1450, 1500]; // 활동 파트너 수
 
 export default function TrustBuilder() {
-  // 라이드온의 진짜 브랜드 컬러 (#FFB800)
-  const BRAND_COLOR = "#FFB800";
+  const BRAND_COLOR = "#FFB800"; // 라이드온 브랜드 컬러 (옐로우/골드)
+  const CHART_WIDTH = 1000;
+  const CHART_HEIGHT = 300;
+  
+  // 데이터 포인트 간의 간격 계산
+  const stepX = CHART_WIDTH / (timeline.length - 1);
+
+  // 값을 SVG 좌표로 변환하는 함수 (데이터 범위에 따라 Y축 밸런스 조정)
+  const getBranchY = (val: number) => 300 - (val / 40) * 200; // 지사는 아래쪽 영역 (최대 40개 기준)
+  const getRiderY = (val: number) => 250 - (val / 1800) * 200; // 인원은 위쪽 영역 (최대 1800명 기준)
+
+  // 선 경로(Path) 생성
+  const branchPath = branchValues.map((val, i) => `${i === 0 ? 'M' : 'L'} ${i * stepX} ${getBranchY(val)}`).join(" ");
+  const riderPath = riderValues.map((val, i) => `${i === 0 ? 'M' : 'L'} ${i * stepX} ${getRiderY(val)}`).join(" ");
 
   return (
     <section className="bg-transparent overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-6 py-32">
         
-        {/* Header - 요청하신 텍스트로 수정 완료 */}
+        {/* Header - 요청하신 텍스트 반영 */}
         <header className="mb-20">
           <FadeUp delay={0.1}>
             <Eyebrow className="text-[#FFB800] font-normal text-[10px] lg:text-xs mb-6 opacity-90">
@@ -40,51 +57,46 @@ export default function TrustBuilder() {
           </FadeUp>
         </header>
 
-        {/* 차트 박스 */}
+        {/* Chart Section */}
         <div className="relative w-full bg-white/[0.03] rounded-[40px] border border-white/10 p-8 lg:p-14 backdrop-blur-sm">
           
-          {/* 범례 - 브랜드색 동그라미 복구 */}
-          <div className="flex gap-8 mb-16">
+          <div className="flex gap-8 mb-20">
             <div className="flex items-center gap-3">
-              <div 
-                className="w-3.5 h-3.5 rounded-full" 
-                style={{ backgroundColor: BRAND_COLOR, boxShadow: `0 0 15px ${BRAND_COLOR}60` }} 
-              />
+              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: BRAND_COLOR, boxShadow: `0 0 10px ${BRAND_COLOR}` }} />
               <span className="text-xs font-bold text-white tracking-tight">전국 지사 규모</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-3.5 h-3.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
-              <span className="text-xs font-bold text-white tracking-tight">활동 파트너 인원</span>
+              <div className="w-3 h-3 rounded-full bg-white/80 shadow-[0_0_10px_white]" />
+              <span className="text-xs font-bold text-white/80 tracking-tight">활동 파트너 인원</span>
             </div>
           </div>
 
           <div className="relative h-[350px] w-full flex items-end px-2">
-            {/* 가이드 라인 */}
+            {/* 배경 그리드 */}
             <div className="absolute inset-0 flex flex-col justify-between opacity-[0.05]">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="w-full h-[1px] bg-white" />
-              ))}
+              {[...Array(6)].map((_, i) => <div key={i} className="w-full h-[1px] bg-white" />)}
             </div>
 
-            <svg viewBox="0 0 1000 350" className="w-full h-full overflow-visible">
-              {/* 1. 활동 파트너 인원 (상단 선 - 흰색 점선) / 좌표: 위쪽 */}
+            <svg viewBox={`0 -50 ${CHART_WIDTH} ${CHART_HEIGHT + 50}`} className="w-full h-full overflow-visible">
+              {/* 1. 활동 파트너 선 (흰색 점선) */}
               <motion.path
-                d="M 0 240 L 166 210 L 332 150 L 498 90 L 664 60 L 830 50 L 1000 45"
+                d={riderPath}
                 fill="none"
-                stroke="white" 
-                strokeWidth="3"
-                strokeDasharray="12 8"
+                stroke="white"
+                strokeWidth="2"
+                strokeDasharray="8 6"
+                strokeOpacity="0.4"
                 initial={{ pathLength: 0 }}
                 whileInView={{ pathLength: 1 }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}
               />
 
-              {/* 2. 전국 지사 규모 (하단 선 - 브랜드 컬러 실선) / 좌표: 아래쪽 */}
+              {/* 2. 전국 지사 선 (브랜드색 실선) */}
               <motion.path
-                d="M 0 320 L 166 300 L 332 260 L 498 190 L 664 160 L 830 145 L 1000 142"
+                d={branchPath}
                 fill="none"
-                stroke={BRAND_COLOR} 
-                strokeWidth="6"
+                stroke={BRAND_COLOR}
+                strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 initial={{ pathLength: 0 }}
@@ -92,56 +104,62 @@ export default function TrustBuilder() {
                 transition={{ duration: 2, ease: "easeOut" }}
               />
 
-              {/* 끝점 포인트 - 지사 규모 (좌표: 1000, 142) */}
-              <motion.circle
-                cx="1000" cy="142" r="8"
-                fill={BRAND_COLOR}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.8 }}
-                style={{ filter: `drop-shadow(0 0 15px ${BRAND_COLOR})` }}
-              />
+              {/* 각 데이터 포인트에 점(Node)과 숫자 찍기 */}
+              {timeline.map((_, i) => (
+                <g key={i}>
+                  {/* 인원수 포인트 */}
+                  <motion.circle
+                    cx={i * stepX} cy={getRiderY(riderValues[i])} r="3"
+                    fill="white"
+                    initial={{ opacity: 0 }} whileInView={{ opacity: 0.6 }} transition={{ delay: 1 + i * 0.1 }}
+                  />
+                  <motion.text
+                    x={i * stepX} y={getRiderY(riderValues[i]) - 15}
+                    textAnchor="middle" fill="white" fontSize="10" fontWeight="bold" opacity="0.4"
+                    initial={{ opacity: 0 }} whileInView={{ opacity: 0.4 }} transition={{ delay: 1.2 + i * 0.1 }}
+                  >
+                    {riderValues[i].toLocaleString()}
+                  </motion.text>
 
-              {/* 끝점 포인트 - 파트너 인원 (좌표: 1000, 45) */}
-              <motion.circle
-                cx="1000" cy="45" r="6"
-                fill="white"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.8 }}
-                style={{ filter: "drop-shadow(0 0 10px white)" }}
-              />
+                  {/* 지사수 포인트 */}
+                  <motion.circle
+                    cx={i * stepX} cy={getBranchY(branchValues[i])} r="4"
+                    fill={BRAND_COLOR}
+                    initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1.5 + i * 0.1 }}
+                  />
+                  <motion.text
+                    x={i * stepX} y={getBranchY(branchValues[i]) + 25}
+                    textAnchor="middle" fill={BRAND_COLOR} fontSize="11" fontWeight="bold"
+                    initial={{ opacity: 0 }} whileInView={{ opacity: 0.8 }} transition={{ delay: 1.7 + i * 0.1 }}
+                  >
+                    {branchValues[i]}
+                  </motion.text>
+                </g>
+              ))}
             </svg>
 
             {/* X축 라벨 */}
-            <div className="absolute -bottom-14 w-full flex justify-between px-2">
-              {timeline.map((date) => (
-                <span key={date} className="text-[11px] font-semibold text-white/40 tracking-tighter">
-                  {date}
-                </span>
-              ))}
+            <div className="absolute -bottom-14 w-full flex justify-between px-2 text-white/30 font-semibold text-[10px] lg:text-[11px]">
+              {timeline.map((date) => <span key={date}>{date}</span>)}
             </div>
           </div>
 
-          {/* 우상단 현황 요약 */}
+          {/* 우상단 현재 요약 박스 */}
           <div className="mt-28 lg:mt-0 lg:absolute lg:top-14 lg:right-14 text-left lg:text-right">
             <FadeUp delay={1.2}>
-              <div className="text-[10px] font-black mb-3 tracking-[0.2em]" style={{ color: BRAND_COLOR }}>
-                2026년 상반기 운영 현황
-              </div>
+              <div className="text-[10px] font-black mb-3 tracking-[0.2em]" style={{ color: BRAND_COLOR }}>2026년 상반기 운영 현황</div>
               <div className="text-5xl lg:text-6xl font-black text-white tracking-tighter mb-3">30개 지사</div>
-              <div className="text-base lg:text-lg text-white/50 font-light">전국 1,500명 이상의 파트너 활동 중</div>
+              <div className="text-base lg:text-lg text-white/50 font-light tracking-tight">전국 1,500명 이상의 파트너 활동 중</div>
             </FadeUp>
           </div>
         </div>
 
-        {/* 하단 설명 */}
+        {/* 하단 한 줄 문구 */}
         <FadeUp delay={0.6}>
           <p className="mt-24 text-text-body text-xs lg:text-sm opacity-50 font-light tracking-tight text-center lg:text-left">
             라이드온은 2023년 런칭 이후 매 분기 폭발적인 성장을 기록하며, 단순한 숫자를 넘어 데이터로 그 신뢰를 증명하고 있습니다.
           </p>
         </FadeUp>
-
       </div>
     </section>
   );
