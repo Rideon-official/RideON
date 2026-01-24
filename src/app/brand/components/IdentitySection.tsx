@@ -3,15 +3,23 @@
 
 import { motion } from "framer-motion";
 import { FadeUp } from "@/components/ui/MotionWrapper";
-import { ShieldAlert, Zap, Globe } from "lucide-react";
+import { ShieldAlert } from "lucide-react";
+
+const rideonValues = [
+  { k: "R", title: "Rapid", desc: "즉시 대응하는 실행력" },
+  { k: "I", title: "Innovation", desc: "데이터 기반 혁신" },
+  { k: "D", title: "Drive", desc: "끝까지 밀어붙이는 추진력" },
+  { k: "E", title: "Endurance", desc: "꾸준함으로 만드는 안정성" },
+  { k: "O", title: "Onward", desc: "한 단계 더 전진" },
+  { k: "N", title: "Nexus", desc: "모두를 연결하는 허브" },
+];
 
 export default function IdentitySection() {
   return (
     <section className="relative py-32 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          
-          {/* 왼쪽: 시장의 고통 (Problem) */}
+        {/* 상단: Market Problem (기존 유지) */}
+        <div className="grid lg:grid-cols-2 gap-20 items-start mb-24">
           <FadeUp>
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold">
@@ -29,28 +37,32 @@ export default function IdentitySection() {
             </div>
           </FadeUp>
 
-          {/* 오른쪽: 라이드온의 해답 (Meaning) */}
-          <div className="grid gap-6">
-            <FadeUp delay={0.2}>
-              <div className="p-8 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-sm group hover:border-[#FFB800]/30 transition-all">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#FFB800]/10 flex items-center justify-center text-[#FFB800] font-black text-xl">R</div>
-                  <h3 className="text-xl font-bold italic">RAPID & REAL-TIME</h3>
-                </div>
-                <p className="text-white/60 font-light italic">"모든 정산과 대응은 실시간으로, 라이드온의 속도는 멈추지 않습니다."</p>
-              </div>
-            </FadeUp>
+          <FadeUp delay={0.2}>
+            <div className="p-10 rounded-[40px] bg-white/[0.03] border border-white/10 backdrop-blur-md">
+              <h3 className="text-[#FFB800] text-sm font-bold tracking-widest mb-6 uppercase text-center">Brand Identity</h3>
+              <p className="text-2xl lg:text-3xl font-bold text-center leading-snug">
+                "모두가 멈출 때도 <br />
+                <span className="text-[#FFB800]">라이드온의 인프라는 <br />항상 ON 상태입니다.</span>"
+              </p>
+            </div>
+          </FadeUp>
+        </div>
 
-            <FadeUp delay={0.3}>
-              <div className="p-8 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-sm group hover:border-[#FFB800]/30 transition-all">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#FFB800]/10 flex items-center justify-center text-[#FFB800] font-black text-xl">ON</div>
-                  <h3 className="text-xl font-bold italic">ALWAYS ON INFRA</h3>
+        {/* 하단: R.I.D.E.O.N. 6대 가치 (추가) */}
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
+          {rideonValues.map((item, i) => (
+            <FadeUp key={item.k} delay={0.1 * i}>
+              <div className="group relative p-6 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-[#FFB800]/30 hover:bg-[#FFB800]/5 transition-all text-center h-full flex flex-col justify-center">
+                <div className="text-3xl font-black text-[#FFB800] mb-2 opacity-50 group-hover:opacity-100 transition-opacity">
+                  {item.k}
                 </div>
-                <p className="text-white/60 font-light italic">"모두가 잠든 시간에도 라이드온의 인프라는 항상 켜져(ON) 있습니다."</p>
+                <div className="text-sm font-bold text-white mb-1">{item.title}</div>
+                <div className="text-[11px] text-white/40 font-light break-keep">
+                  {item.desc}
+                </div>
               </div>
             </FadeUp>
-          </div>
+          ))}
         </div>
       </div>
     </section>
