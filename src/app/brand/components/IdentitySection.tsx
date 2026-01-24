@@ -22,16 +22,21 @@ export default function IdentitySection() {
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-32">
           <FadeUp>
             <div className="space-y-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFB800]/10 border border-[#FFB800]/20 text-[#FFB800] text-[10px] font-bold tracking-widest uppercase">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFB800]/10 border border-[#FFB800]/20 text-[#FFB800] text-[10px] font-bold tracking-[0.2em] uppercase">
                 BRAND IDENTITY
               </div>
-              <h2 className="text-4xl lg:text-5xl font-black tracking-tighter leading-[1.2] lg:leading-[1.1]">
-                불투명한 데이터와 멈춰있는 시스템,<br />
-                <span className="text-white/40 font-light">현장은 지쳐있었습니다.</span>
+              
+              {/* 제목: 줄 간격을 1.3으로 벌려 가독성 확보, 시원하게 2줄 배치 */}
+              <h2 className="text-4xl lg:text-5xl font-black tracking-tighter leading-[1.3]">
+                당연했던 현장의 비정상을 끝내고,<br />
+                <span className="text-white/40 font-light text-3xl lg:text-4xl">가장 투명한 인프라의 궤도를 만듭니다.</span>
               </h2>
-              <p className="text-white/60 text-lg lg:text-xl font-light leading-relaxed max-w-xl">
-                정산은 맞지 않고, 바이크는 관리되지 않으며<br />
-                파트너와 라이더 사이의 소통은 끊겨 있었습니다.
+
+              {/* 본문: 지사장님의 고충을 든든함으로 연결하는 문구 */}
+              <p className="text-white/60 text-lg lg:text-xl font-light leading-[1.7] max-w-2xl">
+                누락된 정산, 방치된 기기, 홀로 감당해야 했던 관리의 한계 —<br className="hidden lg:block" />
+                라이드온의 압도적인 인프라는 지사장님의 외로운 운영을<br className="hidden lg:block" />
+                <span className="text-white font-medium italic underline underline-offset-4 decoration-[#FFB800]/50">가장 든든한 비즈니스</span>로 바꿉니다.
               </p>
             </div>
           </FadeUp>
@@ -61,7 +66,7 @@ export default function IdentitySection() {
             <FadeUp key={item.k} delay={0.1 * i}>
               <div className="group relative h-64 lg:h-72 p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-[#FFB800]/40 transition-all duration-500 flex flex-col justify-end overflow-hidden">
                 
-                {/* 배경 알파벳 장식 (임팩트 요소) */}
+                {/* 배경 알파벳 장식 */}
                 <div className="absolute top-4 right-6 text-7xl font-black text-white/[0.03] group-hover:text-[#FFB800]/10 transition-all duration-500 group-hover:-translate-y-2">
                   {item.k}
                 </div>
