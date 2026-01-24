@@ -6,11 +6,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, ChevronDown } from "lucide-react";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -21,104 +22,126 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // 하위 메뉴 데이터 구성
   const navItems = [
-    { name: "회사소개", href: "/brand" },
-    { name: "렌트·리스 소개", href: "/bike" },
-    { name: "정산시스템 소개", href: "/logiteats" },
+    { 
+      name: "회사소개", 
+      href: "/brand",
+      subMenus: [
+        { name: "브랜드 스토리", href: "/brand#story" },
+        { name: "역사 및 연혁", href: "/brand#history" },
+        { name: "오시는 길", href: "/brand#location" }
+      ]
+    },
+    { 
+      name: "렌트·리스 소개", 
+      href: "/bike",
+      subMenus: [
+        { name: "신차 렌트 프로그램", href: "/bike#new" },
+        { name: "중고 리스 프로그램", href: "/bike#used" },
+        { name: "정비 서비스 안내", href: "/bike#service" }
+      ]
+    },
+    { 
+      name: "정산시스템 소개", 
+      href: "/logiteats",
+      subMenus: [
+        { name: "실시간 정산 안내", href: "/logiteats#realtime" },
+        { name: "투명한 내역 관리", href: "/logiteats#transparency" },
+        { name: "파트너 전용 앱", href: "/logiteats#app" }
+      ]
+    },
     { name: "공지사항", href: "/notice" },
   ];
 
   return (
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-500 ${
-        isScrolled
-          ? "bg-black/60 backdrop-blur-xl py-3 shadow-2xl border-b border-white/5" // 딥 블랙 반투명으로 변경
+        isScrolled || hoveredMenu
+          ? "bg-white/90 backdrop-blur-2xl py-3 shadow-lg border-b border-black/5"
           : "bg-transparent py-5"
       }`}
+      onMouseLeave={() => setHoveredMenu(null)} // 마우스가 헤더 밖으로 나가면 닫기
     >
-      {/* 상단 노란색 강조 라인 */}
-      <div 
-        className={`absolute top-0 left-0 w-full h-[2px] bg-[#FFB800] transition-transform duration-500 origin-left ${
-          isScrolled ? "scale-x-100" : "scale-x-0"
-        }`} 
-      />
+      {/* 상단 노란색 라인 */}
+      <div className={`absolute top-0 left-0 w-full h-[2px] bg-[#FFB800] transition-transform duration-500 origin-left ${isScrolled ? "scale-x-100" : "scale-x-0"}`} />
 
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <nav className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative w-10 h-10 overflow-hidden rounded-lg border border-white/10">
-              <Image
-                src="/rideon-mark.png"
-                alt={`${siteConfig.name} 심볼`}
-                fill
-                priority
-                className="object-contain p-1.5 transition-transform group-hover:scale-110"
-              />
+          {/* 로고 영역 */}
+          <Link href="/" className="flex items-center gap-2 group relative z-10">
+            <div className={`relative w-10 h-10 overflow-hidden rounded-lg border transition-colors ${isScrolled || hoveredMenu ? "border-black/10" : "border-white/20"}`}>
+              <Image src="/rideon-mark.png" alt="RIDE ON" fill className="object-contain p-1.5" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tighter leading-none text-white">
+              <span className={`text-xl font-black tracking-tighter leading-none transition-colors ${isScrolled || hoveredMenu ? "text-[#1A1A1A]" : "text-white"}`}>
                 {siteConfig.name}
               </span>
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#FFB800]">
-                Infrastructure
-              </span>
+              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#FFB800]">Infrastructure</span>
             </div>
           </Link>
 
+          {/* 데스크탑 메뉴 */}
           <div className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-[15px] font-bold tracking-tight transition-all hover:text-[#FFB800] ${
-                  pathname === item.href ? "text-[#FFB800]" : "text-white/90"
-                } drop-shadow-sm`} // 글자색을 화이트로 고정하여 가독성 확보
+              <div 
+                key={item.name} 
+                className="relative py-2"
+                onMouseEnter={() => setHoveredMenu(item.name)}
               >
-                {item.name}
-              </Link>
+                <Link
+                  href={item.href}
+                  className={`flex items-center gap-1 text-[15px] font-bold tracking-tight transition-colors hover:text-[#FFB800] ${
+                    isScrolled || hoveredMenu
+                      ? (pathname === item.href ? "text-[#FFB800]" : "text-[#1A1A1A]")
+                      : (pathname === item.href ? "text-[#FFB800]" : "text-white")
+                  }`}
+                >
+                  {item.name}
+                  {item.subMenus && <ChevronDown size={14} className={`transition-transform ${hoveredMenu === item.name ? "rotate-180" : ""}`} />}
+                </Link>
+              </div>
             ))}
             
             <Link
               href="/inquiry"
-              className="rounded-full px-7 py-2.5 text-[14px] font-black bg-[#FFB800] text-black transition-all hover:scale-105 active:scale-95 shadow-[0_4px_15px_rgba(255,184,0,0.4)]"
+              className="rounded-full px-7 py-2.5 text-[14px] font-black bg-[#FFB800] text-black transition-all hover:scale-105 active:scale-95 shadow-md"
             >
               지사 가맹 신청
             </Link>
           </div>
-
-          <button
-            className="md:hidden text-white p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
-          </button>
         </nav>
       </div>
 
-      {/* 모바일 메뉴 오버레이 (딥 블랙) */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl pt-24 px-6 md:hidden">
-          <div className="flex flex-col gap-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-2xl font-black text-white flex justify-between items-center border-b border-white/5 pb-5"
+      {/* 하위 메뉴 드롭다운 패널 (네이버 스타일) */}
+      <div 
+        className={`absolute top-full left-0 w-full bg-white/95 backdrop-blur-3xl border-b border-black/5 overflow-hidden transition-all duration-300 ease-in-out ${
+          hoveredMenu && navItems.find(i => i.name === hoveredMenu)?.subMenus
+            ? "max-height-[300px] opacity-100 py-10" 
+            : "max-height-0 opacity-0 py-0"
+        }`}
+        style={{ maxHeight: hoveredMenu && navItems.find(i => i.name === hoveredMenu)?.subMenus ? "300px" : "0px" }}
+      >
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+          <div className="flex gap-20">
+            {/* 현재 호버된 메뉴의 서브메뉴만 표시 */}
+            {navItems.find(i => i.name === hoveredMenu)?.subMenus?.map((sub) => (
+              <Link 
+                key={sub.name} 
+                href={sub.href}
+                className="group flex flex-col gap-2"
               >
-                {item.name} <ChevronRight className="text-[#FFB800]" size={24} strokeWidth={3} />
+                <span className="text-[16px] font-bold text-[#1A1A1A] group-hover:text-[#FFB800] transition-colors">
+                  {sub.name}
+                </span>
+                <span className="text-[12px] text-black/40 font-medium group-hover:text-[#FFB800]/60">
+                  자세히 보기
+                </span>
               </Link>
             ))}
-            <Link
-              href="/inquiry"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-6 rounded-2xl bg-[#FFB800] py-5 text-center text-xl font-black text-black"
-            >
-              지사 가맹 신청
-            </Link>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }
