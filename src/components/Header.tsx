@@ -15,7 +15,6 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 20px 이상 내렸을 때 스타일 변경
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
@@ -33,7 +32,7 @@ export function Header() {
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-700 ${
         isScrolled
-          ? "bg-white/15 backdrop-blur-2xl py-3 shadow-[0_2px_20px_rgba(0,0,0,0.06)] border-b border-white/10"
+          ? "bg-white/20 backdrop-blur-2xl py-3 shadow-[0_4px_30px_rgba(0,0,0,0.1)] border-b border-white/10"
           : "bg-transparent py-5"
       }`}
     >
@@ -58,7 +57,7 @@ export function Header() {
               />
             </div>
             <div className="flex flex-col">
-              <span className={`text-xl font-black tracking-tighter leading-none transition-colors ${isScrolled ? "text-[#1A1A1A]" : "text-white"}`}>
+              <span className={`text-xl font-black tracking-tighter leading-none transition-colors ${isScrolled ? "text-[#1A1A1A] drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]" : "text-white"}`}>
                 {siteConfig.name}
               </span>
               <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#FFB800]">
@@ -67,15 +66,15 @@ export function Header() {
             </div>
           </Link>
 
-          {/* 데스크탑 메뉴 */}
+          {/* 데스크탑 메뉴: 가독성 보정 추가 */}
           <div className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-[15px] font-bold tracking-tight transition-colors hover:text-[#FFB800] ${
+                className={`text-[15px] font-extrabold tracking-tight transition-colors hover:text-[#FFB800] ${
                   isScrolled 
-                    ? (pathname === item.href ? "text-[#FFB800]" : "text-[#1A1A1A]") 
+                    ? (pathname === item.href ? "text-[#FFB800]" : "text-[#1A1A1A] drop-shadow-[0_1px_1px_rgba(255,255,255,0.3)]") 
                     : (pathname === item.href ? "text-[#FFB800]" : "text-white")
                 }`}
               >
@@ -83,10 +82,10 @@ export function Header() {
               </Link>
             ))}
             
-            {/* CTA 버튼: 스크롤 여부와 상관없이 브랜드 노란색 유지 */}
+            {/* CTA 버튼: 노란색 고정 */}
             <Link
               href="/inquiry"
-              className="rounded-full px-7 py-2.5 text-[14px] font-extrabold bg-[#FFB800] text-black transition-all hover:scale-105 active:scale-95 shadow-[0_4px_15px_rgba(255,184,0,0.3)] hover:bg-[#FFB800]/90"
+              className="rounded-full px-7 py-2.5 text-[14px] font-black bg-[#FFB800] text-black transition-all hover:scale-105 active:scale-95 shadow-[0_4px_15px_rgba(255,184,0,0.4)] hover:bg-[#FFB800]/90"
             >
               지사 가맹 신청
             </Link>
@@ -97,14 +96,14 @@ export function Header() {
             className={`md:hidden p-2 transition-colors ${isScrolled ? "text-[#1A1A1A]" : "text-white"}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
+            {isMobileMenuOpen ? <X size={28} strokeWidth={3} /> : <Menu size={28} strokeWidth={3} />}
           </button>
         </nav>
       </div>
 
       {/* 모바일 메뉴 오버레이 */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white/90 backdrop-blur-2xl pt-24 px-6 md:hidden">
+        <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-3xl pt-24 px-6 md:hidden">
           <div className="flex flex-col gap-6">
             {navItems.map((item) => (
               <Link
