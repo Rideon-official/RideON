@@ -3,14 +3,14 @@
 
 import { motion } from "framer-motion";
 import { FadeUp } from "@/components/ui/MotionWrapper";
-import { BarChart3, Wrench, lineChart, TrendingUp } from "lucide-react";
+import { BarChart, Wrench, Activity, TrendingUp } from "lucide-react"; // 아이콘 이름 수정
 
 const solutions = [
   {
     title: "ENGINE 01. Transparency",
     subtitle: "실시간 데이터 정산 시스템",
     desc: "불투명한 정산의 시대를 끝냅니다. AI 기반 LogitEats 시스템으로 라이더와 지사가 실시간으로 모든 내역을 투명하게 확인할 수 있습니다.",
-    icon: <BarChart3 className="w-6 h-6" />,
+    icon: <BarChart className="w-6 h-6" />,
     color: "from-amber-400 to-orange-500",
   },
   {
@@ -46,7 +46,6 @@ export default function CoreSolutions() {
           {solutions.map((item, i) => (
             <FadeUp key={item.title} delay={i * 0.1}>
               <div className="group relative p-10 h-full rounded-[40px] bg-white/[0.02] border border-white/5 backdrop-blur-md overflow-hidden transition-all hover:bg-white/[0.05] hover:border-white/10">
-                {/* 배경 글로우 효과 */}
                 <div className={`absolute -right-10 -top-10 w-32 h-32 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 blur-3xl transition-opacity`} />
                 
                 <div className="relative z-10">
