@@ -15,6 +15,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // 20px 이상 내렸을 때 스타일 변경
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
@@ -32,11 +33,11 @@ export function Header() {
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-700 ${
         isScrolled
-          ? "bg-white/30 backdrop-blur-2xl py-3 shadow-[0_2px_20px_rgba(0,0,0,0.06)] border-b border-white/10"
+          ? "bg-white/25 backdrop-blur-2xl py-3 shadow-[0_2px_20px_rgba(0,0,0,0.06)] border-b border-white/10"
           : "bg-transparent py-5"
       }`}
     >
-      {/* 상단 노란색 라인: 얇지만 선명하게 */}
+      {/* 상단 노란색 라인 */}
       <div 
         className={`absolute top-0 left-0 w-full h-[2px] bg-[#FFB800] transition-transform duration-700 origin-left ${
           isScrolled ? "scale-x-100" : "scale-x-0"
@@ -66,7 +67,7 @@ export function Header() {
             </div>
           </Link>
 
-          {/* 데스크탑 메뉴: 글자 두께 강화 및 크기 조정 */}
+          {/* 데스크탑 메뉴 */}
           <div className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
               <Link
@@ -82,14 +83,10 @@ export function Header() {
               </Link>
             ))}
             
-            {/* CTA 버튼: 지사 가맹 신청 */}
+            {/* CTA 버튼: 스크롤 여부와 상관없이 브랜드 노란색 유지 */}
             <Link
               href="/inquiry"
-              className={`rounded-full px-7 py-2.5 text-[14px] font-extrabold transition-all hover:scale-105 active:scale-95 shadow-md ${
-                isScrolled 
-                  ? "bg-[#1A1A1A] text-white hover:bg-black" 
-                  : "bg-[#FFB800] text-black hover:bg-[#FFB800]/90"
-              }`}
+              className="rounded-full px-7 py-2.5 text-[14px] font-extrabold bg-[#FFB800] text-black transition-all hover:scale-105 active:scale-95 shadow-[0_4px_15px_rgba(255,184,0,0.3)] hover:bg-[#FFB800]/90"
             >
               지사 가맹 신청
             </Link>
