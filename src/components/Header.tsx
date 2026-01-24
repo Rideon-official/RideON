@@ -15,7 +15,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 20px 이상 내렸을 때 스타일 변경
+      // 20px 이상 내렸을 때 변경
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
@@ -33,13 +33,13 @@ export function Header() {
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-700 ${
         isScrolled
-          ? "bg-white/40 backdrop-blur-xl py-3 shadow-[0_2px_15px_rgba(0,0,0,0.05)] border-b border-white/20"
+          ? "bg-white/40 backdrop-blur-xl py-3 shadow-[0_2px_20px_rgba(0,0,0,0.08)] border-b border-white/20"
           : "bg-transparent py-5"
       }`}
     >
-      {/* 네이버 스타일 상단 강조 라인 (스크롤 시 노출) */}
+      {/* 네이버 스타일 상단 강조 라인 (더 얇고 세련되게) */}
       <div 
-        className={`absolute top-0 left-0 w-full h-[3px] bg-[#FFB800] transition-transform duration-700 origin-left ${
+        className={`absolute top-0 left-0 w-full h-[2px] bg-[#FFB800]/80 transition-transform duration-700 origin-left ${
           isScrolled ? "scale-x-100" : "scale-x-0"
         }`} 
       />
@@ -61,13 +61,13 @@ export function Header() {
               <span className={`text-lg font-bold tracking-tight leading-none transition-colors ${isScrolled ? "text-[#1A1A1A]" : "text-white"}`}>
                 {siteConfig.name}
               </span>
-              <span className={`text-[10px] font-medium tracking-widest uppercase opacity-80 transition-colors ${isScrolled ? "text-[#FFB800]" : "text-[#FFB800]"}`}>
+              <span className="text-[10px] font-medium tracking-widest uppercase text-[#FFB800] opacity-90">
                 Infrastructure
               </span>
             </div>
           </Link>
 
-          {/* 데스크탑 메뉴: 스크롤 시 글자색 반전 */}
+          {/* 데스크탑 메뉴 */}
           <div className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
               <Link
@@ -75,18 +75,18 @@ export function Header() {
                 href={item.href}
                 className={`text-sm font-medium transition-colors hover:text-[#FFB800] ${
                   isScrolled 
-                    ? (pathname === item.href ? "text-[#FFB800]" : "text-[#1A1A1A]/40") 
-                    : (pathname === item.href ? "text-[#FFB800]" : "text-white/40")
+                    ? (pathname === item.href ? "text-[#FFB800]" : "text-[#1A1A1A]/80") 
+                    : (pathname === item.href ? "text-[#FFB800]" : "text-white/70")
                 }`}
               >
                 {item.name}
               </Link>
             ))}
             
-            {/* CTA 버튼: 지사 가맹 신청 */}
+            {/* CTA 버튼: 스크롤 시 블랙/투명 톤으로 변경하여 대비 완화 */}
             <Link
               href="/inquiry"
-              className={`rounded-full px-6 py-2.5 text-sm font-bold transition-all hover:scale-105 active:scale-95 shadow-md ${
+              className={`rounded-full px-6 py-2.5 text-sm font-bold transition-all hover:scale-105 active:scale-95 shadow-sm ${
                 isScrolled 
                   ? "bg-[#1A1A1A] text-white hover:bg-black" 
                   : "bg-[#FFB800] text-black hover:bg-[#FFB800]/90"
@@ -106,9 +106,9 @@ export function Header() {
         </nav>
       </div>
 
-      {/* 모바일 메뉴 오버레이 */}
+      {/* 모바일 메뉴 오버레이 (화이트 톤) */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden">
+        <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-24 px-6 md:hidden">
           <div className="flex flex-col gap-6">
             {navItems.map((item) => (
               <Link
