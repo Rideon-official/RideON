@@ -31,15 +31,15 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+      className={`fixed top-0 z-50 w-full transition-all duration-700 ${
         isScrolled
-          ? "bg-white/70 backdrop-blur-xl py-3 shadow-[0_2px_15px_rgba(0,0,0,0.05)] border-b border-white/20"
+          ? "bg-white/40 backdrop-blur-xl py-3 shadow-[0_2px_15px_rgba(0,0,0,0.05)] border-b border-white/20"
           : "bg-transparent py-5"
       }`}
     >
       {/* 네이버 스타일 상단 강조 라인 (스크롤 시 노출) */}
       <div 
-        className={`absolute top-0 left-0 w-full h-[3px] bg-[#FFB800] transition-transform duration-500 origin-left ${
+        className={`absolute top-0 left-0 w-full h-[3px] bg-[#FFB800] transition-transform duration-700 origin-left ${
           isScrolled ? "scale-x-100" : "scale-x-0"
         }`} 
       />
@@ -75,8 +75,8 @@ export function Header() {
                 href={item.href}
                 className={`text-sm font-medium transition-colors hover:text-[#FFB800] ${
                   isScrolled 
-                    ? (pathname === item.href ? "text-[#FFB800]" : "text-[#1A1A1A]/70") 
-                    : (pathname === item.href ? "text-[#FFB800]" : "text-white/70")
+                    ? (pathname === item.href ? "text-[#FFB800]" : "text-[#1A1A1A]/40") 
+                    : (pathname === item.href ? "text-[#FFB800]" : "text-white/40")
                 }`}
               >
                 {item.name}
