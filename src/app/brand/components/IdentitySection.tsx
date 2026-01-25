@@ -18,62 +18,55 @@ export default function IdentitySection() {
     <section className="relative py-32 border-t border-white/5 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         
-        {/* 상단: Brand Identity & Problem */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-32">
-          <FadeUp>
-            <div className="space-y-12">
+        {/* 상단: 구조를 가로로 더 길게 활용하여 한 줄 배치 유도 */}
+        <div className="flex flex-col lg:flex-row justify-between items-end gap-12 mb-32">
+          
+          {/* 왼쪽: 제목 섹션 - 폰트 사이즈 최적화 및 줄바꿈 제거 */}
+          <FadeUp className="flex-1">
+            <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFB800]/10 border border-[#FFB800]/20 text-[#FFB800] text-[10px] font-bold tracking-[0.2em] uppercase">
                 BRAND IDENTITY
               </div>
               
-              <div className="space-y-8">
-                {/* 제목: 글자 크기를 5xl -> 4xl로 살짝 줄이고, 줄 간격을 1.4로 넓혀 시원하게 배치 */}
-                <h2 className="text-3xl lg:text-[44px] font-black tracking-tighter leading-[1.4] lg:leading-[1.35]">
-                  당연했던 현장의 비정상을 끝내고,<br className="hidden sm:block" />
-                  <span className="text-white/40 font-light">가장 투명한 인프라의 궤도를 만듭니다.</span>
+              <div className="space-y-6">
+                {/* 텍스트를 한 줄로 쭉 뻗게 수정 */}
+                <h2 className="text-3xl lg:text-[40px] font-black tracking-tighter leading-tight whitespace-nowrap">
+                  비정상을 끝내고, <span className="text-white/40 font-light">가장 투명한 궤도를 만듭니다.</span>
                 </h2>
 
-                {/* 본문: 줄바꿈 위치를 강제하여 시각적 어지러움 해소 */}
-                <p className="text-white/60 text-lg lg:text-[19px] font-light leading-[1.9] max-w-2xl">
-                  누락된 정산, 방치된 기기, 홀로 감당했던 관리의 한계.<br className="hidden lg:block" />
-                  라이드온의 압도적인 인프라는 지사장님의 외로운 운영을<br className="hidden lg:block" />
-                  <span className="text-white font-medium italic border-b border-[#FFB800]/50 pb-1 inline-block mt-1">
-                    가장 든든한 비즈니스
-                  </span>로 바꿉니다.
+                <p className="text-white/60 text-lg lg:text-[18px] font-light leading-relaxed max-w-3xl break-keep">
+                  누락과 방치의 시대를 지나, 라이드온의 인프라는 지사장님의 운영을 
+                  <span className="text-white font-medium italic border-b border-[#FFB800]/50 pb-0.5 ml-2">가장 든든한 비즈니스</span>로 바꿉니다.
                 </p>
               </div>
             </div>
           </FadeUp>
 
-          <FadeUp delay={0.2}>
-            {/* 우측 카드: 내부 여백을 늘려 글자가 꽉 차 보이지 않게 조절 */}
-            <div className="relative p-12 lg:p-16 rounded-[48px] bg-white/[0.03] border border-white/10 backdrop-blur-md overflow-hidden group">
-              <div className="absolute -right-10 -bottom-10 text-[180px] font-black text-white/[0.015] select-none pointer-events-none group-hover:text-[#FFB800]/5 transition-colors duration-700">
+          {/* 오른쪽: 카드 섹션 - 가로형 카드로 변경하여 문구를 한 줄로 배치 */}
+          <FadeUp delay={0.2} className="w-full lg:w-auto">
+            <div className="relative p-8 lg:p-10 px-12 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-md overflow-hidden group min-w-[400px]">
+              <div className="absolute -right-6 -bottom-6 text-[120px] font-black text-white/[0.015] select-none pointer-events-none group-hover:text-[#FFB800]/5 transition-colors duration-700">
                 ON
               </div>
               
               <div className="relative z-10">
-                <p className="text-[#FFB800] text-xs font-bold tracking-[0.2em] mb-8 uppercase opacity-80">Always ON Infrastructure</p>
-                <h3 className="text-3xl lg:text-[38px] font-black leading-[1.4] tracking-tighter">
-                  모두가 멈출 때도<br />
-                  라이드온의 인프라는<br />
-                  <span className="text-[#FFB800] border-b-2 border-[#FFB800]/30 pb-1">항상 ON 상태입니다.</span>
+                <p className="text-[#FFB800] text-[10px] font-bold tracking-[0.2em] mb-4 uppercase opacity-80">Always ON Infrastructure</p>
+                <h3 className="text-2xl lg:text-[28px] font-black leading-tight tracking-tighter whitespace-nowrap">
+                  모두가 멈출 때도, <span className="text-[#FFB800]">항상 ON 상태입니다.</span>
                 </h3>
               </div>
             </div>
           </FadeUp>
         </div>
 
-        {/* 하단: R.I.D.E.O.N. 6대 가치 (카드 높이와 간격 정교화) */}
+        {/* 하단: R.I.D.E.O.N. 가치는 그대로 유지 (디자인 만족도가 높으므로) */}
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-5">
           {rideonValues.map((item, i) => (
             <FadeUp key={item.k} delay={0.1 * i}>
               <div className="group relative h-60 p-7 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-[#FFB800]/30 transition-all duration-500 flex flex-col justify-end overflow-hidden">
-                
                 <div className="absolute top-4 right-6 text-6xl font-black text-white/[0.02] group-hover:text-[#FFB800]/10 transition-all duration-500">
                   {item.k}
                 </div>
-
                 <div className="relative z-10">
                   <div className="text-3xl font-black text-[#FFB800] mb-3 transition-transform group-hover:translate-x-1">
                     {item.k}
@@ -83,7 +76,6 @@ export default function IdentitySection() {
                     {item.desc}
                   </div>
                 </div>
-
                 <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#FFB800]/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </div>
             </FadeUp>
