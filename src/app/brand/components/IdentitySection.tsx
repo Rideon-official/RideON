@@ -18,11 +18,11 @@ export default function IdentitySection() {
     <section className="relative py-32 border-t border-white/5 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         
-        {/* 상단 섹션: 한 줄 배치 + 애니메이션 디테일 */}
-        <div className="flex flex-col lg:flex-row justify-between items-end gap-12 mb-32">
+        {/* 상단 섹션: 가로 배치 및 텍스트 정리 */}
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-32">
           
-          {/* 왼쪽: 메인 카피 */}
-          <div className="flex-1 space-y-8">
+          {/* 왼쪽: 메인 타이틀 (사라지지 않게 width 설정 보완) */}
+          <div className="w-full lg:w-1/2 space-y-8">
             <FadeUp>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFB800]/10 border border-[#FFB800]/20 text-[#FFB800] text-[10px] font-bold tracking-[0.2em] uppercase">
                 BRAND IDENTITY
@@ -30,67 +30,66 @@ export default function IdentitySection() {
             </FadeUp>
             
             <div className="space-y-6">
-              {/* 글자가 보이지 않는 곳에서 솟아오르는 효과 */}
-              <div className="overflow-hidden">
-                <motion.h2 
-                  initial={{ y: 60, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-                  className="text-3xl lg:text-[42px] font-black tracking-tighter leading-tight whitespace-nowrap"
-                >
-                  비정상을 끝내고, 
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-white/40 via-white to-white/40 font-light ml-3">
-                    가장 투명한 궤도를 만듭니다.
-                  </span>
-                </motion.h2>
-              </div>
+              <h2 className="text-3xl lg:text-[42px] font-black tracking-tighter leading-[1.2] text-white break-keep">
+                비정상을 끝내고,<br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/40 font-light">
+                  가장 투명한 궤도를 만듭니다.
+                </span>
+              </h2>
 
               <FadeUp delay={0.1}>
-                <p className="text-white/60 text-lg lg:text-[18px] font-light leading-relaxed max-w-3xl break-keep">
-                  누락과 방치의 시대를 지나, 라이드온의 인프라는 지사장님의 운영을 
-                  <span className="relative inline-block text-white font-medium italic ml-2">
-                    가장 든든한 비즈니스
-                    <motion.span 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "100%" }}
-                      transition={{ delay: 0.5, duration: 0.8 }}
-                      className="absolute bottom-1 left-0 h-[6px] bg-[#FFB800]/20 -z-10"
-                    />
-                  </span>로 바꿉니다.
+                <p className="text-white/60 text-lg lg:text-[18px] font-light leading-relaxed break-keep">
+                  매일 반복되는 <span className="text-white font-medium">정산의 늪</span>과 <span className="text-white font-medium">세무 신고</span>의 부담, 
+                  끝없는 <span className="text-white font-medium">구인공고</span>와 기사 관리까지. 
+                  지사장님을 괴롭히던 모든 번거로움을 라이드온의 인프라가 <span className="text-[#FFB800] font-semibold">완벽한 비즈니스 시스템</span>으로 바꿉니다.
                 </p>
               </FadeUp>
             </div>
           </div>
 
-          {/* 오른쪽: 하이라이트 카드 (마우스 반응 강화) */}
-          <FadeUp delay={0.2} className="w-full lg:w-auto">
+          {/* 오른쪽: 해결 솔루션 카드 (요청하신 리스트 반영) */}
+          <FadeUp delay={0.2} className="w-full lg:w-[480px]">
             <motion.div 
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="relative p-8 lg:p-10 px-12 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-md overflow-hidden group min-w-[420px] shadow-2xl shadow-black/50"
+              whileHover={{ y: -5 }}
+              className="relative p-8 rounded-[32px] bg-white/[0.03] border border-white/10 backdrop-blur-md overflow-hidden group"
             >
-              {/* 카드 내부 은은한 빛 흐름 효과 */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#FFB800]/0 via-[#FFB800]/5 to-[#FFB800]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
-              <div className="absolute -right-6 -bottom-6 text-[120px] font-black text-white/[0.015] select-none pointer-events-none group-hover:text-[#FFB800]/5 group-hover:scale-110 transition-all duration-700">
+              {/* 내부 장식 */}
+              <div className="absolute -right-10 -top-10 text-[140px] font-black text-white/[0.02] select-none pointer-events-none">
                 ON
               </div>
               
-              <div className="relative z-10">
-                <p className="text-[#FFB800] text-[10px] font-bold tracking-[0.2em] mb-4 uppercase opacity-80 group-hover:tracking-[0.3em] transition-all">
-                  Always ON Infrastructure
+              <h3 className="text-[#FFB800] text-sm font-bold mb-6 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FFB800] animate-pulse" />
+                지사장님을 위한 원스톱 솔루션
+              </h3>
+
+              <ul className="space-y-4 relative z-10">
+                {[
+                  "자동화 시스템으로 매일 정산의 고통 해방",
+                  "복잡한 세무 신고 및 비용 최적화 지원",
+                  "구인공고 및 기사 매칭 프로세스 간소화",
+                  "렌트/리스 및 대여금 금융 지원 프로그램",
+                  "오토바이 미보유 기사를 위한 즉시 지원"
+                ].map((text, idx) => (
+                  <motion.li 
+                    key={idx}
+                    initial={{ opacity: 0, x: 10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + (idx * 0.1) }}
+                    className="flex items-center gap-3 text-white/80 text-[15px] font-light"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 6L7.125 12L4 9.27273" stroke="#FFB800" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    {text}
+                  </motion.li>
+                ))}
+              </ul>
+
+              <div className="mt-8 pt-6 border-t border-white/5">
+                <p className="text-[13px] text-white/40 leading-relaxed italic">
+                  "운영은 라이드온에게 맡기고,<br />지사장님은 성장에만 집중하세요."
                 </p>
-                <h3 className="text-2xl lg:text-[28px] font-black leading-tight tracking-tighter whitespace-nowrap">
-                  모두가 멈출 때도, 
-                  <span className="relative ml-2">
-                    <span className="text-[#FFB800]">항상 ON 상태입니다.</span>
-                    <motion.span 
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      transition={{ delay: 0.6, duration: 0.8 }}
-                      className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFB800]/50 origin-left"
-                    />
-                  </span>
-                </h3>
               </div>
             </motion.div>
           </FadeUp>
@@ -101,11 +100,9 @@ export default function IdentitySection() {
           {rideonValues.map((item, i) => (
             <FadeUp key={item.k} delay={0.1 * i}>
               <div className="group relative h-60 p-7 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-[#FFB800]/30 transition-all duration-500 flex flex-col justify-end overflow-hidden hover:bg-white/[0.04]">
-                
                 <div className="absolute top-4 right-6 text-6xl font-black text-white/[0.02] group-hover:text-[#FFB800]/10 group-hover:scale-110 transition-all duration-500">
                   {item.k}
                 </div>
-
                 <div className="relative z-10">
                   <div className="text-3xl font-black text-[#FFB800] mb-3 transition-transform group-hover:translate-x-1">
                     {item.k}
@@ -115,8 +112,6 @@ export default function IdentitySection() {
                     {item.desc}
                   </div>
                 </div>
-
-                {/* 하단 프로그레스 바 형태의 데코 */}
                 <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#FFB800]/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </div>
             </FadeUp>
