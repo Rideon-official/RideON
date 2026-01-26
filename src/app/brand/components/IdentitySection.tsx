@@ -31,17 +31,18 @@ export default function IdentitySection() {
             
             <div className="space-y-6">
               <h2 className="text-3xl lg:text-[42px] font-black tracking-tighter leading-[1.2] text-white break-keep">
-                비정상을 끝내고,<br />
+                홀로 견뎌온 운영의 무게를 덜고,<br />
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/40 font-light">
                   가장 투명한 궤도를 만듭니다.
                 </span>
               </h2>
 
               <FadeUp delay={0.1}>
-                <p className="text-white/60 text-lg lg:text-[18px] font-light leading-relaxed break-keep">
-                  매일 반복되는 <span className="text-white font-medium">정산의 늪</span>과 <span className="text-white font-medium">세무 신고</span>의 부담, 
-                  끝없는 <span className="text-white font-medium">구인공고</span>와 기사 관리까지. 
-                  지사장님을 괴롭히던 모든 번거로움을 라이드온의 인프라가 <span className="text-[#FFB800] font-semibold">완벽한 비즈니스 시스템</span>으로 바꿉니다.
+                <p className="text-white/60 text-lg lg:text-[18px] font-light leading-relaxed break-keep max-w-2xl">
+                 끝없는 <span className="text-white font-medium">정산의 늪</span>과 매달 부담되는 <span className="text-white font-medium">세무 신고</span>,<br className="hidden lg:block" />
+      매일 반복되는 <span className="text-white font-medium">구인난</span>과 예측 불가능한 사고들까지.<br /><br className="lg:hidden" />
+      안개 속에 갇혀 있던 지사장님의 복잡한 현장을<br className="hidden lg:block" />
+      라이드온의 <span className="text-white font-medium">데이터</span>로 정렬하여 <span className="text-[#FFB800] font-semibold">가장 명확한 성공의 궤도</span>에 올립니다.
                 </p>
               </FadeUp>
             </div>
